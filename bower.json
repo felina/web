@@ -5,5 +5,8 @@
   "authors": [
     "Giles Lavelle <giles.lavelle@gmail.com>"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.0.1"
+  }
 }
