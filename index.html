@@ -15,31 +15,76 @@
 
 <header class="navbar">
     <ul class="nav navbar-nav">
-        <h1>Felina</h1>
+        <span class="title">Felina</span>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            <button class="btn btn-default">Sign Up</button>
-        </li>
-        <li>
-            <button class="btn btn-default">Log In</button>
+            <button class="btn btn-default" data-toggle="modal" data-target="#myModal">Register / Log in</button>
         </li>
     </ul>
 </header>
 
 <div id="main">
-<div id="banner">
-    <div class="overlay jumbotron">
-        <h2>Felina is a system for analysing images of wildlife</h2>
-        <p>Felina connects wildlife photographers and enthusiasts with academics and researchers. Upload your images today to contribute to conservation efforts and learn more about your favourite animals.</p>
+    <div id="banner">
+        <div class="overlay jumbotron inset">
+            <h2 class="text-center">Felina is a system for analysing images of wildlife</h2>
+            <p class="pad50 text-center">
+                Felina connects wildlife photographers and enthusiasts with academics and researchers. Upload your images today to contribute to conservation efforts and learn more about your favourite animals.
+            </p>
+            <p class="pad50 text-center">
+                It breaks down the barriers between academics and the public and allows both group to benefit from the other's work.
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>For wildlife lovers</h3>
+                <p>Upload your images and videos of wildlife. Add information and tags. Help conservation research, and get access to statistics and news.</p>
+            </div>
+            <div class="col-md-6">
+                <h3>For researchers</h3>
+                <p>Get access to the worlds largest database of wildlife media and metadata to use in your research. Contribute the results of your studies straight back to the people who made them possible.</p>
+            </div>
+        </div>
     </div>
 </div>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Sign in</h4>
+            </div>
+            <div class="modal-body">
+            <form role="form">
+                <div class="form-group">
+                    <input type="text" placeholder="Email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" class="form-control">
+                </div>
+            </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Sign in</button>
+            </div>
+        </div>
+    </div>
 </div>
 
-<footer>
-    &copy; Heisenberg 2013
+<footer class="navbar">
+    <ul class="nav navbar-nav">
+        &copy; Heisenberg 2013
+    </ul>
 </footer>
+
+<script src="vendor/jquery/jquery.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
 
 </body>
 
