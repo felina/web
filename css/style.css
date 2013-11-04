@@ -1,7 +1,11 @@
+header, footer {
+    background: #222;
+    color: white;
+}
+
 #banner {
     background-size: cover;
     background-position: center;
-    background-image: url('/img/stag.jpg');
     height: 400px;
     width: 100%;
     color: white;
