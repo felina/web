@@ -10,5 +10,4 @@ $(function(){
     });
 
     $('body').append(JST.login());
-    $('body').append(JST.credits());
 });
