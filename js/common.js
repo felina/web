@@ -2,7 +2,7 @@ $(function(){
     var user = {
         loggedin: true,
         username: 'John Doe',
-        icon: 'icon.jpg'
+        icon: '8ff364476b280cd51aba531052a0603c'
     };
 
     var nouser = {
