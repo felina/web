@@ -91,7 +91,14 @@ module.exports = function(grunt) {
           'css/style.css': 'stylus/style.styl'
         }
       }
+    },
+    watch: {
+      scripts: {
+        files: ['stylus/*.styl', 'templates/*.html'],
+        tasks: ['default']
+      }
     }
+
 
   });
 
