@@ -6,12 +6,14 @@ $(function(){
         {
             name: 'test',
             eta: '2h 14m',
-            progress: 41
+            current: 10,
+            total: 37
         },
         {
             name: 'test2',
             eta: '2h 15m',
-            progress: 87
+            current: 10,
+            total: 37
         }
     ];
 

@@ -1,10 +1,11 @@
+<% var percent = Math.floor(current / total * 100) + ''; %>
 <li class="job">
     <span class="name"><%= name %></span>
     <span class="eta">ETA: <%= eta %></span>
     <div class="progress">
-        <div class="progress-bar" role="progressbar" aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= progress %>%;">
-            <span class="sr-only"><%= progress %>% Complete</span>
+        <div class="progress-bar" role="progressbar" aria-valuenow="<%= percent %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= percent %>%;">
+            <span class="sr-only"><%= percent %>% Complete</span>
         </div>
     </div>
-    <div>80 / 200 images processed (<%= progress %>%)</div>
+    <div><%= current %> / <%= total %> images processed (<%= percent %>%)</div>
 </li>
