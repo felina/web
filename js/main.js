@@ -8,4 +8,7 @@ $(function(){
     $('#banner').css({
         'background-image': randomImage()
     });
+
+    $('body').append(JST['templates/login.html']());
+    $('body').append(JST['templates/credits.html']());
 });

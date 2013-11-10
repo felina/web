@@ -1,0 +1,10 @@
+<li class="job">
+    <span class="name">{{ name }}</span>
+    <span class="eta">ETA: {{ eta }}</span>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ progress }}%;">
+            <span class="sr-only">{{ progress }}% Complete</span>
+        </div>
+    </div>
+    <div>80 / 200 images processed ({{ progress }}%)</div>
+</li>
