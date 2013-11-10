@@ -1,5 +1,6 @@
 $(function(){
-    var tmpl = JST['templates/job.html'];
+    var tmpl = JST.job;
+    var jobs = $('.jobs');
 
     var opts = [
         {
@@ -13,8 +14,6 @@ $(function(){
             progress: 87
         }
     ];
-
-    var jobs = $('.jobs');
 
     for (var i = 0; i < opts.length; i++) {
         jobs.append(tmpl(opts[i]));

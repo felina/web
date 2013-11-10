@@ -69,11 +69,16 @@ module.exports = function(grunt) {
       }
     },
     jst: {
+      options: {
+        processName: function(name) {
+          return name.replace(/templates\/|\.html/gi, '');
+        }
+      },
       compile: {
         options: {
           templateSettings: {
             interpolate : /\{\{(.+?)\}\}/g
-          }
+          },
         },
         files: {
           'jst.js': ['templates/*.html']

@@ -9,6 +9,6 @@ $(function(){
         'background-image': randomImage()
     });
 
-    $('body').append(JST['templates/login.html']());
-    $('body').append(JST['templates/credits.html']());
+    $('body').append(JST.login());
+    $('body').append(JST.credits());
 });
