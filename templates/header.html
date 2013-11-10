@@ -7,9 +7,25 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                <button class="btn btn-default" data-toggle="modal" data-target="#register">Register / Log in</button>
-            </li>
+            <% if(loggedin){ %>
+                <li>
+                    <a href="/dashboard.html">
+                        <i class="glyphicon glyphicon-home"></i>
+                    </a>
+                </li>
+                <li>
+                    <img src="<%= icon %>">
+                </li>
+                <li>
+                    <%= username %>
+                </li>
+
+
+            <% } else { %>
+                <li>
+                    <button class="btn btn-default" data-toggle="modal" data-target="#register">Register / Log in</button>
+                </li>
+            <% } %>
         </ul>
     </div>
 </header>

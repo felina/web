@@ -75,11 +75,11 @@ module.exports = function(grunt) {
         }
       },
       compile: {
-        options: {
-          templateSettings: {
-            interpolate : /\{\{(.+?)\}\}/g
-          },
-        },
+        // options: {
+        //   templateSettings: {
+        //     interpolate : /\{\{(.+?)\}\}/g
+        //   },
+        // },
         files: {
           'jst.js': ['templates/*.html']
         }
