@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-jst": "~0.5.1"
+    "grunt-contrib-jst": "~0.5.1",
+    "grunt-contrib-stylus": "~0.10.0",
+    "grunt-contrib-watch": "~0.5.3"
   }
 }
