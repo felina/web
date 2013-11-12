@@ -7,11 +7,7 @@ header, footer
 
 footer
   border-top: 1px solid black
-  position: absolute
   padding: 10px
-  bottom: 0
-  left: 0
-  right: 0
 
 header button
   margin-top: 10px
@@ -27,6 +23,15 @@ header a:hover, .sidebar a:hover
 footer ul
   height: 35px
   line-height: 35px
+
+header ul li
+  margin: 0 5px
+  height: 60px
+  line-height: 60px
+  font-size: 20px
+
+.avatar
+  border-radius: 3px
 
 #banner
   background-size: cover
@@ -76,28 +81,38 @@ footer ul
   height: 100%
   border-right: 1px solid black
 
-.sidebar ul
-  list-style-type: none
-  padding: 0
+  ul
+    list-style-type: none
+    padding: 0
 
-.sidebar ul li
-  margin: 10px 0
-  padding: 10px
-  border-bottom: 1px solid white
+    li
+      margin: 10px 0
+      padding: 10px
+      border-bottom: 1px solid #505050
 
 .dashboard
   padding: 10px 30px
   height: 100%
   margin-left: 200px
 
-.dashboard ul
-  list-style-type: none
-
-.dashboard ul li
-  border-bottom: 1px solid black
+  ul
+    list-style-type: none
 
 .name
   margin-bottom: 20px
 
 .progress
   width: 300px
+
+.eta
+  margin-bottom: 20px
+
+.jobbody > div
+  margin-right: 20px
+
+.metadata
+  padding: 10px
+  font-size: 30px
+  border: 1px solid #ccc
+  border-radius: 3px
+  background: whitesmoke

@@ -1,11 +1,20 @@
 <% var percent = Math.floor(current / total * 100) + ''; %>
 <li class="job">
-    <span class="name"><%= name %></span>
-    <span class="eta">ETA: <%= eta %></span>
-    <div class="progress progress-striped active">
-        <div class="progress-bar" role="progressbar" aria-valuenow="<%= percent %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= percent %>%;">
-            <span class="sr-only"><%= percent %>% Complete</span>
+    <h3 class="name"><%= name %></h3>
+    <div class="jobbody">
+        <div class="pull-left">
+            <div class="eta"><strong>ETA:</strong>&nbsp;<%= eta %></div>
+            <div class="progress progress-striped active">
+                <div class="progress-bar" role="progressbar" aria-valuenow="<%= percent %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= percent %>%;">
+                    <span class="sr-only"><%= percent %>% Complete</span>
+                </div>
+            </div>
+            <div><%= current %> / <%= total %> images processed (<%= percent %>%)</div>
+        </div>
+        <div>
+            <img src="http://lorempixel.com/100/100/animals">
         </div>
     </div>
-    <div><%= current %> / <%= total %> images processed (<%= percent %>%)</div>
 </li>
+
+<hr>
