@@ -2,8 +2,22 @@ $(function(){
     var tmpl = JST.job;
     var jobs = $('.jobs');
 
+    var sidebarWidth = 250;
+    var sidebarVisible = true;
+
     var user = {
         isResearcher: function(){ return true; }
+    };
+
+    $('body').on('keypress', function(evt){
+        if(evt.keyCode === 116){
+            toggleSidebar();
+        }
+    });
+
+    var toggleSidebar = function(){
+        $('.dashboard').css('left', sidebarVisible ? 0 : 250);
+        sidebarVisible = !sidebarVisible
     };
 
     var opts = [
