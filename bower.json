@@ -9,6 +9,7 @@
   "dependencies": {
     "bootstrap": "~3.0.1",
     "underscore": "~1.5.2",
-    "dropzone": "~3.7.4"
+    "dropzone": "~3.7.4",
+    "penguinator": "*"
   }
 }

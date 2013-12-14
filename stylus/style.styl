@@ -3,6 +3,8 @@
 // Dimensions
 sidebar_width = 250px
 header_height = 60px
+margin_small = 10px
+margin_mid = 20px
 
 // Sizes
 mid_grey = #505050
@@ -23,7 +25,7 @@ header, footer
 header
   height: header_height
   border-bottom: black_border
-  margin-top: -10px
+  margin-top: -margin_small
   padding: 0 20px 0 0
 
   ul
@@ -106,7 +108,6 @@ header a:hover, .sidebar a:hover
   width: sidebar_width
   float: left
   height: 100%
-  border-right: 1px solid black
   box-shadow: -5px 0 10px shadow_black inset
 
   ul
@@ -114,7 +115,7 @@ header a:hover, .sidebar a:hover
     padding: 0
 
     li
-      margin: 10px 0
+      margin: margin_small 0
       padding: 10px
       border-bottom: 1px solid mid_grey
 
@@ -124,7 +125,7 @@ header a:hover, .sidebar a:hover
         color: highlight
 
       a
-        margin-left: 15px
+        margin-left: margin_mid
         cursor: pointer
 
 .dashboard
@@ -148,13 +149,13 @@ header a:hover, .sidebar a:hover
   outline: none
 
 .name
-  margin-bottom: 20px
+  margin-bottom: margin_mid
 
 .progress
   width: 300px
 
 .eta
-  margin-bottom: 20px
+  margin-bottom: margin_mid
 
 .job-img
   width: 200px
@@ -164,7 +165,7 @@ header a:hover, .sidebar a:hover
   background-size: cover
 
 .jobbody > div
-  margin-right: 20px
+  margin-right: margin_mid
 
 .metadata
   padding: 10px
@@ -174,7 +175,7 @@ header a:hover, .sidebar a:hover
   background: whitesmoke
 
 .dropzone
-  margin-bottom: 20px
+  margin-bottom: margin_mid
 
 .tracer-wrap
-  margin-bottom: 20px
+  margin-bottom: margin_mid
