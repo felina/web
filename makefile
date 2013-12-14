@@ -1,4 +1,5 @@
 build:
+	grunt
 	mkdir -p site
 
 	rsync -r img js site
@@ -11,3 +12,6 @@ build:
     	vendor/bootstrap/dist/fonts \
     	vendor/bootstrap/dist/css/bootstrap.css \
     	site
+
+clean:
+	rm -rf site
