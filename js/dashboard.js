@@ -5,6 +5,8 @@ $(function(){
     var sidebarWidth = 250;
     var sidebarVisible = true;
 
+    $('body').append(JST.settings());
+
     var user = {
         isResearcher: function(){ return true; }
     };
