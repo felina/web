@@ -1,3 +1,5 @@
+sidebar_width = 250px
+
 html, body, .wrapper
   height: 100%
 
@@ -76,10 +78,11 @@ header ul li
 .sidebar
   background: #222
   color: white
-  width: 200px
+  width: sidebar_width
   float: left
   height: 100%
   border-right: 1px solid black
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.4) inset;
 
   ul
     list-style-type: none
@@ -90,10 +93,18 @@ header ul li
       padding: 10px
       border-bottom: 1px solid #505050
 
+      h2
+        font-size: 20px
+        margin: 0
+        color: rgb(70, 179, 19);
+
+      a
+        margin-left: 15px
+
 .dashboard
   padding: 10px 30px
   height: 100%
-  margin-left: 200px
+  margin-left: sidebar_width
 
   ul
     list-style-type: none
