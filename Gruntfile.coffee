@@ -67,25 +67,25 @@ module.exports = (grunt) ->
     stylus:
       compile:
         files:
-          'css/style.css': 'stylus/style.styl'
+          'site/css/style.css': 'stylus/style.styl'
 
     watch:
       scripts:
-        files: ['stylus/*.styl', 'templates/*.html']
+        files: ['stylus/*.styl', 'templates/**/*.html', 'html/**/*.html']
         tasks: ['default']
 
     connect:
       server:
         options:
           port: 9000
-          base: '.'
+          base: 'site'
           keepalive: true
 
     includes:
       files:
-        src: '*.html'
-        dest: '.'
-        flatten: true
+        src: ['*.html', 'upload/*.html']
+        dest: 'site'
+        flatten: false
         cwd: 'html'
         options:
           silent: true
