@@ -1,13 +1,16 @@
 $(function(){
     var tmpl = JST.job;
     var jobs = $('.jobs');
+    var body = $('body');
+    var toggler = $('<button id="toggleSidebar"><i class="glyphicon glyphicon-align-justify"></i></button>');
+    var dashboard = $('.dashboard');
 
     var sidebarWidth = 250;
     var sidebarVisible = true;
 
-    var toggler = $('#toggleSidebar');
+    $('#header-left').append(toggler);
 
-    $('body').append(JST.settings());
+    body.append(JST.settings());
 
     var user = {
         isResearcher: function(){ return true; }
@@ -24,9 +27,16 @@ $(function(){
     });
 
     var toggleSidebar = function(){
-        $('.dashboard').css('left', sidebarVisible ? 0 : 250);
-        toggler.html(sidebarVisible ? '&raquo;' : '&laquo;');
-        sidebarVisible = !sidebarVisible
+        var width = sidebarVisible ? 0 : sidebarWidth;
+        setSidebar(width);
+        sidebarVisible = !sidebarVisible;
+    };
+
+    var setSidebar = function(width){
+        dashboard.css({
+            left: width,
+            width: body.width() - width
+        });
     };
 
     var opts = [
@@ -55,4 +65,6 @@ $(function(){
     }
 
     sidebar.append(JST['sidebars/citizen']());
+
+    setSidebar(sidebarWidth);
 });

@@ -9,11 +9,27 @@ header, footer
   color: white
 
 header
+  height: 60px
   border-bottom: black_border
+  margin-top: -10px
+  padding: 0 20px 0 0
+
+  ul
+    li
+      margin: 0 5px
+      height: 60px
+      line-height: 60px
+      font-size: 20px
+      float: left
+      list-style-type: none
 
 footer
   border-top: black_border
   padding: 10px
+
+  ul
+    height: 35px
+    line-height: 35px
 
 header a, .sidebar a
   color: white
@@ -23,15 +39,11 @@ header a:hover, .sidebar a:hover
   color: white
   text-decoration: none
 
-footer ul
-  height: 35px
-  line-height: 35px
+.left
+  float: left
 
-header ul li
-  margin: 0 5px
-  height: 60px
-  line-height: 60px
-  font-size: 20px
+.right
+  float: right
 
 .avatar
   border-radius: 3px
@@ -109,17 +121,16 @@ header ul li
   left: sidebar_width
   background: white
   position: absolute
-  transition: 0.2s left
+  transition: 0.2s left, 0.2s width
 
   ul
     list-style-type: none
 
 #toggleSidebar
-  position: absolute
-  top: 0
-  left: 0
   border: none
-  background: grey
+  background: none
+  color: white
+  padding: 0 10px
 
 #toggleSidebar:focus
   outline: none
