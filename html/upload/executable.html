@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Upload Executables - Felina</title>
+
+<link rel="stylesheet" href="/vendor/dropzone/downloads/css/basic.css">
+<link rel="stylesheet" href="/vendor/dropzone/downloads/css/dropzone.css">
+
+include "../shared/head.html"
+
+<body>
+
+
+<div class="container">
+    <h2>Executable Upload</h2>
+
+    <hr>
+
+    <h3>Upload main executable</h3>
+
+    <p>Upload a Windows executable binary in .exe format</p>
+
+    <form id="upload">
+        <div id="my-awesome-dropzone" action="/target" class="dropzone" class="form-control"></div>
+        <input type="text" placeholder="Paste an image URL" class="form-control"/>
+    </form>
+
+    <div class="clearfix"></div>
+
+    <hr>
+
+    <h3>Upload additional DLLs</h3>
+
+</div>
+
+<script src="/vendor/jquery/jquery.js"></script>
+<script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
+<script src="/vendor/underscore/underscore.js"></script>
+<script src="/vendor/dropzone/downloads/dropzone.js"></script>
+
+<script src="/jst.js"></script>
+
+<script src="/js/common.js"></script>
+
+</body>
+
+</html>
