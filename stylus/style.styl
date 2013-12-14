@@ -1,15 +1,27 @@
+@import 'nib'
+
+// Dimensions
 sidebar_width = 250px
+header_height = 60px
+
+// Sizes
+mid_grey = #505050
+dark_grey = #252525
+shadow_black = rgba(0, 0, 0, 0.4)
+highlight = rgb(70, 179, 19)
+
+// Borders
 black_border = 1px solid black
 
 html, body, .wrapper
   height: 100%
 
 header, footer
-  background: #252525
+  background: dark_grey
   color: white
 
 header
-  height: 60px
+  height: header_height
   border-bottom: black_border
   margin-top: -10px
   padding: 0 20px 0 0
@@ -17,8 +29,8 @@ header
   ul
     li
       margin: 0 5px
-      height: 60px
-      line-height: 60px
+      height: header_height
+      line-height: header_height
       font-size: 20px
       float: left
       list-style-type: none
@@ -63,10 +75,10 @@ header a:hover, .sidebar a:hover
 .overlay
   width: 100%
   height: 100%
-  background: rgba(0, 0, 0, 0.6)
+  background: shadow_black
 
 .inset
-  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.5) inset
+  box-shadow: 0 5px 7px shadow_black inset
 
 .pad50
   padding: 20px 50px
@@ -89,13 +101,13 @@ header a:hover, .sidebar a:hover
   border-right: none
 
 .sidebar
-  background: #222
+  background: dark_grey
   color: white
   width: sidebar_width
   float: left
   height: 100%
   border-right: 1px solid black
-  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.4) inset
+  box-shadow: -5px 0 10px shadow_black inset
 
   ul
     list-style-type: none
@@ -104,12 +116,12 @@ header a:hover, .sidebar a:hover
     li
       margin: 10px 0
       padding: 10px
-      border-bottom: 1px solid #505050
+      border-bottom: 1px solid mid_grey
 
       h2
         font-size: 20px
         margin: 0
-        color: rgb(70, 179, 19);
+        color: highlight
 
       a
         margin-left: 15px
@@ -144,7 +156,12 @@ header a:hover, .sidebar a:hover
 .eta
   margin-bottom: 20px
 
-.job
+.job-img
+  width: 200px
+  height: 200px
+  background-image: url('/img/elephant.jpg')
+  background-position: center
+  background-size: cover
 
 .jobbody > div
   margin-right: 20px
