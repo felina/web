@@ -61,14 +61,8 @@ module.exports = (grunt) ->
           name.replace /templates\/|\.html/g, ''
 
       compile:
-
-        # options: {
-        #   templateSettings: {
-        #     interpolate : /\{\{(.+?)\}\}/g
-        #   },
-        # },
         files:
-          'jst.js': ['templates/*.html']
+          'jst.js': ['templates/**/*.html']
 
     stylus:
       compile:
