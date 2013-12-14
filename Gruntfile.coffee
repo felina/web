@@ -52,15 +52,6 @@ module.exports = (grunt) ->
     qunit:
       files: ["test/**/*.html"]
 
-    watch:
-      gruntfile:
-        files: "<%= jshint.gruntfile.src %>"
-        tasks: ["jshint:gruntfile"]
-
-      lib_test:
-        files: "<%= jshint.lib_test.src %>"
-        tasks: ["jshint:lib_test", "qunit"]
-
     jst:
       options:
         processName: (name) ->
@@ -100,6 +91,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-stylus"
   grunt.loadNpmTasks "grunt-contrib-watch"
   grunt.loadNpmTasks "grunt-contrib-jst"
+  grunt.loadNpmTasks "grunt-contrib-connect"
 
   # Default task.
   grunt.registerTask "default", ["jst", "stylus"]
