@@ -5,6 +5,8 @@ $(function(){
     var sidebarWidth = 250;
     var sidebarVisible = true;
 
+    var toggler = $('#toggleSidebar');
+
     $('body').append(JST.settings());
 
     var user = {
@@ -17,8 +19,13 @@ $(function(){
         }
     });
 
+    toggler.click(function(){
+        toggleSidebar();
+    });
+
     var toggleSidebar = function(){
         $('.dashboard').css('left', sidebarVisible ? 0 : 250);
+        toggler.html(sidebarVisible ? '&raquo;' : '&laquo;');
         sidebarVisible = !sidebarVisible
     };
 
