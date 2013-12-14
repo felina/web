@@ -1,30 +1,33 @@
 #global module:false
+
+contribs = ['stylus', 'watch', 'jst', 'connect']
+
 module.exports = (grunt) ->
 
   # Project configuration.
   grunt.initConfig
 
     # Metadata.
-    pkg: grunt.file.readJSON("package.json")
-    banner: "/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n" + "<%= pkg.homepage ? \"* \" + pkg.homepage + \"\\n\" : \"\" %>" + "* Copyright (c) <%= grunt.template.today(\"yyyy\") %> <%= pkg.author.name %>;" + " Licensed <%= _.pluck(pkg.licenses, \"type\").join(\", \") %> */\n"
+    pkg: grunt.file.readJSON('package.json')
+    banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today(\'yyyy-mm-dd\') %>\n' + '<%= pkg.homepage ? \'* \' + pkg.homepage + \'\\n\' : \'\' %>' + '* Copyright (c) <%= grunt.template.today(\'yyyy\') %> <%= pkg.author.name %>;' + ' Licensed <%= _.pluck(pkg.licenses, \'type\').join(\', \') %> */\n'
 
     # Task configuration.
     concat:
       options:
-        banner: "<%= banner %>"
+        banner: '<%= banner %>'
         stripBanners: true
 
       dist:
-        src: ["lib/<%= pkg.name %>.js"]
-        dest: "dist/<%= pkg.name %>.js"
+        src: ['lib/<%= pkg.name %>.js']
+        dest: 'dist/<%= pkg.name %>.js'
 
     uglify:
       options:
-        banner: "<%= banner %>"
+        banner: '<%= banner %>'
 
       dist:
-        src: "<%= concat.dist.dest %>"
-        dest: "dist/<%= pkg.name %>.min.js"
+        src: '<%= concat.dist.dest %>'
+        dest: 'dist/<%= pkg.name %>.min.js'
 
     jshint:
       options:
@@ -44,18 +47,18 @@ module.exports = (grunt) ->
           jQuery: true
 
       gruntfile:
-        src: "Gruntfile.js"
+        src: 'Gruntfile.js'
 
       lib_test:
-        src: ["lib/**/*.js", "test/**/*.js"]
+        src: ['lib/**/*.js', 'test/**/*.js']
 
     qunit:
-      files: ["test/**/*.html"]
+      files: ['test/**/*.html']
 
     jst:
       options:
         processName: (name) ->
-          name.replace /templates\/|\.html/g, ""
+          name.replace /templates\/|\.html/g, ''
 
       compile:
 
@@ -65,17 +68,17 @@ module.exports = (grunt) ->
         #   },
         # },
         files:
-          "jst.js": ["templates/*.html"]
+          'jst.js': ['templates/*.html']
 
     stylus:
       compile:
         files:
-          "css/style.css": "stylus/style.styl"
+          'css/style.css': 'stylus/style.styl'
 
     watch:
       scripts:
-        files: ["stylus/*.styl", "templates/*.html"]
-        tasks: ["default"]
+        files: ['stylus/*.styl', 'templates/*.html']
+        tasks: ['default']
 
     connect:
       server:
@@ -84,14 +87,18 @@ module.exports = (grunt) ->
           base: '.'
           keepalive: true
 
+    includes:
+      files:
+        src: '*.html'
+        dest: '.'
+        flatten: true
+        cwd: 'html'
+        options:
+          silent: true
+
   # These plugins provide necessary tasks.
-  # grunt.loadNpmTasks('grunt-contrib-concat');
-  # grunt.loadNpmTasks('grunt-contrib-uglify');
-  # grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks "grunt-contrib-stylus"
-  grunt.loadNpmTasks "grunt-contrib-watch"
-  grunt.loadNpmTasks "grunt-contrib-jst"
-  grunt.loadNpmTasks "grunt-contrib-connect"
+  grunt.loadNpmTasks "grunt-contrib-#{contrib}" for contrib in contribs
+  grunt.loadNpmTasks 'grunt-includes'
 
   # Default task.
-  grunt.registerTask "default", ["jst", "stylus"]
+  grunt.registerTask 'default', ['jst', 'stylus', 'includes']
