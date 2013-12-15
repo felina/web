@@ -18,32 +18,36 @@ black_border = 1px solid black
 html, body, .wrapper
   height: 100%
 
+.wrapper
+  margin-bottom: -60px
+  margin-top: -60px
+  padding-top: 60px
+  position: relative
+  z-index: 1
+
 header, footer
   background: dark_grey
   color: white
-
-header
   height: header_height
-  border-bottom: black_border
-  margin-top: -margin_small
+  position: relative
+  z-index: 10
   padding: 0 20px 0 0
 
   ul
     li
       margin: 0 5px
-      height: header_height
+      height: header_height - 1
       line-height: header_height
       font-size: 20px
       float: left
       list-style-type: none
 
+header
+  border-bottom: black_border
+  margin-top: margin_small * -1
+
 footer
   border-top: black_border
-  padding: 10px
-
-  ul
-    height: 35px
-    line-height: 35px
 
 header a, .sidebar a
   color: white
@@ -130,11 +134,12 @@ header a:hover, .sidebar a:hover
 
 .dashboard
   padding: 10px 30px
-  height: 100%
+  height: 500px
   left: sidebar_width
   background: white
   position: absolute
   transition: 0.2s left, 0.2s width
+  overflow: scroll
 
   ul
     list-style-type: none

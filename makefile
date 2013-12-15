@@ -11,6 +11,10 @@ build:
     	vendor/bootstrap/dist/js/bootstrap.js \
     	vendor/bootstrap/dist/fonts \
     	vendor/bootstrap/dist/css/bootstrap.css \
+    	vendor/d3/d3.min.js \
+    	vendor/penguinator/style.css \
+    	vendor/penguinator/index.js \
+    	vendor/jquery-ui/ui/jquery-ui.js \
     	site
 
 clean:
