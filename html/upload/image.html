@@ -6,6 +6,11 @@
 
 <link rel="stylesheet" href="/vendor/dropzone/downloads/css/basic.css">
 <link rel="stylesheet" href="/vendor/dropzone/downloads/css/dropzone.css">
+
+<link rel="stylesheet" href="/vendor/blueimp-gallery/css/blueimp-gallery.css">
+<link rel="stylesheet" href="/vendor/blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery.css">
+
+
 <link rel="stylesheet" href="/vendor/penguinator/style.css">
 
 include "../shared/head.html"
@@ -59,6 +64,12 @@ include "../shared/head.html"
         </div>
     </div>
 
+    <div id="links">
+        <a href="/img/elephant.jpg" title="Banana" data-gallery>
+            <img src="/img/elephant.jpg" alt="Banana">
+        </a>
+    </div>
+
     <button class="btn btn-default" data-toggle="modal" data-target="#annotator-modal">Annotate</button>
 
     <hr>
@@ -85,12 +96,49 @@ include "../shared/head.html"
     </div>
 </div>
 
+<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="/vendor/jquery/jquery.js"></script>
 <script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
 <script src="/vendor/underscore/underscore.js"></script>
 <script src="/vendor/dropzone/downloads/dropzone.js"></script>
 <script src="/vendor/penguinator/index.js"></script>
 <script src="/vendor/jquery-ui/ui/jquery-ui.js"></script>
+<script src="/vendor/blueimp-gallery/js/jquery.blueimp-gallery.min.js"></script>
+<script src="/vendor/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min.js"></script>
 
 <script src="/jst.js"></script>
 <script src="/js/common.js"></script>
