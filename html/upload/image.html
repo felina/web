@@ -42,16 +42,6 @@ include "../shared/head.html"
 
     <div>
         <h3>Add metadata</h3>
-        <div class="row tracer-wrap">
-            <div class="col-md-6">
-                <p>
-                    Please trace the penguin in this image
-                </p>
-            </div>
-            <div class="col-md-6">
-                <img src="http://lorempixel.com/400/300/animals">
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-md-4 metadata">
@@ -69,12 +59,30 @@ include "../shared/head.html"
         </div>
     </div>
 
+    <button class="btn btn-default" data-toggle="modal" data-target="#annotator-modal">Annotate</button>
+
     <hr>
 
     <button type="button" class="btn btn-success btn-lg">Submit</button>
+</div>
 
-    <div id="phat-ass-bitch"></div>
+<div class="modal fade" id="annotator-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Annotate</h4>
+            </div>
 
+            <div class="modal-body">
+                <div id="annotator-container"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Done</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="/vendor/jquery/jquery.js"></script>
@@ -85,12 +93,8 @@ include "../shared/head.html"
 <script src="/vendor/jquery-ui/ui/jquery-ui.js"></script>
 
 <script src="/jst.js"></script>
-
 <script src="/js/common.js"></script>
-
-<script>
-    $('#phat-ass-bitch').annotator('/img/elephant.jpg');
-</script>
+<script src="/js/image_upload.js"></script>
 
 </body>
 
