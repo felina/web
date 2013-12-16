@@ -1,9 +1,8 @@
 build:
-	grunt
 	mkdir -p site
+	grunt
 
 	rsync -r img js site
-	rsync jst.js site
 	rsync -Rr \
 		vendor/dropzone \
 		vendor/jquery/jquery.js \
@@ -23,3 +22,9 @@ build:
 
 clean:
 	rm -rf site
+	rm -f felina.zip
+
+export:
+	zip felina.zip \
+		html stylus templates js img \
+		README.md package.json Gruntfile.coffee bower.json

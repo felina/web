@@ -62,7 +62,7 @@ module.exports = (grunt) ->
 
       compile:
         files:
-          'jst.js': ['templates/**/*.html']
+          'site/jst.js': ['templates/**/*.html']
 
     stylus:
       compile:
