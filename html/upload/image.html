@@ -36,10 +36,10 @@ include "../shared/head.html"
 
     <h3>Upload images</h3>
 
-    <form id="upload">
-        <div id="my-awesome-dropzone" action="/target" class="dropzone" class="form-control"></div>
+    <div id="upload">
+        <form id="dropzone" action="http://localhost:5000/upload/img" class="dropzone" class="form-control"></form>
         <input type="text" placeholder="Paste an image URL" class="form-control"/>
-    </form>
+    </div>
 
     <div class="clearfix"></div>
 
@@ -74,7 +74,7 @@ include "../shared/head.html"
 
     <hr>
 
-    <button type="button" class="btn btn-success btn-lg">Submit</button>
+    <button type="button" class="btn btn-success btn-lg" id="submit">Submit</button>
 </div>
 
 <div class="modal fade" id="annotator-modal">
