@@ -21,9 +21,9 @@ build:
 
 clean:
 	rm -rf site
-	rm -f felina.zip
+	rm -f website.zip
 
 export:
-	zip -r felina.zip \
+	zip -r website.zip \
 		html stylus templates js img \
 		README.md package.json Gruntfile.coffee bower.json makefile .bowerrc
