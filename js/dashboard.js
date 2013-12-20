@@ -2,12 +2,14 @@ $(function(){
     var tmpl = JST.job;
     var jobs = $('.jobs');
     var body = $('body');
-    var toggler = $("<button id='toggleSidebar'><i class='glyphicon glyphicon-align-justify'></i></button>");
+    var toggler = $(JST.toggler());
     var dashboard = $('.dashboard');
     var sidebar = $('.sidebar');
     var sidebarList = $('.sidebar ul');
 
     var sidebarWidth = 250;
+    var currentWidth = sidebarWidth;
+    var headerHeight = 60;
     var sidebarVisible = true;
 
     $('#header-left').append(toggler);
@@ -29,15 +31,20 @@ $(function(){
     });
 
     var toggleSidebar = function(){
-        var width = sidebarVisible ? 0 : sidebarWidth;
-        setSidebar(width);
+        currentWidth = sidebarVisible ? 0 : sidebarWidth;
+        setSidebar();
         sidebarVisible = !sidebarVisible;
     };
 
-    var setSidebar = function(width){
+    var setSidebar = function(){
+        var height = body.height() - (headerHeight * 2);
         dashboard.css({
-            left: width,
-            width: body.width() - width
+            left: currentWidth,
+            width: body.width() - currentWidth,
+            height: height
+        });
+        sidebar.css({
+            height: height
         });
     };
 
@@ -66,9 +73,9 @@ $(function(){
 
     sidebarList.append(JST['sidebars/citizen']());
 
-    setSidebar(sidebarWidth);
-    dashboard.css({height: body.height() - 120});
-    sidebar.css({height: body.height() - 120});
+    setSidebar();
+
+    $(window).resize(_.throttle(setSidebar, 500));
 
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 700 - margin.left - margin.right,
