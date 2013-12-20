@@ -1,0 +1,71 @@
+include "shared/head.html"
+
+<body>
+
+<div id="main" class="container">
+    <h1>Start a new Job</h1>
+
+    <hr>
+
+    <h2>Choose an Executable</h2>
+
+    <ul>
+        <li>
+            <input type="radio" name="executable" value="penguin">
+            Penguin processor
+        </li>
+        <li>
+            <input type="radio" name="executable" value="elephant">
+            Elephant analyser
+        </li>
+        <li>
+            <input type="radio" name="executable" value="manta">
+            Manta ray detector
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2>Choose additional libraries</h2>
+    <ul>
+        <li>
+            <input type="checkbox" name="library" value="">
+            Lorem
+        </li>
+        <li>
+            <input type="checkbox" name="library" value="">
+            Ipsum
+        </li>
+        <li>
+            <input type="checkbox" name="library" value="">
+            Dolor
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2>Choose images to process</h2>
+
+    <div id="gallery">
+        Gallery here
+    </div>
+    <button type="button" class="btn btn-success">Start</button>
+</div>
+
+<style>
+    .container ul{
+        list-style-type: none;
+    }
+</style>
+
+<script src="vendor/jquery/jquery.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+<script src="vendor/underscore/underscore.js"></script>
+
+<script src="jst.js"></script>
+
+<script src="js/common.js"></script>
+
+</body>
+
+</html>
