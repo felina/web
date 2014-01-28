@@ -18,8 +18,13 @@ $(function(){
     var data = [1, 2, 3];
 
     var list = $('tbody');
+    var gallery = $('#links');
 
     for(var i = 0; i < data.length; i++){
+        gallery.append(JST.gallery_item({
+            url: '/img/elephant.jpg',
+            title: 'Elephant'
+        }));
         list.append(JST.annotator_item());
     }
 });
