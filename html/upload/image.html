@@ -19,11 +19,11 @@ include "../shared/head.html"
 
 
 <div class="container">
-    <h2>Image Upload</h2>
+    <h1>Image Upload</h1>
 
     <hr>
 
-    <h3>Choose Species</h3>
+    <h2>Choose Species</h2>
 
     <form>
         <select class="form-control">
@@ -34,7 +34,7 @@ include "../shared/head.html"
 
     <hr>
 
-    <h3>Upload images</h3>
+    <h2>Upload images</h2>
 
     <div id="upload">
         <form id="dropzone" action="http://localhost:5000/upload/img" class="dropzone" class="form-control"></form>
@@ -45,36 +45,69 @@ include "../shared/head.html"
 
     <hr>
 
-    <div>
-        <h3>Add metadata</h3>
-
-        <div class="row">
-            <div class="col-md-4 metadata">
-                <i class="glyphicon glyphicon-globe"></i>
-                Location
-            </div>
-            <div class="col-md-4 metadata">
-                <i class="glyphicon glyphicon-time"></i>
-                Time
-            </div>
-            <div class="col-md-4 metadata">
-                <i class="glyphicon glyphicon-calendar"></i>
-                Date
-            </div>
-        </div>
-    </div>
+    <h2>Choose images to annotate</h2>
 
     <div id="links">
-        <a href="/img/elephant.jpg" title="Banana" data-gallery>
-            <img src="/img/elephant.jpg" alt="Banana">
+        <a href="/img/elephant.jpg" title="Elephant" data-gallery>
+            <img src="/img/elephant.jpg" alt="Elephant">
+        </a>
+
+        <a href="/img/elephant.jpg" title="Elephant" data-gallery>
+            <img src="/img/elephant.jpg" alt="Elephant">
+        </a>
+
+        <a href="/img/elephant.jpg" title="Elephant" data-gallery>
+            <img src="/img/elephant.jpg" alt="Elephant">
+        </a>
+
+        <a href="/img/elephant.jpg" title="Elephant" data-gallery>
+            <img src="/img/elephant.jpg" alt="Elephant">
+        </a>
+
+        <a href="/img/elephant.jpg" title="Elephant" data-gallery>
+            <img src="/img/elephant.jpg" alt="Elephant">
+        </a>
+
+        <a href="/img/elephant.jpg" title="Elephant" data-gallery>
+            <img src="/img/elephant.jpg" alt="Elephant">
+        </a>
+
+        <a href="/img/elephant.jpg" title="Elephant" data-gallery>
+            <img src="/img/elephant.jpg" alt="Elephant">
         </a>
     </div>
 
-    <button class="btn btn-default" data-toggle="modal" data-target="#annotator-modal">Annotate</button>
+    <hr>
+
+    <h2>Add metadata</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>
+                    <i class="glyphicon glyphicon-time"></i>
+                    Time
+                </th>
+                <th>
+                    <i class="glyphicon glyphicon-calendar"></i>
+                    Date
+                </th>
+                <th>
+                    <i class="glyphicon glyphicon-globe"></i>
+                    Location
+                </th>
+                <th>Annotate</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 
     <hr>
 
-    <button type="button" class="btn btn-success btn-lg" id="submit">Submit</button>
+    <div class="button-wrap">
+        <button type="button" class="btn btn-success btn-lg" id="submit">Submit</button>
+    </div>
 </div>
 
 <div class="modal fade" id="annotator-modal">

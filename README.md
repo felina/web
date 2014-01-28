@@ -20,9 +20,10 @@ The website will then be accessible at `http://localhost:9000/`
 
 - [Giles Lavelle](https://github.com/lavelle)
 - [Alistair Wick](https://github.com/Wacov)
+- [Andrew Stuart](https://github.com/narayn60)
 
 ## License
 
 [MIT licensed](https://github.com/felina/web/blob/master/LICENSE)
 
-Copyright (c) 2013 Giles Lavelle, Alistair Wick
+Copyright (c) 2013-2014 Giles Lavelle, Alistair Wick

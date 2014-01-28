@@ -14,4 +14,12 @@ $(function(){
             // dataType: dataType
         });
     });
+
+    var data = [1, 2, 3];
+
+    var list = $('tbody');
+
+    for(var i = 0; i < data.length; i++){
+        list.append(JST.annotator_item());
+    }
 });
