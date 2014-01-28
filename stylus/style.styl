@@ -15,6 +15,8 @@ highlight = rgb(70, 179, 19)
 // Borders
 black_border = 1px solid black
 
+thumbnail_size = 200px
+
 html, body, .wrapper
   height: 100%
 
@@ -163,8 +165,8 @@ header a:hover, .sidebar a:hover
   margin-bottom: margin_mid
 
 .job-img
-  width: 200px
-  height: 200px
+  width: thumbnail_size
+  height: thumbnail_size
   background-position: center
   background-size: cover
 
@@ -185,18 +187,30 @@ header a:hover, .sidebar a:hover
   margin-bottom: margin_mid
 
 #links
-  padding: 20px
+  padding: margin_mid
 
   img
-    width: 200px
-    height: 200px
-    margin: 0 20px 20px 0
+    width: thumbnail_size
+    height: thumbnail_size
     border: 3px solid black
 
+  input
+    margin: margin_small 5px
+
+.gallery-item
+  width: thumbnail_size
+  float: left
+  margin: 0 margin_mid margin_mid 0
+
+  div
+    background: black
+
 .button-wrap
-  padding: 20px
+  padding: margin_mid
 
 table
   img
-    width: 200px
-    height: 200px
+    max-height: 150px
+
+.annotator_row
+  display: none

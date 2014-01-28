@@ -35,7 +35,13 @@ $(function(){
 
     for(var i = 0; i < data.length; i++){
         var d = data[i];
+        d.id = i;
         gallery.append(JST.gallery_item(d));
         list.append(JST.annotator_item(d));
     }
+
+    $('.gallery-item input').on('change', function(e){
+        var id = $(this).attr('data-id');
+        $('tr[data-id=' + id + ']').toggle();
+    });
 });
