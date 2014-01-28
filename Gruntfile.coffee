@@ -1,6 +1,6 @@
 #global module:false
 
-contribs = ['stylus', 'watch', 'jst', 'connect']
+contribs = ['stylus', 'watch', 'jst', 'connect', 'copy']
 
 module.exports = (grunt) ->
 
@@ -71,7 +71,7 @@ module.exports = (grunt) ->
 
     watch:
       scripts:
-        files: ['stylus/*.styl', 'templates/**/*.html', 'html/**/*.html']
+        files: ['stylus/*.styl', 'js/*.js', 'data/*', 'templates/**/*.html', 'html/**/*.html']
         tasks: ['default']
 
     connect:
@@ -90,9 +90,16 @@ module.exports = (grunt) ->
         options:
           silent: true
 
+    copy:
+      main:
+        cwd: '.'
+        src: ['js/*', 'data/*']
+        dest: 'site/'
+
+
   # These plugins provide necessary tasks.
   grunt.loadNpmTasks "grunt-contrib-#{contrib}" for contrib in contribs
   grunt.loadNpmTasks 'grunt-includes'
 
   # Default task.
-  grunt.registerTask 'default', ['jst', 'stylus', 'includes']
+  grunt.registerTask 'default', ['jst', 'stylus', 'includes', 'copy']

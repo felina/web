@@ -1,8 +1,7 @@
 build:
 	mkdir -p site/css
 	grunt
-
-	rsync -r img js data site
+	rsync -r img site
 	rsync -Rr \
 		vendor/dropzone \
 		vendor/jquery/jquery.js \

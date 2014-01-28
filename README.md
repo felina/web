@@ -16,6 +16,10 @@ grunt connect  # Run a local server to preview it
 
 The website will then be accessible at `http://localhost:9000/`
 
+# Development
+
+Run `grunt watch` to automatically rebuild the site as you develop it. Note, to copy over images and vendor scripts to the build directory you must manually run `make build` for performance reasons, but everything else can be automated.
+
 ## Collaborators
 
 - [Giles Lavelle](https://github.com/lavelle)
