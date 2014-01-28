@@ -15,16 +15,27 @@ $(function(){
         });
     });
 
-    var data = [1, 2, 3];
+    var data = [
+        {
+            url: '/img/elephant.jpg',
+            title: 'Elephant'
+        },
+        {
+            url: '/img/giraffe.jpg',
+            title: 'Giraffe'
+        },
+        {
+            url: '/img/leopard.jpg',
+            title: 'Leopard'
+        }
+    ];
 
     var list = $('tbody');
     var gallery = $('#links');
 
     for(var i = 0; i < data.length; i++){
-        gallery.append(JST.gallery_item({
-            url: '/img/elephant.jpg',
-            title: 'Elephant'
-        }));
-        list.append(JST.annotator_item());
+        var d = data[i];
+        gallery.append(JST.gallery_item(d));
+        list.append(JST.annotator_item(d));
     }
 });
