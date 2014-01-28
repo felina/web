@@ -31,7 +31,7 @@ $(function(){
     ];
 
     var list = $('tbody');
-    var gallery = $('#links');
+    var gallery = $('#gallery');
 
     for(var i = 0; i < data.length; i++){
         var d = data[i];

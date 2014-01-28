@@ -3,11 +3,11 @@ include "shared/head.html"
 <body>
 
 <div id="main" class="container">
-    <h1>Start a new Job</h1>
+    <h1>Start a new job</h1>
 
     <hr>
 
-    <h2>Choose an Executable</h2>
+    <h2>1. Choose an executable</h2>
 
     <ul>
         <li>
@@ -26,7 +26,7 @@ include "shared/head.html"
 
     <hr>
 
-    <h2>Choose additional libraries</h2>
+    <h2>2. Choose additional libraries</h2>
     <ul>
         <li>
             <input type="checkbox" name="library" value="">
@@ -44,19 +44,20 @@ include "shared/head.html"
 
     <hr>
 
-    <h2>Choose images to process</h2>
+    <h2>3. Choose images for processing</h2>
 
-    <div id="gallery">
-        Gallery here
+    <div id="gallery"></div>
+
+    <div class="clearfix"></div>
+
+    <hr>
+
+    <h2>4. Start the job</h2>
+
+    <div class="button-wrap">
+        <button type="button" class="btn btn-success btn-lg">Start</button>
     </div>
-    <button type="button" class="btn btn-success">Start</button>
 </div>
-
-<style>
-    .container ul{
-        list-style-type: none;
-    }
-</style>
 
 <script src="vendor/jquery/jquery.js"></script>
 <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
@@ -67,6 +68,7 @@ include "shared/head.html"
 <script src="jst.js"></script>
 
 <script src="js/common.js"></script>
+<script src="js/start_job.js"></script>
 
 </body>
 
