@@ -16,7 +16,18 @@ grunt connect  # Run a local server to preview it
 
 The website will then be accessible at `http://localhost:9000/`
 
-# Development
+## Structure
+
+The project is structured as follows:
+
+- `data/`: Contains dummy JSON data
+- `html/`: Contains static HTML, both full pages and shared fragments, that are assembled at compile-time.
+- `img/`: All images, including sample wildlife photograhy and icons.
+- `js/`: First-party JavaScript modules
+- `stylus`: Stylus stylesheets that are compiled to CSS at compile-time.
+- `templates`: HTML templates with variable placeholders that are dynamically populated with data from the server inserted into the DOM with JS at run-time.
+
+## Development
 
 Run `grunt watch` to automatically rebuild the site as you develop it. Note, to copy over images and vendor scripts to the build directory you must manually run `make build` for performance reasons, but everything else can be automated.
 
