@@ -1,5 +1,6 @@
 #global module:false
 
+# Official Grunt tasks to load
 contribs = ['stylus', 'watch', 'jst', 'connect', 'copy']
 
 # Library paths
