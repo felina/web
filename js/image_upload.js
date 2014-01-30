@@ -1,3 +1,12 @@
+Dropzone.options.filedrop = {
+    // maxFilesize: 4096,
+    init: function () {
+        this.on("addedfile", function (file) {
+            console.log(file);
+        });
+    }
+};
+
 $(function(){
     $('#annotator-container').annotator('/img/elephant.jpg');
 

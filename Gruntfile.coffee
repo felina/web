@@ -2,6 +2,35 @@
 
 contribs = ['stylus', 'watch', 'jst', 'connect', 'copy']
 
+# Library paths
+jquery = 'vendor/jquery/jquery.js'
+underscore = 'vendor/underscore/underscore.js'
+bootstrap = 'vendor/bootstrap/dist/js/bootstrap.js'
+blueimp = 'vendor/blueimp-gallery/js/jquery.blueimp-gallery.min.js'
+bbs = 'vendor/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min.js'
+d3 = 'vendor/d3/d3.min.js'
+
+# Module paths
+jst = 'jst.js'
+common = 'js/common.js'
+main = 'js/main.js'
+start_job = 'js/start_job.js'
+bar_chart = 'js/bar_chart.js'
+dashboard = 'js/dashboard.js'
+
+# Files used by every page
+shared = [jquery, underscore, bootstrap, jst, common]
+
+# Mapping of HTML files to the scripts they require
+dependencies =
+  'site/index.html': [main]
+  'site/start-job.html': [blueimp, bbs, start_job]
+  'site/define-form.html': []
+  'site/dashboard.html': [d3, bar_chart, dashboard]
+
+for k, v of dependencies
+  dependencies[k] = shared.concat(v)
+
 module.exports = (grunt) ->
 
   # Project configuration.
@@ -91,15 +120,21 @@ module.exports = (grunt) ->
           silent: true
 
     copy:
-      main:
+      default:
         cwd: '.'
         src: ['js/*', 'data/*']
         dest: 'site/'
 
+    'sails-linker':
+      default:
+        options:
+          appRoot: 'site/'
+        files: dependencies
 
   # These plugins provide necessary tasks.
   grunt.loadNpmTasks "grunt-contrib-#{contrib}" for contrib in contribs
   grunt.loadNpmTasks 'grunt-includes'
+  grunt.loadNpmTasks 'grunt-sails-linker'
 
   # Default task.
-  grunt.registerTask 'default', ['jst', 'stylus', 'includes', 'copy']
+  grunt.registerTask 'default', ['jst', 'stylus', 'includes', 'copy', 'sails-linker']
