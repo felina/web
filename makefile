@@ -24,7 +24,7 @@ clean:
 
 # Requires ImageMagick
 favicon:
-	convert -resize x16 shutter.png site/favicon.ico
+	convert -resize x16 img/shutter.png site/favicon.ico
 
 export:
 	zip -r website.zip \
