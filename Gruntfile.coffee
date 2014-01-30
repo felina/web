@@ -131,7 +131,7 @@ module.exports = (grunt) ->
           relative: true
         files: dependencies
 
-     bake:
+    bake:
       build:
         files:
           'site/index.html': 'html/index.html'
