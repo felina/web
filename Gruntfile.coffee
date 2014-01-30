@@ -9,17 +9,21 @@ bootstrap = 'vendor/bootstrap/dist/js/bootstrap.js'
 blueimp = 'vendor/blueimp-gallery/js/jquery.blueimp-gallery.min.js'
 bbs = 'vendor/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min.js'
 d3 = 'vendor/d3/d3.min.js'
+dropzone = 'vendor/dropzone/downloads/dropzone.js'
+penguinator = 'vendor/penguinator/index.js'
+jqui = 'vendor/jquery-ui/ui/jquery-ui.js'
 
 # Module paths
-jst = 'jst.js'
+jst_ = 'jst.js'
 common = 'js/common.js'
 main = 'js/main.js'
 start_job = 'js/start_job.js'
 bar_chart = 'js/bar_chart.js'
 dashboard = 'js/dashboard.js'
+image_upload = 'js/image_upload.js'
 
 # Files used by every page
-shared = [jquery, underscore, bootstrap, jst, common]
+shared = [jquery, underscore, bootstrap, common]
 
 # Mapping of HTML files to the scripts they require
 dependencies =
@@ -27,6 +31,8 @@ dependencies =
   'site/start-job.html': [blueimp, bbs, start_job]
   'site/define-form.html': []
   'site/dashboard.html': [d3, bar_chart, dashboard]
+  'site/upload/image.html': [jqui, dropzone, penguinator, blueimp, bbs, image_upload]
+  'site/upload/executable.html': [dropzone]
 
 for k, v of dependencies
   dependencies[k] = shared.concat(v)
@@ -129,12 +135,12 @@ module.exports = (grunt) ->
       default:
         options:
           appRoot: 'site/'
+          fileTmpl: '<script src="/%s"></script>'
+          relative: true
         files: dependencies
 
-  # These plugins provide necessary tasks.
   grunt.loadNpmTasks "grunt-contrib-#{contrib}" for contrib in contribs
   grunt.loadNpmTasks 'grunt-includes'
   grunt.loadNpmTasks 'grunt-sails-linker'
 
-  # Default task.
   grunt.registerTask 'default', ['jst', 'stylus', 'includes', 'copy', 'sails-linker']
