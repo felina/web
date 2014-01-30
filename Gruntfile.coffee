@@ -102,8 +102,11 @@ module.exports = (grunt) ->
 
     stylus:
       compile:
-        files:
-          'site/css/style.css': 'stylus/style.styl'
+        expand: true
+        cwd: 'stylus'
+        src: ['*.styl']
+        dest: 'site/css/'
+        ext: '.css'
 
     watch:
       scripts:
