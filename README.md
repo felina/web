@@ -24,8 +24,8 @@ The project is structured as follows:
 - `html/`: Contains static HTML, both full pages and shared fragments, that are assembled at compile-time.
 - `img/`: All images, including sample wildlife photograhy and icons.
 - `js/`: First-party JavaScript modules
-- `stylus`: Stylus stylesheets that are compiled to CSS at compile-time.
-- `templates`: HTML templates with variable placeholders that are dynamically populated with data from the server inserted into the DOM with JS at run-time.
+- `stylus/`: Stylus stylesheets that are compiled to CSS at compile-time.
+- `templates/`: HTML templates with variable placeholders that are dynamically populated with data from the server inserted into the DOM with JS at run-time.
 
 ## Development
 
@@ -41,4 +41,4 @@ Run `grunt watch` to automatically rebuild the site as you develop it. Note, to 
 
 [MIT licensed](https://github.com/felina/web/blob/master/LICENSE)
 
-Copyright (c) 2013-2014 Giles Lavelle, Alistair Wick
+Copyright (c) 2013-2014 Team Heisenberg
