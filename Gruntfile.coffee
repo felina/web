@@ -117,15 +117,6 @@ module.exports = (grunt) ->
           base: 'site'
           keepalive: true
 
-    includes:
-      files:
-        src: ['*.html', 'upload/*.html']
-        dest: 'site'
-        flatten: false
-        cwd: 'html'
-        options:
-          silent: true
-
     copy:
       default:
         cwd: '.'
@@ -140,8 +131,18 @@ module.exports = (grunt) ->
           relative: true
         files: dependencies
 
+     bake:
+      build:
+        files:
+          'site/index.html': 'html/index.html'
+          'site/dashboard.html': 'html/dashboard.html'
+          'site/start-job.html': 'html/start-job.html'
+          'site/define-form.html': 'html/define-form.html'
+          'site/upload/image.html': 'html/upload/image.html'
+          'site/upload/executable.html': 'html/upload/executable.html'
+
   grunt.loadNpmTasks "grunt-contrib-#{contrib}" for contrib in contribs
-  grunt.loadNpmTasks 'grunt-includes'
+  grunt.loadNpmTasks 'grunt-bake'
   grunt.loadNpmTasks 'grunt-sails-linker'
 
-  grunt.registerTask 'default', ['jst', 'stylus', 'includes', 'copy', 'sails-linker']
+  grunt.registerTask 'default', ['jst', 'stylus', 'bake', 'copy', 'sails-linker']
