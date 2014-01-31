@@ -8,6 +8,7 @@ margin_mid = 20px
 thumbnail_size = 200px
 
 // Colours
+light_grey = #E9E9E9
 mid_grey = #505050
 dark_grey = #252525
 shadow_black = rgba(0, 0, 0, 0.4)
@@ -20,16 +21,13 @@ html, body, .wrapper
   height: 100%
 
 .wrapper
-  margin-top: header_height * - 1
-  padding-top: header_height
   position: relative
-  z-index: 1
 
 header
   border-bottom: 1px solid #BDBDBD
-  background: #E9E9E9
+  background: light_grey
   height: header_height
-  z-index: 10
+  margin-top: -10px
 
   ul
     li
@@ -37,15 +35,11 @@ header
       float: left
       list-style-type: none
 
-header
-  border-bottom: black_border
-  margin-top: margin_small * -1
-
-header a, .sidebar a
+.sidebar a
   color: white
   text-decoration: none
 
-header a:hover, .sidebar a:hover
+.sidebar a:hover
   color: white
   text-decoration: none
 
