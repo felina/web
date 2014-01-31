@@ -18,6 +18,8 @@ $(function(){
     // Add settings modal
     body.append(JST.settings());
 
+    dashboard.append(JST.footer());
+
     // TODO: swap this out for a real instance of the User class
     var user = {
         isResearcher: function(){ return true; }
@@ -33,7 +35,7 @@ $(function(){
     // Updates the dimensions and positions of the sidebar and dashboard to
     // reflect the current state
     var setSidebar = function(){
-        var height = body.height() - (headerHeight * 2);
+        var height = body.height() - headerHeight;
         dashboard.css({
             left: currentWidth,
             width: body.width() - currentWidth,

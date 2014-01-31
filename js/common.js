@@ -11,7 +11,6 @@ $(function(){
 
     var body = $('body');
     body.prepend(JST.header(nouser));
-    body.append(JST.footer());
     body.append(JST.credits());
     body.append(JST.login());
 });
