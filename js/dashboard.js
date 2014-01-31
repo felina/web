@@ -8,7 +8,7 @@ $(function(){
 
     var sidebarWidth = 250;
     var currentWidth = sidebarWidth;
-    var headerHeight = 60;
+    var headerHeight = 45;
     var sidebarVisible = true;
     var resizeDelay = 500;
 
