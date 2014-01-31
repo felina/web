@@ -31,7 +31,7 @@ dependencies =
   'site/index.html': [main]
   'site/start-job.html': [blueimp, bbs, start_job]
   'site/define-form.html': []
-  'site/dashboard.html': [d3, bar_chart, dashboard]
+  'site/view-jobs.html': [d3, bar_chart, dashboard]
   'site/upload/image.html': [jqui, dropzone, penguinator, blueimp, bbs, image_upload]
   'site/upload/executable.html': [dropzone]
 
@@ -138,7 +138,7 @@ module.exports = (grunt) ->
       build:
         files:
           'site/index.html': 'html/index.html'
-          'site/dashboard.html': 'html/dashboard.html'
+          'site/view-jobs.html': 'html/view-jobs.html'
           'site/start-job.html': 'html/start-job.html'
           'site/define-form.html': 'html/define-form.html'
           'site/upload/image.html': 'html/upload/image.html'
