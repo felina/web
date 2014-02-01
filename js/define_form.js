@@ -12,4 +12,6 @@ $(function(){
     $('#new_field').click(function(){
         add_field();
     });
+
+    $('.container').append(JST.footer());
 });
