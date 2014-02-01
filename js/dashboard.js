@@ -1,19 +1,16 @@
 $(function(){
     var jobs = $('.jobs');
     var body = $('body');
-    var toggler = $(JST.toggler());
     var dashboard = $('.dashboard');
     var sidebar = $('.sidebar');
-    var sidebarList = $('.sidebar ul');
+    var sidebarList = sidebar.find('ul')
+    var toggler = $('#toggleSidebar');
 
     var sidebarWidth = 250;
+    var closedWidth = headerHeight = 45;
     var currentWidth = sidebarWidth;
-    var headerHeight = 45;
     var sidebarVisible = true;
     var resizeDelay = 500;
-
-    // Add sidebar toggle button
-    $('#header-left').append(toggler);
 
     // Add settings modal
     body.append(JST.settings());
@@ -27,8 +24,10 @@ $(function(){
 
     // Shows and hides the sidebar
     var toggleSidebar = function(){
-        currentWidth = sidebarVisible ? 0 : sidebarWidth;
+        currentWidth = sidebarVisible ? closedWidth : sidebarWidth;
         setSidebar();
+        titles.fadeToggle(400);
+        toggler.toggleClass('spun');
         sidebarVisible = !sidebarVisible;
     };
 
@@ -75,6 +74,8 @@ $(function(){
         sidebarList.append(JST['sidebars/researcher']());
     }
     sidebarList.append(JST['sidebars/citizen']());
+
+    var titles = sidebar.find('.title');
 
     // Set initial sidebar dimensions
     setSidebar();
