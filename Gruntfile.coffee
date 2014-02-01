@@ -22,6 +22,7 @@ start_job = 'js/start_job.js'
 bar_chart = 'js/bar_chart.js'
 dashboard = 'js/dashboard.js'
 image_upload = 'js/image_upload.js'
+define_form = 'js/define_form.js'
 
 # Files used by every page
 shared = [jquery, underscore, bootstrap, common]
@@ -30,7 +31,7 @@ shared = [jquery, underscore, bootstrap, common]
 dependencies =
   'site/index.html': [main]
   'site/start-job.html': [blueimp, bbs, start_job]
-  'site/define-form.html': []
+  'site/define-form.html': [define_form]
   'site/view-jobs.html': [d3, bar_chart, dashboard]
   'site/upload/image.html': [jqui, dropzone, penguinator, blueimp, bbs, image_upload]
   'site/upload/executable.html': [dropzone]
