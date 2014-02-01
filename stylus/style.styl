@@ -1,81 +1,8 @@
 @import 'nib'
-
-// Dimensions
-sidebar_width = 250px
-header_height = 45px
-margin_small = 10px
-margin_mid = 20px
-thumbnail_size = 200px
-
-// Colours
-light_grey = #E9E9E9
-mid_grey = #505050
-dark_grey = #252525
-shadow_black = rgba(0, 0, 0, 0.4)
-highlight = rgb(70, 179, 19)
-
-// Borders
-black_border = 1px solid black
-
-html, body
-  height: 100%
-
-header
-  border-bottom: 1px solid #BDBDBD
-  background: light_grey
-  height: header_height
-  margin-top: -10px
-
-  ul
-    li
-      margin: 5px 10px
-      float: left
-
-header ul, footer ul
-  list-style-type: none
-
-.sidebar a
-  color: white
-  text-decoration: none
-
-.sidebar a:hover
-  color: white
-  text-decoration: none
+@import './common'
 
 #logo
   display: block
-
-.left
-  float: left
-
-.right
-  float: right
-
-.avatar
-  border-radius: 3px
-
-#banner
-  background-size: cover
-  background-position: center
-  height: 500px
-  width: 100%
-  color: white
-
-  form
-    input, button
-      height: 60px
-      font-size: 30px
-
-    input
-      width: 309px
-
-    button
-      width: 170px
-
-.bannerwrap
-  max-width: 800px
-  min-width: 400px
-  margin: 0 auto
 
 .overlay
   width: 100%
@@ -98,70 +25,8 @@ header ul, footer ul
 .details > .row > div:last-child
   border-right: none
 
-.sidebar
-  background: dark_grey
-  color: white
-  width: sidebar_width
-  float: left
-  height: 100%
-  box-shadow: -5px 0 10px shadow_black inset
-
-  ul
-    list-style-type: none
-    padding: 0
-
-    li
-      margin: margin_small 0
-      padding: 10px
-      border-bottom: 1px solid mid_grey
-
-      h2
-        font-size: 20px
-        margin: 0
-        color: highlight
-
-      a
-        margin-left: 3px
-        cursor: pointer
-
-.dashboard
-  padding: 10px 30px
-  height: 500px
-  left: sidebar_width
-  background: white
-  position: absolute
-  transition: 0.2s left, 0.2s width
-  overflow: scroll
-
-  ul
-    list-style-type: none
-
-#toggleSidebar
-  border: none
-  background: none
-  color: white
-  transition: 0.2s all
-
-#toggleSidebar:focus
-  outline: none
-
-.name
-  margin-bottom: margin_mid
-
-.progress
-  width: 300px
-
-.eta
-  margin-bottom: margin_mid
-
-.job-img
-  width: thumbnail_size
-  height: thumbnail_size
-  background-position: center
-  background-size: cover
-
-.jobbody > div
-  margin-right: margin_mid
+.annotator_row
+  display: none
 
 .metadata
   padding: 10px
@@ -202,8 +67,4 @@ table
   img
     max-height: 150px
 
-.annotator_row
-  display: none
 
-.spun
-  transform: rotate(180deg)
