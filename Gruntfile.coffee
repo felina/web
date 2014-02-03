@@ -35,6 +35,7 @@ dependencies =
   'site/view-jobs.html': [d3, bar_chart, dashboard]
   'site/upload/image.html': [jqui, dropzone, penguinator, blueimp, bbs, image_upload]
   'site/upload/executable.html': [dropzone]
+  'site/user-profile.html': []
 
 for k, v of dependencies
   dependencies[k] = shared.concat(v)
@@ -144,6 +145,7 @@ module.exports = (grunt) ->
           'site/define-form.html': 'html/define-form.html'
           'site/upload/image.html': 'html/upload/image.html'
           'site/upload/executable.html': 'html/upload/executable.html'
+          'site/user-profile.html': 'html/user-profile.html'
 
   grunt.loadNpmTasks "grunt-contrib-#{contrib}" for contrib in contribs
   grunt.loadNpmTasks 'grunt-bake'
