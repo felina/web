@@ -23,6 +23,7 @@ bar_chart = 'js/bar_chart.js'
 dashboard = 'js/dashboard.js'
 image_upload = 'js/image_upload.js'
 define_form = 'js/define_form.js'
+user_profile = 'js/user_profile.js'
 
 # Files used by every page
 shared = [jquery, underscore, bootstrap, common]
@@ -35,7 +36,7 @@ dependencies =
   'site/view-jobs.html': [d3, bar_chart, dashboard]
   'site/upload/image.html': [jqui, dropzone, penguinator, blueimp, bbs, image_upload]
   'site/upload/executable.html': [dropzone]
-  'site/user-profile.html': []
+  'site/user-profile.html': [user_profile]
 
 for k, v of dependencies
   dependencies[k] = shared.concat(v)
