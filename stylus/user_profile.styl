@@ -2,15 +2,15 @@
 @import './common'
 
 borderValue = 4px
-profileBorder_height = 160px
-profileBorder_width = 160px
+profileBorder_height = 180px
+profileBorder_width = 180px
 profilePic_height = profileBorder_height - 2 * borderValue
 profilePic_width = profileBorder_width - 2 * borderValue
-namePad = profileBorder_height * 0.6
+namePad = profileBorder_height * 0.2
 
 .profile_pic
     background-color: rgb(255,255,255)
-    border: borderValue solid rgb(255,255,255)
+    border: borderValue solid rgb(0,0,0)
     border-radius: 2px 2px 2px 2px
     height: profileBorder_height
     width: profileBorder_width
@@ -20,9 +20,37 @@ namePad = profileBorder_height * 0.6
         border: 0px none 
 
 .alternate_name
-    color: rgb(0, 0, 0)
+    color: rgb(255, 255, 255)
     text-rendering: optimizelegibility
     text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8)
     font-size: 250%
     padding-top: namePad
-    // padding-left: 50px
+
+.title_sub
+    color: rgb(255, 255, 255)
+    text-rendering: optimizelegibility
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8)
+    font-size: 100%
+
+.title_head
+    color: rgb(255, 255, 255)
+    text-rendering: optimizelegibility
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8)
+    font-size: 150%
+
+.photo_gallery
+    cellspacing: 0 
+    cellpadding: 0
+    // padding-top: 500px
+
+.photo_ind
+    height: auto
+    width: 90px
+
+.badge_ind
+    height: auto
+    width: 50px
+// .cover_photo
+//     background: url('http://www.hdwallpapers.in/walls/abstract_color_background_picture_8016-wide.jpg')
+//     height: 245px0
+//     background-size: auto 245px
