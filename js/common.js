@@ -17,9 +17,9 @@ window.alert = function(m){
     });
 };
 
-$(function(){
-    var server = 'http://nl.ks07.co.uk:5000/';
+window.server = 'http://nl.ks07.co.uk:5000/';
 
+$(function(){
     var body = $('body');
     body.append(JST.credits());
     var form = $(JST.login());
@@ -35,7 +35,7 @@ $(function(){
 
         $.ajax({
             url: server + 'login',
-            method: 'post',
+            type: 'POST',
             data: {
                 email: email,
                 pass: password

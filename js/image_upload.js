@@ -11,16 +11,33 @@ $(function(){
     $('#annotator-container').annotator('/img/elephant.jpg');
 
     $('#submit').click(function(evt){
+        var data = [];
+
+        var rows = $('#photos tbody').children();
+
+        for(var i = 0; i < rows.length; i++){
+            var row = $(rows[i]);
+
+            var image = {
+                url: row.find('img').attr('src'),
+                time: row.find('.time-field').val(),
+                date: row.find('.date-field').val(),
+                location: row.find('.location-field').val()
+            };
+
+            data.push(image);
+        }
+
+        console.log(data);
+
         $.ajax({
             type: 'POST',
-            url: 'http://ec2-54-194-128-44.eu-west-1.compute.amazonaws.com/upload/img',
-            data: {
-                uploaded1: 'test.png'
-            },
-            success: function(){
-
+            url: server + 'upload/img',
+            data: data,
+            dataType: 'JSON',
+            success: function(data){
+                console.log(data);
             }
-            // dataType: dataType
         });
     });
 
