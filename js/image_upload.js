@@ -52,6 +52,21 @@ $(function(){
         mapModal.modal('hide');
     });
 
+    mapModal.find('.geolocator').on('click', function(){
+        GMaps.geolocate({
+            success: function(position) {
+                map.setCenter(position.coords.latitude, position.coords.longitude);
+                map.setZoom(12);
+            },
+            error: function(error) {
+                alert('Geolocation failed: ' + error.message);
+            },
+            not_supported: function() {
+                alert("Your browser does not support geolocation");
+            }
+        });
+    });
+
     $('#submit').click(function(evt){
         var data = [];
 
