@@ -12,7 +12,7 @@ bbs = 'vendor/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min.js'
 d3 = 'vendor/d3/d3.min.js'
 dropzone = 'vendor/dropzone/downloads/dropzone.js'
 penguinator = 'vendor/penguinator/index.js'
-jqui = 'vendor/jquery-ui/ui/jquery-ui.js'
+gmaps = 'vendor/gmaps/gmaps.js'
 
 # Module paths
 jst_ = 'jst.js'
@@ -34,7 +34,7 @@ dependencies =
   'site/start-job.html': [blueimp, bbs, start_job]
   'site/define-form.html': [define_form]
   'site/view-jobs.html': [d3, bar_chart, dashboard]
-  'site/upload/image.html': [jqui, dropzone, penguinator, blueimp, bbs, image_upload]
+  'site/upload/image.html': [dropzone, penguinator, blueimp, bbs, gmaps, image_upload]
   'site/upload/executable.html': [dropzone, executable_upload]
 
 for k, v of dependencies

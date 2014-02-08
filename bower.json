@@ -12,6 +12,7 @@
     "dropzone": "~3.7.4",
     "penguinator": "*",
     "d3": "~3.3.12",
-    "blueimp-bootstrap-image-gallery": "~3.1.0"
+    "blueimp-bootstrap-image-gallery": "~3.1.0",
+    "gmaps": "~0.4.9"
   }
 }

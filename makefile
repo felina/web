@@ -15,6 +15,7 @@ build: favicon
 		vendor/blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery.css \
 		vendor/blueimp-gallery/js/jquery.blueimp-gallery.min.js \
 		vendor/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min.js \
+		vendor/gmaps/gmaps.js \
 		site
 
 clean:
