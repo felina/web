@@ -8,6 +8,13 @@ profilePic_height = profileBorder_height - 2 * borderValue
 profilePic_width = profileBorder_width - 2 * borderValue
 namePad = profileBorder_height * 0.2
 
+table
+    border: 1px
+
+td, tr
+    border: 0px
+
+
 .profile_pic
     background-color: rgb(255,255,255)
     border: borderValue solid rgb(0,0,0)
@@ -41,16 +48,20 @@ namePad = profileBorder_height * 0.2
 .photo_gallery
     cellspacing: 0 
     cellpadding: 0
-    // padding-top: 500px
 
 .photo_ind
     height: auto
-    width: 90px
+    width: 70px
 
 .badge_ind
     height: auto
-    width: 50px
-// .cover_photo
-//     background: url('http://www.hdwallpapers.in/walls/abstract_color_background_picture_8016-wide.jpg')
-//     height: 245px0
-//     background-size: auto 245px
+    width: 40px
+
+.gallery_wrap
+    border: 1px solid black
+
+.badge_wrap
+    border: 1px solid black
+
+.newsfeed_list
+    list-style-type: none

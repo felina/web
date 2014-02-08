@@ -1,4 +1,6 @@
-<div>
+<div id="middlerow1" style="background-image: url('<%=cover_photo%>'); background-size: cover; background-repeat: no-repeat" >
+
+
   <div id="col1" class="col-md-3">
     <div class="profile_pic">
      <img src="<%= profile_picture %>">
@@ -6,23 +8,26 @@
   </div>
   
   <div id="col2" class="col-md-4">
+      
       <div id="c2row1" class="row">
         <div class="alternate_name">
          <%= username %>
         </div>
       </div>
+
       <div class="title_sub">  
         <div id="c2row2" class="row">
           <span class="title_head">Badge count = </span>
           <span><%= badgeCount %></span>
         </div>
       </div>
+
       <div class="title_sub">
         <div id="c2row3" class="row">
           <%= mostUploaded %>
         </div>
       </div>
-  </div>
 
+  </div>
 
 </div>

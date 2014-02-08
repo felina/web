@@ -4,10 +4,16 @@ $(function(){
         badgeCount: '10',
         mostUploaded: 'Penguins',
         profile_picture: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
-        cover_photo: 'http://www.hdwallpapers.in/walls/abstract_color_background_picture_8016-wide.jpg'
+        cover_photo: 'http://stylopics.com/wp-content/uploads/2013/08/fb_profile_cover_1317410583f25.jpg'
     }));
     var profileWrap = $('.profile_wrapper');
     profileWrap.append(profile);
+
+    var newsfeed = $(JST.newsfeed({
+
+    }));
+    var newsfeedWrap = $('.newsfeed_wrapper');
+    newsfeedWrap.append(newsfeed);
 
     var photoGallery = $(JST.user_photo({
         photo1: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
