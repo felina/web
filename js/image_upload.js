@@ -29,8 +29,6 @@ $(function(){
 
     var mapModal = $('#map-modal');
 
-    var active_row = null;
-
     mapModal.on('shown.bs.modal', function(e){
         map.refresh();
     });
@@ -46,7 +44,7 @@ $(function(){
             lng: pos.e,
             callback: function(results, status) {
                 if(status === "OK"){
-                    active_row.find('.location-field').val(results[0].formatted_address);
+                    window.active_row.find('.location-field').val(results[0].formatted_address);
                 }
             }
         });
@@ -136,9 +134,9 @@ $(function(){
             };
         })(d.url));
 
-        a.find('.map-opener').on('click', function(e){
-            active_row = a;
-        });
+        a.find('.map-opener').on('click', (function(row){
+            return function(e){ window.active_row = row; };
+        })(a));
 
         // Add the thumbnail to the gallery and the row to the table
         gallery.append(g);
