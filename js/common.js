@@ -46,6 +46,9 @@ $(function(){
                 email: email,
                 pass: password
             },
+            xhrFields: {
+                withCredentials: true
+            },
             success: function(data){
                 // If the login was successful
                 if(data.res){
@@ -90,6 +93,9 @@ $(function(){
     $.ajax({
         url: u,
         type: 'GET',
+        xhrFields: {
+            withCredentials: true
+        },
         success: function(data){
             console.log(data);
             body.prepend(JST.header(data));
