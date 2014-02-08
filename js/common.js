@@ -23,7 +23,6 @@ window.server = 'http://nl.ks07.co.uk:5000/';
 
 $(function(){
     var body = $('body');
-    body.append(JST.credits());
     var form = $(JST.login());
 
     var fields = {
