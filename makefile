@@ -1,5 +1,4 @@
 build: favicon
-	mkdir -p site/css
 	grunt
 	rsync -r img site
 	rsync -Rr \
@@ -23,8 +22,11 @@ clean:
 	rm -f website.zip
 
 # Requires ImageMagick
-favicon:
+favicon: site
 	convert -resize x16 img/shutter.png site/favicon.ico
+
+site:
+	mkdir -p site/css
 
 export:
 	zip -r website.zip \
