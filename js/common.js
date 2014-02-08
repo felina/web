@@ -17,7 +17,9 @@ window.alert = function(m){
     });
 };
 
+// URL of the server. Comment for development/production
 window.server = 'http://nl.ks07.co.uk:5000/';
+window.server = 'localhost:5000/';
 
 $(function(){
     var body = $('body');
@@ -29,10 +31,14 @@ $(function(){
         password: form.find('#password')
     };
 
+    // Bind an event to the submit button in the login form to send the username
+    // and password to the server
     form.find('button').on('click', function(e){
+        // Grab the email and password from the DOM
         var email = fields.email.val();
         var password = fields.password.val();
 
+        // Send the request
         $.ajax({
             url: server + 'login',
             type: 'POST',
@@ -41,27 +47,43 @@ $(function(){
                 pass: password
             },
             success: function(data){
+                // If the login was successful
                 if(data.res){
+                    // Inform the user
                     alert('Logged in successfully');
+                    // Hide the login modal
                     $('#register').modal('hide');
 
+                    // Store the user's credentials for next time
+                    // TODO: use cookies or store a token rather than storing
+                    // passwords in plaintext
                     localStorage['felina-email'] = email;
                     localStorage['felina-pass'] = password;
 
-                    console.log(data);
+                    // TODO: hardcoded gravatar ID. Server needs to be updated
+                    // to provide this
                     data.user.icon = '8ff364476b280cd51aba531052a0603c';
+
+                    // Update the header to replace the login button with the
+                    // details of the newly logged in user
                     $('header').remove();
                     $('body').prepend(JST.header(data));
                 }
-                else{
+                // Login failed
+                else {
+                    // Inform the user
                     alert('Invalid username or password');
                 }
             }
         });
     });
 
+    // Add the login form to the page
     body.append(form);
 
+    // Check the user's status on page load so that their name and icon can be
+    // displayed in the header
+    // TODO: this doesn't work -- what are endpoints george
     var u = server + 'logincheck' + "?email=" + localStorage['felina-email'] + "&pass=" + localStorage['felina-pass'];
     console.log(u);
 
