@@ -12,9 +12,6 @@ $(function(){
     var sidebarVisible = true;
     var resizeDelay = 500;
 
-    // Add settings modal
-    body.append(JST.settings());
-
     dashboard.append(JST.footer());
 
     // TODO: swap this out for a real instance of the User class
