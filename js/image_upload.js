@@ -19,9 +19,12 @@ $(function(){
         for(var i = 0; i < rows.length; i++){
             var row = $(rows[i]);
 
+            // TODO: filter out hidden rows
+
             // Grab the current row's metadata from the DOM
             var image = {
                 url: row.find('img').attr('src'),
+                title: row.find('.title-field').val(),
                 time: row.find('.time-field').val(),
                 date: row.find('.date-field').val(),
                 location: row.find('.location-field').val()
@@ -46,20 +49,14 @@ $(function(){
         });
     });
 
-    var data = [
-        {
-            url: '/img/elephant.jpg',
-            title: 'Elephant'
-        },
-        {
-            url: '/img/giraffe.jpg',
-            title: 'Giraffe'
-        },
-        {
-            url: '/img/leopard.jpg',
-            title: 'Leopard'
-        }
-    ];
+    var data = ['/img/elephant.jpg', '/img/giraffe.jpg', '/img/leopard.jpg'];
+
+    for(var i = 0; i < data.length; i++){
+        data[i] = {
+            url: data[i],
+            title: data[i]
+        };
+    }
 
     var list = $('tbody');
     var gallery = $('#gallery');
