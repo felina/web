@@ -112,8 +112,17 @@ module.exports = (grunt) ->
 
     watch:
       scripts:
-        files: ['stylus/*.styl', 'js/*.js', 'data/*', 'templates/**/*.html', 'html/**/*.html']
-        tasks: ['default']
+        files: [ 'js/*.js', 'data/*']
+        tasks: ['copy']
+      styles:
+        files: 'stylus/*.styl'
+        tasks: ['stylus']
+      templates:
+        files: 'templates/**/*.html'
+        tasks: ['jst']
+      html:
+        files: 'html/**/*.html'
+        tasks: ['bake', 'sails-linker']
 
     connect:
       server:
