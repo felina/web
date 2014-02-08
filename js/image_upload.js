@@ -15,16 +15,43 @@ $(function(){
         lat: 0,
         lng: 0,
         zoom: 2,
-        width: 500,
-        height: 300,
-        resize: function(){
-            var center = map.getCenter();
-            map.setCenter(center.lat(), center.lng());
+        width: 800,
+        height: 500,
+        click: function(e){
+            console.log(e);
+            map.removeMarkers();
+            map.addMarker({
+                lat: e.latLng.d,
+                lng: e.latLng.e
+            });
         }
     });
 
-    $('#map-modal').on('shown.bs.modal', function(e){
+    var mapModal = $('#map-modal');
+
+    var active_row = null;
+
+    mapModal.on('shown.bs.modal', function(e){
         map.refresh();
+    });
+    mapModal.find('.modal-footer button').on('click', function(){
+        if(map.markers.length === 0){
+            alert('Please choose a location');
+            return
+        }
+        var pos = map.markers[0].position;
+
+        GMaps.geocode({
+            lat: pos.d,
+            lng: pos.e,
+            callback: function(results, status) {
+                if(status === "OK"){
+                    active_row.find('.location-field').val(results[0].formatted_address);
+                }
+            }
+        });
+
+        mapModal.modal('hide');
     });
 
     $('#submit').click(function(evt){
@@ -108,6 +135,10 @@ $(function(){
                 $('#annotator-container').annotator(url, 400, 400);
             };
         })(d.url));
+
+        a.find('.map-opener').on('click', function(e){
+            active_row = a;
+        });
 
         // Add the thumbnail to the gallery and the row to the table
         gallery.append(g);
