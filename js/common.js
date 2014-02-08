@@ -1,3 +1,22 @@
+window.alert = function(m){
+    var style = {
+        position: 'absolute',
+        top: 0,
+        padding: 10,
+        zIndex: 2000,
+        borderRadius: 5,
+        fontWeight: 'bold'
+    };
+
+    var el = $('<div>');
+    el.text(m).css(style).addClass('alert-danger').hide().appendTo('body');
+    el.css('left', ($('body').width() - el.width()) / 2)
+
+    el.fadeIn().delay(5000).fadeOut(function(){
+        $(this).remove();
+    });
+};
+
 $(function(){
     var server = 'http://nl.ks07.co.uk:5000/';
 
