@@ -10,10 +10,17 @@ Dropzone.options.filedrop = {
 $(function(){
     $('.container').append(JST.footer());
 
-    new GMaps({
+    var map = new GMaps({
         div: '#map',
-        lat: -12.043333,
-        lng: -77.028333
+        lat: 0,
+        lng: 0,
+        zoom: 2,
+        width: 500,
+        height: 300,
+        resize: function(){
+            var center = map.getCenter();
+            map.setCenter(center.lat(), center.lng());
+        }
     });
 
     $('#submit').click(function(evt){
