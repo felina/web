@@ -22,6 +22,7 @@ start_job = 'js/start_job.js'
 bar_chart = 'js/bar_chart.js'
 dashboard = 'js/dashboard.js'
 image_upload = 'js/image_upload.js'
+executable_upload = 'js/executable_upload.js'
 define_form = 'js/define_form.js'
 
 # Files used by every page
@@ -34,7 +35,7 @@ dependencies =
   'site/define-form.html': [define_form]
   'site/view-jobs.html': [d3, bar_chart, dashboard]
   'site/upload/image.html': [jqui, dropzone, penguinator, blueimp, bbs, image_upload]
-  'site/upload/executable.html': [dropzone]
+  'site/upload/executable.html': [dropzone, executable_upload]
 
 for k, v of dependencies
   dependencies[k] = shared.concat(v)

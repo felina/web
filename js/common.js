@@ -44,6 +44,10 @@ $(function(){
                 if(data.res){
                     alert('Logged in successfully');
                     $('#register').modal('hide');
+
+                    localStorage['felina-email'] = email;
+                    localStorage['felina-pass'] = password;
+
                     console.log(data);
                     data.user.icon = '8ff364476b280cd51aba531052a0603c';
                     $('header').remove();
@@ -58,8 +62,15 @@ $(function(){
 
     body.append(form);
 
-    $.get(server + 'logincheck', function(data){
-        console.log(data);
-        body.prepend(JST.header(data));
+    var u = server + 'logincheck' + "?email=" + localStorage['felina-email'] + "&pass=" + localStorage['felina-pass'];
+    console.log(u);
+
+    $.ajax({
+        url: u,
+        type: 'GET',
+        success: function(data){
+            console.log(data);
+            body.prepend(JST.header(data));
+        }
     });
 });

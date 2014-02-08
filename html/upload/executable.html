@@ -3,24 +3,45 @@
 <body>
 
 <div class="container">
-    <h2>Executable Upload</h2>
+    <h1>Executable Upload</h1>
 
     <hr>
 
-    <h3>Upload main executable</h3>
+    <h2>1. Name your executable</h2>
+
+    <form>
+        <input type="text" placeholder="Name your executable" class="form-control" id="name">
+    </form>
+
+    <hr>
+
+    <h2>2. Upload main executable</h2>
 
     <p>Upload a Windows executable binary in .exe format</p>
 
-    <form id="upload">
-        <div id="my-awesome-dropzone" action="/target" class="dropzone" class="form-control"></div>
-        <input type="text" placeholder="Paste an image URL" class="form-control"/>
+    <form id="exe">
+        <div action="/upload/exe" class="dropzone" class="form-control"></div>
     </form>
 
     <div class="clearfix"></div>
 
     <hr>
 
-    <h3>Upload additional DLLs</h3>
+    <h2>3. Upload additional libraries</h2>
+
+    <p>Upload Windows binary libraries in .dll format</p>
+
+    <form id="dll">
+        <div action="/upload/dll" class="dropzone" class="form-control"></div>
+    </form>
+
+    <hr>
+
+    <h2>4. Finish and submit</h2>
+
+    <div class="button-wrap">
+        <button type="button" class="btn btn-success btn-lg" id="submit">Submit</button>
+    </div>
 </div>
 
 <!--SCRIPTS-->

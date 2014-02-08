@@ -10,6 +10,8 @@ Dropzone.options.filedrop = {
 $(function(){
     $('#annotator-container').annotator('/img/elephant.jpg');
 
+    $('.container').append(JST.footer());
+
     $('#submit').click(function(evt){
         var data = [];
 
