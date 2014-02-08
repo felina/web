@@ -8,17 +8,17 @@
     </ul>
 
     <ul class="right">
-        <% if(loggedin){ %>
+        <% if(res){ %>
             <li>
                 <a href="/dashboard.html">
                     <i class="glyphicon glyphicon-home"></i>
                 </a>
             </li>
             <li>
-                <img class="avatar" height="30" src="http://www.gravatar.com/avatar/<%= icon %>.png">
+                <img class="avatar" height="30" src="http://www.gravatar.com/avatar/<%= user.icon %>.png">
             </li>
             <li>
-                <%= username %>
+                <%= user.name %>
             </li>
 
 

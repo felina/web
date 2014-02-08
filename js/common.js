@@ -20,16 +20,6 @@ window.alert = function(m){
 $(function(){
     var server = 'http://nl.ks07.co.uk:5000/';
 
-    var user = {
-        loggedin: true,
-        username: 'John Doe',
-        icon: '8ff364476b280cd51aba531052a0603c'
-    };
-
-    var nouser = {
-        loggedin: false
-    };
-
     var body = $('body');
     body.append(JST.credits());
     var form = $(JST.login());
@@ -54,6 +44,10 @@ $(function(){
                 if(data.res){
                     alert('Logged in successfully');
                     $('#register').modal('hide');
+                    console.log(data);
+                    data.user.icon = '8ff364476b280cd51aba531052a0603c';
+                    $('header').remove();
+                    $('body').prepend(JST.header(data));
                 }
                 else{
                     alert('Invalid username or password');
@@ -66,11 +60,6 @@ $(function(){
 
     $.get(server + 'logincheck', function(data){
         console.log(data);
-        if(data.res){
-            body.prepend(JST.header(user));
-        }
-        else {
-            body.prepend(JST.header(nouser));
-        }
+        body.prepend(JST.header(data));
     });
 });
