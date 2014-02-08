@@ -10,7 +10,7 @@ Dropzone.options.filedrop = {
 $(function(){
     $('.container').append(JST.footer());
 
-    window.map = new GMaps({
+    var map = new GMaps({
         div: '#map',
         lat: 0,
         lng: 0,
@@ -23,9 +23,8 @@ $(function(){
         }
     });
 
-    $('#annotator-modal').on('shown.bs.modal', function(e){
-        console.log(e);
-        window.map.refresh();
+    $('#map-modal').on('shown.bs.modal', function(e){
+        map.refresh();
     });
 
     $('#submit').click(function(evt){
@@ -109,11 +108,6 @@ $(function(){
                 $('#annotator-container').annotator(url, 400, 400);
             };
         })(d.url));
-
-        a.find('.map-opener').on('click', function(e){
-            // console.log(window.map);
-            // setTimeout(function(){  }, 1000);
-        });
 
         // Add the thumbnail to the gallery and the row to the table
         gallery.append(g);
