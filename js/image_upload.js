@@ -8,8 +8,6 @@ Dropzone.options.filedrop = {
 };
 
 $(function(){
-    $('#annotator-container').annotator('/img/elephant.jpg');
-
     $('.container').append(JST.footer());
 
     $('#submit').click(function(evt){
@@ -64,12 +62,29 @@ $(function(){
     for(var i = 0; i < data.length; i++){
         var d = data[i];
         d.id = i;
-        gallery.append(JST.gallery_item(d));
-        list.append(JST.annotator_item(d));
-    }
 
-    $('.gallery-item input').on('change', function(e){
-        var id = $(this).attr('data-id');
-        $('tr[data-id=' + id + ']').toggle();
-    });
+        var g = $(JST.gallery_item(d));
+        var a = $(JST.annotator_item(d));
+
+        g.find('input').on('change', function(e){
+            var id = $(this).attr('data-id');
+            $('tr[data-id=' + id + ']').toggle();
+        });
+
+        var opener = a.find('button');
+
+        console.log(opener);
+
+        var setAnnotator = (function(url){
+            return function(e){
+                console.log(e);
+                $('#annotator-container').annotator(url, 400, 400);
+            };
+        })(d.url);
+
+        opener.on('click', setAnnotator);
+
+        gallery.append(g);
+        list.append(a);
+    }
 });
