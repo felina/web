@@ -19,22 +19,27 @@ $(function(){
         for(var i = 0; i < rows.length; i++){
             var row = $(rows[i]);
 
-            // TODO: filter out hidden rows
+            if(row.is(':visible')){
+                 // Grab the current row's metadata from the DOM
+                var image = {
+                    url: row.find('img').attr('src'),
+                    title: row.find('.title-field').val(),
+                    time: row.find('.time-field').val(),
+                    date: row.find('.date-field').val(),
+                    location: row.find('.location-field').val()
+                };
 
-            // Grab the current row's metadata from the DOM
-            var image = {
-                url: row.find('img').attr('src'),
-                title: row.find('.title-field').val(),
-                time: row.find('.time-field').val(),
-                date: row.find('.date-field').val(),
-                location: row.find('.location-field').val()
-            };
-
-            // Add it to the list of metadata
-            data.push(image);
+                // Add it to the list of metadata
+                data.push(image);
+            }
         }
 
         console.log(data);
+
+        if(data.length === 0){
+            alert("No images selected. Please select at least one image to upload.");
+            return;
+        }
 
         // Send this data off to the server
         // TODO: this endpoint doesn't work

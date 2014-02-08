@@ -1,7 +1,7 @@
 window.alert = function(m){
     var style = {
-        position: 'absolute',
-        top: 0,
+        position: 'fixed',
+        top: 10,
         padding: 10,
         zIndex: 2000,
         borderRadius: 5,
