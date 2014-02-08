@@ -19,7 +19,7 @@ window.alert = function(m){
 
 // URL of the server. Comment for development/production
 window.server = 'http://nl.ks07.co.uk:5000/';
-window.server = 'localhost:5000/';
+// window.server = 'http://localhost:5000/';
 
 $(function(){
     var body = $('body');
@@ -87,12 +87,12 @@ $(function(){
     var u = server + 'logincheck' + "?email=" + localStorage['felina-email'] + "&pass=" + localStorage['felina-pass'];
     console.log(u);
 
-    // $.ajax({
-    //     url: u,
-    //     type: 'GET',
-    //     success: function(data){
-    //         console.log(data);
-    //         body.prepend(JST.header(data));
-    //     }
-    // });
+    $.ajax({
+        url: u,
+        type: 'GET',
+        success: function(data){
+            console.log(data);
+            body.prepend(JST.header(data));
+        }
+    });
 });
