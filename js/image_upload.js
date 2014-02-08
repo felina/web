@@ -67,8 +67,6 @@ $(function(){
     // Iterate through the list of uploaded images
     for(var i = 0; i < data.length; i++){
         var d = data[i];
-        // Assign each image an ID to refer to it on the page
-        d.id = i;
 
         // Render a gallery thumbnail with the current image
         var g = $(JST.gallery_item(d));
@@ -77,24 +75,21 @@ $(function(){
 
         // Bind an event to the checkbox in the current gallery item to add
         // its image to the list of images to be annotated
-        g.find('input').on('change', function(e){
-            var id = $(this).attr('data-id');
-            $('tr[data-id=' + id + ']').toggle();
-        });
-
-        // Create a function that updates the annotator modal to use the
-        // current image
-        var setAnnotator = (function(url){
+        g.find('input').on('change', (function(row){
             return function(e){
-                console.log(e);
-                $('#annotator-container').annotator(url, 400, 400);
+                row.toggle();
             };
-        })(d.url);
+        })(a));
 
         // Bind an event to the annotate button in this image's row in the table
         // that launches the annotator modal and updates the annotator with the
         // current image
-        a.find('button').on('click', setAnnotator);
+        a.find('button').on('click', (function(url){
+            return function(e){
+                console.log(e);
+                $('#annotator-container').annotator(url, 400, 400);
+            };
+        })(d.url));
 
         // Add the thumbnail to the gallery and the row to the table
         gallery.append(g);

@@ -10,7 +10,7 @@ window.alert = function(m){
 
     var el = $('<div>');
     el.text(m).css(style).addClass('alert-danger').hide().appendTo('body');
-    el.css('left', ($('body').width() - el.width()) / 2)
+    el.css('left', ($('body').width() - el.width()) / 2);
 
     el.fadeIn().delay(5000).fadeOut(function(){
         $(this).remove();
@@ -87,12 +87,12 @@ $(function(){
     var u = server + 'logincheck' + "?email=" + localStorage['felina-email'] + "&pass=" + localStorage['felina-pass'];
     console.log(u);
 
-    $.ajax({
-        url: u,
-        type: 'GET',
-        success: function(data){
-            console.log(data);
-            body.prepend(JST.header(data));
-        }
-    });
+    // $.ajax({
+    //     url: u,
+    //     type: 'GET',
+    //     success: function(data){
+    //         console.log(data);
+    //         body.prepend(JST.header(data));
+    //     }
+    // });
 });
