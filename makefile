@@ -10,7 +10,6 @@ build: favicon
 		vendor/bootstrap/dist/css/bootstrap.css \
 		vendor/d3/d3.min.js \
 		vendor/penguinator/index.js \
-		vendor/jquery-ui/ui/jquery-ui.js \
 		vendor/blueimp-gallery/css/blueimp-gallery.css \
 		vendor/blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery.css \
 		vendor/blueimp-gallery/js/jquery.blueimp-gallery.min.js \
