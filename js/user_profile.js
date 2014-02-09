@@ -10,8 +10,9 @@ $(function(){
     profileWrap.append(profile);
 
     var newsfeed = $(JST.newsfeed({
-        photo1: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
-        newsfeed_title: 'Andrew is now friends with....'
+        // photo1: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
+        // newsfeed_title: 'Andrew is now friends with....'
+        user_text: 'Info is here'
     }));
     var newsfeedWrap = $('.newsfeed_wrapper');
     newsfeedWrap.append(newsfeed);
@@ -19,21 +20,27 @@ $(function(){
     var newsfeed_head = $(JST.newsfeed_head({
         user_photo: 'http://upload.wikimedia.org/wikipedia/commons/e/e0/Anonymous.svg',
         posting_user: 'Peter Nincompoop',
-        recieving_user: 'Andrew Stuart' 
+        recieving_user: 'Andrew Stuart',
+        time_post: 'Yesterday 16:06' 
     }));
     newsfeedWrap.find('.newshead_wrapper').append(newsfeed_head);
 
-    var photoGallery = $(JST.user_photo({
-        photo1: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
-        photo2: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
-        photo3: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
-        photo4: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
-        photo5: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
-        photo6: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
-        photo7: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
-        photo8: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
-        photo9: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
-        photo_total: '100'
+    var photos = [
+        'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
+        'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
+        'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
+        'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
+        'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
+        'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
+        'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
+        'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
+        'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
+    ];
+
+
+    var photoGallery = $(JST.user_photo({ 
+        photo_total: '100',
+        photos: photos
     }));
     var photo_wrapper = $('.photo_wrapper');
     photo_wrapper.append(photoGallery);

@@ -5,39 +5,15 @@
 
     <table class="table table-bordered">
         <tbody>
-            <tr>
-                <td id="photo1">
-                    <img class="photo_ind" src=<%= photo1 %>>
-                </td>
-                <td id="photo2">
-                    <img class="photo_ind" src=<%= photo2 %>>
-                </td>
-                <td id="photo3">
-                    <img class="photo_ind" src=<%= photo3 %>>
-                </td>
-            </tr>
-            <tr>
-                <td id="photo4">
-                    <img class="photo_ind" src=<%= photo4 %>>
-                </td>
-                <td id="photo5">
-                    <img class="photo_ind" src=<%= photo5 %>>
-                </td>
-                <td id="photo6">
-                    <img class="photo_ind" src=<%= photo6 %>>
-                </td>
-            </tr>
-            <tr>
-                <td id="photo7">
-                    <img class="photo_ind" src=<%= photo7 %>>
-                </td>
-                <td id="photo8">
-                    <img class="photo_ind" src=<%= photo8 %>>
-                </td>
-                <td id="photo9">
-                    <img class="photo_ind" src=<%= photo9 %>>
-                </td>
-            </tr>
+            <% for (var j = 0; j < 3; j++) { %>
+                 <tr>
+                     <% for (var i = 0; i < 3; i++) { %>
+                         <td id="photo<%=3*j + i%>">
+                             <img class="photo_ind" src=<%= photos[3*j + i] %>>
+                         </td>
+                    <% } %>
+                </tr>
+            <% } %>
         </tbody>
     </table>
 </div>
