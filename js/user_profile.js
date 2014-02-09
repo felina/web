@@ -17,7 +17,9 @@ $(function(){
     newsfeedWrap.append(newsfeed);
 
     var newsfeed_head = $(JST.newsfeed_head({
-        user_photo: 'http://upload.wikimedia.org/wikipedia/commons/e/e0/Anonymous.svg'
+        user_photo: 'http://upload.wikimedia.org/wikipedia/commons/e/e0/Anonymous.svg',
+        posting_user: 'Peter Nincompoop',
+        recieving_user: 'Andrew Stuart' 
     }));
     newsfeedWrap.find('.newshead_wrapper').append(newsfeed_head);
 
