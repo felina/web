@@ -1,0 +1,3 @@
+$(function(){
+    fl.setSwitcherIcon('settings');
+});

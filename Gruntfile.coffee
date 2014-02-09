@@ -24,6 +24,7 @@ dashboard = 'js/dashboard.js'
 image_upload = 'js/image_upload.js'
 executable_upload = 'js/executable_upload.js'
 define_form = 'js/define_form.js'
+settings = 'js/settings.js'
 
 # Files used by every page
 shared = [jquery, underscore, bootstrap, common]
@@ -36,6 +37,7 @@ dependencies =
   'site/view-jobs.html': [d3, bar_chart, dashboard]
   'site/upload/image.html': [dropzone, penguinator, blueimp, bbs, gmaps, image_upload]
   'site/upload/executable.html': [dropzone, executable_upload]
+  'site/settings.html': [settings]
 
 for k, v of dependencies
   dependencies[k] = shared.concat(v)
@@ -154,6 +156,7 @@ module.exports = (grunt) ->
           'site/define-form.html': 'html/define-form.html'
           'site/upload/image.html': 'html/upload/image.html'
           'site/upload/executable.html': 'html/upload/executable.html'
+          'site/settings.html': 'html/settings.html'
 
   grunt.loadNpmTasks "grunt-contrib-#{contrib}" for contrib in contribs
   grunt.loadNpmTasks 'grunt-bake'

@@ -1,13 +1,36 @@
-<form role="form" action="/settings" method="post">
-    <div class="form-group">
-        <input type="text" placeholder="Name" class="form-control">
-    </div>
+<!--(bake shared/head.html title="Dashboard")-->
 
-    <div class="form-group">
-        <input type="email" placeholder="Email" class="form-control">
-    </div>
+<body>
 
-    <div class="form-group">
-        <input type="password" placeholder="Password" class="form-control">
-    </div>
-</form>
+<!--(bake shared/header.html)-->
+
+<div class="container">
+    <h2>Settings</h2>
+    <hr>
+
+    <form role="form" action="/settings" method="post">
+        <div class="form-group">
+            <input type="text" placeholder="Name" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <input type="email" placeholder="Email" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <input type="password" placeholder="Password" class="form-control">
+        </div>
+    </form>
+  <!--(bake shared/footer.html)-->
+</div>
+
+<!--(bake shared/modal.html id="credits" title="Credits" body="credits")-->
+
+<!--SCRIPTS-->
+<!--SCRIPTS END-->
+
+<script src="/jst.js"></script>
+
+</body>
+
+</html>
