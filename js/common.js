@@ -202,6 +202,9 @@ $(function(){
         }
 
         fl.login(url, data);
+        // Return false to override the default 'Done' behaviour of closing the
+        // modal -- we want to only close it if the login succeeds.
+        return false;
     });
 
     // Add the login form to the page

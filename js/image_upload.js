@@ -48,8 +48,6 @@ $(function(){
                 }
             }
         });
-
-        mapModal.modal('hide');
     });
 
     mapModal.find('.geolocator').on('click', function(){
