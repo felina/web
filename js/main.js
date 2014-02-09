@@ -5,9 +5,19 @@ $(function(){
         return "url('/img/" + images[Math.floor(Math.random() * images.length)] + ".jpg')"
     };
 
-    $('#banner').css({
+    var banner = $('#banner');
+
+    banner.css({
         'background-image': randomImage()
     });
 
     fl.setSwitcherIcon('index');
+
+    banner.find('button').on('click', function(e){
+        var data = {
+            email: banner.find('#email').val(),
+            pass: banner.find('#password').val()
+        };
+        fl.login('login', data);
+    });
 });

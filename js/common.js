@@ -105,6 +105,40 @@ window.fl.setSwitcherIcon = function(page){
     $('#switcher button').html("<i class='glyphicon glyphicon-" + p.icon + "'></i>&nbsp;" + p.title);
 };
 
+window.fl.login = function(url, data){
+    // Send the request
+    $.ajax({
+        url: fl.server + url,
+        type: 'POST',
+        data: data,
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function(data){
+            // If the login was successful
+            if(data.res){
+                // Inform the user
+                alert('Logged in successfully');
+                // Hide the login modal
+                $('#register').modal('hide');
+
+                // TODO: hardcoded gravatar ID. Server needs to be updated
+                // to provide this
+                data.user.icon = '8ff364476b280cd51aba531052a0603c';
+
+                // Update the header to replace the login button with the
+                // details of the newly logged in user
+                makeHeader(data);
+            }
+            // Login failed
+            else {
+                // Inform the user
+                alert('Invalid username or password');
+            }
+        }
+    });
+};
+
 $(function(){
     var body = $('body');
     var form = $('#register');
@@ -149,7 +183,7 @@ $(function(){
     // Bind an event to the submit button in the login form to send the username
     // and password to the server
     doneButton.on('click', function(e){
-        var url = fl.server + (mode === modes.REGISTER ? 'register' : 'login');
+        var url = mode === modes.REGISTER ? 'register' : 'login';
         console.log(url);
         var data = {
             email: fields.email.val(),
@@ -160,37 +194,7 @@ $(function(){
             data.name = fields.name.val();
         }
 
-        // Send the request
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: data,
-            xhrFields: {
-                withCredentials: true
-            },
-            success: function(data){
-                // If the login was successful
-                if(data.res){
-                    // Inform the user
-                    alert('Logged in successfully');
-                    // Hide the login modal
-                    $('#register').modal('hide');
-
-                    // TODO: hardcoded gravatar ID. Server needs to be updated
-                    // to provide this
-                    data.user.icon = '8ff364476b280cd51aba531052a0603c';
-
-                    // Update the header to replace the login button with the
-                    // details of the newly logged in user
-                    makeHeader(data);
-                }
-                // Login failed
-                else {
-                    // Inform the user
-                    alert('Invalid username or password');
-                }
-            }
-        });
+        fl.login(url, data);
     });
 
     // Add the login form to the page
