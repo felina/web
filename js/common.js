@@ -92,7 +92,7 @@ var makeSwitcher = function(){
 
     var content = $('<ul>');
 
-    for(key in fl.pages){
+    for(var key in fl.pages){
         var page = fl.pages[key];
         page.name = key;
         content.append(JST.switcher_item(page));
@@ -159,6 +159,16 @@ $(function(){
         email: form.find('#email'),
         password: form.find('#password')
     };
+
+    // Listen to the return keypress in any of the login fields and submit
+    // the form when this happens
+    for(var field in fields){
+        fields[field].on('keypress', function(e){
+            if(e.charCode === 13){
+                doneButton.trigger('click');
+            }
+        });
+    }
 
     var modes = {
         LOGIN: 1,
