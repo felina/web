@@ -8,6 +8,8 @@ Dropzone.options.filedrop = {
 };
 
 $(function(){
+    fl.setSwitcherIcon('upload/image');
+
     var map = new GMaps({
         div: '#map',
         lat: 0,

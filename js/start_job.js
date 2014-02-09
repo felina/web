@@ -21,4 +21,6 @@ $(function(){
         d.id = i;
         gallery.append(JST.gallery_item(d));
     }
+
+    fl.setSwitcherIcon('start-job');
 });

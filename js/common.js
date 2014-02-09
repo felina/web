@@ -17,13 +17,46 @@ window.alert = function(m){
     });
 };
 
+window.fl = window.fl || {};
+
 // URL of the server. Comment for development/production
 // George server
 // window.server = 'http://nl.ks07.co.uk:5000/';
 // AWS
-window.server = 'http://ec2-54-194-186-121.eu-west-1.compute.amazonaws.com/';
+window.fl.server = 'http://ec2-54-194-186-121.eu-west-1.compute.amazonaws.com/';
 // Local
 // window.server = 'http://localhost:5000/';
+
+window.fl.pages = {
+    'index': {
+        icon: 'home',
+        title: 'Home'
+    },
+    'upload/image': {
+        icon: 'picture',
+        title: 'Upload images'
+    },
+    'upload/executable': {
+        icon: 'cloud-upload',
+        title: 'Upload executables'
+    },
+    'settings': {
+        icon: 'cog',
+        title: 'Settings'
+    },
+    'start-job': {
+        icon: 'plus',
+        title: 'Start a new job'
+    },
+    'define-form': {
+        icon: 'pencil',
+        title: 'Define a custom form'
+    },
+    'view-jobs': {
+        icon: 'signal',
+        title: 'View jobs'
+    }
+};
 
 var makeHeader = function(data){
     // Remove the previous dynamic content
@@ -37,16 +70,27 @@ var makeHeader = function(data){
 var makeSwitcher = function(){
     var switcher = '#switcher';
 
-    var content = JST['sidebars/researcher']() + JST['sidebars/citizen']();
+    var content = $('<ul>');
+
+    for(key in fl.pages){
+        var page = fl.pages[key];
+        page.name = key;
+        content.append(JST.switcher_item(page));
+    }
 
     $(switcher).popover({
         html: true,
-        content: content,
+        content: content.html(),
         trigger: 'hover',
         placement: 'bottom',
         container: switcher
     });
-}
+};
+
+window.fl.setSwitcherIcon = function(page){
+    var p = fl.pages[page];
+    $('#switcher button').html("<i class='glyphicon glyphicon-" + p.icon + "'></i>&nbsp;" + p.title);
+};
 
 $(function(){
     var body = $('body');
@@ -68,7 +112,7 @@ $(function(){
 
         // Send the request
         $.ajax({
-            url: server + 'login',
+            url: fl.server + 'login',
             type: 'POST',
             data: {
                 email: email,
@@ -114,7 +158,7 @@ $(function(){
     // Check the user's status on page load so that their name and icon can be
     // displayed in the header
     $.ajax({
-        url: server + 'logincheck',
+        url: fl.server + 'logincheck',
         type: 'GET',
         data: "email=" + localStorage['felina-email'] + "&pass=" + localStorage['felina-pass'],
         xhrFields: {
