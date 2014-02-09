@@ -76,6 +76,13 @@ var makeHeader = function(data){
         });
     });
 
+    if(data.res){
+        $('#switcher').show();
+    }
+    else {
+        $('#switcher').hide();
+    }
+
     // Add the new content to the header
     $('header').append(h);
 };
@@ -210,6 +217,7 @@ $(function(){
         },
         success: function(data){
             makeHeader(data);
+
         }
     });
 });
