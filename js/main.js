@@ -8,6 +8,4 @@ $(function(){
     $('#banner').css({
         'background-image': randomImage()
     });
-
-    $('.container').append(JST.footer());
 });

@@ -8,8 +8,6 @@ Dropzone.options.filedrop = {
 };
 
 $(function(){
-    $('.container').append(JST.footer());
-
     var map = new GMaps({
         div: '#map',
         lat: 0,

@@ -18,12 +18,20 @@ window.alert = function(m){
 };
 
 // URL of the server. Comment for development/production
-window.server = 'http://nl.ks07.co.uk:5000/';
+// George server
+// window.server = 'http://nl.ks07.co.uk:5000/';
+// AWS
+window.server = 'http://ec2-54-194-186-121.eu-west-1.compute.amazonaws.com/';
+// Local
 // window.server = 'http://localhost:5000/';
 
 $(function(){
     var body = $('body');
     var form = $(JST.login());
+
+    $('#logo').popover({
+        content: 'hello'
+    });
 
     var fields = {
         email: form.find('#email'),
@@ -68,8 +76,8 @@ $(function(){
 
                     // Update the header to replace the login button with the
                     // details of the newly logged in user
-                    $('header').remove();
-                    $('body').prepend(JST.header(data));
+                    $('header ul.right').remove();
+                    $('header').append(JST.header_right(data));
                 }
                 // Login failed
                 else {
@@ -85,19 +93,15 @@ $(function(){
 
     // Check the user's status on page load so that their name and icon can be
     // displayed in the header
-    // TODO: this doesn't work -- what are endpoints george
-    var u = server + 'logincheck' + "?email=" + localStorage['felina-email'] + "&pass=" + localStorage['felina-pass'];
-    console.log(u);
-
     $.ajax({
-        url: u,
+        url: server + 'logincheck',
         type: 'GET',
+        data: "email=" + localStorage['felina-email'] + "&pass=" + localStorage['felina-pass'],
         xhrFields: {
             withCredentials: true
         },
         success: function(data){
-            console.log(data);
-            body.prepend(JST.header(data));
+            $('header').append(JST.header_right(data));
         }
     });
 });
