@@ -10,7 +10,8 @@ $(function(){
     profileWrap.append(profile);
 
     var newsfeed = $(JST.newsfeed({
-
+        photo1: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
+        newsfeed_title: 'Andrew is now friends with....'
     }));
     var newsfeedWrap = $('.newsfeed_wrapper');
     newsfeedWrap.append(newsfeed);
