@@ -5,16 +5,9 @@
 <link rel="stylesheet" href="/css/bar_chart.css">
 <link rel="stylesheet" href="/css/view-jobs.css">
 
-<div class="sidebar">
-  <ul>
-    <li>
-      <button id='toggleSidebar'>
-        <i class='glyphicon glyphicon-arrow-left'></i>
-      </button>
-    </li>
-  </ul>
-</div>
-<div class="dashboard">
+<!--(bake shared/header.html)-->
+
+<div class="container">
     <h2>You have 2 jobs active:</h2>
     <hr>
     <ul class="jobs"></ul>
@@ -26,6 +19,7 @@
     <h2>Graphs</h2>
     <hr>
     <div id="graph"></div>
+  <!--(bake shared/footer.html)-->
 </div>
 
 <!--(bake shared/modal.html id="settings" title="Settings" body="../settings")-->

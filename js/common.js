@@ -25,18 +25,39 @@ window.server = 'http://ec2-54-194-186-121.eu-west-1.compute.amazonaws.com/';
 // Local
 // window.server = 'http://localhost:5000/';
 
+var makeHeader = function(data){
+    // Remove the previous dynamic content
+    $('header ul.right').remove();
+    // Render some new dynamic content
+    var h = $(JST.header_right(data));
+    // Add the new content to the header
+    $('header').append(h);
+};
+
+var makeSwitcher = function(){
+    var switcher = '#switcher';
+
+    var content = JST['sidebars/researcher']() + JST['sidebars/citizen']();
+
+    $(switcher).popover({
+        html: true,
+        content: content,
+        trigger: 'hover',
+        placement: 'bottom',
+        container: switcher
+    });
+}
+
 $(function(){
     var body = $('body');
     var form = $(JST.login());
-
-    $('#logo').popover({
-        content: 'hello'
-    });
 
     var fields = {
         email: form.find('#email'),
         password: form.find('#password')
     };
+
+    makeSwitcher();
 
     // Bind an event to the submit button in the login form to send the username
     // and password to the server
@@ -76,8 +97,7 @@ $(function(){
 
                     // Update the header to replace the login button with the
                     // details of the newly logged in user
-                    $('header ul.right').remove();
-                    $('header').append(JST.header_right(data));
+                    makeHeader(data);
                 }
                 // Login failed
                 else {
@@ -101,7 +121,7 @@ $(function(){
             withCredentials: true
         },
         success: function(data){
-            $('header').append(JST.header_right(data));
+            makeHeader(data);
         }
     });
 });
