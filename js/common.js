@@ -105,9 +105,17 @@ $(function(){
     var registermode = form.find('#registermode');
 
     var fields = {
+        name: form.find('#name'),
         email: form.find('#email'),
         password: form.find('#password')
     };
+
+    var modes = {
+        LOGIN: 1,
+        REGISTER: 2
+    };
+
+    var mode = null;
 
     makeSwitcher();
 
@@ -116,6 +124,7 @@ $(function(){
         doneButton.text('Log in');
         loginmode.addClass('btn-primary');
         registermode.removeClass('btn-primary');
+        mode = modes.LOGIN;
     });
 
     form.find('#registermode').on('click', function(){
@@ -123,6 +132,7 @@ $(function(){
         doneButton.text('Register');
         loginmode.removeClass('btn-primary');
         registermode.addClass('btn-primary');
+        mode = modes.REGISTER;
     });
 
     loginmode.trigger('click');
@@ -130,18 +140,22 @@ $(function(){
     // Bind an event to the submit button in the login form to send the username
     // and password to the server
     doneButton.on('click', function(e){
-        // Grab the email and password from the DOM
-        var email = fields.email.val();
-        var password = fields.password.val();
+        var url = fl.server + (mode === modes.REGISTER ? 'register' : 'login');
+        console.log(url);
+        var data = {
+            email: fields.email.val(),
+            pass: fields.password.val()
+        };
+
+        if(mode === modes.REGISTER){
+            data.name = fields.name.val();
+        }
 
         // Send the request
         $.ajax({
-            url: fl.server + 'login',
+            url: url,
             type: 'POST',
-            data: {
-                email: email,
-                pass: password
-            },
+            data: data,
             xhrFields: {
                 withCredentials: true
             },
