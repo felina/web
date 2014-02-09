@@ -1,0 +1,102 @@
+@import 'nib'
+@import './common'
+
+borderValue = 4px
+profileBorder_height = 180px
+profileBorder_width = 180px
+profilePic_height = profileBorder_height - 2 * borderValue
+profilePic_width = profileBorder_width - 2 * borderValue
+namePad = profileBorder_height * 0.2
+
+table
+    border: 1px
+
+td, tr
+    border: 0px
+
+
+.profile_pic
+    background-color: rgb(255,255,255)
+    border: borderValue solid rgb(0,0,0)
+    border-radius: 2px 2px 2px 2px
+    height: profileBorder_height
+    width: profileBorder_width
+    img
+        height: profilePic_height
+        width: profilePic_width
+        border: 0px none 
+
+.alternate_name
+    color: rgb(255, 255, 255)
+    text-rendering: optimizelegibility
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8)
+    font-size: 250%
+    padding-top: namePad
+
+.title_sub
+    color: rgb(255, 255, 255)
+    text-rendering: optimizelegibility
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8)
+    font-size: 100%
+
+.title_head
+    color: rgb(255, 255, 255)
+    text-rendering: optimizelegibility
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8)
+    font-size: 150%
+
+.photo_gallery
+    cellspacing: 0 
+    cellpadding: 0
+
+.photo_ind
+    height: auto
+    width: 70px
+
+.newsfeed_photo
+    margin-right: 10px
+    height: 70px
+    width: auto
+    float: left
+
+.newsfeed_users
+    float: left
+
+.badge_ind
+    height: auto
+    width: 30px
+
+.gallery_wrap
+    border: 1px solid black
+
+.badge_wrap
+    border: 1px solid black
+
+.newsfeed_list
+    list-style-type: none
+
+.hr_style
+    display: block
+    height: 1px
+    border: 0
+    border-top: 1px solid #8d8d8d
+    margin: 1em 0
+    padding: 0
+
+.vertical_style
+    border-right: 1px solid #8d8d8d
+
+.table_background
+    background-color: #ffffff
+
+.body_background
+    background-color: #dbdbdb
+
+.cover_image
+    background-size: cover
+    background-repeat: no-repeat
+    height: 350px
+    background-position: 0 center
+
+.cover_properties
+    padding-top: 150px
