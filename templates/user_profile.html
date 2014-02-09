@@ -1,32 +1,34 @@
-<div id="middlerow1" class="row panel" style="background-image: url('<%=cover_photo%>'); background-size: 100% 100%; background-repeat: no-repeat" >
+<div id="middlerow1" class="row panel cover_image" style="background-image: url('<%=cover_photo%>')" >
 
-  <div id="col1" class="col-md-3">
-    <div class="profile_pic">
-     <img src="<%= profile_picture %>">
+  <div class="cover_properties">
+    <div id="col1" class="col-md-3">
+      <div class="profile_pic">
+       <img src="<%= profile_picture %>">
+      </div>
     </div>
-  </div>
-  
-  <div id="col2" class="col-md-9">
-      
-      <div id="c2row1" class="row">
-        <div class="alternate_name">
-         <%= username %>
+    
+    <div id="col2" class="col-md-9">
+        
+        <div id="c2row1" class="row">
+          <div class="alternate_name">
+           <%= username %>
+          </div>
         </div>
-      </div>
 
-      <div class="title_sub">  
-        <div id="c2row2" class="row">
-          <span class="title_head">Badge count = </span>
-          <span><%= badgeCount %></span>
+        <div class="title_sub">  
+          <div id="c2row2" class="row">
+            <span class="title_head">Badge count = </span>
+            <span><%= badgeCount %></span>
+          </div>
         </div>
-      </div>
 
-      <div class="title_sub">
-        <div id="c2row3" class="row">
-          <span class="title_head">Most uploaded = </span>
-          <span><%= mostUploaded %></span>
+        <div class="title_sub">
+          <div id="c2row3" class="row">
+            <span class="title_head">Most uploaded = </span>
+            <span><%= mostUploaded %></span>
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
 </div>
