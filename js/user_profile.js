@@ -23,17 +23,35 @@ $(function(){
     }));
     newsfeedWrap.find('.newshead_wrapper').append(newsfeed_head);
 
-    var photos = [
-        '/img/shutter.png',
-        '/img/shutter.png',
-        '/img/shutter.png',
-        '/img/shutter.png',
-        '/img/shutter.png',
-        '/img/shutter.png',
-        '/img/shutter.png',
-        '/img/shutter.png',
-        '/img/shutter.png',        
+     var photos = [
+        // '/img/shutter.png',
+        // '/img/shutter.png',
+        // '/img/shutter.png',
+        // '/img/shutter.png',
+        // '/img/shutter.png',
+        // '/img/shutter.png',
+        // '/img/shutter.png',
+        // '/img/shutter.png',
+        // '/img/shutter.png',        
     ];
+
+    $.ajax({
+        dataType: "json",
+        url: fl.server + 'images',
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function(data) {
+            if(data.res) {
+                for (var i = 0; i < data.images.length; i++) {
+                    alert(fl.server+'img/'+data.images[i].imageid);
+                    photos[i] = fl.server + 'img/' + data.images[i].imageid;
+                }
+            }
+        }
+    });
+
+   
 
 
     var photoGallery = $(JST.user_photo({ 
