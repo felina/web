@@ -1,31 +1,29 @@
 <header>
-        <ul>
+    <ul>
+        <li>
+            <a href="/" id="logo">
+                <img src="/img/shutter.png" height="35px" width="35px">
+            </a>
+        </li>
+    </ul>
+
+    <ul class="right">
+        <% if(res){ %>
             <li>
-                <a href="/" id="logo">
-                    <img src="/img/shutter.png" height="35px" width="35px">
+                <img class="avatar" height="30" src="http://www.gravatar.com/avatar/<%= user.icon %>.png">
+            </li>
+            <li>
+                <%= user.name %>
+            </li>
+            <li>
+                <a href="/view-jobs.html">
+                    <i class="glyphicon glyphicon-home"></i>
                 </a>
             </li>
-        </ul>
-
-        <ul class="right">
-            <% if(loggedin){ %>
-                <li>
-                    <a href="/dashboard.html">
-                        <i class="glyphicon glyphicon-home"></i>
-                    </a>
-                </li>
-                <li>
-                    <img class="avatar" height="30" src="http://www.gravatar.com/avatar/<%= icon %>.png">
-                </li>
-                <li>
-                    <%= username %>
-                </li>
-
-
-            <% } else { %>
-                <li>
-                    <button class="btn btn-default" data-toggle="modal" data-target="#register">Register / Log in</button>
-                </li>
-            <% } %>
-        </ul>
+        <% } else { %>
+            <li>
+                <button class="btn btn-default" data-toggle="modal" data-target="#register">Register / Log in</button>
+            </li>
+        <% } %>
+    </ul>
 </header>

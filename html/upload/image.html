@@ -1,7 +1,8 @@
 <!--(bake ../shared/head.html title="Image upload")-->
 
-<body>
+<link rel="stylesheet" href="/css/image_upload.css">
 
+<body>
 
 <div class="container">
     <h1>Image Upload</h1>
@@ -40,10 +41,11 @@
 
     <h2>4. Add metadata</h2>
 
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped" id="photos">
         <thead>
             <tr>
                 <th>Image</th>
+                <th>Title</th>
                 <th>
                     <i class="glyphicon glyphicon-time"></i>
                     Time
@@ -71,10 +73,12 @@
     </div>
 </div>
 
-<!--(bake ../shared/modal.html id="annotator-modal" title="Annotate")-->
-
+<!--(bake ../shared/modal.html id="annotator-modal" title="Annotate"  body="annotator_container")-->
+<!--(bake ../shared/modal.html id="map-modal" title="Identify image location" body="map_container")-->
+<!--(bake ../shared/modal.html id="credits" title="Credits" body="credits")-->
 <!--(bake ../shared/gallery.html)-->
 
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <!--SCRIPTS-->
 <!--SCRIPTS END-->
 

@@ -12,7 +12,7 @@ bbs = 'vendor/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min.js'
 d3 = 'vendor/d3/d3.min.js'
 dropzone = 'vendor/dropzone/downloads/dropzone.js'
 penguinator = 'vendor/penguinator/index.js'
-jqui = 'vendor/jquery-ui/ui/jquery-ui.js'
+gmaps = 'vendor/gmaps/gmaps.js'
 
 # Module paths
 jst_ = 'jst.js'
@@ -22,6 +22,7 @@ start_job = 'js/start_job.js'
 bar_chart = 'js/bar_chart.js'
 dashboard = 'js/dashboard.js'
 image_upload = 'js/image_upload.js'
+executable_upload = 'js/executable_upload.js'
 define_form = 'js/define_form.js'
 user_profile = 'js/user_profile.js'
 
@@ -34,9 +35,14 @@ dependencies =
   'site/start-job.html': [blueimp, bbs, start_job]
   'site/define-form.html': [define_form]
   'site/view-jobs.html': [d3, bar_chart, dashboard]
+<<<<<<< HEAD
   'site/upload/image.html': [jqui, dropzone, penguinator, blueimp, bbs, image_upload]
   'site/upload/executable.html': [dropzone]
   'site/user-profile.html': [user_profile]
+=======
+  'site/upload/image.html': [dropzone, penguinator, blueimp, bbs, gmaps, image_upload]
+  'site/upload/executable.html': [dropzone, executable_upload]
+>>>>>>> dac9be7b3e17e0b02d5e155d030850cfa931d193
 
 for k, v of dependencies
   dependencies[k] = shared.concat(v)
@@ -113,8 +119,17 @@ module.exports = (grunt) ->
 
     watch:
       scripts:
-        files: ['stylus/*.styl', 'js/*.js', 'data/*', 'templates/**/*.html', 'html/**/*.html']
-        tasks: ['default']
+        files: [ 'js/*.js', 'data/*']
+        tasks: ['copy']
+      styles:
+        files: 'stylus/*.styl'
+        tasks: ['stylus']
+      templates:
+        files: 'templates/**/*.html'
+        tasks: ['jst']
+      html:
+        files: 'html/**/*.html'
+        tasks: ['bake', 'sails-linker']
 
     connect:
       server:
