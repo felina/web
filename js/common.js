@@ -99,6 +99,10 @@ window.fl.setSwitcherIcon = function(page){
 $(function(){
     var body = $('body');
     var form = $('#register');
+    var doneButton = form.find('.modal-footer button');
+    var namewrap = form.find('#namewrap');
+    var loginmode = form.find('#loginmode');
+    var registermode = form.find('#registermode');
 
     var fields = {
         email: form.find('#email'),
@@ -107,9 +111,25 @@ $(function(){
 
     makeSwitcher();
 
+    loginmode.on('click', function(){
+        namewrap.hide();
+        doneButton.text('Log in');
+        loginmode.addClass('btn-primary');
+        registermode.removeClass('btn-primary');
+    });
+
+    form.find('#registermode').on('click', function(){
+        namewrap.show();
+        doneButton.text('Register');
+        loginmode.removeClass('btn-primary');
+        registermode.addClass('btn-primary');
+    });
+
+    loginmode.trigger('click');
+
     // Bind an event to the submit button in the login form to send the username
     // and password to the server
-    form.find('.modal-footer button').text('Log in').on('click', function(e){
+    doneButton.on('click', function(e){
         // Grab the email and password from the DOM
         var email = fields.email.val();
         var password = fields.password.val();
