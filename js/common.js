@@ -18,35 +18,8 @@ window.alert = function(m){
 };
 
 // URL of the server. Comment for development/production
-// George server
-// window.server = 'http://nl.ks07.co.uk:5000/';
-// AWS
 window.server = 'http://ec2-54-194-186-121.eu-west-1.compute.amazonaws.com/';
-// Local
 // window.server = 'http://localhost:5000/';
-
-var makeHeader = function(data){
-    // Remove the previous dynamic content
-    $('header ul.right').remove();
-    // Render some new dynamic content
-    var h = $(JST.header_right(data));
-    // Add the new content to the header
-    $('header').append(h);
-};
-
-var makeSwitcher = function(){
-    var switcher = '#switcher';
-
-    var content = JST['sidebars/researcher']() + JST['sidebars/citizen']();
-
-    $(switcher).popover({
-        html: true,
-        content: content,
-        trigger: 'hover',
-        placement: 'bottom',
-        container: switcher
-    });
-}
 
 $(function(){
     var body = $('body');
@@ -56,8 +29,6 @@ $(function(){
         email: form.find('#email'),
         password: form.find('#password')
     };
-
-    makeSwitcher();
 
     // Bind an event to the submit button in the login form to send the username
     // and password to the server
@@ -97,7 +68,8 @@ $(function(){
 
                     // Update the header to replace the login button with the
                     // details of the newly logged in user
-                    makeHeader(data);
+                    $('header').remove();
+                    $('body').prepend(JST.header(data));
                 }
                 // Login failed
                 else {
@@ -113,15 +85,19 @@ $(function(){
 
     // Check the user's status on page load so that their name and icon can be
     // displayed in the header
+    // TODO: this doesn't work -- what are endpoints george
+    var u = server + 'logincheck' + "?email=" + localStorage['felina-email'] + "&pass=" + localStorage['felina-pass'];
+    console.log(u);
+
     $.ajax({
-        url: server + 'logincheck',
+        url: u,
         type: 'GET',
-        data: "email=" + localStorage['felina-email'] + "&pass=" + localStorage['felina-pass'],
         xhrFields: {
             withCredentials: true
         },
         success: function(data){
-            makeHeader(data);
+            console.log(data);
+            body.prepend(JST.header(data));
         }
     });
 });
