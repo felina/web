@@ -98,7 +98,7 @@ window.fl.setSwitcherIcon = function(page){
 
 $(function(){
     var body = $('body');
-    var form = $(JST.login());
+    var form = $('#register');
 
     var fields = {
         email: form.find('#email'),
@@ -109,7 +109,7 @@ $(function(){
 
     // Bind an event to the submit button in the login form to send the username
     // and password to the server
-    form.find('button').on('click', function(e){
+    form.find('.modal-footer button').text('Log in').on('click', function(e){
         // Grab the email and password from the DOM
         var email = fields.email.val();
         var password = fields.password.val();
