@@ -16,6 +16,11 @@ $(function(){
     var newsfeedWrap = $('.newsfeed_wrapper');
     newsfeedWrap.append(newsfeed);
 
+    var newsfeed_head = $(JST.newsfeed_head({
+        user_photo: 'http://upload.wikimedia.org/wikipedia/commons/e/e0/Anonymous.svg'
+    }));
+    newsfeedWrap.find('.newshead_wrapper').append(newsfeed_head);
+
     var photoGallery = $(JST.user_photo({
         photo1: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
         photo2: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
@@ -25,7 +30,8 @@ $(function(){
         photo6: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
         photo7: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
         photo8: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
-        photo9: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg'
+        photo9: 'http://upload.wikimedia.org/wikipedia/commons/5/5b/Ultraviolet_image_of_the_Cygnus_Loop_Nebula_crop.jpg',
+        photo_total: '100'
     }));
     var photo_wrapper = $('.photo_wrapper');
     photo_wrapper.append(photoGallery);
@@ -56,6 +62,8 @@ $(function(){
         badge23: 'http://upload.wikimedia.org/wikipedia/en/9/97/Upd_badge_edds_2007.png',
         badge24: 'http://upload.wikimedia.org/wikipedia/en/9/97/Upd_badge_edds_2007.png',
         badge25: 'http://upload.wikimedia.org/wikipedia/en/9/97/Upd_badge_edds_2007.png',
+        user_badges: '17',
+        available_badges: '100'
     }));
     var badge_wrapper = $('.badge_wrapper');
     badge_wrapper.append(badgeGallery);

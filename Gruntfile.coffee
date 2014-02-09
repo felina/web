@@ -35,14 +35,9 @@ dependencies =
   'site/start-job.html': [blueimp, bbs, start_job]
   'site/define-form.html': [define_form]
   'site/view-jobs.html': [d3, bar_chart, dashboard]
-<<<<<<< HEAD
-  'site/upload/image.html': [jqui, dropzone, penguinator, blueimp, bbs, image_upload]
-  'site/upload/executable.html': [dropzone]
-  'site/user-profile.html': [user_profile]
-=======
   'site/upload/image.html': [dropzone, penguinator, blueimp, bbs, gmaps, image_upload]
   'site/upload/executable.html': [dropzone, executable_upload]
->>>>>>> dac9be7b3e17e0b02d5e155d030850cfa931d193
+  'site/user-profile.html': [user_profile]
 
 for k, v of dependencies
   dependencies[k] = shared.concat(v)
