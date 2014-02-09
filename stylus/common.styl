@@ -25,18 +25,17 @@ header
   height: header_height
   margin-top: -10px
 
-  > ul
-    li
-      font-size: 18px
-      line-height: header_height
-      margin: 0 10px
-      float: left
+header > ul > li
+  font-size: 18px
+  line-height: header_height
+  margin: 0 10px
+  float: left
 
-      a
-        color: #333
+  a
+    color: #333
 
-      a:hover
-        color: #333
+  a:hover
+    color: #333
 
 header ul, footer ul
   list-style-type: none
@@ -46,6 +45,9 @@ header ul, footer ul
     margin: 0
     padding: 0
     width: 400px
+
+    li
+      float: none
 
 .left
   float: left

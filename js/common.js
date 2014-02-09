@@ -53,7 +53,7 @@ window.fl.pages = {
         title: 'Define a custom form'
     },
     'view-jobs': {
-        icon: 'signal',
+        icon: 'wrench',
         title: 'View jobs'
     },
     'graphs': {
