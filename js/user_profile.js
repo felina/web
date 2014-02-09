@@ -24,18 +24,19 @@ $(function(){
     newsfeedWrap.find('.newshead_wrapper').append(newsfeed_head);
 
      var photos = [
-        // '/img/shutter.png',
-        // '/img/shutter.png',
-        // '/img/shutter.png',
-        // '/img/shutter.png',
-        // '/img/shutter.png',
-        // '/img/shutter.png',
-        // '/img/shutter.png',
-        // '/img/shutter.png',
-        // '/img/shutter.png',        
+        '/img/shutter.png',
+        '/img/shutter.png',
+        '/img/shutter.png',
+        '/img/shutter.png',
+        '/img/shutter.png',
+        '/img/shutter.png',
+        '/img/shutter.png',
+        '/img/shutter.png',
+        '/img/shutter.png',        
     ];
 
     $.ajax({
+        type: 'GET',
         dataType: "json",
         url: fl.server + 'images',
         xhrFields: {
@@ -46,20 +47,18 @@ $(function(){
                 for (var i = 0; i < data.images.length; i++) {
                     alert(fl.server+'img/'+data.images[i].imageid);
                     photos[i] = fl.server + 'img/' + data.images[i].imageid;
+                    console.log;
                 }
             }
+            var photoGallery = $(JST.user_photo({ 
+                photo_total: '100',
+                photos: photos
+            }));
+            var photo_wrapper = $('.photo_wrapper');
+            photo_wrapper.append(photoGallery);
         }
     });
 
-   
-
-
-    var photoGallery = $(JST.user_photo({ 
-        photo_total: '100',
-        photos: photos
-    }));
-    var photo_wrapper = $('.photo_wrapper');
-    photo_wrapper.append(photoGallery);
 
     var badges = [
         '/img/shutter.png',
