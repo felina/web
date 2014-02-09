@@ -220,7 +220,6 @@ $(function(){
         },
         success: function(data){
             makeHeader(data);
-
         }
     });
 });
