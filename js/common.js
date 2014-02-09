@@ -55,6 +55,10 @@ window.fl.pages = {
     'view-jobs': {
         icon: 'signal',
         title: 'View jobs'
+    },
+    'graphs': {
+        icon: 'signal',
+        title: 'Graphs'
     }
 };
 
