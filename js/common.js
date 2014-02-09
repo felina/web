@@ -66,7 +66,16 @@ var makeHeader = function(data){
     // Remove the previous dynamic content
     $('header ul.right').remove();
     // Render some new dynamic content
+    console.log(data);
     var h = $(JST.header_right(data));
+
+    h.find('#logout').on('click', function(e){
+        $.get(fl.server + 'logout', function(data){
+            console.log(data);
+            location.reload(true);
+        });
+    });
+
     // Add the new content to the header
     $('header').append(h);
 };
@@ -167,12 +176,6 @@ $(function(){
                     // Hide the login modal
                     $('#register').modal('hide');
 
-                    // Store the user's credentials for next time
-                    // TODO: use cookies or store a token rather than storing
-                    // passwords in plaintext
-                    localStorage['felina-email'] = email;
-                    localStorage['felina-pass'] = password;
-
                     // TODO: hardcoded gravatar ID. Server needs to be updated
                     // to provide this
                     data.user.icon = '8ff364476b280cd51aba531052a0603c';
@@ -198,7 +201,6 @@ $(function(){
     $.ajax({
         url: fl.server + 'logincheck',
         type: 'GET',
-        data: "email=" + localStorage['felina-email'] + "&pass=" + localStorage['felina-pass'],
         xhrFields: {
             withCredentials: true
         },

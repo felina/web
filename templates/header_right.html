@@ -7,13 +7,13 @@
             <%= user.name %>
         </li>
         <li>
-            <a href="/view-jobs.html">
-                <i class="glyphicon glyphicon-home"></i>
-            </a>
+            <button class="btn btn-default" id="logout"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Log out</button>
         </li>
     <% } else { %>
         <li>
-            <button class="btn btn-default" data-toggle="modal" data-target="#register">Register / Log in</button>
+            <button class="btn btn-default" data-toggle="modal" data-target="#register">
+                <i class="glyphicon glyphicon-log-in"></i>&nbsp;Register / Log in
+            </button>
         </li>
     <% } %>
 </ul>
