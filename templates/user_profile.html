@@ -1,34 +1,17 @@
-<div id="middlerow1" class="row panel cover_image" style="background-image: url('<%=cover_photo%>')" >
+<div id="middlerow1" class="row panel cover_image" style="background-image: url('<%=cover_photo%>')">
 
   <div class="cover_properties">
-    <div id="col1" class="col-md-3">
       <div class="profile_pic">
        <img src="<%= profile_picture %>">
       </div>
-    </div>
-    
-    <div id="col2" class="col-md-9">
-        
-        <div id="c2row1" class="row">
-          <div class="alternate_name">
-           <%= username %>
-          </div>
-        </div>
 
-        <div class="title_sub">  
-          <div id="c2row2" class="row">
-            <span class="title_head">Badge count = </span>
-            <span><%= badgeCount %></span>
-          </div>
-        </div>
+      <div class="alternate_name">
+       <%= username %>
+      </div>
 
-        <div class="title_sub">
-          <div id="c2row3" class="row">
-            <span class="title_head">Most uploaded = </span>
-            <span><%= mostUploaded %></span>
-          </div>
-        </div>
+      <div class="title_sub">
+        <div class="title_head"><%= userinfo %></div>
+      </div>
 
       </div>
-    </div>
 </div>

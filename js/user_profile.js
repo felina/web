@@ -1,8 +1,7 @@
 $(function(){
     var profile = $(JST.user_profile({
         username: 'Andrew Stuart',
-        badgeCount: '10',
-        mostUploaded: 'Penguins',
+        userinfo: 'I like penguins',
         profile_picture: '/img/shutter.png',
         cover_photo: '/img/leopard.jpg'
     }));
