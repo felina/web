@@ -49,6 +49,7 @@ $(function(){
             }
             var photoGallery = $(JST.user_photo({ 
                 photo_total: '100',
+                photo_url: 'photo_url',
                 photos: photos
             }));
             var photo_wrapper = $('.photo_wrapper');
