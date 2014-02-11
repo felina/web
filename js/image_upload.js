@@ -125,43 +125,42 @@ $(function(){
     var list = $('tbody');
     var gallery = $('#gallery');
 
-    var annData = {
-        features : [
-            {
-                name: "tail",
-                required: false,
-                shape: "poly"
-            },
-            {
-                name: "eyes",
-                required: true,
-                shape: "rect"
-            },
-            {
-                name: "feet",
-                required: true,
-                shape: "rect"
-            },
-            {
-                name: "neck",
-                required: false,
-                shape: "poly"
-            },
-            {
-                name: "nose",
-                required: true,
-                shape: "any"
-            }
-        ]
-    };
+
+    var features = [
+        {
+            name: "tail",
+            required: false,
+            shape: "poly"
+        },
+        {
+            name: "eyes",
+            required: true,
+            shape: "rect"
+        },
+        {
+            name: "feet",
+            required: true,
+            shape: "rect"
+        },
+        {
+            name: "neck",
+            required: false,
+            shape: "poly"
+        },
+        {
+            name: "nose",
+            required: true,
+            shape: "any"
+        }
+    ];
 
     var annotatorFactory = function(url){
         return function(){
             $('#annotator-container').annotator({
-                image: url,
+                src: url,
                 width: modalWidth,
                 height: modalHeight,
-                data: annData
+                features: features
             });
         };
     };
