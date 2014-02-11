@@ -7,7 +7,11 @@ Dropzone.options.filedrop = {
     }
 };
 
+var modalWidth = 800;
+var modalHeight = 500;
+
 $(function(){
+    var i;
     fl.setSwitcherIcon('upload/image');
 
     var map = new GMaps({
@@ -15,8 +19,8 @@ $(function(){
         lat: 0,
         lng: 0,
         zoom: 2,
-        width: 800,
-        height: 500,
+        width: modalWidth,
+        height: modalHeight,
         click: function(e){
             console.log(e);
             map.removeMarkers();
@@ -29,13 +33,13 @@ $(function(){
 
     var mapModal = $('#map-modal');
 
-    mapModal.on('shown.bs.modal', function(e){
+    mapModal.on('shown.bs.modal', function(){
         map.refresh();
     });
     mapModal.find('.modal-footer button').on('click', function(){
         if(map.markers.length === 0){
             alert('Please choose a location');
-            return
+            return;
         }
         var pos = map.markers[0].position;
 
@@ -65,7 +69,7 @@ $(function(){
         });
     });
 
-    $('#submit').click(function(evt){
+    $('#submit').click(function(){
         var data = [];
 
         var rows = $('#photos tbody').children();
@@ -100,7 +104,7 @@ $(function(){
         // TODO: this endpoint doesn't work
         $.ajax({
             type: 'POST',
-            url: server + 'upload/img',
+            url: fl.server + 'upload/img',
             data: data,
             dataType: 'JSON',
             success: function(data){
@@ -111,7 +115,7 @@ $(function(){
 
     var data = ['/img/elephant.jpg', '/img/giraffe.jpg', '/img/leopard.jpg'];
 
-    for(var i = 0; i < data.length; i++){
+    for(i = 0; i < data.length; i++){
         data[i] = {
             url: data[i],
             title: data[i]
@@ -121,8 +125,59 @@ $(function(){
     var list = $('tbody');
     var gallery = $('#gallery');
 
+    var annData = {
+        features : [
+            {
+                name: "tail",
+                required: false,
+                shape: "poly"
+            },
+            {
+                name: "eyes",
+                required: true,
+                shape: "rect"
+            },
+            {
+                name: "feet",
+                required: true,
+                shape: "rect"
+            },
+            {
+                name: "neck",
+                required: false,
+                shape: "poly"
+            },
+            {
+                name: "nose",
+                required: true,
+                shape: "any"
+            }
+        ]
+    };
+
+    var annotatorFactory = function(url){
+        return function(){
+            $('#annotator-container').annotator({
+                image: url,
+                width: modalWidth,
+                height: modalHeight,
+                data: annData
+            });
+        };
+    };
+
+    var mapFactory = function(row){
+        return function(){ window.active_row = row; };
+    };
+
+    var rowFactory = function(row){
+        return function(){
+            row.toggle();
+        };
+    };
+
     // Iterate through the list of uploaded images
-    for(var i = 0; i < data.length; i++){
+    for(i = 0; i < data.length; i++){
         var d = data[i];
 
         // Render a gallery thumbnail with the current image
@@ -132,24 +187,14 @@ $(function(){
 
         // Bind an event to the checkbox in the current gallery item to add
         // its image to the list of images to be annotated
-        g.find('input').on('change', (function(row){
-            return function(e){
-                row.toggle();
-            };
-        })(a));
+        g.find('input').on('change', rowFactory(a));
 
         // Bind an event to the annotate button in this image's row in the table
         // that launches the annotator modal and updates the annotator with the
         // current image
-        a.find('.annotator-opener').on('click', (function(url){
-            return function(e){
-                $('#annotator-container').annotator(url, 400, 400);
-            };
-        })(d.url));
+        a.find('.annotator-opener').on('click', annotatorFactory(d.url));
 
-        a.find('.map-opener').on('click', (function(row){
-            return function(e){ window.active_row = row; };
-        })(a));
+        a.find('.map-opener').on('click', mapFactory(a));
 
         // Add the thumbnail to the gallery and the row to the table
         gallery.append(g);

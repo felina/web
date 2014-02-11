@@ -2,7 +2,7 @@ $(function(){
     var images = ['elephant', 'giraffe', 'leopard'];
 
     var randomImage = function(){
-        return "url('/img/" + images[Math.floor(Math.random() * images.length)] + ".jpg')"
+        return "url('/img/" + images[Math.floor(Math.random() * images.length)] + ".jpg')";
     };
 
     var banner = $('#banner');
@@ -13,7 +13,7 @@ $(function(){
 
     fl.setSwitcherIcon('index');
 
-    banner.find('button').on('click', function(e){
+    banner.find('button').on('click', function(){
         var data = {
             email: banner.find('#email').val(),
             pass: banner.find('#password').val()

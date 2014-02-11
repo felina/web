@@ -19,7 +19,7 @@ $(function(){
         user_photo: '/img/shutter.png',
         posting_user: 'Peter Nincompoop',
         recieving_user: 'Andrew Stuart',
-        time_post: 'Yesterday 16:06' 
+        time_post: 'Yesterday 16:06'
     }));
     newsfeedWrap.find('.newshead_wrapper').append(newsfeed_head);
 
@@ -32,11 +32,11 @@ $(function(){
         '/img/shutter.png',
         '/img/shutter.png',
         '/img/shutter.png',
-        '/img/shutter.png',        
+        '/img/shutter.png',
     ];
 
 
-    var photoGallery = $(JST.user_photo({ 
+    var photoGallery = $(JST.user_photo({
         photo_total: '100',
         photos: photos
     }));
@@ -69,7 +69,7 @@ $(function(){
         '/img/shutter.png',
         '/img/shutter.png',
         '/img/shutter.png'
-    ]
+    ];
 
     var badgeGallery = $(JST.user_badges({
         badges: badges,

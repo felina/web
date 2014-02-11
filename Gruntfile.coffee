@@ -1,7 +1,7 @@
 #global module:false
 
 # Official Grunt tasks to load
-contribs = ['stylus', 'watch', 'jst', 'connect', 'copy']
+contribs = ['stylus', 'watch', 'jst', 'connect', 'copy', 'jshint']
 
 # Library paths
 jquery = 'vendor/jquery/jquery.js'
@@ -47,15 +47,10 @@ for k, v of dependencies
   dependencies[k] = shared.concat(v)
 
 module.exports = (grunt) ->
-
-  # Project configuration.
   grunt.initConfig
-
-    # Metadata.
     pkg: grunt.file.readJSON('package.json')
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today(\'yyyy-mm-dd\') %>\n' + '<%= pkg.homepage ? \'* \' + pkg.homepage + \'\\n\' : \'\' %>' + '* Copyright (c) <%= grunt.template.today(\'yyyy\') %> <%= pkg.author.name %>;' + ' Licensed <%= _.pluck(pkg.licenses, \'type\').join(\', \') %> */\n'
 
-    # Task configuration.
     concat:
       options:
         banner: '<%= banner %>'
@@ -89,12 +84,17 @@ module.exports = (grunt) ->
         browser: true
         globals:
           jQuery: true
-
-      gruntfile:
-        src: 'Gruntfile.js'
+          $: true
+          JST: true
+          fl: true
+          d3: true
+          Dropzone: true
+          GMaps: true
+          alert: true
+          console: true
 
       lib_test:
-        src: ['lib/**/*.js', 'test/**/*.js']
+        src: ['js/*.js']
 
     qunit:
       files: ['test/**/*.html']

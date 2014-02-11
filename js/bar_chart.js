@@ -1,4 +1,4 @@
-var barChart = function(el, data){
+window.fl.barChart = function(el, data){
   var margin = {
     top: 20,
     right: 20,
@@ -18,7 +18,7 @@ var barChart = function(el, data){
   var type = function(d) {
     d.frequency = +d.frequency;
     return d;
-  }
+  };
 
   var svg = d3.select(el).append('svg')
     .attr('width', width + margin.left + margin.right)

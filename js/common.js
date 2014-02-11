@@ -69,7 +69,7 @@ var makeHeader = function(data){
     console.log(data);
     var h = $(JST.header_right(data));
 
-    h.find('#logout').on('click', function(e){
+    h.find('#logout').on('click', function(){
         $.get(fl.server + 'logout', function(data){
             console.log(data);
             location.reload(true);
@@ -162,12 +162,15 @@ $(function(){
 
     // Listen to the return keypress in any of the login fields and submit
     // the form when this happens
+
+    var onEnter = function(e){
+        if(e.charCode === 13){
+            doneButton.trigger('click');
+        }
+    };
+
     for(var field in fields){
-        fields[field].on('keypress', function(e){
-            if(e.charCode === 13){
-                doneButton.trigger('click');
-            }
-        });
+        fields[field].on('keypress', onEnter);
     }
 
     var modes = {
@@ -199,7 +202,7 @@ $(function(){
 
     // Bind an event to the submit button in the login form to send the username
     // and password to the server
-    doneButton.on('click', function(e){
+    doneButton.on('click', function(){
         var url = mode === modes.REGISTER ? 'register' : 'login';
         console.log(url);
         var data = {
