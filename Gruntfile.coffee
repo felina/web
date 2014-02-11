@@ -1,5 +1,3 @@
-#global module:false
-
 # Official Grunt tasks to load
 contribs = ['stylus', 'watch', 'jst', 'connect', 'copy', 'jshint']
 
@@ -43,8 +41,14 @@ dependencies =
   'site/graphs.html': [d3, bar_chart, graphs]
   'site/user-profile.html': [user_profile]
 
+# Add the shared dependencies to every page
 for k, v of dependencies
   dependencies[k] = shared.concat(v)
+
+# Mapping of source HTML pages to their output paths in the site directory
+bake_map = {}
+for k, v of dependencies
+  bake_map[k] = k.replace('site', 'html')
 
 module.exports = (grunt) ->
   grunt.initConfig
@@ -157,16 +161,7 @@ module.exports = (grunt) ->
 
     bake:
       build:
-        files:
-          'site/index.html': 'html/index.html'
-          'site/view-jobs.html': 'html/view-jobs.html'
-          'site/start-job.html': 'html/start-job.html'
-          'site/define-form.html': 'html/define-form.html'
-          'site/upload/image.html': 'html/upload/image.html'
-          'site/upload/executable.html': 'html/upload/executable.html'
-          'site/settings.html': 'html/settings.html'
-          'site/graphs.html': 'html/graphs.html'
-          'site/user-profile.html': 'html/user-profile.html'
+        files: bake_map
 
   grunt.loadNpmTasks "grunt-contrib-#{contrib}" for contrib in contribs
   grunt.loadNpmTasks 'grunt-bake'
