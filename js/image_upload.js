@@ -48,7 +48,7 @@ $(function(){
             lng: pos.e,
             callback: function(results, status) {
                 if(status === "OK"){
-                    window.active_row.find('.location-field').val(results[0].formatted_address);
+                    fl.active_row.find('.location-field').val(results[0].formatted_address);
                 }
             }
         });
@@ -167,7 +167,7 @@ $(function(){
     };
 
     var mapFactory = function(row){
-        return function(){ window.active_row = row; };
+        return function(){ fl.active_row = row; };
     };
 
     var rowFactory = function(row){

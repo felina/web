@@ -117,15 +117,19 @@ module.exports = (grunt) ->
         ext: '.css'
 
     watch:
+      # Lint all JS files and copy them to the site directory
       scripts:
         files: [ 'js/*.js', 'data/*']
-        tasks: ['copy']
+        tasks: ['jshint', 'copy']
+      # Compile Stylus files to CSS when they change
       styles:
         files: 'stylus/*.styl'
         tasks: ['stylus']
+      # Render HTML/Underscore templates to a JST object when they change
       templates:
         files: 'templates/**/*.html'
         tasks: ['jst']
+      # Run static imports/preprocessing on the main HTML pages when they change
       html:
         files: 'html/**/*.html'
         tasks: ['bake', 'sails-linker']
@@ -168,4 +172,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-bake'
   grunt.loadNpmTasks 'grunt-sails-linker'
 
-  grunt.registerTask 'default', ['jst', 'stylus', 'bake', 'copy', 'sails-linker']
+  grunt.registerTask 'default', ['jshint', 'jst', 'stylus', 'bake', 'copy', 'sails-linker']
