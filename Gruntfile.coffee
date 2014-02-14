@@ -1,5 +1,5 @@
 # Official Grunt tasks to load
-contribs = ['stylus', 'watch', 'jst', 'connect', 'copy', 'jshint']
+contribs = ['stylus', 'watch', 'jst', 'connect', 'copy', 'jshint', 'uglify', 'concat']
 
 # Library paths
 jquery = 'vendor/jquery/jquery.js'
@@ -168,3 +168,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-sails-linker'
 
   grunt.registerTask 'default', ['jshint', 'jst', 'stylus', 'bake', 'copy', 'sails-linker']
+  grunt.registerTask 'release', ['jshint', 'uglify', 'concat']
