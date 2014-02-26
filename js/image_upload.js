@@ -108,6 +108,7 @@ fl.features = [
 // TODO: get this from the files uploaded to Dropzone
 var images = [
     {
+        selected: false,
         url: '/img/elephant.jpg',
         metadata: {
             title: 'Elephant',
@@ -121,6 +122,7 @@ var images = [
         annotations: {}
     },
     {
+        selected: false,
         url: '/img/giraffe.jpg',
         metadata: {
             title: 'Giraffe',
@@ -134,6 +136,7 @@ var images = [
         annotations: {}
     },
     {
+        selected: false,
         url: '/img/leopard.jpg',
         metadata: {
             title: 'Leopard',
@@ -218,6 +221,13 @@ var onPick = function(i){
     };
 };
 
+var onSelect = function(i, el){
+    return function(){
+        images[i].selected = !images[i].selected;
+        el.toggleClass('active');
+    };
+};
+
 $(function(){
     fl.setSwitcherIcon('upload/image');
 
@@ -258,7 +268,7 @@ $(function(){
 
         // Bind an event to the checkbox in the current gallery item to add
         // its image to the list of images to be annotated
-        thumbnail.find('input').on('change');
+        thumbnail.find('input').on('change', onSelect(i, thumbnail));
 
         thumbnail.find('.picker').on('click', onPick(i));
 

@@ -13,6 +13,9 @@ dark_grey = #252525
 shadow_black = rgba(0, 0, 0, 0.4)
 highlight = rgb(70, 179, 19)
 
+gallery_inactive = mid_grey
+gallery_active = #2C84CA
+
 // Borders
 black_border = 1px solid black
 
@@ -112,21 +115,23 @@ footer a
 #gallery
   padding: margin_mid
 
-  img
-    width: thumbnail_size
-    height: thumbnail_size
-    border: 3px solid black
-
-  input
-    margin: margin_small 5px
-
 .gallery-item
   width: thumbnail_size
   float: left
   margin: 0 margin_mid margin_mid 0
 
+  img
+    width: thumbnail_size
+    height: thumbnail_size
+    border: 3px solid gallery_inactive
+    -webkit-filter: grayscale(1)
+    transition: all 0.2s
+
+  input
+    margin: margin_small 5px
+
   div
-    background: black
+    background: gallery_inactive
 
 .button-wrap
   padding: margin_mid
