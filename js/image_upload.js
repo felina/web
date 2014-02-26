@@ -115,10 +115,7 @@ var images = [
             date: '2012-06-01',
             location: {
                 name: 'Africa',
-                coords: {
-                    lat: 0,
-                    lng: 0
-                }
+                coords: null
             }
         },
         annotations: {}
@@ -131,10 +128,7 @@ var images = [
             date: '2012-06-01',
             location: {
                 name: 'Africa',
-                coords: {
-                    lat: 0,
-                    lng: 0
-                }
+                coords: null
             }
         },
         annotations: {}
@@ -147,72 +141,81 @@ var images = [
             date: '2012-06-01',
             location: {
                 name: 'Africa',
-                coords: {
-                    lat: 0,
-                    lng: 0
-                }
+                coords: null
             }
         },
-        annotations: fl.features
+        annotations: {}
     }
 ];
 
-var onPick = function(i){
-    return function(){
-        var img = images[i];
-        var meta = img.metadata;
-
-        fl.active_index = i;
-
-        // Update the text fields with the selected image's metadata
-        $('.title-field').val(meta.title);
-        $('.time-field').val(meta.time);
-        $('.date-field').val(meta.date);
-        $('.location-field').val(meta.location.name);
-
-        // Update the annotator with the selected image's annotations
-        fl.annotator = $('#annotator').annotator({
-            src: img.url,
-            width: 500,
-            height: 500,
-            features: fl.features,
-            annotations: img.annotations
-        });
-
-        // Update the map with the selected image's location
-        if(meta.location.coords){
-            fl.map.removeMarkers();
-            fl.map.addMarker({
-                lat: meta.location.coords.lat,
-                lng: meta.location.coords.lng
-            });
-        }
-    };
-};
-
-var onSave = function(){
+// Called when the user clicks the save button to store the metadata they've
+// added so far
+var save = function(){
     var i = fl.active_index;
 
+    // If a location has been chosen on the map, store it
     var coords = null;
-
     if(fl.map.markers.length > 0){
+        var pos = fl.map.markers[0].position;
+        // Great variable names here GMaps.js cheers for that
         coords = {
-            lat: fl.map.markers[0].position.e,
-            lng: fl.map.markers[0].position.d
+            lat: pos.d,
+            lng: pos.e
         };
     }
 
     images[i].metadata = {
+        // Store the contents of all text fields
         title: $('.title-field').val(),
         time: $('.time-field').val(),
         date: $('.date-field').val(),
+        // Store the map location
         location: {
             name: $('.location-field').val(),
             coords: coords
         }
     };
 
+    // Store all annotator data
     images[i].annotations = fl.annotator.getExport();
+};
+
+var restore = function(i){
+    var img = images[i];
+    var meta = img.metadata;
+    var coords = meta.location.coords;
+
+    fl.active_index = i;
+
+    // Update the text fields with the selected image's metadata
+    $('.title-field').val(meta.title);
+    $('.time-field').val(meta.time);
+    $('.date-field').val(meta.date);
+    $('.location-field').val(meta.location.name);
+
+    // Update the annotator with the selected image's annotations
+    fl.annotator = $('#annotator').annotator({
+        src: img.url,
+        width: 500,
+        height: 500,
+        features: fl.features,
+        annotations: img.annotations
+    });
+
+    // Clear old markers
+    fl.map.removeMarkers();
+    // Update the map with the selected image's location if one has been set
+    if(coords && coords.lat && coords.lng){
+        fl.map.addMarker(coords);
+    }
+};
+
+// Called when the user selects an image from the gallery to annotate
+var onPick = function(i){
+    return function(){
+        save();
+        restore(i);
+    };
 };
 
 $(function(){
@@ -225,8 +228,10 @@ $(function(){
 
     // Send the image metadata to the server when the submit button is clicked
     $('#submit').click(function(){
+        // Remove all unchecked images
         var data = images.filter(function(img){ return img.selected; });
 
+        // Require at least one image to be selected
         if(data.length === 0){
             alert("No images selected. Please select at least one image to upload.");
             return;
@@ -235,6 +240,8 @@ $(function(){
         sendImageData(data);
     });
 
+    // Instantiate a new annotator and save a reference to it so that data
+    // can be imported and exported by button callbacks later
     fl.annotator = $('#annotator').annotator({
         src: '/img/elephant.jpg',
         width: 500,
@@ -260,6 +267,5 @@ $(function(){
     }
 
     fl.active_index = 0;
-    $('.data-saver').on('click', onSave);
-    onPick(0);
+    restore(fl.active_index);
 });
