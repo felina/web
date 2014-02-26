@@ -11,6 +11,8 @@ d3 = 'vendor/d3/d3.min.js'
 dropzone = 'vendor/dropzone/downloads/dropzone.js'
 penguinator = 'vendor/penguinator/index.js'
 gmaps = 'vendor/gmaps/gmaps.js'
+modernizr = 'vendor/webshim/js-webshim/minified/extras/modernizr-custom.js'
+webshims = 'vendor/webshim/js-webshim/minified/polyfiller.js'
 
 # Module paths
 jst_ = 'jst.js'
@@ -27,7 +29,7 @@ graphs = 'js/graphs.js'
 user_profile = 'js/user_profile.js'
 
 # Files used by every page
-shared = [jquery, underscore, bootstrap, common]
+shared = [jquery, modernizr, webshims, underscore, bootstrap, common]
 
 # Mapping of HTML files to the scripts they require
 dependencies =
@@ -94,6 +96,7 @@ module.exports = (grunt) ->
           d3: true
           Dropzone: true
           GMaps: true
+          webshims: true
           alert: true
           console: true
 

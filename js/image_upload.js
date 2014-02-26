@@ -301,7 +301,7 @@ Dropzone.options.dropimg = {
 $(function(){
     fl.setSwitcherIcon('upload/image');
 
-    fl.annotator = makeAnnotator();
+    // fl.annotator = makeAnnotator();
 
     // Initialise the Google map
     makeMap();

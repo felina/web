@@ -164,9 +164,10 @@ $(function(){
         password: form.find('#password')
     };
 
+    webshims.polyfill();
+
     // Listen to the return keypress in any of the login fields and submit
     // the form when this happens
-
     var onEnter = function(e){
         if(e.charCode === 13){
             doneButton.trigger('click');
