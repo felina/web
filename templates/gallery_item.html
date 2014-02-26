@@ -1,8 +1,11 @@
 <div class="gallery-item">
-    <a href="<%= url %>" title="<%= title %>" data-gallery>
-        <img src="<%= url %>" alt="<%= title %>">
+    <a href="<%= url %>" title="<%= metadata.title %>" data-gallery>
+        <img src="<%= url %>" alt="<%= metadata.title %>">
     </a>
     <div>
+        <button type="button" class="btn btn-default picker">
+            Pick
+        </button>
         <input type="checkbox">
     </div>
 </div>

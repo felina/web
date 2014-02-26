@@ -33,42 +33,56 @@
 
     <hr>
 
-    <h2>3. Choose images to annotate</h2>
+    <h2>3. Add metadata</h2>
 
     <div id="gallery"></div>
 
     <div class="clearfix"></div>
 
+    <div id="details" class="row">
+        <div class="col-md-6">
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="col-md-2 control-label">Title</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control title-field" placeholder="Title">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="time" class="col-md-2 control-label">Time</label>
+                    <div class="col-md-10">
+                        <input type="time" class="form-control time-field">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="date" class="col-md-2 control-label">Date</label>
+                    <div class="col-md-10">
+                        <input type="date" class="form-control date-field">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="place" class="col-md-2 control-label">Place</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control location-field" placeholder="Place">
+                    </div>
+                </div>
+            </form>
+            <button type="button" class="btn btn-default geolocator">
+                <i class="glyphicon glyphicon-map-marker"></i>&nbsp;Find me
+            </button>
+            <button type="button" class="btn btn-default location-saver">
+                <i class="glyphicon glyphicon-floppy-save"></i>&nbsp;Save location
+            </button>
+            <div id="map"></div>
+        </div>
+        <div class="col-md-6">
+            <div id="annotator"></div>
+        </div>
+    </div>
+
     <hr>
 
-    <h2>4. Add metadata</h2>
-
-    <table class="table table-bordered table-striped" id="photos">
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Title</th>
-                <th>
-                    <i class="glyphicon glyphicon-time"></i>
-                    Time
-                </th>
-                <th>
-                    <i class="glyphicon glyphicon-calendar"></i>
-                    Date
-                </th>
-                <th>
-                    <i class="glyphicon glyphicon-globe"></i>
-                    Location
-                </th>
-                <th>Annotate</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-
-    <hr>
-
-    <h2>5. Finish and submit</h2>
+    <h2>4. Finish and submit</h2>
 
     <div class="button-wrap">
         <button type="button" class="btn btn-success btn-lg" id="submit">Submit</button>
@@ -77,8 +91,6 @@
     <!--(bake ../shared/footer.html)-->
 </div>
 
-<!--(bake ../shared/modal.html id="annotator-modal" title="Annotate"  body="annotator_container")-->
-<!--(bake ../shared/modal.html id="map-modal" title="Identify image location" body="map_container")-->
 <!--(bake ../shared/modal.html id="credits" title="Credits" body="credits")-->
 <!--(bake ../shared/modal.html id="register" title="Register / Log in" body="login")-->
 <!--(bake ../shared/gallery.html)-->

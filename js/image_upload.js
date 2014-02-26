@@ -7,9 +7,6 @@ Dropzone.options.filedrop = {
     }
 };
 
-var modalWidth = 800;
-var modalHeight = 500;
-
 // Initialises the Google Map for location picking
 var makeMap = function(){
      var map = new GMaps({
@@ -17,8 +14,6 @@ var makeMap = function(){
         lat: 0,
         lng: 0,
         zoom: 2,
-        width: modalWidth,
-        height: modalHeight,
         click: function(e){
             console.log(e);
             map.removeMarkers();
@@ -29,12 +24,7 @@ var makeMap = function(){
         }
     });
 
-    var mapModal = $('#map-modal');
-
-    mapModal.on('shown.bs.modal', function(){
-        map.refresh();
-    });
-    mapModal.find('.modal-footer button').on('click', function(){
+    $('.location-saver').on('click', function(){
         if(map.markers.length === 0){
             alert('Please choose a location');
             return;
@@ -46,13 +36,13 @@ var makeMap = function(){
             lng: pos.e,
             callback: function(results, status) {
                 if(status === "OK"){
-                    fl.active_row.find('.location-field').val(results[0].formatted_address);
+                    $('.location-field').val(results[0].formatted_address);
                 }
             }
         });
     });
 
-    mapModal.find('.geolocator').on('click', function(){
+    $('.geolocator').on('click', function(){
         GMaps.geolocate({
             success: function(position) {
                 map.setCenter(position.coords.latitude, position.coords.longitude);
@@ -66,34 +56,8 @@ var makeMap = function(){
             }
         });
     });
-};
 
-// Loads the image metadata from the DOM and returns as an array of objects
-var getImageData = function(){
-    var data = [];
-
-    var rows = $('#photos tbody').children();
-
-    // Iterate through each row in the table of annotated images
-    for(var i = 0; i < rows.length; i++){
-        var row = $(rows[i]);
-
-        if(row.is(':visible')){
-             // Grab the current row's metadata from the DOM
-            var image = {
-                url: row.find('img').attr('src'),
-                title: row.find('.title-field').val(),
-                time: row.find('.time-field').val(),
-                date: row.find('.date-field').val(),
-                location: row.find('.location-field').val()
-            };
-
-            // Add it to the list of metadata
-            data.push(image);
-        }
-    }
-
-    return data;
+    fl.map = map;
 };
 
 // Sends the image metadata to the server
@@ -108,32 +72,6 @@ var sendImageData = function(data){
             console.log(d);
         }
     });
-};
-
-// Function factories
-
-// Returns a function which creates an annotator with the given image
-var annotatorFactory = function(url){
-    return function(){
-        $('#annotator-container').annotator({
-            src: url,
-            width: modalWidth,
-            height: modalHeight,
-            features: fl.features
-        });
-    };
-};
-
-// Returns a function that updates the record of the current row for use by the map
-var mapFactory = function(row){
-    return function(){ fl.active_row = row; };
-};
-
-// Returns a function which toggles the given row visibility
-var rowFactory = function(row){
-    return function(){
-        row.toggle();
-    };
 };
 
 // Dummy features data for the annotator
@@ -168,18 +106,131 @@ fl.features = [
 
 // Dummy image data to be annotated
 // TODO: get this from the files uploaded to Dropzone
-var images = ['/img/elephant.jpg', '/img/giraffe.jpg', '/img/leopard.jpg'];
-for(var i = 0; i < images.length; i++){
-    images[i] = {
-        url: images[i],
-        title: images[i]
+var images = [
+    {
+        selected: false,
+        url: '/img/elephant.jpg',
+        metadata: {
+            title: 'Elephant',
+            time: '19:21:00',
+            date: '2012-06-01',
+            location: {
+                name: 'Africa',
+                coords: null
+            }
+        },
+        annotations: {}
+    },
+    {
+        selected: false,
+        url: '/img/giraffe.jpg',
+        metadata: {
+            title: 'Giraffe',
+            time: '19:21:00',
+            date: '2012-06-01',
+            location: {
+                name: 'Africa',
+                coords: null
+            }
+        },
+        annotations: {}
+    },
+    {
+        selected: false,
+        url: '/img/leopard.jpg',
+        metadata: {
+            title: 'Leopard',
+            time: '19:21:00',
+            date: '2012-06-01',
+            location: {
+                name: 'Africa',
+                coords: null
+            }
+        },
+        annotations: {}
+    }
+];
+
+// Called when the user clicks the save button to store the metadata they've
+// added so far
+var save = function(){
+    var i = fl.active_index;
+
+    // If a location has been chosen on the map, store it
+    var coords = null;
+    if(fl.map.markers.length > 0){
+        var pos = fl.map.markers[0].position;
+        // Great variable names here GMaps.js cheers for that
+        coords = {
+            lat: pos.d,
+            lng: pos.e
+        };
+    }
+
+    images[i].metadata = {
+        // Store the contents of all text fields
+        title: $('.title-field').val(),
+        time: $('.time-field').val(),
+        date: $('.date-field').val(),
+        // Store the map location
+        location: {
+            name: $('.location-field').val(),
+            coords: coords
+        }
     };
-}
+
+    // Store all annotator data
+    images[i].annotations = fl.annotator.getExport();
+};
+
+var restore = function(i){
+    var img = images[i];
+    var meta = img.metadata;
+    var coords = meta.location.coords;
+
+    fl.active_index = i;
+
+    // Update the text fields with the selected image's metadata
+    $('.title-field').val(meta.title);
+    $('.time-field').val(meta.time);
+    $('.date-field').val(meta.date);
+    $('.location-field').val(meta.location.name);
+
+    // Update the annotator with the selected image's annotations
+    fl.annotator = $('#annotator').annotator({
+        src: img.url,
+        width: 500,
+        height: 500,
+        features: fl.features,
+        annotations: img.annotations
+    });
+
+    // Clear old markers
+    fl.map.removeMarkers();
+    // Update the map with the selected image's location if one has been set
+    if(coords && coords.lat && coords.lng){
+        fl.map.addMarker(coords);
+    }
+};
+
+// Called when the user selects an image from the gallery to annotate
+var onPick = function(i){
+    return function(){
+        save();
+        restore(i);
+    };
+};
+
+var onSelect = function(i, el){
+    return function(){
+        images[i].selected = !images[i].selected;
+        el.toggleClass('active');
+    };
+};
 
 $(function(){
     fl.setSwitcherIcon('upload/image');
 
-    var list = $('tbody');
     var gallery = $('#gallery');
 
     // Initialise the Google Map
@@ -187,8 +238,10 @@ $(function(){
 
     // Send the image metadata to the server when the submit button is clicked
     $('#submit').click(function(){
-        var data = getImageData();
+        // Remove all unchecked images
+        var data = images.filter(function(img){ return img.selected; });
 
+        // Require at least one image to be selected
         if(data.length === 0){
             alert("No images selected. Please select at least one image to upload.");
             return;
@@ -197,30 +250,32 @@ $(function(){
         sendImageData(data);
     });
 
+    // Instantiate a new annotator and save a reference to it so that data
+    // can be imported and exported by button callbacks later
+    fl.annotator = $('#annotator').annotator({
+        src: '/img/elephant.jpg',
+        width: 500,
+        height: 500,
+        features: fl.features
+    });
+
     // Iterate through the list of uploaded images
     for(var i = 0; i < images.length; i++){
         var image = images[i];
 
         // Render a gallery thumbnail with the current image
         var thumbnail = $(JST.gallery_item(image));
-        // Render an annotator table row with the current image
-        var row = $(JST.annotator_item(image));
 
         // Bind an event to the checkbox in the current gallery item to add
         // its image to the list of images to be annotated
-        thumbnail.find('input').on('change', rowFactory(row));
+        thumbnail.find('input').on('change', onSelect(i, thumbnail));
 
-        // Bind an event to the annotate button in this image's row in the table
-        // that launches the annotator modal and updates the annotator with the
-        // current image
-        row.find('.annotator-opener').on('click', annotatorFactory(image.url));
-
-        // Bind an event to the map picker button that launches the map modal
-        // to pick a location for the current image
-        row.find('.map-opener').on('click', mapFactory(row));
+        thumbnail.find('.picker').on('click', onPick(i));
 
         // Add the thumbnail to the gallery and the row to the table
         gallery.append(thumbnail);
-        list.append(row);
     }
+
+    fl.active_index = 0;
+    restore(fl.active_index);
 });
