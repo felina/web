@@ -2,7 +2,7 @@
 contribs = ['stylus', 'watch', 'jst', 'connect', 'copy', 'jshint', 'uglify', 'concat']
 
 # Library paths
-jquery = 'vendor/jquery/jquery.js'
+jquery = 'vendor/jquery/dist/jquery.js'
 underscore = 'vendor/underscore/underscore.js'
 bootstrap = 'vendor/bootstrap/dist/js/bootstrap.js'
 blueimp = 'vendor/blueimp-gallery/js/jquery.blueimp-gallery.min.js'
