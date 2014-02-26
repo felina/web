@@ -1,12 +1,3 @@
-Dropzone.options.filedrop = {
-    // maxFilesize: 4096,
-    init: function () {
-        this.on("addedfile", function (file) {
-            console.log(file);
-        });
-    }
-};
-
 // Initialises the Google Map for location picking
 var makeMap = function(){
      var map = new GMaps({
@@ -75,7 +66,7 @@ var sendImageData = function(data){
 };
 
 // Dummy features data for the annotator
-// TODO: replace this with data from the server
+// TODO: replace this with data from the server. Requires https://github.com/felina/server/issues/29
 fl.features = [
     {
         name: "tail",
@@ -106,50 +97,51 @@ fl.features = [
 
 // Dummy image data to be annotated
 // TODO: get this from the files uploaded to Dropzone
-var images = [
-    {
-        selected: false,
-        url: '/img/elephant.jpg',
-        metadata: {
-            title: 'Elephant',
-            time: '19:21:00',
-            date: '2012-06-01',
-            location: {
-                name: 'Africa',
-                coords: null
-            }
-        },
-        annotations: {}
-    },
-    {
-        selected: false,
-        url: '/img/giraffe.jpg',
-        metadata: {
-            title: 'Giraffe',
-            time: '19:21:00',
-            date: '2012-06-01',
-            location: {
-                name: 'Africa',
-                coords: null
-            }
-        },
-        annotations: {}
-    },
-    {
-        selected: false,
-        url: '/img/leopard.jpg',
-        metadata: {
-            title: 'Leopard',
-            time: '19:21:00',
-            date: '2012-06-01',
-            location: {
-                name: 'Africa',
-                coords: null
-            }
-        },
-        annotations: {}
-    }
-];
+var images = [];
+// var images = [
+//     {
+//         selected: false,
+//         url: '/img/elephant.jpg',
+//         metadata: {
+//             title: 'Elephant',
+//             time: '19:21:00',
+//             date: '2012-06-01',
+//             location: {
+//                 name: 'Africa',
+//                 coords: null
+//             }
+//         },
+//         annotations: {}
+//     },
+//     {
+//         selected: false,
+//         url: '/img/giraffe.jpg',
+//         metadata: {
+//             title: 'Giraffe',
+//             time: '19:21:00',
+//             date: '2012-06-01',
+//             location: {
+//                 name: 'Africa',
+//                 coords: null
+//             }
+//         },
+//         annotations: {}
+//     },
+//     {
+//         selected: false,
+//         url: '/img/leopard.jpg',
+//         metadata: {
+//             title: 'Leopard',
+//             time: '19:21:00',
+//             date: '2012-06-01',
+//             location: {
+//                 name: 'Africa',
+//                 coords: null
+//             }
+//         },
+//         annotations: {}
+//     }
+// ];
 
 // Stores all currently entered image metadata, including text fields, map
 // location and annotations
@@ -186,16 +178,21 @@ var save = function(){
 // Creates or updates the annotator element with the given image and its
 // annotations
 var makeAnnotator = function(img){
-    fl.annotator = $('#annotator').annotator({
-        src: img.url,
+    var args = {
         width: 500,
         height: 500,
         features: fl.features,
-        annotations: img.annotations,
         style: {
             classes: 'btn btn-default'
         }
-    });
+    };
+
+    if(img){
+        args.src = img.url;
+        args.annotations = img.annotations;
+    }
+
+    fl.annotator = $('#annotator').annotator(args);
 };
 
 // Loads the saved image data at the given index and puts it back in the DOM
@@ -239,12 +236,74 @@ var onSelect = function(i, el){
     };
 };
 
+var makeMetadata = function(file){
+    return {
+        selected: false,
+        url: file.name,
+        metadata: {
+            title: file.name,
+            time: '00:00:00',
+            date: '2000-01-01',
+            location: {
+                name: 'Unknown',
+                coords: null
+            }
+        },
+        annotations: {}
+    };
+};
+
+var makeImage = function(file){
+    var img = $('<img>')[0];
+    var reader = new FileReader();
+    img.file = file;
+    reader.onload = (function(aImg) {
+        return function(e) {
+            aImg.src = e.target.result;
+        };
+    })(img);
+    reader.readAsDataURL(file);
+    return $(img);
+};
+
+var addImage = function(file){
+    var image = makeMetadata(file);
+
+    // Render a gallery thumbnail with the current image
+    var thumbnail = $(JST.gallery_item(image));
+    var i = images.length;
+
+    thumbnail.find('a').append(
+        makeImage(file).attr('alt', image.metadata.title)
+    );
+
+    // Bind an event to the checkbox in the current gallery item to add
+    // its image to the list of images to be annotated
+    thumbnail.find('input').on('change', onSelect(i, thumbnail));
+
+    thumbnail.find('.picker').on('click', onPick(i));
+
+    // Add the thumbnail to the gallery
+    $('#gallery').append(thumbnail);
+    images.push(image);
+};
+
+Dropzone.options.dropimg = {
+    url: fl.server + 'upload/img',
+    acceptedFiles: 'image/*',
+    maxFilesize: 4096,
+    accept: function(file, done){
+        console.log(file, done);
+        addImage(file);
+    }
+};
+
 $(function(){
     fl.setSwitcherIcon('upload/image');
 
-    var gallery = $('#gallery');
+    fl.annotator = makeAnnotator();
 
-    // Initialise the Google Map
+    // Initialise the Google map
     makeMap();
 
     // Send the image metadata to the server when the submit button is clicked
@@ -261,23 +320,5 @@ $(function(){
         sendImageData(data);
     });
 
-    // Iterate through the list of uploaded images
-    for(var i = 0; i < images.length; i++){
-        var image = images[i];
-
-        // Render a gallery thumbnail with the current image
-        var thumbnail = $(JST.gallery_item(image));
-
-        // Bind an event to the checkbox in the current gallery item to add
-        // its image to the list of images to be annotated
-        thumbnail.find('input').on('change', onSelect(i, thumbnail));
-
-        thumbnail.find('.picker').on('click', onPick(i));
-
-        // Add the thumbnail to the gallery and the row to the table
-        gallery.append(thumbnail);
-    }
-
     fl.active_index = 0;
-    restore(fl.active_index);
 });

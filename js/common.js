@@ -21,11 +21,11 @@ window.fl = window.fl || {};
 
 // URL of the server. Comment for development/production
 // George server
-// window.server = 'http://nl.ks07.co.uk:5000/';
+// window.fl.server = 'http://nl.ks07.co.uk:5000/';
 // AWS
 window.fl.server = 'http://ec2-54-194-186-121.eu-west-1.compute.amazonaws.com/';
 // Local
-// window.server = 'http://localhost:5000/';
+// window.fl.server = 'http://localhost:5000/';
 
 window.fl.pages = {
     'index': {
