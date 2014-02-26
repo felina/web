@@ -183,6 +183,21 @@ var save = function(){
     images[i].annotations = fl.annotator.getExport();
 };
 
+// Creates or updates the annotator element with the given image and its
+// annotations
+var makeAnnotator = function(img){
+    fl.annotator = $('#annotator').annotator({
+        src: img.url,
+        width: 500,
+        height: 500,
+        features: fl.features,
+        annotations: img.annotations,
+        style: {
+            classes: 'btn btn-default'
+        }
+    });
+};
+
 // Loads the saved image data at the given index and puts it back in the DOM
 var restore = function(i){
     var img = images[i];
@@ -198,13 +213,7 @@ var restore = function(i){
     $('.location-field').val(meta.location.name);
 
     // Update the annotator with the selected image's annotations
-    fl.annotator = $('#annotator').annotator({
-        src: img.url,
-        width: 500,
-        height: 500,
-        features: fl.features,
-        annotations: img.annotations
-    });
+    makeAnnotator(img);
 
     // Clear old markers
     fl.map.removeMarkers();
@@ -250,15 +259,6 @@ $(function(){
         }
 
         sendImageData(data);
-    });
-
-    // Instantiate a new annotator and save a reference to it so that data
-    // can be imported and exported by button callbacks later
-    fl.annotator = $('#annotator').annotator({
-        src: '/img/elephant.jpg',
-        width: 500,
-        height: 500,
-        features: fl.features
     });
 
     // Iterate through the list of uploaded images
