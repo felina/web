@@ -151,8 +151,8 @@ var images = [
     }
 ];
 
-// Called when the user clicks the save button to store the metadata they've
-// added so far
+// Stores all currently entered image metadata, including text fields, map
+// location and annotations
 var save = function(){
     var i = fl.active_index;
 
@@ -183,6 +183,7 @@ var save = function(){
     images[i].annotations = fl.annotator.getExport();
 };
 
+// Loads the saved image data at the given index and puts it back in the DOM
 var restore = function(i){
     var img = images[i];
     var meta = img.metadata;
@@ -213,7 +214,7 @@ var restore = function(i){
     }
 };
 
-// Called when the user selects an image from the gallery to annotate
+// Called when the user picks an image from the gallery to annotate
 var onPick = function(i){
     return function(){
         save();
@@ -221,6 +222,7 @@ var onPick = function(i){
     };
 };
 
+// Called when the user ticks an image from the gallery to be uploaded
 var onSelect = function(i, el){
     return function(){
         images[i].selected = !images[i].selected;
