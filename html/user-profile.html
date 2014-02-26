@@ -6,39 +6,33 @@
 
    <!--(bake shared/header.html)-->
 
-    <div id="left" class="col-md-2">
-    <!-- Left Column -->
-    </div>
+    <div id="container">
 
-    <div id="middle" class="col-md-8">
-    <!-- NEED TO GET TO ACTUALLY FIT -->
-      <div class="profile_wrapper"></div>
+      <div id="middle" class="col-md-8 col-md-offset-2">
+        <div class="profile_wrapper" align="center"></div>
 
-      <div id="middlerow2" class="row">
-        <div id="middleRow2left" class="col-md-4 vertical_style">
-           <div id="leftrow1" class="row">
-            <div class="col-md-12 panel photo_wrapper body_background"></div>
+        <div id="middlerow2" class="row">
+          <div id="middleRow2left" class="col-md-4 vertical_style">
+             <div id="leftrow1" class="row">
+              <div class="col-md-12 panel photo_wrapper body_background"></div>
+            </div>
+            <div id="leftrow2" class="row">
+              <div class="col-md-12 panel badge_wrapper body_background"></div>
+            </div>
           </div>
-          <div id="leftrow2" class="row">
-            <div class="col-md-12 panel badge_wrapper body_background"></div>
+          <div id="middleRow2right" class="col-md-8"> 
+            <div id="rightrow1" class="row">
+              <ul class="newsfeed_wrapper newsfeed_list">
+              </ul>
+            </div>   
           </div>
-          <!-- <div class="row">
-            <div class="col-md-12 panel body_background stats_wrapper"></div>
-          </div> -->
         </div>
-        <div id="middleRow2right" class="col-md-8"> 
-          <div id="rightrow1" class="row">
-            <ul class="newsfeed_wrapper newsfeed_list">
-            </ul>
-          </div>   
-        </div>
-      </div>
-      <!--(bake shared/footer.html)-->
+     
+       <!--(bake shared/footer.html)-->
     </div>
     
-    <div id="right" class="col-md-2">
-    <!-- Right Column -->
-    </div>
+
+ 
 
 <!--(bake shared/modal.html id="credits" title="Credits" body="credits")-->
 <!--(bake shared/modal.html id="register" title="Register / Log in" body="login")-->

@@ -1,8 +1,7 @@
 $(function(){
     var profile = $(JST.user_profile({
         username: 'Andrew Stuart',
-        badgeCount: '10',
-        mostUploaded: 'Penguins',
+        userinfo: 'I like penguins',
         profile_picture: '/img/shutter.png',
         cover_photo: '/img/leopard.jpg'
     }));
@@ -23,7 +22,7 @@ $(function(){
     }));
     newsfeedWrap.find('.newshead_wrapper').append(newsfeed_head);
 
-    var photos = [
+     var photos = [
         '/img/shutter.png',
         '/img/shutter.png',
         '/img/shutter.png',
@@ -35,6 +34,28 @@ $(function(){
         '/img/shutter.png',
     ];
 
+    $.ajax({
+        type: 'GET',
+        dataType: "json",
+        url: fl.server + 'images',
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function(data) {
+            if(data.res) {
+                for (var i = 0; i < data.images.length; i++) {
+                    photos[i] = fl.server + 'img/' + data.images[i].imageid;
+                }
+            }
+            var photoGallery = $(JST.user_photo({
+                photo_total: '100',
+                photo_url: 'photo_url',
+                photos: photos
+            }));
+            var photo_wrapper = $('.photo_wrapper');
+            photo_wrapper.append(photoGallery);
+        }
+    });
 
     var photoGallery = $(JST.user_photo({
         photo_total: '100',

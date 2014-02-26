@@ -59,6 +59,10 @@ window.fl.pages = {
     'graphs': {
         icon: 'signal',
         title: 'Graphs'
+    },
+    'user-profile': {
+        icon: 'user',
+        title: 'User profile'
     }
 };
 
