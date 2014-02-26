@@ -194,8 +194,8 @@ var onSave = function(){
 
     if(fl.map.markers.length > 0){
         coords = {
-            lat: fl.map.markers[0].lat,
-            lng: fl.map.markers[0].lng
+            lat: fl.map.markers[0].position.e,
+            lng: fl.map.markers[0].position.d
         };
     }
 
@@ -232,7 +232,7 @@ $(function(){
         sendImageData(data);
     });
 
-    $('#annotator').annotator({
+    fl.annotator = $('#annotator').annotator({
         src: '/img/elephant.jpg',
         width: 500,
         height: 500,
@@ -256,5 +256,7 @@ $(function(){
         gallery.append(thumbnail);
     }
 
+    fl.active_index = 0;
     $('.data-saver').on('click', onSave);
+    onPick(0);
 });
