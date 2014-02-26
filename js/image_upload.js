@@ -171,9 +171,12 @@ var onPick = function(i){
         $('.location-field').val(meta.location.name);
 
         // Update the annotator with the selected image's annotations
-        $('#annotator').annotator({
+        fl.annotator = $('#annotator').annotator({
             src: img.url,
-            features: img.annotations
+            width: 500,
+            height: 500,
+            features: fl.features,
+            annotations: img.annotations
         });
 
         // Update the map with the selected image's location
@@ -209,7 +212,7 @@ var onSave = function(){
         }
     };
 
-    images[i].annoations = fl.features;
+    images[i].annotations = fl.annotator.getExport();
 };
 
 $(function(){
