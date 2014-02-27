@@ -1,4 +1,4 @@
-window.alert = function(m){
+window.alert = function(m) {
     var style = {
         position: 'fixed',
         top: 10,
@@ -12,7 +12,7 @@ window.alert = function(m){
     el.text(m).css(style).addClass('alert-danger').hide().appendTo('body');
     el.css('left', ($('body').width() - el.width()) / 2);
 
-    el.fadeIn().delay(5000).fadeOut(function(){
+    el.fadeIn().delay(5000).fadeOut(function() {
         $(this).remove();
     });
 };
@@ -66,25 +66,22 @@ window.fl.pages = {
     }
 };
 
-var makeHeader = function(data){
+var makeHeader = function(data) {
     // Remove the previous dynamic content
     $('header ul.right').remove();
     // Render some new dynamic content
     var h = $(JST.header_right(data));
 
-    console.log(data.user.gravatar);
-
-    h.find('#logout').on('click', function(){
-        $.get(fl.server + 'logout', function(data){
+    h.find('#logout').on('click', function() {
+        $.get(fl.server + 'logout', function(data) {
             console.log(data);
             location.reload(true);
         });
     });
 
-    if(data.res){
+    if (data.res) {
         $('#switcher').show();
-    }
-    else {
+    } else {
         $('#switcher').hide();
     }
 
@@ -92,12 +89,12 @@ var makeHeader = function(data){
     $('header').append(h);
 };
 
-var makeSwitcher = function(){
+var makeSwitcher = function() {
     var switcher = '#switcher';
 
     var content = $('<ul>');
 
-    for(var key in fl.pages){
+    for (var key in fl.pages) {
         var page = fl.pages[key];
         page.name = key;
         content.append(JST.switcher_item(page));
@@ -112,12 +109,12 @@ var makeSwitcher = function(){
     });
 };
 
-window.fl.setSwitcherIcon = function(page){
+window.fl.setSwitcherIcon = function(page) {
     var p = fl.pages[page];
     $('#switcher button').html("<i class='glyphicon glyphicon-" + p.icon + "'></i>&nbsp;" + p.title);
 };
 
-window.fl.login = function(url, data){
+window.fl.login = function(url, data) {
     // Send the request
     $.ajax({
         url: fl.server + url,
@@ -126,9 +123,9 @@ window.fl.login = function(url, data){
         xhrFields: {
             withCredentials: true
         },
-        success: function(data){
+        success: function(data) {
             // If the login was successful
-            if(data.res){
+            if (data.res) {
                 // Inform the user
                 alert('Logged in successfully');
                 // Hide the login modal
@@ -147,7 +144,7 @@ window.fl.login = function(url, data){
     });
 };
 
-$(function(){
+$(function() {
     var body = $('body');
     var form = $('#register');
     var doneButton = form.find('.modal-footer button');
@@ -165,13 +162,13 @@ $(function(){
 
     // Listen to the return keypress in any of the login fields and submit
     // the form when this happens
-    var onEnter = function(e){
-        if(e.charCode === 13){
+    var onEnter = function(e) {
+        if (e.charCode === 13) {
             doneButton.trigger('click');
         }
     };
 
-    for(var field in fields){
+    for (var field in fields) {
         fields[field].on('keypress', onEnter);
     }
 
@@ -184,7 +181,7 @@ $(function(){
 
     makeSwitcher();
 
-    loginmode.on('click', function(){
+    loginmode.on('click', function() {
         namewrap.hide();
         doneButton.text('Log in');
         loginmode.addClass('btn-primary');
@@ -192,7 +189,7 @@ $(function(){
         mode = modes.LOGIN;
     });
 
-    form.find('#registermode').on('click', function(){
+    form.find('#registermode').on('click', function() {
         namewrap.show();
         doneButton.text('Register');
         loginmode.removeClass('btn-primary');
@@ -204,7 +201,7 @@ $(function(){
 
     // Bind an event to the submit button in the login form to send the username
     // and password to the server
-    doneButton.on('click', function(){
+    doneButton.on('click', function() {
         var url = mode === modes.REGISTER ? 'register' : 'login';
         console.log(url);
         var data = {
@@ -212,7 +209,7 @@ $(function(){
             pass: fields.password.val()
         };
 
-        if(mode === modes.REGISTER){
+        if (mode === modes.REGISTER) {
             data.name = fields.name.val();
         }
 
@@ -233,7 +230,7 @@ $(function(){
         xhrFields: {
             withCredentials: true
         },
-        success: function(data){
+        success: function(data) {
             makeHeader(data);
         }
     });
