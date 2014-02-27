@@ -5,3 +5,4 @@ jst.js
 /*.html
 site
 *.zip
+.DS_Store
