@@ -228,7 +228,10 @@ var addImage = function(file) {
     var image = makeMetadata(file);
 
     // Render a gallery thumbnail with the current image
-    var thumbnail = $(JST.gallery_item(image));
+    var thumbnail = $(JST.gallery_item({
+        url: image.url,
+        title: image.metadata.title
+    }));
     var i = images.length;
 
     thumbnail.find('a').append(
