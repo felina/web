@@ -70,8 +70,9 @@ var makeHeader = function(data){
     // Remove the previous dynamic content
     $('header ul.right').remove();
     // Render some new dynamic content
-    console.log(data);
     var h = $(JST.header_right(data));
+
+    console.log(data.user.gravatar);
 
     h.find('#logout').on('click', function(){
         $.get(fl.server + 'logout', function(data){
@@ -132,10 +133,6 @@ window.fl.login = function(url, data){
                 alert('Logged in successfully');
                 // Hide the login modal
                 $('#register').modal('hide');
-
-                // TODO: hardcoded gravatar ID. Server needs to be updated
-                // to provide this
-                data.user.icon = '8ff364476b280cd51aba531052a0603c';
 
                 // Update the header to replace the login button with the
                 // details of the newly logged in user
