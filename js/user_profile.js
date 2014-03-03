@@ -16,7 +16,7 @@ $(function(){
 
     var newsfeed_head = $(JST.newsfeed_head({
         user_photo: '/img/shutter.png',
-        posting_user: 'Peter Nincompoop',
+        posting_user: 'Frank Reynolds',
         recieving_user: 'Andrew Stuart',
         time_post: 'Yesterday 16:06'
     }));
