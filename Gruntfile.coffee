@@ -13,6 +13,7 @@ penguinator = 'vendor/penguinator/index.js'
 gmaps = 'vendor/gmaps/gmaps.js'
 modernizr = 'vendor/webshim/js-webshim/minified/extras/modernizr-custom.js'
 webshims = 'vendor/webshim/js-webshim/minified/polyfiller.js'
+alert = 'vendor/alert/alert.js'
 
 # Module paths
 jst_ = 'jst.js'
@@ -29,7 +30,7 @@ graphs = 'js/graphs.js'
 user_profile = 'js/user_profile.js'
 
 # Files used by every page
-shared = [jquery, modernizr, webshims, underscore, bootstrap, common]
+shared = [jquery, alert, modernizr, webshims, underscore, bootstrap, common]
 
 # Mapping of HTML files to the scripts they require
 dependencies =

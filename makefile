@@ -6,6 +6,7 @@ build: favicon
 	rsync -Rr \
 		vendor/dropzone \
 		vendor/jquery/dist/jquery.js \
+		vendor/alert/alert.js \
 		vendor/webshim/js-webshim/minified \
 		vendor/underscore/underscore.js \
 		vendor/bootstrap/dist/js/bootstrap.js \

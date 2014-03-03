@@ -1,22 +1,3 @@
-window.alert = function(m) {
-    var style = {
-        position: 'fixed',
-        top: 10,
-        padding: 10,
-        zIndex: 2000,
-        borderRadius: 5,
-        fontWeight: 'bold'
-    };
-
-    var el = $('<div>');
-    el.text(m).css(style).addClass('alert-danger').hide().appendTo('body');
-    el.css('left', ($('body').width() - el.width()) / 2);
-
-    el.fadeIn().delay(5000).fadeOut(function() {
-        $(this).remove();
-    });
-};
-
 window.fl = window.fl || {};
 
 // URL of the server. Comment for development/production
