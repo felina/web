@@ -1,19 +1,26 @@
 # Official Grunt tasks to load
 contribs = ['stylus', 'watch', 'jst', 'connect', 'copy', 'jshint', 'uglify', 'concat']
 
+vendor = 'vendor/'
+js = '.js'
+
 # Library paths
-jquery = 'vendor/jquery/dist/jquery.js'
-underscore = 'vendor/underscore/underscore.js'
-bootstrap = 'vendor/bootstrap/dist/js/bootstrap.js'
-blueimp = 'vendor/blueimp-gallery/js/jquery.blueimp-gallery.min.js'
-bbs = 'vendor/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min.js'
-d3 = 'vendor/d3/d3.min.js'
-dropzone = 'vendor/dropzone/downloads/dropzone.js'
-penguinator = 'vendor/penguinator/index.js'
-gmaps = 'vendor/gmaps/gmaps.js'
-modernizr = 'vendor/webshim/js-webshim/minified/extras/modernizr-custom.js'
-webshims = 'vendor/webshim/js-webshim/minified/polyfiller.js'
-alert = 'vendor/alert/alert.js'
+libs =
+  jquery: 'jquery/dist/jquery'
+  underscore: 'underscore/underscore'
+  bootstrap: 'bootstrap/dist/js/bootstrap'
+  blueimp: 'blueimp-gallery/js/jquery.blueimp-gallery.min'
+  bbs: 'blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min'
+  d3: 'd3/d3.min'
+  dropzone: 'dropzone/downloads/dropzone'
+  penguinator: 'penguinator/index'
+  gmaps: 'gmaps/gmaps'
+  modernizr: 'webshim/js-webshim/minified/extras/modernizr-custom'
+  webshims: 'webshim/js-webshim/minified/polyfiller'
+  alert: 'alert/alert'
+
+for k, v of libs
+  libs[k] = vendor + v + js
 
 # Module paths
 # Compiled templates file
@@ -36,18 +43,26 @@ graphs = 'js/graphs.js'
 user_profile = 'js/user_profile.js'
 
 # Files used by every page
-shared = [jquery, alert, modernizr, webshims, underscore, bootstrap, common]
+shared = [
+  libs.jquery
+  libs.alert
+  libs.modernizr
+  libs.webshims
+  libs.underscore
+  libs.bootstrap
+  common
+]
 
 # Mapping of HTML files to the scripts they require
 dependencies =
   'site/index.html': [main]
-  'site/start-job.html': [blueimp, bbs, start_job]
+  'site/start-job.html': [libs.blueimp, libs.bbs, start_job]
   'site/define-form.html': [define_form]
   'site/view-jobs.html': [dashboard]
-  'site/upload/image.html': [dropzone, penguinator, blueimp, bbs, gmaps, image_upload, map]
-  'site/upload/executable.html': [dropzone, executable_upload]
+  'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, image_upload, map]
+  'site/upload/executable.html': [libs.dropzone, executable_upload]
   'site/settings.html': [settings]
-  'site/graphs.html': [d3, bar_chart, graphs]
+  'site/graphs.html': [libs.d3, bar_chart, graphs]
   'site/user-profile.html': [user_profile]
 
 # Add the shared dependencies to every page
