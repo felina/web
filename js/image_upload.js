@@ -89,6 +89,22 @@ fl.features = [{
     shape: "any"
 }];
 
+var addSpecies = function(){
+    var list = $('#species-list');
+
+    $.get(fl.server + 'species', function(data){
+        if (data.res) {
+            for (var i = 0; i < data.species.length; i++) {
+                var specie = data.species[i];
+                $('<option>')
+                    .attr('value', specie)
+                    .text(specie)
+                    .appendTo(list);
+            }
+        }
+    });
+};
+
 // Stores metadata of uploaded images
 var images = [];
 
@@ -269,6 +285,9 @@ $(function() {
 
     // Initialise the Google map
     makeMap();
+
+    // Pull in the list of species from the server and add it to the dropdown
+    addSpecies();
 
     // Send the image metadata to the server when the submit button is clicked
     $('#submit').click(function() {
