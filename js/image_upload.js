@@ -65,29 +65,38 @@ var sendImageData = function(data) {
     });
 };
 
-// Dummy features data for the annotator
-// TODO: replace this with data from the server. Requires https://github.com/felina/server/issues/29
-fl.features = [{
-    name: "tail",
-    required: false,
-    shape: "poly"
-}, {
-    name: "eyes",
-    required: true,
-    shape: "rect"
-}, {
-    name: "feet",
-    required: true,
-    shape: "rect"
-}, {
-    name: "neck",
-    required: false,
-    shape: "poly"
-}, {
-    name: "nose",
-    required: true,
-    shape: "any"
-}];
+// Creates or updates the annotator element with the given image and its
+// annotations
+var makeAnnotator = function(img) {
+    var args = {
+        width: 500,
+        height: 500,
+        features: fl.features,
+        style: {
+            classes: 'btn btn-default'
+        }
+    };
+
+    if (img) {
+        args.src = img.url;
+        args.annotations = img.annotations;
+    }
+
+    fl.annotator = $('#annotator').annotator(args);
+};
+
+var getFeatures = function() {
+    $.get(fl.server + 'features', function(data) {
+        if (data.res) {
+            fl.features = data.features;
+
+            makeAnnotator({
+                url: '/img/user.png',
+                annotations: {}
+            });
+        }
+    });
+};
 
 var addSpecies = function(){
     var list = $('#species-list');
@@ -139,26 +148,6 @@ var save = function() {
 
     // Store all annotator data
     images[i].annotations = fl.annotator.getExport();
-};
-
-// Creates or updates the annotator element with the given image and its
-// annotations
-var makeAnnotator = function(img) {
-    var args = {
-        width: 500,
-        height: 500,
-        features: fl.features,
-        style: {
-            classes: 'btn btn-default'
-        }
-    };
-
-    if (img) {
-        args.src = img.url;
-        args.annotations = img.annotations;
-    }
-
-    fl.annotator = $('#annotator').annotator(args);
 };
 
 // Loads the saved image data at the given index and puts it back in the DOM
@@ -278,10 +267,7 @@ Dropzone.options.dropimg = {
 $(function() {
     fl.setSwitcherIcon('upload/image');
 
-    makeAnnotator({
-        url: '/img/user.png',
-        annotations: {}
-    });
+    getFeatures();
 
     // Initialise the Google map
     makeMap();
