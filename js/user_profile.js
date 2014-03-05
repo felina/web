@@ -1,12 +1,44 @@
 $(function(){
-    var profile = $(JST.user_profile({
-        username: 'Andrew Stuart',
-        userinfo: 'I like penguins',
-        profile_picture: '/img/shutter.png',
-        cover_photo: '/img/leopard.jpg'
-    }));
-    var profileWrap = $('.profile_wrapper');
-    profileWrap.append(profile);
+
+    var user_name;
+    var profile;
+     
+
+    // var profile = $(JST.user_profile({
+        // username: '',
+        // userinfo: 'I like penguins',
+        // profile_picture: '/img/shutter.png',
+        // cover_photo: '/img/leopard.jpg'
+    // }));
+    // var profileWrap = $('.profile_wrapper');
+    // profileWrap.append(profile);
+
+    console.log('Hello there');
+     $.ajax({
+        type: 'GET',
+        dataType: "json",
+        url: fl.server + 'logincheck',
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function(data) {
+            if(data.res) {
+                user_name = data.user.name;
+                profile = $(JST.user_profile({
+                    username: user_name,
+                    userinfo: 'I like penguins',
+                    profile_picture: '/img/shutter.png',
+                    cover_photo: '/img/leopard.jpg'
+                }));
+                var profileWrap = $('.profile_wrapper');
+                profileWrap.append(profile);
+                console.log(data.user.name);
+            } else {
+                user_name = "User Name";
+            }
+        }
+    });
+     console.log("User name = " + user_name);
 
     var newsfeed = $(JST.newsfeed({
         user_text: 'Info is here'
@@ -99,4 +131,5 @@ $(function(){
     }));
     var badge_wrapper = $('.badge_wrapper');
     badge_wrapper.append(badgeGallery);
+
 });
