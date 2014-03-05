@@ -1,19 +1,7 @@
 $(function(){
 
-    var user_name;
     var profile;
-     
 
-    // var profile = $(JST.user_profile({
-        // username: '',
-        // userinfo: 'I like penguins',
-        // profile_picture: '/img/shutter.png',
-        // cover_photo: '/img/leopard.jpg'
-    // }));
-    // var profileWrap = $('.profile_wrapper');
-    // profileWrap.append(profile);
-
-    console.log('Hello there');
      $.ajax({
         type: 'GET',
         dataType: "json",
@@ -23,22 +11,30 @@ $(function(){
         },
         success: function(data) {
             if(data.res) {
-                user_name = data.user.name;
+                // Only works currently if user logged in, will work later
                 profile = $(JST.user_profile({
-                    username: user_name,
-                    userinfo: 'I like penguins',
+                    username: data.user.name,
+                    userinfo: 'I like penguins', //Get stuff from server
                     profile_picture: '/img/shutter.png',
                     cover_photo: '/img/leopard.jpg'
                 }));
                 var profileWrap = $('.profile_wrapper');
                 profileWrap.append(profile);
                 console.log(data.user.name);
-            } else {
-                user_name = "User Name";
             }
         }
     });
-     console.log("User name = " + user_name);
+
+    var navbar = $(JST.user_navigation({
+        photo_count: '100',
+        friend_count: '50',
+        user_badges: '17',
+        available_badges: '100'
+    }));
+    var navbarWrap = $('.navbar_wrapper');
+    navbarWrap.append(navbar);
+
+
 
     var newsfeed = $(JST.newsfeed({
         user_text: 'Info is here'
@@ -54,7 +50,7 @@ $(function(){
     }));
     newsfeedWrap.find('.newshead_wrapper').append(newsfeed_head);
 
-     var photos = [
+    var photos = [
         '/img/shutter.png',
         '/img/shutter.png',
         '/img/shutter.png',
