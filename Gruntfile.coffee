@@ -16,11 +16,17 @@ webshims = 'vendor/webshim/js-webshim/minified/polyfiller.js'
 alert = 'vendor/alert/alert.js'
 
 # Module paths
+# Compiled templates file
 jst_ = 'jst.js'
-common = 'js/common.js'
+
+# Shared files
+common = 'js/shared/common.js'
+bar_chart = 'js/shared/bar_chart.js'
+map = 'js/shared/map.js'
+
+# Page-specific files
 main = 'js/main.js'
 start_job = 'js/start_job.js'
-bar_chart = 'js/bar_chart.js'
 dashboard = 'js/dashboard.js'
 image_upload = 'js/image_upload.js'
 executable_upload = 'js/executable_upload.js'
@@ -38,7 +44,7 @@ dependencies =
   'site/start-job.html': [blueimp, bbs, start_job]
   'site/define-form.html': [define_form]
   'site/view-jobs.html': [dashboard]
-  'site/upload/image.html': [dropzone, penguinator, blueimp, bbs, gmaps, image_upload]
+  'site/upload/image.html': [dropzone, penguinator, blueimp, bbs, gmaps, image_upload, map]
   'site/upload/executable.html': [dropzone, executable_upload]
   'site/settings.html': [settings]
   'site/graphs.html': [d3, bar_chart, graphs]
@@ -152,7 +158,7 @@ module.exports = (grunt) ->
     copy:
       default:
         cwd: '.'
-        src: ['js/*', 'data/*']
+        src: ['js/**/*', 'data/**/*']
         dest: 'site/'
 
     'sails-linker':
