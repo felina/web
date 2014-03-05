@@ -131,7 +131,8 @@ var restore = function(i) {
     }
 };
 
-// Called when the user picks an image from the gallery to annotate
+// Returns a function which is called when the user picks an image from the
+// gallery to annotate
 var onPick = function(i) {
     return function() {
         save();
@@ -139,7 +140,8 @@ var onPick = function(i) {
     };
 };
 
-// Called when the user ticks an image from the gallery to be uploaded
+// Returns a function which is called when the user ticks an image from the
+// gallery to be uploaded
 var onSelect = function(i, el) {
     return function() {
         images[i].selected = !images[i].selected;
@@ -147,6 +149,8 @@ var onSelect = function(i, el) {
     };
 };
 
+// Creates a metadata object representing information about the image in the
+// given file
 var makeMetadata = function(file) {
     return {
         selected: false,
@@ -163,6 +167,8 @@ var makeMetadata = function(file) {
     };
 };
 
+// Creates a HTML <img> element that displays the image stored in the given
+// file
 var makeImage = function(file) {
     var img = $('<img>')[0];
     var reader = new FileReader();
@@ -205,8 +211,7 @@ Dropzone.options.dropimg = {
     url: fl.server + 'upload/img',
     acceptedFiles: 'image/*',
     maxFilesize: 4096,
-    accept: function(file, done) {
-        console.log(file, done);
+    accept: function(file) {
         addImage(file);
     }
 };
@@ -231,7 +236,7 @@ $(function() {
 
         // Require at least one image to be selected
         if (data.length === 0) {
-            alert("No images selected. Please select at least one image to upload.");
+            alert('No images selected. Please select at least one image to upload.');
             return;
         }
 
