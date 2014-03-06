@@ -14,6 +14,7 @@ gmaps = 'vendor/gmaps/gmaps.js'
 modernizr = 'vendor/webshim/js-webshim/minified/extras/modernizr-custom.js'
 webshims = 'vendor/webshim/js-webshim/minified/polyfiller.js'
 alert = 'vendor/alert/alert.js'
+tab = 'vendor/bootstrap/js/tab.js'
 
 # Module paths
 jst_ = 'jst.js'
@@ -28,6 +29,8 @@ define_form = 'js/define_form.js'
 settings = 'js/settings.js'
 graphs = 'js/graphs.js'
 user_profile = 'js/user_profile.js'
+navbar = 'js/navbar.js'
+user_gallery = 'js/user_gallery.js'
 
 # Files used by every page
 shared = [jquery, alert, modernizr, webshims, underscore, bootstrap, common]
@@ -42,7 +45,8 @@ dependencies =
   'site/upload/executable.html': [dropzone, executable_upload]
   'site/settings.html': [settings]
   'site/graphs.html': [d3, bar_chart, graphs]
-  'site/user-profile.html': [user_profile]
+  'site/user-profile.html': [user_profile, navbar, tab]
+  'site/user-profile-gallery.html':[user_gallery]
 
 # Add the shared dependencies to every page
 for k, v of dependencies
