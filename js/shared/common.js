@@ -76,9 +76,14 @@ var makeHeader = function(data) {
     $('header').append(h);
 };
 
-var makeSwitcher = function() {
-    var switcher = '#switcher';
-
+/**
+ * Creates the necessary DOM structure for the page switcher, using data from
+ * the page config object, then inserts it into the page as a Bootstrap Popover
+ * at the given selector
+ * @param {string} selector - The CSS selector of the parent element of the
+ * switcher.
+ */
+var makeSwitcher = function(selector) {
     var content = $('<ul>');
 
     for (var key in fl.pages) {
@@ -87,12 +92,12 @@ var makeSwitcher = function() {
         content.append(JST.switcher_item(page));
     }
 
-    $(switcher).popover({
+    $(selector).popover({
         html: true,
         content: content.html(),
         trigger: 'hover',
         placement: 'bottom',
-        container: switcher
+        container: selector
     });
 };
 
@@ -170,7 +175,7 @@ $(function() {
 
     var mode = null;
 
-    makeSwitcher();
+    makeSwitcher('#switcher');
 
     loginmode.on('click', function() {
         namewrap.hide();
