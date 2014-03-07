@@ -69,6 +69,8 @@ dependencies =
 for k, v of dependencies
   dependencies[k] = shared.concat(v)
 
+js_src = 'js/**/*.js'
+
 # Mapping of source HTML pages to their output paths in the site directory
 bake_map = {}
 for k, v of dependencies
@@ -123,7 +125,7 @@ module.exports = (grunt) ->
           console: true
 
       lib_test:
-        src: ['js/*.js']
+        src: js_src
 
     qunit:
       files: ['test/**/*.html']
@@ -148,7 +150,7 @@ module.exports = (grunt) ->
     watch:
       # Lint all JS files and copy them to the site directory
       scripts:
-        files: [ 'js/*.js', 'data/*']
+        files: [js_src, 'data/*']
         tasks: ['jshint', 'copy']
       # Compile Stylus files to CSS when they change
       styles:
@@ -173,7 +175,7 @@ module.exports = (grunt) ->
     copy:
       default:
         cwd: '.'
-        src: ['js/**/*', 'data/**/*']
+        src: [js_src, 'data/**/*']
         dest: 'site/'
 
     'sails-linker':
