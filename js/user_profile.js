@@ -34,13 +34,24 @@ $(function(){
     var navbarWrap = $('.navbar_wrapper');
     navbarWrap.append(navbar);
 
+    var tabP = $(JST.profile_tab({
+    }));
+    var profTabWrap = $('.profile_tab');
+    profTabWrap.append(tabP);
 
+
+    var about = $(JST.user_about({
+        item: '100'
+    }));
+    var aboutWrap = $('.about_wrapper');
+    aboutWrap.append(about);
 
     var newsfeed = $(JST.newsfeed({
         user_text: 'Info is here'
     }));
-    var newsfeedWrap = $('.newsfeed_wrapper');
+    var newsfeedWrap = profTabWrap.find('.newsfeed_wrapper');
     newsfeedWrap.append(newsfeed);
+
 
     var newsfeed_head = $(JST.newsfeed_head({
         user_photo: '/img/shutter.png',
@@ -80,7 +91,7 @@ $(function(){
                 photo_url: 'photo_url',
                 photos: photos
             }));
-            var photo_wrapper = $('.photo_wrapper');
+            var photo_wrapper = profTabWrap.find('.photo_wrapper');
             photo_wrapper.append(photoGallery);
         }
     });
@@ -125,7 +136,7 @@ $(function(){
         user_badges: '17',
         available_badges: '100'
     }));
-    var badge_wrapper = $('.badge_wrapper');
+    var badge_wrapper = profTabWrap.find('.badge_wrapper');
     badge_wrapper.append(badgeGallery);
 
 });

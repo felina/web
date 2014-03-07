@@ -45,7 +45,7 @@ dependencies =
   'site/upload/executable.html': [dropzone, executable_upload]
   'site/settings.html': [settings]
   'site/graphs.html': [d3, bar_chart, graphs]
-  'site/user-profile.html': [user_profile, navbar, tab]
+  'site/user-profile.html': [user_profile]
   'site/user-profile-gallery.html':[user_gallery]
 
 # Add the shared dependencies to every page
