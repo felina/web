@@ -81,11 +81,13 @@ var save = function() {
     }
 
     var time = $('.time-field').val() || '00:00:00';
+    var date = $('.date-field').val() || '2000-01-01';
+    var datetime = new Date(date + 'T' + time);
 
     images[i].metadata = {
         // Store the contents of all text fields
         title: $('.title-field').val(),
-        datetime: new Date($('.date-field').val() + 'T' + time),
+        datetime: datetime,
         // Store the map location
         location: {
             name: $('.location-field').val(),

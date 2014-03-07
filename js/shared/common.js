@@ -120,7 +120,11 @@ window.fl.login = function(url, data) {
             else {
                 // Inform the user
                 alert('Invalid username or password');
+                console.log(data);
             }
+        },
+        error: function (err) {
+            console.error(err);
         }
     });
 };
