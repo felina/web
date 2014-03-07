@@ -47,6 +47,12 @@ window.fl.pages = {
     }
 };
 
+/**
+ * Represents a book.
+ * @constructor
+ * @param {string} title - The title of the book.
+ * @param {string} author - The author of the book.
+ */
 var makeHeader = function(data) {
     // Remove the previous dynamic content
     $('header ul.right').remove();

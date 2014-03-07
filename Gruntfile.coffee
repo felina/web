@@ -190,8 +190,15 @@ module.exports = (grunt) ->
       build:
         files: bake_map
 
+    jsdoc:
+      dist:
+        src: [js_src]
+        options:
+          destination: 'doc'
+
   grunt.loadNpmTasks "grunt-contrib-#{contrib}" for contrib in contribs
   grunt.loadNpmTasks 'grunt-bake'
+  grunt.loadNpmTasks 'grunt-jsdoc'
   grunt.loadNpmTasks 'grunt-sails-linker'
 
   grunt.registerTask 'default', ['jshint', 'jst', 'stylus', 'bake', 'copy', 'sails-linker']
