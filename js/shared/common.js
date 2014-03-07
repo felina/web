@@ -101,7 +101,8 @@ var makeSwitcher = function(selector) {
 
 window.fl.setSwitcherIcon = function(page) {
     var p = fl.pages[page];
-    $('#switcher button').html("<i class='glyphicon glyphicon-" + p.icon + "'></i>&nbsp;" + p.title);
+    var icon = $('<i>').addClass('glyphicon glyphicon-' + p.icon);
+    $('#switcher button').append(icon).append('&nbsp;' + p.title);
 };
 
 window.fl.login = function(url, data) {

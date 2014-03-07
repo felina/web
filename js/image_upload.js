@@ -224,7 +224,16 @@ $(function() {
     getFeatures();
 
     // Initialise the Google map
-    fl.makeMap();
+    $('#map').atlas({
+        height: 400,
+        width: 400,
+        callback: function(text) {
+            $('.location-field').val(text);
+        },
+        style: {
+            classes: 'btn btn-default'
+        }
+    });
 
     // Pull in the list of species from the server and add it to the dropdown
     addSpecies();

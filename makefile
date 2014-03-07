@@ -7,6 +7,7 @@ build: favicon
 		vendor/dropzone \
 		vendor/jquery/dist/jquery.js \
 		vendor/alert/alert.js \
+		vendor/jquery-atlas/src/main.js \
 		vendor/webshim/js-webshim/minified \
 		vendor/underscore/underscore.js \
 		vendor/bootstrap/dist/js/bootstrap.js \

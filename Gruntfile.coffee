@@ -18,6 +18,7 @@ libs =
   modernizr: 'webshim/js-webshim/minified/extras/modernizr-custom'
   webshims: 'webshim/js-webshim/minified/polyfiller'
   alert: 'alert/alert'
+  atlas: 'jquery-atlas/src/main'
 
 for k, v of libs
   libs[k] = vendor + v + js
@@ -29,7 +30,6 @@ jst_ = 'jst.js'
 # Shared files
 common = 'js/shared/common.js'
 bar_chart = 'js/shared/bar_chart.js'
-map = 'js/shared/map.js'
 
 # Page-specific files
 main = 'js/main.js'
@@ -59,7 +59,7 @@ dependencies =
   'site/start-job.html': [libs.blueimp, libs.bbs, start_job]
   'site/define-form.html': [define_form]
   'site/view-jobs.html': [dashboard]
-  'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, image_upload, map]
+  'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, libs.atlas, image_upload]
   'site/upload/executable.html': [libs.dropzone, executable_upload]
   'site/settings.html': [settings]
   'site/graphs.html': [libs.d3, bar_chart, graphs]

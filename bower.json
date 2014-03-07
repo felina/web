@@ -15,6 +15,7 @@
     "blueimp-bootstrap-image-gallery": "~3.1.0",
     "gmaps": "~0.4.9",
     "webshim": "~1.12.3",
-    "alert": "*"
+    "alert": "*",
+    "jquery-atlas": "*"
   }
 }
