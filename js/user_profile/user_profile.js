@@ -1,7 +1,7 @@
 $(function(){
     var profile;
 
-    fl.setSwitcherIcon('user-profile');
+    fl.setSwitcherIcon('user_profile');
 
     fl.loginCheck(function(data) {
         if(data.res) {

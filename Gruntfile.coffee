@@ -69,14 +69,14 @@ shared = [
 # Mapping of HTML files to the scripts they require
 dependencies =
   'site/index.html': [main]
-  'site/start-job.html': [libs.blueimp, libs.bbs, start_job]
-  'site/define-form.html': [define_form]
-  'site/view-jobs.html': [dashboard]
+  'site/start_job.html': [libs.blueimp, libs.bbs, start_job]
+  'site/define_form.html': [define_form]
+  'site/view_jobs.html': [dashboard]
   'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, libs.atlas, image_upload]
   'site/upload/executable.html': [libs.dropzone, executable_upload]
   'site/settings.html': [settings]
   'site/graphs.html': [libs.d3, bar_chart, graphs]
-  'site/user-profile.html': [user_profile, about_tab, badges_tab, friends_tab, user_badges, user_photos,
+  'site/user_profile.html': [user_profile, about_tab, badges_tab, friends_tab, user_badges, user_photos,
                             newsfeed, navbar]
 
 # Add the shared dependencies to every page

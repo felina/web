@@ -17,15 +17,15 @@ window.fl.pages = {
         icon: 'cog',
         title: 'Settings'
     },
-    'start-job': {
+    'start_job': {
         icon: 'plus',
         title: 'Start a new job'
     },
-    'define-form': {
+    'define_form': {
         icon: 'pencil',
         title: 'Define a custom form'
     },
-    'view-jobs': {
+    'view_jobs': {
         icon: 'wrench',
         title: 'View jobs'
     },
@@ -33,7 +33,7 @@ window.fl.pages = {
         icon: 'signal',
         title: 'Graphs'
     },
-    'user-profile': {
+    'user_profile': {
         icon: 'user',
         title: 'User profile'
     }

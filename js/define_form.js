@@ -13,5 +13,5 @@ $(function(){
         add_field();
     });
 
-    fl.setSwitcherIcon('define-form');
+    fl.setSwitcherIcon('define_form');
 });

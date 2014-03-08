@@ -22,5 +22,5 @@ $(function(){
         gallery.append(JST.gallery_item(d));
     }
 
-    fl.setSwitcherIcon('start-job');
+    fl.setSwitcherIcon('start_job');
 });
