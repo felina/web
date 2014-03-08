@@ -3,22 +3,18 @@ $(function(){
 
     fl.setSwitcherIcon('user-profile');
 
-    fl.ajax({
-        type: 'GET',
-        url: 'logincheck',
-        success: function(data) {
-            if(data.res) {
-                // Only works currently if user logged in, will work later
-                profile = $(JST['User_Profile/User_Cover/user_profile']({
-                    username: data.user.name,
-                    userinfo: 'I like penguins', //Get stuff from server
-                    profile_picture: '/img/shutter.png',
-                    cover_photo: '/img/leopard.jpg'
-                }));
-                var profileWrap = $('.profile_wrapper');
-                profileWrap.append(profile);
-                console.log(data.user.name);
-            }
+    fl.loginCheck(function(data) {
+        if(data.res) {
+            // Only works currently if user logged in, will work later
+            profile = $(JST['User_Profile/User_Cover/user_profile']({
+                username: data.user.name,
+                userinfo: 'I like penguins', //Get stuff from server
+                profile_picture: '/img/shutter.png',
+                cover_photo: '/img/leopard.jpg'
+            }));
+            var profileWrap = $('.profile_wrapper');
+            profileWrap.append(profile);
+            console.log(data.user.name);
         }
     });
     // TAB PROFILE

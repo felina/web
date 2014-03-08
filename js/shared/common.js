@@ -51,7 +51,7 @@ window.fl.makeHeader = function(data) {
     var h = $(JST.header_right(data));
 
     h.find('#logout').on('click', function() {
-        $.get(fl.server + 'logout', function(data) {
+        fl.logout(function(data) {
             console.log(data);
             location.reload(true);
         });
@@ -177,14 +177,7 @@ $(function() {
 
     // Check the user's status on page load so that their name and icon can be
     // displayed in the header
-    $.ajax({
-        url: fl.server + 'logincheck',
-        type: 'GET',
-        xhrFields: {
-            withCredentials: true
-        },
-        success: function(data) {
-            fl.makeHeader(data);
-        }
+    fl.loginCheck(function(data) {
+        fl.makeHeader(data);
     });
 });

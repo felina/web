@@ -89,4 +89,25 @@
             success: success
         });
     };
+
+    window.fl.loginCheck = function(success) {
+        fl.get({
+            url: 'logincheck',
+            success: success
+        });
+    };
+
+    window.fl.logout = function(success) {
+        fl.get({
+            url: 'logout',
+            success: success
+        });
+    };
+
+    window.fl.getImages = function(success) {
+        fl.get({
+            url: 'images',
+            success: success
+        });
+    };
 })();
