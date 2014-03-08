@@ -5,7 +5,6 @@ vendor = 'vendor/'
 js = '.js'
 
 # Library paths
-<<<<<<< HEAD
 libs =
   jquery: 'jquery/dist/jquery'
   underscore: 'underscore/underscore'
@@ -20,7 +19,7 @@ libs =
   webshims: 'webshim/js-webshim/minified/polyfiller'
   alert: 'alert/alert'
   atlas: 'jquery-atlas/src/main'
-  tab = 'bootstrap/js/tab'
+  tab: 'bootstrap/js/tab'
 
 for k, v of libs
   libs[k] = vendor + v + js
