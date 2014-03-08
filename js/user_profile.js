@@ -12,7 +12,7 @@ $(function(){
         success: function(data) {
             if(data.res) {
                 // Only works currently if user logged in, will work later
-                profile = $(JST.user_profile({
+                profile = $(JST['User_Profile/User_Cover/user_profile']({
                     username: data.user.name,
                     userinfo: 'I like penguins', //Get stuff from server
                     profile_picture: '/img/shutter.png',
@@ -25,7 +25,7 @@ $(function(){
         }
     });
 
-    var navbar = $(JST.user_navigation({
+    var navbar = $(JST['User_Profile/Navigation/user_navigation']({
         photo_count: '100',
         friend_count: '50',
         user_badges: '17',
@@ -38,20 +38,20 @@ $(function(){
     //TAB PROFILE
 
     //Sends empty data to profile_tab.html, allows easy splitting of files
-    var tabP = $(JST.profile_tab({
+    var tabP = $(JST['User_Profile/User_Tabs/profile_tab']({
     }));
     var profTabWrap = $('.profile_tab');
     profTabWrap.append(tabP);
 
     //Sends data to the newsfeed
-    var newsfeed = $(JST.newsfeed({
+    var newsfeed = $(JST['User_Profile/Newsfeed_Item/newsfeed']({
         user_text: 'Info is here'
     }));
     var newsfeedWrap = profTabWrap.find('.newsfeed_wrapper');
     newsfeedWrap.append(newsfeed);
 
     //The head for a newsfeed item
-    var newsfeed_head = $(JST.newsfeed_head({
+    var newsfeed_head = $(JST['User_Profile/Newsfeed_Item/newsfeed_head']({
         user_photo: '/img/shutter.png',
         posting_user: 'Frank Reynolds',
         recieving_user: 'Andrew Stuart',
@@ -85,7 +85,7 @@ $(function(){
                     photos[i] = fl.server + 'img/' + data.images[i].imageid;
                 }
             }
-            var photoGallery = $(JST.user_photo({
+            var photoGallery = $(JST['User_Profile/Photo_Gallery/user_photo']({
                 photo_total: '100',
                 photo_url: 'photo_url',
                 photos: photos
@@ -130,7 +130,7 @@ $(function(){
         '/img/shutter.png'
     ];
 
-    var badgeGallery = $(JST.user_badges({
+    var badgeGallery = $(JST['User_Profile/Badges/user_badges']({
         badges: badges,
         user_badges: '17',
         available_badges: '100'
@@ -141,29 +141,29 @@ $(function(){
 
     //About Tab
 
-    var atab = $(JST.about_tab({
+    var atab = $(JST['User_Profile/User_Tabs/about_tab']({
     }));
     var aboutTab = $('.about_tab');
     aboutTab.append(atab);
 
-    var about = $(JST.user_about({
+    var about = $(JST['User_Profile/About/user_about']({
     }));
     var aboutWrap = aboutTab.find('.about_wrapper');
     aboutWrap.append(about);
 
 
     //Friends Tab
-    var ftab = $(JST.friends_tab({
+    var ftab = $(JST['User_Profile/User_Tabs/friends_tab']({
     }));
     var friendsTab = $('.friends_tab');
     friendsTab.append(ftab);
 
-    // var about = $(JST.user_about({
-    // }));
-    // var aboutWrap = aboutTab.find('.about_wrapper');
-    // aboutWrap.append(about);
-
-
     //Photos Tab
 
+
+    //Badges Tab
+    var btab = $(JST['User_Profile/User_Tabs/badges_tab']({
+    }));
+    var badgesTab = $('.badges_tab');
+    badgesTab.append(btab);
 });
