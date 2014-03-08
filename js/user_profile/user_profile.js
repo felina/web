@@ -3,13 +3,9 @@ $(function(){
 
     fl.setSwitcherIcon('user-profile');
 
-    $.ajax({
+    fl.ajax({
         type: 'GET',
-        dataType: "json",
-        url: fl.server + 'logincheck',
-        xhrFields: {
-            withCredentials: true
-        },
+        url: 'logincheck',
         success: function(data) {
             if(data.res) {
                 // Only works currently if user logged in, will work later
@@ -25,8 +21,8 @@ $(function(){
             }
         }
     });
-    //TAB PROFILE
-    //Sends empty data to profile_tab.html, allows easy splitting of files
+    // TAB PROFILE
+    // Sends empty data to profile_tab.html, allows easy splitting of files
     var tabP = $(JST['User_Profile/User_Tabs/profile_tab']());
     var profTabWrap = $('.profile_tab');
     profTabWrap.append(tabP);

@@ -31,6 +31,7 @@ jst_ = 'jst.js'
 # Shared files
 common = 'js/shared/common.js'
 bar_chart = 'js/shared/bar_chart.js'
+server = 'js/shared/server.js'
 
 # Page-specific files
 main = 'js/main.js'
@@ -62,6 +63,7 @@ shared = [
   libs.underscore
   libs.bootstrap
   common
+  server
 ]
 
 # Mapping of HTML files to the scripts they require

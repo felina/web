@@ -1,13 +1,5 @@
 window.fl = window.fl || {};
 
-// URL of the server. Comment for development/production
-// George server
-// window.fl.server = 'http://nl.ks07.co.uk:5000/';
-// AWS
-window.fl.server = 'http://ec2-54-194-186-121.eu-west-1.compute.amazonaws.com/';
-// Local
-// window.fl.server = 'http://localhost:5000/';
-
 window.fl.pages = {
     'index': {
         icon: 'home',
@@ -52,7 +44,7 @@ window.fl.pages = {
  * and inserts it into the page.
  * @param {Object} data - The data to be displayed in the header.
  */
-var makeHeader = function(data) {
+window.fl.makeHeader = function(data) {
     // Remove the previous contents
     $('header ul.right').remove();
     // Render the new contents from the template
@@ -103,40 +95,6 @@ window.fl.setSwitcherIcon = function(page) {
     var p = fl.pages[page];
     var icon = $('<i>').addClass('glyphicon glyphicon-' + p.icon);
     $('#switcher button').append(icon).append('&nbsp;' + p.title);
-};
-
-window.fl.login = function(url, data) {
-    // Send the request
-    $.ajax({
-        url: fl.server + url,
-        type: 'POST',
-        data: data,
-        xhrFields: {
-            withCredentials: true
-        },
-        success: function(data) {
-            // If the login was successful
-            if (data.res) {
-                // Inform the user
-                alert('Logged in successfully');
-                // Hide the login modal
-                $('#register').modal('hide');
-
-                // Update the header to replace the login button with the
-                // details of the newly logged in user
-                makeHeader(data);
-            }
-            // Login failed
-            else {
-                // Inform the user
-                alert('Invalid username or password');
-                console.log(data);
-            }
-        },
-        error: function (err) {
-            console.error(err);
-        }
-    });
 };
 
 $(function() {
@@ -226,7 +184,7 @@ $(function() {
             withCredentials: true
         },
         success: function(data) {
-            makeHeader(data);
+            fl.makeHeader(data);
         }
     });
 });
