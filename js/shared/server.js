@@ -11,9 +11,9 @@
 
     // URL of the server. Comment for development/production
     // George server
-    // window.fl.server = 'http://nl.ks07.co.uk:5000/';
+    window.fl.server = 'http://nl.ks07.co.uk:5000/';
     // AWS
-    window.fl.server = 'http://ec2-54-194-186-121.eu-west-1.compute.amazonaws.com/';
+    // window.fl.server = 'http://ec2-54-194-186-121.eu-west-1.compute.amazonaws.com/';
     // Local
     // window.fl.server = 'http://localhost:5000/';
 
@@ -61,6 +61,32 @@
             error: function (err) {
                 console.error(err);
             }
+        });
+    };
+
+    // Sends the image metadata to the server
+    // TODO: this endpoint doesn't work
+    window.fl.uploadMetadata = function(data) {
+        fl.post({
+            url: 'upload/metadata',
+            data: data,
+            success: function(d) {
+                console.log(d);
+            }
+        });
+    };
+
+    window.fl.getFeatures = function(success) {
+        fl.get({
+            url: 'project/fields?project=1',
+            success: success
+        });
+    };
+
+    window.fl.getSpecies = function(success) {
+        fl.get({
+            url: 'projects',
+            success: success
         });
     };
 })();

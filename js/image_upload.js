@@ -1,17 +1,3 @@
-// Sends the image metadata to the server
-// TODO: this endpoint doesn't work
-var sendImageData = function(data) {
-    $.ajax({
-        type: 'POST',
-        url: fl.server + 'upload/img',
-        data: data,
-        dataType: 'JSON',
-        success: function(d) {
-            console.log(d);
-        }
-    });
-};
-
 // Creates or updates the annotator element with the given image and its
 // annotations
 var makeAnnotator = function(img) {
@@ -32,26 +18,13 @@ var makeAnnotator = function(img) {
     fl.annotator = $('#annotator').annotator(args);
 };
 
-var getFeatures = function() {
-    $.get(fl.server + 'features', function(data) {
-        if (data.res) {
-            fl.features = data.features;
-
-            makeAnnotator({
-                url: '/img/user.png',
-                annotations: {}
-            });
-        }
-    });
-};
-
 var addSpecies = function(){
     var list = $('#species-list');
 
-    $.get(fl.server + 'species', function(data){
+    fl.getSpecies(function(data) {
         if (data.res) {
-            for (var i = 0; i < data.species.length; i++) {
-                var specie = data.species[i];
+            for (var i = 0; i < data.projects.length; i++) {
+                var specie = data.projects[i];
                 $('<option>')
                     .attr('value', specie)
                     .text(specie)
@@ -59,6 +32,19 @@ var addSpecies = function(){
             }
         }
     });
+};
+
+var onFeatureLoad = function(data) {
+    console.log(data);
+
+    if (data.res) {
+        fl.features = data.anno;
+
+        makeAnnotator({
+            url: '/img/user.png',
+            annotations: {}
+        });
+    }
 };
 
 // Stores metadata of uploaded images
@@ -221,7 +207,7 @@ Dropzone.options.dropimg = {
 $(function() {
     fl.setSwitcherIcon('upload/image');
 
-    getFeatures();
+    fl.getFeatures(onFeatureLoad);
 
     // Initialise the Google map
     $('#map').atlas({
@@ -251,7 +237,7 @@ $(function() {
             return;
         }
 
-        sendImageData(data);
+        fl.uploadMetadata(data);
     });
 
     fl.active_index = 0;
