@@ -1,8 +1,9 @@
 $(function(){
-
     var profile;
 
-     $.ajax({
+    fl.setSwitcherIcon('user-profile');
+
+    $.ajax({
         type: 'GET',
         dataType: "json",
         url: fl.server + 'logincheck',
@@ -24,14 +25,9 @@ $(function(){
             }
         }
     });
-
-
     //TAB PROFILE
-
     //Sends empty data to profile_tab.html, allows easy splitting of files
-    var tabP = $(JST['User_Profile/User_Tabs/profile_tab']({
-    }));
+    var tabP = $(JST['User_Profile/User_Tabs/profile_tab']());
     var profTabWrap = $('.profile_tab');
     profTabWrap.append(tabP);
-
 });
