@@ -9,6 +9,8 @@
         dataType: 'json'
     };
 
+    var debug = true;
+
     // URL of the server. Comment for development/production
     // George server
     window.fl.server = 'http://nl.ks07.co.uk:5000/';
@@ -20,6 +22,10 @@
     window.fl.ajax = function(options) {
         options = $.extend(defaults, options);
         options.url = fl.server + options.url;
+
+        if (debug){
+            console.log(options);
+        }
 
         $.ajax(options);
     };

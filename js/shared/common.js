@@ -178,6 +178,7 @@ $(function() {
     // Check the user's status on page load so that their name and icon can be
     // displayed in the header
     fl.loginCheck(function(data) {
+        console.log(data);
         fl.makeHeader(data);
     });
 });
