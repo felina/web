@@ -31,7 +31,6 @@ graphs = 'js/graphs.js'
 user_profile = 'js/user_profile.js'
 navbar = 'js/navbar.js'
 user_gallery = 'js/user_gallery.js'
-new_user = 'js/new_user.js'
 
 # Files used by every page
 shared = [jquery, alert, modernizr, webshims, underscore, bootstrap, common]
@@ -48,8 +47,7 @@ dependencies =
   'site/graphs.html': [d3, bar_chart, graphs]
   'site/user-profile.html': [user_profile]
   'site/user-profile-gallery.html':[user_gallery]
-  'site/new_user.html':[new_user]
-
+  
 # Add the shared dependencies to every page
 for k, v of dependencies
   dependencies[k] = shared.concat(v)

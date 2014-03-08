@@ -153,7 +153,15 @@ $(function(){
 
 
     //Friends Tab
+    var ftab = $(JST.friends_tab({
+    }));
+    var friendsTab = $('.friends_tab');
+    friendsTab.append(ftab);
 
+    // var about = $(JST.user_about({
+    // }));
+    // var aboutWrap = aboutTab.find('.about_wrapper');
+    // aboutWrap.append(about);
 
 
     //Photos Tab
