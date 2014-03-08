@@ -5,6 +5,7 @@ vendor = 'vendor/'
 js = '.js'
 
 # Library paths
+<<<<<<< HEAD
 libs =
   jquery: 'jquery/dist/jquery'
   underscore: 'underscore/underscore'
@@ -19,6 +20,7 @@ libs =
   webshims: 'webshim/js-webshim/minified/polyfiller'
   alert: 'alert/alert'
   atlas: 'jquery-atlas/src/main'
+  tab = 'bootstrap/js/tab'
 
 for k, v of libs
   libs[k] = vendor + v + js
@@ -40,7 +42,17 @@ executable_upload = 'js/executable_upload.js'
 define_form = 'js/define_form.js'
 settings = 'js/settings.js'
 graphs = 'js/graphs.js'
-user_profile = 'js/user_profile.js'
+
+# Required for user profile
+user_profile = 'js/user_profile/user_profile.js'
+user_gallery = 'js/user_gallery.js'
+about_tab = 'js/user_profile/tabs/about_tab.js'
+badges_tab = 'js/user_profile/tabs/badges_tab.js'
+friends_tab = 'js/user_profile/tabs/friends_tab.js'
+user_badges = 'js/user_profile/badges/user_badges.js'
+user_photos = 'js/user_profile/photos/user_photos.js'
+newsfeed = 'js/user_profile/newsfeed/newsfeed.js'
+navbar = 'js/user_profile/navbar/navbar.js'
 
 # Files used by every page
 shared = [
@@ -63,7 +75,8 @@ dependencies =
   'site/upload/executable.html': [libs.dropzone, executable_upload]
   'site/settings.html': [settings]
   'site/graphs.html': [libs.d3, bar_chart, graphs]
-  'site/user-profile.html': [user_profile]
+  'site/user-profile.html': [user_profile, about_tab, badges_tab, friends_tab, user_badges, user_photos,
+                            newsfeed, navbar]
 
 # Add the shared dependencies to every page
 for k, v of dependencies
