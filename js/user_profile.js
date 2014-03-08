@@ -152,4 +152,10 @@ $(function(){
     aboutWrap.append(about);
 
 
+    //Friends Tab
+
+
+
+    //Photos Tab
+
 });
