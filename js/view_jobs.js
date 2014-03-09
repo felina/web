@@ -8,5 +8,5 @@ $(function(){
         }
     });
 
-    fl.setSwitcherIcon('view-jobs');
+    fl.setSwitcherIcon('view_jobs');
 });

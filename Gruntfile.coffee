@@ -75,7 +75,7 @@ bar_chart = 'js/shared/bar_chart.js'
 # Page-specific files
 main = 'js/main.js'
 start_job = 'js/start_job.js'
-dashboard = 'js/dashboard.js'
+view_jobs = 'js/view_jobs.js'
 image_upload = 'js/image_upload.js'
 executable_upload = 'js/executable_upload.js'
 define_form = 'js/define_form.js'
@@ -110,7 +110,7 @@ dependencies =
   'site/index.html': [main]
   'site/start_job.html': [libs.blueimp, libs.bbs, start_job]
   'site/define_form.html': [define_form]
-  'site/view_jobs.html': [dashboard]
+  'site/view_jobs.html': [view_jobs]
   'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, libs.atlas, image_upload]
   'site/upload/executable.html': [libs.dropzone, executable_upload]
   'site/settings.html': [settings]
