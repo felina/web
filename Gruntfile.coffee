@@ -59,6 +59,7 @@ user_badges = 'js/user_profile/badges/user_badges.js'
 user_photos = 'js/user_profile/photos/user_photos.js'
 newsfeed = 'js/user_profile/newsfeed/newsfeed.js'
 navbar = 'js/user_profile/navbar/navbar.js'
+about = 'js/user_profile/About/user_about.js'
 # loadimages = 'js/user_profile/photos/load.js'
 
 # Files used by every page
@@ -83,7 +84,7 @@ dependencies =
   'site/settings.html': [settings]
   'site/graphs.html': [libs.d3, bar_chart, graphs]
   'site/user-profile.html': [user_profile, about_tab, badges_tab, friends_tab, user_badges, user_photos,
-                            newsfeed, navbar]
+                            newsfeed, navbar, about]
   'site/user-profile-gallery.html': [libs.gamma, libs.history, libs.masonry, libs.ppcustom, 
                                       libs.js_url]
 

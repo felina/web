@@ -11,4 +11,14 @@ $(function(){
     var aboutWrap = aboutTab.find('.about_wrapper');
     aboutWrap.append(about);
 
+    var bInfo = $(JST['User_Profile/About/basic_information']({
+    }));
+    var bWrap = aboutTab.find('.basic_wrapper');
+    bWrap.append(bInfo);
+
+    var mupload = $(JST['User_Profile/About/most_uploaded']({
+    }));
+    var mupWrap = aboutTab.find('.mupload_wrapper');
+    mupWrap.append(mupload);
+
 });
