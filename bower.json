@@ -1,6 +1,7 @@
 {
   "name": "felina-web",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "Web interface for the wildlife image analysis system",
   "homepage": "https://github.com/felina/web",
   "authors": [
     "Giles Lavelle <giles.lavelle@gmail.com>"
