@@ -1,6 +1,6 @@
 var add_field = function(){
     var field = $(JST.form_field_definer());
-    field.find('#closer').click(function(){
+    field.find('.closer').click(function(){
         field.remove();
     });
     $('.fields').append(field);
