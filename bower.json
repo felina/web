@@ -16,6 +16,7 @@
     "gmaps": "~0.4.9",
     "webshim": "~1.12.3",
     "alert": "*",
-    "jquery-atlas": "*"
+    "jquery-atlas": "*",
+    "felina-js": "*"
   }
 }

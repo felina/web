@@ -20,6 +20,7 @@ libs =
   alert: 'alert/alert'
   atlas: 'jquery-atlas/src/main'
   tab: 'bootstrap/js/tab'
+  server: 'felina-js/src/main'
 
 for k, v of libs
   libs[k] = vendor + v + js
@@ -31,7 +32,6 @@ jst_ = 'jst.js'
 # Shared files
 common = 'js/shared/common.js'
 bar_chart = 'js/shared/bar_chart.js'
-server = 'js/shared/server.js'
 
 # Page-specific files
 main = 'js/main.js'
@@ -62,8 +62,8 @@ shared = [
   libs.webshims
   libs.underscore
   libs.bootstrap
+  libs.server
   common
-  server
 ]
 
 # Mapping of HTML files to the scripts they require
