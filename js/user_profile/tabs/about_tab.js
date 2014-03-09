@@ -21,4 +21,9 @@ $(function(){
     var mupWrap = aboutTab.find('.mupload_wrapper');
     mupWrap.append(mupload);
 
+    var uloc = $(JST['User_Profile/About/user_locations']({
+    }));
+    var locationWrap = aboutTab.find('.ul_wrapper');
+    locationWrap.append(uloc);
+
 });
