@@ -20,6 +20,9 @@ build: favicon
 		vendor/blueimp-gallery/js/jquery.blueimp-gallery.min.js \
 		vendor/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min.js \
 		vendor/gmaps/gmaps.js \
+		vendor/gammagallery/js \
+		vendor/gammagallery/font \
+		vendor/gammagallery/css \
 		site
 
 # Deletes files that are the result of a build process

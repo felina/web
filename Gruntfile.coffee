@@ -20,6 +20,13 @@ libs =
   alert: 'alert/alert'
   atlas: 'jquery-atlas/src/main'
   tab: 'bootstrap/js/tab'
+  #gammagallery
+  gamma: 'gammagallery/js/gamma'
+  history: 'gammagallery/js/jquery.history'
+  masonry: 'gammagallery/js/jquery.masonry.min'
+  ppcustom: 'gammagallery/js/jquerypp.custom'
+  js_url: 'gammagallery/js/js-url.min'
+  modernizr_custom: 'gammagallery/js/modernizr.custom.70736'
 
 for k, v of libs
   libs[k] = vendor + v + js
@@ -52,6 +59,7 @@ user_badges = 'js/user_profile/badges/user_badges.js'
 user_photos = 'js/user_profile/photos/user_photos.js'
 newsfeed = 'js/user_profile/newsfeed/newsfeed.js'
 navbar = 'js/user_profile/navbar/navbar.js'
+# loadimages = 'js/user_profile/photos/load.js'
 
 # Files used by every page
 shared = [
@@ -61,8 +69,8 @@ shared = [
   libs.webshims
   libs.underscore
   libs.bootstrap
-  common
-]
+  # common #causing the image gallery to screw up
+ ]
 
 # Mapping of HTML files to the scripts they require
 dependencies =
@@ -76,10 +84,13 @@ dependencies =
   'site/graphs.html': [libs.d3, bar_chart, graphs]
   'site/user-profile.html': [user_profile, about_tab, badges_tab, friends_tab, user_badges, user_photos,
                             newsfeed, navbar]
+  'site/user-profile-gallery.html': [libs.gamma, libs.history, libs.masonry, libs.ppcustom, 
+                                      libs.js_url]
 
 # Add the shared dependencies to every page
 for k, v of dependencies
   dependencies[k] = shared.concat(v)
+
 
 js_src = 'js/**/*.js'
 
