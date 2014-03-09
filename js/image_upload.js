@@ -210,9 +210,9 @@ $(function() {
     fl.getFeatures(onFeatureLoad);
 
     // Initialise the Google map
-    $('#map').atlas({
-        height: 400,
-        width: 400,
+    fl.map = $('#map').atlas({
+        height: 300,
+        width: 500,
         callback: function(text) {
             $('.location-field').val(text);
         },
