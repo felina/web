@@ -2,26 +2,6 @@
 # vendor scripts to the site directory
 build: favicon
 	grunt
-	rsync -r img site
-	rsync -Rr \
-		vendor/dropzone \
-		vendor/jquery/dist/jquery.js \
-		vendor/alert/alert.js \
-		vendor/jquery-atlas/src/main.js \
-		vendor/felina-js/src/main.js \
-		vendor/webshim/js-webshim/minified \
-		vendor/underscore/underscore.js \
-		vendor/bootstrap/dist/js/bootstrap.js \
-		vendor/bootstrap/dist/fonts \
-		vendor/bootstrap/dist/css/bootstrap.css \
-		vendor/d3/d3.min.js \
-		vendor/penguinator/index.js \
-		vendor/blueimp-gallery/css/blueimp-gallery.css \
-		vendor/blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery.css \
-		vendor/blueimp-gallery/js/jquery.blueimp-gallery.min.js \
-		vendor/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min.js \
-		vendor/gmaps/gmaps.js \
-		site
 
 # Deletes files that are the result of a build process
 clean:

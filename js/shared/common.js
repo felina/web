@@ -90,6 +90,25 @@ var makeSwitcher = function(selector) {
     });
 };
 
+window.fl.onLogin = function(data) {
+    // If the login was successful
+    if (data.res) {
+        // Inform the user
+        alert('Logged in successfully');
+        // Hide the login modal
+        $('#register').modal('hide');
+
+        // Update the header to replace the login button with the
+        // details of the newly logged in user
+        fl.makeHeader(data);
+    }
+    // Login failed
+    else {
+        // Inform the user
+        alert('Invalid username or password');
+        console.log(data);
+    }
+};
 
 window.fl.setSwitcherIcon = function(page) {
     var p = fl.pages[page];
@@ -166,7 +185,7 @@ $(function() {
             data.name = fields.name.val();
         }
 
-        fl.login(url, data);
+        fl.login(url, data, fl.onLogin);
         // Return false to override the default 'Done' behaviour of closing the
         // modal -- we want to only close it if the login succeeds.
         return false;

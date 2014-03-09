@@ -1,5 +1,7 @@
 # Official Grunt tasks to load
-contribs = ['stylus', 'watch', 'jst', 'connect', 'copy', 'jshint', 'uglify', 'concat']
+contribs = ['stylus', 'watch', 'jst', 'connect', 'copy', 'jshint', 'uglify']
+# Other Grunt tasks to load
+plugins = ['rsync', 'bake', 'sails-linker', 'jsdoc']
 
 vendor = 'vendor/'
 js = '.js'
@@ -22,8 +24,27 @@ libs =
   tab: 'bootstrap/js/tab'
   server: 'felina-js/src/main'
 
+lib_list = []
+
+dir_list = [
+  'vendor/dropzone'
+  'vendor/webshim/js-webshim/minified'
+  'vendor/bootstrap/dist/fonts'
+  'img'
+]
+
+css_list = [
+  'vendor/bootstrap/dist/css/bootstrap.css'
+  'vendor/blueimp-gallery/css/blueimp-gallery.css'
+  'vendor/blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery.css'
+]
+
 for k, v of libs
-  libs[k] = vendor + v + js
+  full = vendor + v + js
+  libs[k] = full
+  lib_list.push(full)
+
+all_list = lib_list.concat(dir_list).concat(css_list)
 
 # Module paths
 # Compiled templates file
@@ -210,10 +231,18 @@ module.exports = (grunt) ->
         options:
           destination: 'doc'
 
-  grunt.loadNpmTasks "grunt-contrib-#{contrib}" for contrib in contribs
-  grunt.loadNpmTasks 'grunt-bake'
-  grunt.loadNpmTasks 'grunt-jsdoc'
-  grunt.loadNpmTasks 'grunt-sails-linker'
+    rsync:
+      options:
+        args: ['--relative', '--recursive']
+        exclude: ['.git*', 'node_modules']
+        recursive: true
+      dist:
+        options:
+          src: all_list
+          dest: 'site'
 
-  grunt.registerTask 'default', ['jshint', 'jst', 'stylus', 'bake', 'copy', 'sails-linker']
+  grunt.loadNpmTasks "grunt-contrib-#{contrib}" for contrib in contribs
+  grunt.loadNpmTasks "grunt-#{plugin}" for plugin in plugins
+
+  grunt.registerTask 'default', ['jshint', 'jst', 'stylus', 'bake', 'copy', 'sails-linker', 'rsync']
   grunt.registerTask 'release', ['jshint', 'uglify', 'concat']
