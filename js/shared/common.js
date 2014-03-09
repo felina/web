@@ -1,17 +1,20 @@
 window.fl = window.fl || {};
 
-$.ajax({
-    type: 'GET',
-    url: '/data/pages.json',
-    async: false,
-    dataType: 'json',
-    success: function (data) {
-        console.log(data);
-        window.fl.pages = data;
-    },
-    error: function (err, txt) {
-        console.log(txt);
-    }
+window.fl.getJSON = function(filename, success) {
+    $.ajax({
+        type: 'GET',
+        url: '/data/' + filename + '.json',
+        async: false,
+        dataType: 'json',
+        success: success,
+        error: function (err, txt) {
+            console.log(txt);
+        }
+    });
+};
+
+fl.getJSON('pages', function (data) {
+    window.fl.pages = data;
 });
 
 /**
