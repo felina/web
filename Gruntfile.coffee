@@ -1,10 +1,20 @@
-# Official Grunt tasks to load
+# Officially-maintained Grunt tasks to load
 contribs = ['stylus', 'watch', 'jst', 'connect', 'copy', 'jshint', 'uglify']
-# Other Grunt tasks to load
+# Third-party Grunt tasks to load
 plugins = ['rsync', 'bake', 'sails-linker', 'jsdoc']
 
+# Install directory of all third party-assets
 vendor = 'vendor/'
+# Directory to build the site to
+site = 'site/'
+# File extensions
 js = '.js'
+css = '.css'
+# Bash wildcard patterns to match all
+# JS files
+js_src = 'js/**/*.js'
+# HTML templates
+templates = 'templates/**/*.html'
 
 # Library paths
 libs =
@@ -24,26 +34,34 @@ libs =
   tab: 'bootstrap/js/tab'
   server: 'felina-js/src/main'
 
+# Array to hold values of library map
 lib_list = []
 
+# List of full vendor directories to be included in the built site
 dir_list = [
-  'vendor/dropzone'
-  'vendor/webshim/js-webshim/minified'
-  'vendor/bootstrap/dist/fonts'
+  vendor + 'dropzone'
+  vendor + 'webshim/js-webshim/minified'
+  vendor + 'bootstrap/dist/fonts'
   'img'
 ]
 
+# List of vendor stylesheets to be included in the built site
 css_list = [
-  'vendor/bootstrap/dist/css/bootstrap.css'
-  'vendor/blueimp-gallery/css/blueimp-gallery.css'
-  'vendor/blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery.css'
+  'bootstrap/dist/css/bootstrap'
+  'blueimp-gallery/css/blueimp-gallery'
+  'blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery'
 ]
 
+# Add the root directory and file extension to CSS files
+css_list = css_list.map((path) -> vendor + path + css)
+
+# Add the root directory and file extension to JS files and put them in an array
 for k, v of libs
   full = vendor + v + js
   libs[k] = full
   lib_list.push(full)
 
+# Make a list of all vendor resources -- JS, CSS and directories
 all_list = lib_list.concat(dir_list).concat(css_list)
 
 # Module paths
@@ -104,12 +122,11 @@ dependencies =
 for k, v of dependencies
   dependencies[k] = shared.concat(v)
 
-js_src = 'js/**/*.js'
 
 # Mapping of source HTML pages to their output paths in the site directory
 bake_map = {}
 for k, v of dependencies
-  bake_map[k] = k.replace('site', 'html')
+  bake_map[k] = k.replace(site, 'html/')
 
 module.exports = (grunt) ->
   grunt.initConfig
@@ -162,9 +179,6 @@ module.exports = (grunt) ->
       lib_test:
         src: js_src
 
-    qunit:
-      files: ['test/**/*.html']
-
     jst:
       options:
         processName: (name) ->
@@ -172,14 +186,14 @@ module.exports = (grunt) ->
 
       compile:
         files:
-          'site/jst.js': ['templates/**/*.html']
+          site + jst_: [templates]
 
     stylus:
       compile:
         expand: true
         cwd: 'stylus'
         src: ['*.styl']
-        dest: 'site/css/'
+        dest: site + 'css/'
         ext: '.css'
 
     watch:
@@ -193,7 +207,7 @@ module.exports = (grunt) ->
         tasks: ['stylus']
       # Render HTML/Underscore templates to a JST object when they change
       templates:
-        files: 'templates/**/*.html'
+        files: templates
         tasks: ['jst']
       # Run static imports/preprocessing on the main HTML pages when they change
       html:
@@ -204,19 +218,19 @@ module.exports = (grunt) ->
       server:
         options:
           port: 9000
-          base: 'site'
+          base: site
           keepalive: true
 
     copy:
       default:
         cwd: '.'
         src: [js_src, 'data/**/*']
-        dest: 'site/'
+        dest: site
 
     'sails-linker':
       default:
         options:
-          appRoot: 'site/'
+          appRoot: site
           fileTmpl: '<script src="/%s"></script>'
           relative: true
         files: dependencies
@@ -234,15 +248,15 @@ module.exports = (grunt) ->
     rsync:
       options:
         args: ['--relative', '--recursive']
-        exclude: ['.git*', 'node_modules']
-        recursive: true
       dist:
         options:
           src: all_list
-          dest: 'site'
+          dest: site
 
+  # Load all Grunt plugins
   grunt.loadNpmTasks "grunt-contrib-#{contrib}" for contrib in contribs
   grunt.loadNpmTasks "grunt-#{plugin}" for plugin in plugins
 
+  # Define custom composite tasks in terms of other tasks
   grunt.registerTask 'default', ['jshint', 'jst', 'stylus', 'bake', 'copy', 'sails-linker', 'rsync']
   grunt.registerTask 'release', ['jshint', 'uglify', 'concat']
