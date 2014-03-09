@@ -69,7 +69,7 @@ shared = [
   libs.webshims
   libs.underscore
   libs.bootstrap
-  # common #causing the image gallery to screw up
+  common #causing the image gallery to screw up
  ]
 
 # Mapping of HTML files to the scripts they require

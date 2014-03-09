@@ -3,7 +3,7 @@
 
 <head>
         <title>{{ title }} - Felina</title>
-
+        <link rel="stylesheet" href="/css/common.css">
         <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="/vendor/dropzone/downloads/css/basic.css">
         <link rel="stylesheet" href="/vendor/dropzone/downloads/css/dropzone.css">
@@ -26,18 +26,19 @@
         <!--[if lte IE 7]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
     </head>
     <body>
+
+        <!--(bake shared/header.html)-->
+
+
         <div class="container">
             
             <div class="main">
-                <header class="clearfix">
                 
                     <h1>Images</h1>
 
                     <div class="support-note">
                         <span class="note-ie">Sorry, only modern browsers.</span>
                     </div>
-                    
-                </header>
                 
                 <div class="gamma-container gamma-loading" id="gamma-container">
 
@@ -94,10 +95,18 @@
                 </div>
 
             </div><!--/main-->
+            <!--(bake shared/footer.html)-->
         </div>
+
+         
+
+        <!--(bake shared/modal.html id="credits" title="Credits" body="credits")-->
+        <!--(bake shared/modal.html id="register" title="Register / Log in" body="login")-->
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <!--SCRIPTS-->
         <!--SCRIPTS END-->
+        <script src="jst.js"></script>
         <script type="text/javascript">
             
             $(function() {
