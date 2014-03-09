@@ -1,43 +1,18 @@
 window.fl = window.fl || {};
 
-window.fl.pages = {
-    'index': {
-        icon: 'home',
-        title: 'Home'
+$.ajax({
+    type: 'GET',
+    url: '/data/pages.json',
+    async: false,
+    dataType: 'json',
+    success: function (data) {
+        console.log(data);
+        window.fl.pages = data;
     },
-    'upload/image': {
-        icon: 'picture',
-        title: 'Upload images'
-    },
-    'upload/executable': {
-        icon: 'cloud-upload',
-        title: 'Upload executables'
-    },
-    'settings': {
-        icon: 'cog',
-        title: 'Settings'
-    },
-    'start_job': {
-        icon: 'plus',
-        title: 'Start a new job'
-    },
-    'define_form': {
-        icon: 'pencil',
-        title: 'Define a custom form'
-    },
-    'view_jobs': {
-        icon: 'wrench',
-        title: 'View jobs'
-    },
-    'graphs': {
-        icon: 'signal',
-        title: 'Graphs'
-    },
-    'user_profile': {
-        icon: 'user',
-        title: 'User profile'
+    error: function (err, txt) {
+        console.log(txt);
     }
-};
+});
 
 /**
  * Creates the necessary DOM structure for the contents of the page header,
@@ -174,8 +149,6 @@ $(function() {
     // Bind an event to the submit button in the login form to send the username
     // and password to the server
     doneButton.on('click', function() {
-        var url = mode === modes.REGISTER ? 'register' : 'login';
-        console.log(url);
         var data = {
             email: fields.email.val(),
             pass: fields.password.val()
@@ -183,9 +156,12 @@ $(function() {
 
         if (mode === modes.REGISTER) {
             data.name = fields.name.val();
+            fl.register(data, fl.onLogin);
+        }
+        else {
+            fl.login(data, fl.onLogin);
         }
 
-        fl.login(url, data, fl.onLogin);
         // Return false to override the default 'Done' behaviour of closing the
         // modal -- we want to only close it if the login succeeds.
         return false;
