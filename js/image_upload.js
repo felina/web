@@ -1,6 +1,6 @@
 // Creates or updates the annotator element with the given image and its
 // annotations
-var makeAnnotator = function(img) {
+var makeAnnotator = function(img, data) {
     var args = {
         width: 500,
         height: 500,
@@ -11,8 +11,11 @@ var makeAnnotator = function(img) {
     };
 
     if (img) {
-        args.src = img.url;
         args.annotations = img.annotations;
+    }
+
+    if (data) {
+        args.img = data;
     }
 
     fl.annotator = $('#annotator').annotator(args);
@@ -40,15 +43,14 @@ var onFeatureLoad = function(data) {
     if (data.res) {
         fl.features = data.anno;
 
-        makeAnnotator({
-            url: '/img/user.png',
-            annotations: {}
-        });
+        makeAnnotator();
     }
 };
 
 // Stores metadata of uploaded images
 var images = [];
+
+var imgs = [];
 
 // Stores all currently entered image metadata, including text fields, map
 // location and annotations
@@ -109,7 +111,7 @@ var restore = function(i) {
     $('.location-field').val(meta.location.name);
 
     // Update the annotator with the selected image's annotations
-    makeAnnotator(img);
+    makeAnnotator(img, imgs[i]);
 
     // Clear old markers
     fl.map.removeMarkers();
@@ -180,9 +182,11 @@ var addImage = function(file) {
     }));
     var i = images.length;
 
-    thumbnail.find('a').append(
-        makeImage(file).attr('alt', image.metadata.title)
-    );
+    var img = makeImage(file);
+
+    thumbnail.find('a').append(img.attr('alt', image.metadata.title));
+
+    imgs.push(img);
 
     // Bind an event to the checkbox in the current gallery item to add
     // its image to the list of images to be annotated

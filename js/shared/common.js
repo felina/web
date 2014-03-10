@@ -1,6 +1,6 @@
 window.fl = window.fl || {};
 
-window.fl.api = window.fl_api();
+window.fl.api = window.fl_api('http://nl.ks07.co.uk:5000/');
 
 window.fl.getJSON = function(filename, success) {
     $.ajax({
