@@ -86,7 +86,7 @@ dependencies =
   'site/user-profile.html': [user_profile, about_tab, badges_tab, friends_tab, user_badges, user_photos,
                             newsfeed, navbar, about]
   'site/user-profile-gallery.html': [libs.gamma, libs.history, libs.masonry, libs.ppcustom, 
-                                      libs.js_url]
+                                      libs.js_url, libs.modernizr_custom]
 
 # Add the shared dependencies to every page
 for k, v of dependencies
