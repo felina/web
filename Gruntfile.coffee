@@ -20,7 +20,7 @@ libs =
   bbs: 'blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min'
   d3: 'd3/d3.min'
   dropzone: 'dropzone/downloads/dropzone'
-  penguinator: 'penguinator/index'
+  penguinator: 'penguinator/dist/penguinator'
   gmaps: 'gmaps/gmaps'
   modernizr: 'webshim/js-webshim/minified/extras/modernizr-custom'
   webshims: 'webshim/js-webshim/minified/polyfiller'
