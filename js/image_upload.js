@@ -21,7 +21,7 @@ var makeAnnotator = function(img) {
 var addSpecies = function(){
     var list = $('#species-list');
 
-    fl.getSpecies(function(data) {
+    fl.api.getSpecies(function(data) {
         if (data.res) {
             for (var i = 0; i < data.projects.length; i++) {
                 var specie = data.projects[i];
@@ -207,7 +207,7 @@ Dropzone.options.dropimg = {
 $(function() {
     fl.setSwitcherIcon('upload/image');
 
-    fl.getFeatures(onFeatureLoad);
+    fl.api.getFeatures(onFeatureLoad);
 
     // Initialise the Google map
     fl.map = $('#map').atlas({
@@ -237,7 +237,7 @@ $(function() {
             return;
         }
 
-        fl.uploadMetadata(data);
+        fl.api.uploadMetadata(data);
     });
 
     fl.active_index = 0;
