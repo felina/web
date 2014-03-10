@@ -30,6 +30,7 @@
     "grunt-jsdoc": "~0.5.1",
     "grunt-rsync": "^0.4.0",
     "time-grunt": "^0.2.10",
-    "load-grunt-tasks": "^0.4.0"
+    "load-grunt-tasks": "^0.4.0",
+    "grunt-notify": "^0.2.18"
   }
 }
