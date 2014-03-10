@@ -253,5 +253,5 @@ module.exports = (grunt) ->
   require('load-grunt-tasks')(grunt)
 
   # Define custom composite tasks in terms of other tasks
-  grunt.registerTask 'default', ['jshint', 'jst', 'stylus', 'bake', 'copy', 'sails-linker', 'rsync']
+  grunt.registerTask 'default', ['newer:jshint', 'jst', 'newer:stylus', 'bake', 'copy', 'sails-linker', 'newer:rsync']
   grunt.registerTask 'release', ['jshint', 'uglify', 'concat']

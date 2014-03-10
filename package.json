@@ -31,6 +31,7 @@
     "grunt-rsync": "^0.4.0",
     "time-grunt": "^0.2.10",
     "load-grunt-tasks": "^0.4.0",
-    "grunt-notify": "^0.2.18"
+    "grunt-notify": "^0.2.18",
+    "grunt-newer": "^0.6.1"
   }
 }
