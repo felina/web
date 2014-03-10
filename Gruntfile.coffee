@@ -1,8 +1,3 @@
-# Officially-maintained Grunt tasks to load
-contribs = ['stylus', 'watch', 'jst', 'connect', 'copy', 'jshint', 'uglify']
-# Third-party Grunt tasks to load
-plugins = ['rsync', 'bake', 'sails-linker', 'jsdoc']
-
 # Install directory of all third party-assets
 vendor = 'vendor/'
 # Directory to build the site to
@@ -129,6 +124,9 @@ for k, v of dependencies
   bake_map[k] = k.replace(site, 'html/')
 
 module.exports = (grunt) ->
+  # Get some stats on how long the build is taking to isolate slow tasks
+  require('time-grunt')(grunt)
+
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today(\'yyyy-mm-dd\') %>\n' + '<%= pkg.homepage ? \'* \' + pkg.homepage + \'\\n\' : \'\' %>' + '* Copyright (c) <%= grunt.template.today(\'yyyy\') %> <%= pkg.author.name %>;' + ' Licensed <%= _.pluck(pkg.licenses, \'type\').join(\', \') %> */\n'
@@ -252,9 +250,7 @@ module.exports = (grunt) ->
           src: all_list
           dest: site
 
-  # Load all Grunt plugins
-  grunt.loadNpmTasks "grunt-contrib-#{contrib}" for contrib in contribs
-  grunt.loadNpmTasks "grunt-#{plugin}" for plugin in plugins
+  require('load-grunt-tasks')(grunt)
 
   # Define custom composite tasks in terms of other tasks
   grunt.registerTask 'default', ['jshint', 'jst', 'stylus', 'bake', 'copy', 'sails-linker', 'rsync']
