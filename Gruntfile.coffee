@@ -186,17 +186,14 @@ module.exports = (grunt) ->
 
       compile:
         files:
-          site + jst_: [templates]
+          'site/jst.js': [templates]
 
     stylus:
       compile:
         expand: true
-        cwd: 'stylus'
-        src: ['*.styl']
-        dest: site + 'css/'
-        ext: '.css'
-        options:
-          import: ['nib', 'shared/common']
+
+        files:
+          'site/css/main.css': ['stylus/shared/common.styl', 'stylus/*.styl']
 
     watch:
       # Lint all JS files and copy them to the site directory
