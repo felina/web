@@ -1,6 +1,18 @@
-// Creates or updates the annotator element with the given image and its
-// annotations
-var makeAnnotator = function(img, data) {
+// Stores metadata of uploaded images
+var metadata = [];
+// Stores uploaded image data
+var images = [];
+
+
+/**
+ * Creates or updates the annotator element with the given image and its
+ * annotations
+ * @param {Object} annos - The annotation data to be loaded into the
+ * annotator - used for restoring the progress on previously annotated images
+ * @param {jQuery object} image - A jQuery-wrapped HTML <img> tag with the
+ * image to be displayed
+ */
+var makeAnnotator = function(annos, image) {
     var args = {
         width: 500,
         height: 500,
@@ -10,12 +22,12 @@ var makeAnnotator = function(img, data) {
         }
     };
 
-    if (img) {
-        args.annotations = img.annotations;
+    if (annos) {
+        args.annotations = annos;
     }
 
-    if (data) {
-        args.img = data;
+    if (image) {
+        args.img = image;
     }
 
     fl.annotator = $('#annotator').annotator(args);
@@ -38,19 +50,11 @@ var addSpecies = function(){
 };
 
 var onFeatureLoad = function(data) {
-    console.log(data);
-
     if (data.res) {
         fl.features = data.anno;
-
         makeAnnotator();
     }
 };
-
-// Stores metadata of uploaded images
-var images = [];
-
-var imgs = [];
 
 // Stores all currently entered image metadata, including text fields, map
 // location and annotations
@@ -72,7 +76,7 @@ var save = function() {
     var date = $('.date-field').val() || '2000-01-01';
     var datetime = new Date(date + 'T' + time);
 
-    images[i].metadata = {
+    metadata[i].metadata = {
         // Store the contents of all text fields
         title: $('.title-field').val(),
         datetime: datetime,
@@ -84,13 +88,14 @@ var save = function() {
     };
 
     // Store all annotator data
-    images[i].annotations = fl.annotator.getExport();
+    metadata[i].annotations = fl.annotator.getExport();
 };
 
 // Loads the saved image data at the given index and puts it back in the DOM
 var restore = function(i) {
-    var img = images[i];
-    var meta = img.metadata;
+    var image = images[i];
+    var meta = metadata[i].metadata;
+    var annos = metadata[i].annotations;
     var coords = meta.location.coords;
 
     fl.active_index = i;
@@ -111,7 +116,7 @@ var restore = function(i) {
     $('.location-field').val(meta.location.name);
 
     // Update the annotator with the selected image's annotations
-    makeAnnotator(img, imgs[i]);
+    makeAnnotator(annos, image);
 
     // Clear old markers
     fl.map.removeMarkers();
@@ -134,7 +139,7 @@ var onPick = function(i) {
 // gallery to be uploaded
 var onSelect = function(i, el) {
     return function() {
-        images[i].selected = !images[i].selected;
+        metadata[i].selected = !metadata[i].selected;
         el.toggleClass('active');
     };
 };
@@ -180,13 +185,13 @@ var addImage = function(file) {
         url: image.url,
         title: image.metadata.title
     }));
-    var i = images.length;
+    var i = metadata.length;
 
     var img = makeImage(file);
 
     thumbnail.find('a').append(img.attr('alt', image.metadata.title));
 
-    imgs.push(img);
+    images.push(img);
 
     // Bind an event to the checkbox in the current gallery item to add
     // its image to the list of images to be annotated
@@ -196,7 +201,7 @@ var addImage = function(file) {
 
     // Add the thumbnail to the gallery
     $('#gallery').append(thumbnail);
-    images.push(image);
+    metadata.push(image);
 };
 
 Dropzone.options.dropimg = {
@@ -231,8 +236,8 @@ $(function() {
     // Send the image metadata to the server when the submit button is clicked
     $('#submit').click(function() {
         // Remove all unchecked images
-        var data = images.filter(function(img) {
-            return img.selected;
+        var data = metadata.filter(function(meta) {
+            return meta.selected;
         });
 
         // Require at least one image to be selected
