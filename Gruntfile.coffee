@@ -195,6 +195,8 @@ module.exports = (grunt) ->
         src: ['*.styl']
         dest: site + 'css/'
         ext: '.css'
+        options:
+          import: ['nib', 'shared/common']
 
     watch:
       # Lint all JS files and copy them to the site directory
