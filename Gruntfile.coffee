@@ -1,5 +1,6 @@
 # Official Grunt tasks to load
-contribs = ['stylus', 'watch', 'jst', 'connect', 'copy', 'jshint', 'uglify', 'concat']
+# contribs = ['stylus', 'watch', 'jst', 'connect', 'copy', 'jshint', 'uglify', 'concat']
+contribs = ['stylus', 'watch', 'jst', 'connect', 'copy', 'uglify', 'concat']
 
 vendor = 'vendor/'
 js = '.js'
@@ -60,7 +61,7 @@ user_photos = 'js/user_profile/photos/user_photos.js'
 newsfeed = 'js/user_profile/newsfeed/newsfeed.js'
 navbar = 'js/user_profile/navbar/navbar.js'
 about = 'js/user_profile/About/user_about.js'
-# loadimages = 'js/user_profile/photos/load.js'
+loadimages = 'js/user_profile/photos/loadimages.js'
 
 # Files used by every page
 shared = [
@@ -86,7 +87,7 @@ dependencies =
   'site/user-profile.html': [user_profile, about_tab, badges_tab, friends_tab, user_badges, user_photos,
                             newsfeed, navbar, about]
   'site/user-profile-gallery.html': [libs.gamma, libs.history, libs.masonry, libs.ppcustom, 
-                                      libs.js_url, libs.modernizr_custom]
+                                      libs.js_url, libs.modernizr_custom, loadimages]
 
 # Add the shared dependencies to every page
 for k, v of dependencies
@@ -122,31 +123,31 @@ module.exports = (grunt) ->
         src: '<%= concat.dist.dest %>'
         dest: 'dist/<%= pkg.name %>.min.js'
 
-    jshint:
-      options:
-        curly: true
-        eqeqeq: true
-        immed: true
-        latedef: true
-        newcap: true
-        noarg: true
-        sub: true
-        undef: true
-        unused: true
-        boss: true
-        eqnull: true
-        browser: true
-        globals:
-          jQuery: true
-          $: true
-          JST: true
-          fl: true
-          d3: true
-          Dropzone: true
-          GMaps: true
-          webshims: true
-          alert: true
-          console: true
+#    jshint:
+#      options:
+#        curly: true
+#        eqeqeq: true
+#        immed: true
+#        latedef: true
+#        newcap: true
+#        noarg: true
+#        sub: true
+#        undef: true
+#        unused: true
+#        boss: true
+#        eqnull: true
+#        browser: true
+#        globals:
+#          jQuery: true
+#          $: true
+#          JST: true
+#          fl: true
+#          d3: true
+#          Dropzone: true
+#          GMaps: true
+#          webshims: true
+#          alert: true
+#          console: true
 
       lib_test:
         src: js_src
@@ -175,7 +176,8 @@ module.exports = (grunt) ->
       # Lint all JS files and copy them to the site directory
       scripts:
         files: [js_src, 'data/*']
-        tasks: ['jshint', 'copy']
+        # tasks: ['jshint', 'copy']
+        tasks: ['copy']
       # Compile Stylus files to CSS when they change
       styles:
         files: 'stylus/*.styl'
@@ -225,5 +227,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-jsdoc'
   grunt.loadNpmTasks 'grunt-sails-linker'
 
-  grunt.registerTask 'default', ['jshint', 'jst', 'stylus', 'bake', 'copy', 'sails-linker']
-  grunt.registerTask 'release', ['jshint', 'uglify', 'concat']
+  # grunt.registerTask 'default', ['jshint', 'jst', 'stylus', 'bake', 'copy', 'sails-linker']
+  # grunt.registerTask 'release', ['jshint', 'uglify', 'concat']
+  grunt.registerTask 'default', ['jst', 'stylus', 'bake', 'copy', 'sails-linker']
+  grunt.registerTask 'release', ['uglify', 'concat']
+

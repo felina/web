@@ -1,52 +1,80 @@
-// $(function() {
+$(function() {
 
-//                 var GammaSettings = {
-//                         // order is important!
-//                         viewport : [ {
-//                             width : 1200,
-//                             columns : 5
-//                         }, {
-//                             width : 900,
-//                             columns : 4
-//                         }, {
-//                             width : 500,
-//                             columns : 3
-//                         }, { 
-//                             width : 320,
-//                             columns : 2
-//                         }, { 
-//                             width : 0,
-//                             columns : 2
-//                         } ]
-//                 };
-
-//                 Gamma.init( GammaSettings, fncallback );
+    var GammaSettings = {
+            // order is important!
+            viewport : [ {
+                width : 1200,
+                columns : 5
+            }, {
+                width : 1200,
+                columns : 4
+            }, {
+                width : 1200,
+                columns : 3
+            }, { 
+                width : 1200,
+                columns : 2
+            }, { 
+                width : 1200,
+                columns : 2
+            } ]
+    };
 
 
-//                 // Example how to add more items (just a dummy):
+    // Example how to add more items (just a dummy):
 
-//                 var page = 0,
-//                     items = ['<li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350"><div data-src="img/images/xxxlarge/3.jpg" data-min-width="1300"></div><div data-src="img/images/xxlarge/3.jpg" data-min-width="1000"></div><div data-src="img/images/xlarge/3.jpg" data-min-width="700"></div><div data-src="img/images/large/3.jpg" data-min-width="300"></div><div data-src="img/images/medium/3.jpg" data-min-width="200"></div><div data-src="img/images/small/3.jpg" data-min-width="140"></div><div data-src="img/images/xsmall/3.jpg"></div><noscript><img src="img/images/xsmall/3.jpg" alt="img03"/></noscript></div></li><li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350"><div data-src="img/images/xxxlarge/3.jpg" data-min-width="1300"></div><div data-src="img/images/xxlarge/3.jpg" data-min-width="1000"></div><div data-src="img/images/xlarge/3.jpg" data-min-width="700"></div><div data-src="img/images/large/3.jpg" data-min-width="300"></div><div data-src="img/images/medium/3.jpg" data-min-width="200"></div><div data-src="img/images/small/3.jpg" data-min-width="140"></div><div data-src="img/images/xsmall/3.jpg"></div><noscript><img src="img/images/xsmall/3.jpg" alt="img03"/></noscript></div></li><li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350"><div data-src="img/images/xxxlarge/3.jpg" data-min-width="1300"></div><div data-src="img/images/xxlarge/3.jpg" data-min-width="1000"></div><div data-src="img/images/xlarge/3.jpg" data-min-width="700"></div><div data-src="img/images/large/3.jpg" data-min-width="300"></div><div data-src="img/images/medium/3.jpg" data-min-width="200"></div><div data-src="img/images/small/3.jpg" data-min-width="140"></div><div data-src="img/images/xsmall/3.jpg"></div><noscript><img src="img/images/xsmall/3.jpg" alt="img03"/></noscript></div></li><li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350"><div data-src="img/images/xxxlarge/3.jpg" data-min-width="1300"></div><div data-src="img/images/xxlarge/3.jpg" data-min-width="1000"></div><div data-src="img/images/xlarge/3.jpg" data-min-width="700"></div><div data-src="img/images/large/3.jpg" data-min-width="300"></div><div data-src="img/images/medium/3.jpg" data-min-width="200"></div><div data-src="img/images/small/3.jpg" data-min-width="140"></div><div data-src="img/images/xsmall/3.jpg"></div><noscript><img src="img/images/xsmall/3.jpg" alt="img03"/></noscript></div></li><li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350"><div data-src="img/images/xxxlarge/3.jpg" data-min-width="1300"></div><div data-src="img/images/xxlarge/3.jpg" data-min-width="1000"></div><div data-src="img/images/xlarge/3.jpg" data-min-width="700"></div><div data-src="img/images/large/3.jpg" data-min-width="300"></div><div data-src="img/images/medium/3.jpg" data-min-width="200"></div><div data-src="img/images/small/3.jpg" data-min-width="140"></div><div data-src="img/images/xsmall/3.jpg"></div><noscript><img src="img/images/xsmall/3.jpg" alt="img03"/></noscript></div></li>'];
+    var page = 0,
+        items = ['<li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350"><div data-src="img/images/xxxlarge/3.jpg" data-min-width="1300"></div><div data-src="img/images/xxlarge/3.jpg" data-min-width="1000"></div><div data-src="img/images/xlarge/3.jpg" data-min-width="700"></div><div data-src="img/images/large/3.jpg" data-min-width="300"></div><div data-src="img/images/medium/3.jpg" data-min-width="200"></div><div data-src="img/images/small/3.jpg" data-min-width="140"></div><div data-src="img/images/xsmall/3.jpg"></div><noscript><img src="img/images/xsmall/3.jpg" alt="img03"/></noscript></div></li>']
 
-//                 function fncallback() {
 
-//                     $( '#loadmore' ).show().on( 'click', function() {
 
-//                         ++page;
-//                         var newitems = items[page-1]
-//                         if( page <= 1 ) {
-                            
-//                             Gamma.add( $( newitems ) );
+    function addItem(photo) {
 
-//                         }
-//                         if( page === 1 ) {
+    	updated = '<li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350"><div data-src="'+photo+'" data-min-width="1300"></div><div data-src="'+photo+'" data-min-width="1000"></div><div data-src="'+photo+'" data-min-width="700"></div><div data-src="'+photo+'" data-min-width="300"></div><div data-src="'+photo+'" data-min-width="200"></div><div data-src="'+photo+'" data-min-width="140"></div><div data-src="'+photo+'"></div><noscript><img src="'+photo+'" alt="img03"/></noscript></div></li>'
+        items[0] = items[0].concat(updated);
 
-//                             $( this ).remove();
+    }
 
-//                         }
+    function fncallback() {
 
-//                     } );
+        $( '#loadmore' ).show().on( 'click', function() {
 
-//                 }
+            ++page;
+            var newitems = items[page-1]
+            if( page <= 1 ) {
+                
+                Gamma.add( $( newitems ) );
 
-//             });
+            }
+            if( page === 1 ) {
+
+                $( this ).remove();
+
+            }
+
+        } );
+
+    }
+  
+
+    $.ajax({
+        type: 'GET',
+        dataType: "json",
+        url: fl.server + 'images',
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function(data) {
+            if(data.res) {
+                for (var i = 0; i < data.images.length; i++) {
+                    addItem(fl.server + 'img/' + data.images[i].imageid);
+                }
+            }
+        }
+    });
+
+
+    Gamma.init( GammaSettings, fncallback );
+
+
+});
