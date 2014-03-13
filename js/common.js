@@ -1,8 +1,6 @@
-window.fl = window.fl || {};
+var api = require('../vendor/felina-js/src/main')();
 
-window.fl.api = window.fl_api('http://nl.ks07.co.uk:5000/');
-
-window.fl.getJSON = function(filename, success) {
+var getJSON = function(filename, success) {
     $.ajax({
         type: 'GET',
         url: '/data/' + filename + '.json',
@@ -15,16 +13,49 @@ window.fl.getJSON = function(filename, success) {
     });
 };
 
-fl.getJSON('pages', function (data) {
-    window.fl.pages = data;
+var pages;
+getJSON('pages', function (data) {
+    pages = data;
 });
+
+var setSwitcherIcon = function(page) {
+    var p = pages[page];
+    console.log(p);
+    var icon = $('<i>').addClass('glyphicon glyphicon-' + p.icon);
+    $('#switcher button').append(icon).append('&nbsp;' + p.title);
+};
+
+/**
+ * Creates the necessary DOM structure for the page switcher, using data from
+ * the page config object, then inserts it into the page as a Bootstrap Popover
+ * at the given selector
+ * @param {string} selector - The CSS selector of the parent element of the
+ * switcher.
+ */
+var makeSwitcher = function(selector) {
+    var content = $('<ul>');
+
+    for (var key in pages) {
+        var page = pages[key];
+        page.name = key;
+        content.append(JST.switcher_item(page));
+    }
+
+    $(selector).popover({
+        html: true,
+        content: content.html(),
+        trigger: 'hover',
+        placement: 'bottom',
+        container: selector
+    });
+};
 
 /**
  * Creates the necessary DOM structure for the contents of the page header,
  * and inserts it into the page.
  * @param {Object} data - The data to be displayed in the header.
  */
-window.fl.makeHeader = function(data) {
+var makeHeader = function(data) {
     // Remove the previous contents
     $('header ul.right').remove();
     // Render the new contents from the template
@@ -45,32 +76,7 @@ window.fl.makeHeader = function(data) {
     $('header').append(h);
 };
 
-/**
- * Creates the necessary DOM structure for the page switcher, using data from
- * the page config object, then inserts it into the page as a Bootstrap Popover
- * at the given selector
- * @param {string} selector - The CSS selector of the parent element of the
- * switcher.
- */
-var makeSwitcher = function(selector) {
-    var content = $('<ul>');
-
-    for (var key in fl.pages) {
-        var page = fl.pages[key];
-        page.name = key;
-        content.append(JST.switcher_item(page));
-    }
-
-    $(selector).popover({
-        html: true,
-        content: content.html(),
-        trigger: 'hover',
-        placement: 'bottom',
-        container: selector
-    });
-};
-
-window.fl.onLogin = function(data) {
+var onLogin = function(data) {
     // If the login was successful
     if (data.res) {
         // Inform the user
@@ -80,7 +86,7 @@ window.fl.onLogin = function(data) {
 
         // Update the header to replace the login button with the
         // details of the newly logged in user
-        fl.makeHeader(data);
+        makeHeader(data);
     }
     // Login failed
     else {
@@ -90,13 +96,16 @@ window.fl.onLogin = function(data) {
     }
 };
 
-window.fl.setSwitcherIcon = function(page) {
-    var p = fl.pages[page];
-    var icon = $('<i>').addClass('glyphicon glyphicon-' + p.icon);
-    $('#switcher button').append(icon).append('&nbsp;' + p.title);
-};
+var onPageLoad = function () {
+    makeSwitcher('#switcher');
 
-$(function() {
+    // Check the user's status on page load so that their name and icon can be
+    // displayed in the header
+    api.loginCheck(function(data) {
+        console.log(data);
+        makeHeader(data);
+    });
+
     var body = $('body');
     var form = $('#register');
     var doneButton = form.find('.modal-footer button');
@@ -131,8 +140,6 @@ $(function() {
 
     var mode = null;
 
-    makeSwitcher('#switcher');
-
     loginmode.on('click', function() {
         namewrap.hide();
         doneButton.text('Log in');
@@ -161,10 +168,10 @@ $(function() {
 
         if (mode === modes.REGISTER) {
             data.name = fields.name.val();
-            fl.api.register(data, fl.onLogin);
+            api.register(data, onLogin);
         }
         else {
-            fl.api.login(data, fl.onLogin);
+            api.login(data, onLogin);
         }
 
         // Return false to override the default 'Done' behaviour of closing the
@@ -174,11 +181,12 @@ $(function() {
 
     // Add the login form to the page
     body.append(form);
+};
 
-    // Check the user's status on page load so that their name and icon can be
-    // displayed in the header
-    fl.api.loginCheck(function(data) {
-        console.log(data);
-        fl.makeHeader(data);
-    });
-});
+module.exports = {
+    setSwitcherIcon: setSwitcherIcon,
+    makeHeader: makeHeader,
+    makeSwitcher: makeSwitcher,
+    onLogin: onLogin,
+    onPageLoad: onPageLoad
+};

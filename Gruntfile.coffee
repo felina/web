@@ -27,7 +27,6 @@ libs =
   alert: 'alert/alert'
   atlas: 'jquery-atlas/src/main'
   tab: 'bootstrap/js/tab'
-  server: 'felina-js/src/main'
 
 # Array to hold values of library map
 lib_list = []
@@ -64,14 +63,11 @@ all_list = lib_list.concat(dir_list).concat(css_list)
 jst_ = 'jst.js'
 
 # Shared files
-common = 'js/shared/common.js'
 bar_chart = 'js/shared/bar_chart.js'
 
 # Page-specific files
-main = 'js/main.js'
 start_job = 'js/start_job.js'
 view_jobs = 'js/view_jobs.js'
-image_upload = 'js/image_upload.js'
 executable_upload = 'js/executable_upload.js'
 define_form = 'js/define_form.js'
 settings = 'js/settings.js'
@@ -96,17 +92,15 @@ shared = [
   libs.webshims
   libs.underscore
   libs.bootstrap
-  libs.server
-  common
 ]
 
 # Mapping of HTML files to the scripts they require
 dependencies =
-  'site/index.html': [main]
+  'site/index.html': []
   'site/start_job.html': [libs.blueimp, libs.bbs, start_job]
   'site/define_form.html': [define_form]
   'site/view_jobs.html': [view_jobs]
-  'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, libs.atlas, image_upload]
+  'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, libs.atlas]
   'site/upload/executable.html': [libs.dropzone, executable_upload]
   'site/settings.html': [settings]
   'site/graphs.html': [libs.d3, bar_chart, graphs]
@@ -173,6 +167,8 @@ module.exports = (grunt) ->
           webshims: true
           alert: true
           console: true
+          module: true
+          require: true
 
       lib_test:
         src: js_src
@@ -221,7 +217,7 @@ module.exports = (grunt) ->
     copy:
       default:
         cwd: '.'
-        src: [js_src, 'data/**/*']
+        src: ['data/**/*']
         dest: site
 
     'sails-linker':
@@ -250,8 +246,14 @@ module.exports = (grunt) ->
           src: all_list
           dest: site
 
+    browserify:
+      dist:
+        files:
+          'site/js/main.js': ['js/main.js']
+          'site/js/image_upload.js': ['js/image_upload.js']
+
   require('load-grunt-tasks')(grunt)
 
   # Define custom composite tasks in terms of other tasks
-  grunt.registerTask 'default', ['newer:jshint', 'jst', 'newer:stylus', 'bake', 'copy', 'sails-linker', 'newer:rsync']
+  grunt.registerTask 'default', ['newer:jshint', 'jst', 'newer:stylus', 'bake', 'copy', 'browserify', 'sails-linker']
   grunt.registerTask 'release', ['jshint', 'uglify', 'concat']

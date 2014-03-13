@@ -1,4 +1,9 @@
-$(function(){
+var common = require('./common');
+var api = require('../vendor/felina-js/src/main')();
+
+$(function() {
+    common.onPageLoad();
+
     var images = ['elephant', 'giraffe', 'leopard'];
 
     var randomImage = function(){
@@ -11,13 +16,13 @@ $(function(){
         'background-image': randomImage()
     });
 
-    fl.setSwitcherIcon('index');
+    common.setSwitcherIcon('index');
 
     banner.find('button').on('click', function(){
         var data = {
             email: banner.find('#email').val(),
             pass: banner.find('#password').val()
         };
-        fl.login('login', data);
+        api.login('login', data);
     });
 });

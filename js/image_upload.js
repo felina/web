@@ -1,8 +1,15 @@
+var common = require('./common');
+var api = require('../vendor/felina-js/src/main')('http://nl.ks07.co.uk:5000/');
+
 // Stores metadata of uploaded images
 var metadata = [];
 // Stores uploaded image data
 var images = [];
 
+var map;
+var active_index;
+var features;
+var annotator;
 
 /**
  * Creates or updates the annotator element with the given image and its
@@ -16,7 +23,7 @@ var makeAnnotator = function(annos, image) {
     var args = {
         width: 500,
         height: 500,
-        features: fl.features,
+        features: features,
         style: {
             classes: 'btn btn-default'
         }
@@ -30,13 +37,13 @@ var makeAnnotator = function(annos, image) {
         args.img = image;
     }
 
-    fl.annotator = $('#annotator').annotator(args);
+    return $('#annotator').annotator(args);
 };
 
 var addSpecies = function(){
     var list = $('#species-list');
 
-    fl.api.getSpecies(function(data) {
+    api.getSpecies(function(data) {
         if (data.res) {
             for (var i = 0; i < data.projects.length; i++) {
                 var specie = data.projects[i];
@@ -51,20 +58,20 @@ var addSpecies = function(){
 
 var onFeatureLoad = function(data) {
     if (data.res) {
-        fl.features = data.anno;
-        makeAnnotator();
+        features = data.anno;
+        annotator = makeAnnotator();
     }
 };
 
 // Stores all currently entered image metadata, including text fields, map
 // location and annotations
 var save = function() {
-    var i = fl.active_index;
+    var i = active_index;
 
     // If a location has been chosen on the map, store it
     var coords = null;
-    if (fl.map.markers.length > 0) {
-        var pos = fl.map.markers[0].position;
+    if (map.markers.length > 0) {
+        var pos = map.markers[0].position;
         // Great variable names here GMaps.js cheers for that
         coords = {
             lat: pos.d,
@@ -88,7 +95,7 @@ var save = function() {
     };
 
     // Store all annotator data
-    metadata[i].annotations = fl.annotator.getExport();
+    metadata[i].annotations = annotator.getExport();
 };
 
 // Loads the saved image data at the given index and puts it back in the DOM
@@ -98,7 +105,7 @@ var restore = function(i) {
     var annos = metadata[i].annotations;
     var coords = meta.location.coords;
 
-    fl.active_index = i;
+    active_index = i;
 
     // Get the ISO standard date representation in the format
     // "YYYY-MM-DDTHH:mm:SS.nnnZ"
@@ -116,13 +123,13 @@ var restore = function(i) {
     $('.location-field').val(meta.location.name);
 
     // Update the annotator with the selected image's annotations
-    makeAnnotator(annos, image);
+    annotator = makeAnnotator(annos, image);
 
     // Clear old markers
-    fl.map.removeMarkers();
+    map.removeMarkers();
     // Update the map with the selected image's location if one has been set
     if (coords && coords.lat && coords.lng) {
-        fl.map.addMarker(coords);
+        map.addMarker(coords);
     }
 };
 
@@ -205,7 +212,7 @@ var addImage = function(file) {
 };
 
 Dropzone.options.dropimg = {
-    url: fl.server + 'upload/img',
+    url: api.url + 'upload/img',
     acceptedFiles: 'image/*',
     maxFilesize: 4096,
     accept: function(file) {
@@ -214,12 +221,13 @@ Dropzone.options.dropimg = {
 };
 
 $(function() {
-    fl.setSwitcherIcon('upload/image');
+    common.onPageLoad();
+    common.setSwitcherIcon('upload/image');
 
-    fl.api.getFeatures(onFeatureLoad);
+    api.getFeatures(onFeatureLoad);
 
     // Initialise the Google map
-    fl.map = $('#map').atlas({
+    map = $('#map').atlas({
         height: 300,
         width: 500,
         callback: function(text) {
@@ -246,8 +254,8 @@ $(function() {
             return;
         }
 
-        fl.api.uploadMetadata(data);
+        api.uploadMetadata(data);
     });
 
-    fl.active_index = 0;
+    active_index = 0;
 });
