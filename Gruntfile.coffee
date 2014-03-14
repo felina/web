@@ -252,11 +252,6 @@ module.exports = (grunt) ->
 
     mocha:
       src: ['test/index.html']
-      test:
-        options:
-          reporter: 'Nyan'
-          log: true
-          logErrors: true
 
   require('load-grunt-tasks')(grunt)
 
