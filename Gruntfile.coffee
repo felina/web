@@ -251,10 +251,12 @@ module.exports = (grunt) ->
           dest: site
 
     mocha:
+      src: ['test/index.html']
       test:
-        files: ['test/main.html']
         options:
           reporter: 'Nyan'
+          log: true
+          logErrors: true
 
   require('load-grunt-tasks')(grunt)
 
@@ -270,3 +272,4 @@ module.exports = (grunt) ->
     'newer:rsync'
   ]
   grunt.registerTask 'release', ['jshint', 'uglify', 'concat']
+  grunt.registerTask 'test', ['mocha']
