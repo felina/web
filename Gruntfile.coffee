@@ -258,13 +258,11 @@ module.exports = (grunt) ->
   # Define custom composite tasks in terms of other tasks
   grunt.registerTask 'default', [
     'newer:jshint'
-    'mocha'
     'jst'
     'newer:stylus'
     'bake'
     'copy'
     'sails-linker'
-    'newer:rsync'
   ]
   grunt.registerTask 'release', ['jshint', 'uglify', 'concat']
   grunt.registerTask 'test', ['mocha']
