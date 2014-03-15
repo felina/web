@@ -119,9 +119,9 @@ dependencies =
   'site/view_jobs.html': [scripts.view_jobs]
   'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, libs.atlas, scripts.image_upload]
   'site/upload/executable.html': [libs.dropzone, scripts.executable_upload]
-  'site/user-profile.html': [user_profile, about_tab, badges_tab, friends_tab, user_badges, user_photos, newsfeed, navbar, about]
-  'site/user-profile-gallery.html': [libs.gamma, libs.history, libs.masonry, libs.ppcustom, libs.js_url, libs.modernizr_custom, loadimages]
-  'site/researcher-sub-users.html': [sub_user]
+  'site/user_profile.html': [user_profile, about_tab, badges_tab, friends_tab, user_badges, user_photos, newsfeed, navbar, about]
+  'site/user_profile_gallery.html': [libs.gamma, libs.history, libs.masonry, libs.ppcustom, libs.js_url, libs.modernizr_custom, loadimages]
+  'site/researcher_sub_users.html': [sub_user]
 
 # Add the shared dependencies to every page
 for k, v of dependencies
@@ -185,6 +185,7 @@ module.exports = (grunt) ->
           d3: true
           Dropzone: true
           GMaps: true
+          Gamma: true
           webshims: true
           alert: true
           console: true
@@ -208,7 +209,6 @@ module.exports = (grunt) ->
     stylus:
       compile:
         expand: true
-
         files:
           'site/css/main.css': ['stylus/shared/common.styl', 'stylus/*.styl']
 
