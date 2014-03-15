@@ -30,6 +30,7 @@ module.exports = Backbone.View.extend({
     },
     getSelected: function() {
         return this.collection.filter(function(image) {
+            console.log(image.get('selected'));
             return image.get('selected');
         });
     }

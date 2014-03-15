@@ -64,14 +64,18 @@ all_list = lib_list.concat(dir_list).concat(css_list)
 jst_ = 'jst.js'
 
 # Page-specific files
-main = 'js/main.js'
-start_job = 'js/start_job.js'
-view_jobs = 'js/view_jobs.js'
-image_upload = 'js/image_upload.js'
-executable_upload = 'js/executable_upload.js'
-define_form = 'js/define_form.js'
-settings = 'js/settings.js'
-graphs = 'js/graphs.js'
+scripts =
+  main: 'main'
+  start_job: 'start_job'
+  view_jobs: 'view_jobs'
+  image_upload: 'image_upload'
+  executable_upload: 'executable_upload'
+  define_form: 'define_form'
+  settings: 'settings'
+  graphs: 'graphs'
+
+for k, v of scripts
+  scripts[k] = 'js/' + v + '.js'
 
 # Required for user profile
 user_profile = 'js/user_profile/user_profile.js'
@@ -97,14 +101,14 @@ shared = [
 
 # Mapping of HTML files to the scripts they require
 dependencies =
-  'site/index.html': [main]
-  'site/start_job.html': [libs.blueimp, libs.bbs, start_job]
-  'site/define_form.html': [define_form]
-  'site/view_jobs.html': [view_jobs]
-  'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, libs.atlas, image_upload]
-  'site/upload/executable.html': [libs.dropzone, executable_upload]
-  'site/settings.html': [settings]
-  'site/graphs.html': [libs.d3, graphs]
+  'site/index.html': [scripts.main]
+  'site/start_job.html': [libs.blueimp, libs.bbs, scripts.start_job]
+  'site/define_form.html': [scripts.define_form]
+  'site/view_jobs.html': [scripts.view_jobs]
+  'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, libs.atlas, scripts.image_upload]
+  'site/upload/executable.html': [libs.dropzone, scripts.executable_upload]
+  'site/settings.html': [scripts.settings]
+  'site/graphs.html': [libs.d3, scripts.graphs]
   'site/user_profile.html': [user_profile, about_tab, badges_tab, friends_tab, user_badges, user_photos,
                             newsfeed, navbar]
 
@@ -112,6 +116,9 @@ dependencies =
 for k, v of dependencies
   dependencies[k] = shared.concat(v)
 
+browserify_map = {}
+for k, v of scripts
+  browserify_map[site + v] = v
 
 # Mapping of source HTML pages to their output paths in the site directory
 bake_map = {}
@@ -256,14 +263,7 @@ module.exports = (grunt) ->
 
     browserify:
       compile:
-        files:
-          'site/js/image_upload.js': 'js/image_upload.js'
-          'site/js/graphs.js': 'js/graphs.js'
-          'site/js/settings.js': 'js/settings.js'
-          'site/js/view_jobs.js': 'js/view_jobs.js'
-          'site/js/define_form.js': 'js/define_form.js'
-          'site/js/start_job.js': 'js/start_job.js'
-          'site/js/executable_upload.js': 'js/executable_upload.js'
+        files: browserify_map
 
   require('load-grunt-tasks')(grunt)
 
