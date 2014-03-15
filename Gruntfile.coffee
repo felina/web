@@ -63,6 +63,9 @@ navbar = 'js/user_profile/navbar/navbar.js'
 about = 'js/user_profile/About/user_about.js'
 loadimages = 'js/user_profile/photos/loadimages.js'
 
+# Researcher sub users
+sub_user = 'js/researcher-sub-users.js'
+
 # Files used by every page
 shared = [
   libs.jquery
@@ -88,6 +91,7 @@ dependencies =
                             newsfeed, navbar, about]
   'site/user-profile-gallery.html': [libs.gamma, libs.history, libs.masonry, libs.ppcustom, 
                                       libs.js_url, libs.modernizr_custom, loadimages]
+  'site/researcher-sub-users.html': [sub_user]
 
 # Add the shared dependencies to every page
 for k, v of dependencies

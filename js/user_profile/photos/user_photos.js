@@ -25,12 +25,12 @@ $(function(){
         success: function(data) {
             if(data.res) {
                 for (var i = 0; i < data.images.length; i++) {
-                    photos[i] = fl.server + 'img/' + data.images[i].imageid;
+                    photos[i] = fl.server + 'img?id=' + data.images[i].imageid;
                 }
             }
             var photoGallery = $(JST['User_Profile/Photo_Gallery/user_photo']({
                 photo_total: '100',
-                photo_url: 'user-profile-gallery.html',
+                photo_url: 'photo_url',
                 photos: photos
             }));
             var photo_wrapper = profTabWrap.find('.photo_wrapper');
