@@ -1,0 +1,62 @@
+<!--(bake shared/head.html title="Sub-users")-->
+
+	<link rel="stylesheet" href="/css/common.css">
+	<link rel="stylesheet" href="/css/sub_user.css">
+
+	<body>
+	<!--(bake shared/header.html)-->
+
+	<div class="container">
+	    <div class="row clearfix">
+			<div class="col-md-12 column">
+				<table class="table table-bordered table-hover" id="tab_logic">
+					<thead>
+						<tr >
+							<th class="text-center">
+								#
+							</th>
+							<th class="text-center">
+								Serial Key
+							</th>
+							<th class="text-center">
+								Name
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr id='addr0'>
+							<td>
+							1
+							</td>
+							<td>
+							<input type="text" name='name0'  placeholder='Serial Key' class="form-control"/>
+							</td>
+							<td>
+							<input type="text" name='mail0' placeholder='Name' class="form-control"/>
+							</td>
+							<td>
+								<a class="btn btn-default">Invalidate User</a>
+								<a class="btn btn-default">Refresh Token</a>
+								<a class="btn btn-default">View Gallery</a>
+							</td>
+						</tr>
+	                    <tr id='addr1'></tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
+		<!--(bake shared/footer.html)-->
+	</div>
+
+         
+
+        <!--(bake shared/modal.html id="credits" title="Credits" body="credits")-->
+        <!--(bake shared/modal.html id="register" title="Register / Log in" body="login")-->
+       
+
+        <!--SCRIPTS-->
+        <!--SCRIPTS END-->
+        <script src="jst.js"></script>
+    </body>
+</html>
