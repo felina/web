@@ -7,7 +7,10 @@ module.exports = Backbone.View.extend({
             url: this.model.get('url'),
             title: 'hi'
         }));
-        this.$('a').append(this.model.get('image'));
+        var img = this.model.get('image');
+        console.log(img);
+        console.log(this.$('a'));
+        this.$('a').append(img);
         return this;
     },
     events: {
