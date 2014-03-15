@@ -273,6 +273,8 @@ module.exports = (grunt) ->
 
     mocha:
       src: ['test/index.html']
+      options:
+        reporter: 'Spec'
 
     browserify:
       compile:
