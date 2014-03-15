@@ -1,3 +1,5 @@
+var fl = require('./shared/common');
+
 $(function(){
-    fl.setSwitcherIcon('settings');
+    fl.onPageLoad('settings');
 });

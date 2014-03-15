@@ -1,4 +1,4 @@
-window.fl.barChart = function(el, data){
+module.exports = function(el, data){
   var margin = {
     top: 20,
     right: 20,

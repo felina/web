@@ -1,4 +1,8 @@
+var fl = require('./shared/common');
+
 $(function(){
+    fl.onPageLoad('start_job');
+
     var data = [
         {
             url: '/img/elephant.jpg',
@@ -16,11 +20,8 @@ $(function(){
 
     var gallery = $('#gallery');
 
-    for(var i = 0; i < data.length; i++){
-        var d = data[i];
-        d.id = i;
-        gallery.append(JST.gallery_item(d));
-    }
-
-    fl.setSwitcherIcon('start-job');
+    _.each(data, function(item, i) {
+        item.id = i;
+        gallery.append(JST.gallery_item(item));
+    });
 });
