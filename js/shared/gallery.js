@@ -27,5 +27,10 @@ module.exports = Backbone.View.extend({
         this.$el.text('No images uploaded yet.');
         this.$el.appendTo(selector);
         return this;
+    },
+    getSelected: function() {
+        return this.collection.filter(function(image) {
+            return image.get('selected');
+        });
     }
 });

@@ -20,5 +20,42 @@ module.exports = Backbone.View.extend({
         this.fields.time.val(this.model.time());
         this.fields.date.val(this.model.date());
         this.fields.location.val(this.model.get('location').name);
+    },
+    readTime: function() {
+        return this.fields.time.val() || '00:00:00';
+    },
+    readDate: function() {
+        return this.fields.date.val() || '2000-01-01';
+    },
+    dateTime: function() {
+        return new Date(this.readDate() + 'T' + this.readTime());
+    },
+    readCoords: function() {
+        var coords = null;
+        if (fl.map.markers.length > 0) {
+            var pos = fl.map.markers[0].position;
+            // Great variable names here GMaps.js cheers for that
+            coords = {
+                lat: pos.d,
+                lng: pos.e
+            };
+        }
+        return coords;
+    },
+    save: function() {
+        var meta = this.model.get('metadata');
+
+        meta.set({
+            title: this.fields.title.val(),
+            datetime: this.dateTime(),
+            location: {
+                name: this.fields.location.val(),
+                coords: this.readCoords()
+            }
+        });
+
+        this.model.set('metadata', meta);
+
+        // images[i].annotations = fl.annotator.getExport();
     }
 });

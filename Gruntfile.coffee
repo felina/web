@@ -177,9 +177,7 @@ module.exports = (grunt) ->
           require: true
           module: true
 
-        ignores: [
-          'js/image_upload.js'
-        ]
+        ignores: []
 
       lib_test:
         src: js_src

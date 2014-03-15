@@ -1,8 +1,6 @@
-var Metadata = require('./shared/metadata.js');
-var MetadataView = require('./shared/metadata_view.js');
-var Thumbnail = require('./shared/thumbnail.js');
-var Gallery = require('./shared/gallery.js');
-var FLImage = require('./shared/image.js');
+var MetadataView = require('./shared/metadata_view');
+var Gallery = require('./shared/gallery');
+var FLMap = require('./shared/map');
 var api = require('felina-js')();
 
 /**
@@ -57,55 +55,18 @@ var onFeatureLoad = function(data) {
     }
 };
 
-// Stores all currently entered image metadata, including text fields, map
-// location and annotations
-var save = function() {
-    // If a location has been chosen on the map, store it
-    var coords = null;
-    if (fl.map.markers.length > 0) {
-        var pos = fl.map.markers[0].position;
-        // Great variable names here GMaps.js cheers for that
-        coords = {
-            lat: pos.d,
-            lng: pos.e
-        };
-    }
-
-    var time = $('.time-field').val() || '00:00:00';
-    var date = $('.date-field').val() || '2000-01-01';
-    var datetime = new Date(date + 'T' + time);
-
-    images[i].metadata = {
-        // Store the contents of all text fields
-        title: $('.title-field').val(),
-        datetime: datetime,
-        // Store the map location
-        location: {
-            name: $('.location-field').val(),
-            coords: coords
-        }
-    };
-
-    // Store all annotator data
-    images[i].annotations = fl.annotator.getExport();
-};
-
 // Loads the saved image data at the given index and puts it back in the DOM
-var restore = function(i) {
+// var restore = function() {
     // Update the annotator with the selected image's annotations
-    makeAnnotator(annos, image);
+    // makeAnnotator(annos, image);
 
     // Clear old markers
-    fl.map.removeMarkers();
+    // fl.map.removeMarkers();
     // Update the map with the selected image's location if one has been set
-    if (coords && coords.lat && coords.lng) {
-        fl.map.addMarker(coords);
-    }
-};
-
-var addImage = function(file) {
-    images.add(file);
-};
+    // if (coords && coords.lat && coords.lng) {
+    //     fl.map.addMarker(coords);
+    // }
+// };
 
 var makeDropzone = function(callback) {
     Dropzone.options.dropimg = {
@@ -128,17 +89,8 @@ $(function() {
 
     api.getFeatures(onFeatureLoad);
 
-    // Initialise the Google map
-    fl.map = $('#map').atlas({
-        height: 300,
-        width: 500,
-        callback: function(text) {
-            $('.location-field').val(text);
-        },
-        style: {
-            classes: 'btn btn-default'
-        }
-    });
+    var map = new FLMap();
+    map.render('#map');
 
     var metadata = new MetadataView();
     metadata.render('.meta');
@@ -149,9 +101,7 @@ $(function() {
     // Send the image metadata to the server when the submit button is clicked
     $('#submit').click(function() {
         // Remove all unchecked images
-        var data = images.filter(function(image) {
-            return image.selected;
-        });
+        var data = gallery.getSelected();
 
         // Require at least one image to be selected
         if (data.length === 0) {
