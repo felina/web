@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/felina/web/issues"
   },
-  "dependencies": {
+  "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jst": "~0.5.1",
     "grunt-contrib-stylus": "0",
@@ -37,5 +37,8 @@
     "chai": "^1.9.0",
     "browserify": "^3.32.1",
     "grunt-browserify": "^1.3.2"
+  },
+  "dependencies": {
+    "felina-js": "0.0.9"
   }
 }

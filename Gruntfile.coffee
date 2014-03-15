@@ -177,6 +177,10 @@ module.exports = (grunt) ->
           require: true
           module: true
 
+        ignores: [
+          'js/image_upload.js'
+        ]
+
       lib_test:
         src: js_src
 
@@ -266,7 +270,7 @@ module.exports = (grunt) ->
 
   # Define custom composite tasks in terms of other tasks
   grunt.registerTask 'default', [
-    # 'newer:jshint'
+    'newer:jshint'
     'jst'
     'newer:stylus'
     'bake'

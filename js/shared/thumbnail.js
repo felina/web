@@ -22,7 +22,7 @@ module.exports = Backbone.View.extend({
         this.$el.toggleClass('active');
     },
     onPick: function() {
-        save();
-        restore();
+        // save();
+        // restore();
     }
 });
