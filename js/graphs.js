@@ -1,6 +1,8 @@
-$(function(){
-    // Load some dummy data and display it as a bar chart
-    fl.barChart('#graph', 'data/data.tsv');
+var fl = require('./shared/common');
+var barChart = require('./shared/bar_chart');
 
-    fl.setSwitcherIcon('graphs');
+$(function(){
+    fl.onPageLoad('graphs');
+    // Load some dummy data and display it as a bar chart
+    barChart('#graph', 'data/data.tsv');
 });

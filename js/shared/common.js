@@ -96,7 +96,7 @@ var setSwitcherIcon = function(page) {
     $('#switcher button').append(icon).append('&nbsp;' + p.title);
 };
 
-var onPageLoad = function() {
+var onPageLoad = function(page) {
     var body = $('body');
     var form = $('#register');
     var doneButton = form.find('.modal-footer button');
@@ -109,6 +109,8 @@ var onPageLoad = function() {
         email: form.find('#email'),
         password: form.find('#password')
     };
+
+    setSwitcherIcon(page);
 
     webshims.polyfill();
 

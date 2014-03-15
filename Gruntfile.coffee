@@ -63,9 +63,6 @@ all_list = lib_list.concat(dir_list).concat(css_list)
 # Compiled templates file
 jst_ = 'jst.js'
 
-# Shared files
-bar_chart = 'js/shared/bar_chart.js'
-
 # Page-specific files
 main = 'js/main.js'
 start_job = 'js/start_job.js'
@@ -107,7 +104,7 @@ dependencies =
   'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, libs.atlas, image_upload]
   'site/upload/executable.html': [libs.dropzone, executable_upload]
   'site/settings.html': [settings]
-  'site/graphs.html': [libs.d3, bar_chart, graphs]
+  'site/graphs.html': [libs.d3, graphs]
   'site/user_profile.html': [user_profile, about_tab, badges_tab, friends_tab, user_badges, user_photos,
                             newsfeed, navbar]
 
@@ -261,6 +258,12 @@ module.exports = (grunt) ->
       compile:
         files:
           'site/js/image_upload.js': 'js/image_upload.js'
+          'site/js/graphs.js': 'js/graphs.js'
+          'site/js/settings.js': 'js/settings.js'
+          'site/js/view_jobs.js': 'js/view_jobs.js'
+          'site/js/define_form.js': 'js/define_form.js'
+          'site/js/start_job.js': 'js/start_job.js'
+          'site/js/executable_upload.js': 'js/executable_upload.js'
 
   require('load-grunt-tasks')(grunt)
 

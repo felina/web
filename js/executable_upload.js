@@ -1,3 +1,5 @@
+var fl = require('./shared/common');
+
 $(function(){
-    fl.setSwitcherIcon('upload/executable');
+    fl.onPageLoad('upload/executable');
 });

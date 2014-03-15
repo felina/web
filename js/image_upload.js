@@ -71,7 +71,7 @@ var makeDropzone = function(callback) {
 };
 
 $(function() {
-    fl.onPageLoad();
+    fl.onPageLoad('upload/image');
 
     var gallery = new Gallery();
     gallery.render('#gallery');
@@ -79,8 +79,6 @@ $(function() {
     makeDropzone(function(file){
         gallery.add(file);
     });
-
-    fl.setSwitcherIcon('upload/image');
 
     api.getFeatures(onFeatureLoad, onFeatureError);
 
