@@ -1,6 +1,6 @@
 window.fl = window.fl || {};
 
-window.fl.api = window.fl_api('http://nl.ks07.co.uk:5000/');
+var api = require('felina-js')();
 
 window.fl.getJSON = function(filename, success) {
     $.ajax({
@@ -31,7 +31,7 @@ window.fl.makeHeader = function(data) {
     var h = $(JST.header_right(data));
 
     h.find('#logout').on('click', function() {
-        fl.api.logout(function(data) {
+        api.logout(function(data) {
             console.log(data);
             location.reload(true);
         });
@@ -161,10 +161,10 @@ $(function() {
 
         if (mode === modes.REGISTER) {
             data.name = fields.name.val();
-            fl.api.register(data, fl.onLogin);
+            api.register(data, fl.onLogin);
         }
         else {
-            fl.api.login(data, fl.onLogin);
+            api.login(data, fl.onLogin);
         }
 
         // Return false to override the default 'Done' behaviour of closing the
@@ -177,7 +177,7 @@ $(function() {
 
     // Check the user's status on page load so that their name and icon can be
     // displayed in the header
-    fl.api.loginCheck(function(data) {
+    api.loginCheck(function(data) {
         console.log(data);
         fl.makeHeader(data);
     });

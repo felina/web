@@ -16,6 +16,7 @@ libs =
   jquery: 'jquery/dist/jquery'
   underscore: 'underscore/underscore'
   bootstrap: 'bootstrap/dist/js/bootstrap'
+  backbone: 'backbone/backbone'
   blueimp: 'blueimp-gallery/js/jquery.blueimp-gallery.min'
   bbs: 'blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min'
   d3: 'd3/d3.min'
@@ -27,7 +28,6 @@ libs =
   alert: 'alert/alert'
   atlas: 'jquery-atlas/src/main'
   tab: 'bootstrap/js/tab'
-  server: 'felina-js/src/main'
 
 # Array to hold values of library map
 lib_list = []
@@ -91,12 +91,12 @@ navbar = 'js/user_profile/navbar/navbar.js'
 # Files used by every page
 shared = [
   libs.jquery
+  libs.underscore
+  libs.backbone
   libs.alert
   libs.modernizr
   libs.webshims
-  libs.underscore
   libs.bootstrap
-  libs.server
   common
 ]
 
@@ -165,6 +165,7 @@ module.exports = (grunt) ->
         globals:
           jQuery: true
           $: true
+          Backbone: true
           JST: true
           fl: true
           d3: true
@@ -173,6 +174,8 @@ module.exports = (grunt) ->
           webshims: true
           alert: true
           console: true
+          require: true
+          module: true
 
       lib_test:
         src: js_src
@@ -253,15 +256,21 @@ module.exports = (grunt) ->
     mocha:
       src: ['test/index.html']
 
+    browserify:
+      compile:
+        files:
+          'site/js/image_upload.js': 'js/image_upload.js'
+          'site/js/shared/common.js': 'js/shared/common.js'
+
   require('load-grunt-tasks')(grunt)
 
   # Define custom composite tasks in terms of other tasks
   grunt.registerTask 'default', [
-    'newer:jshint'
+    # 'newer:jshint'
     'jst'
     'newer:stylus'
     'bake'
-    'copy'
+    'browserify'
     'sails-linker'
   ]
   grunt.registerTask 'release', ['jshint', 'uglify', 'concat']

@@ -17,6 +17,7 @@
     "webshim": "~1.12.3",
     "alert": "*",
     "jquery-atlas": "*",
-    "felina-js": "*"
+    "felina-js": "*",
+    "backbone": "~1.1.2"
   }
 }
