@@ -246,6 +246,11 @@ module.exports = (grunt) ->
           port: 9000
           base: site
           keepalive: true
+      test:
+        options:
+          port: 9001
+          base: '.'
+          keepalive: true
 
     copy:
       default:
