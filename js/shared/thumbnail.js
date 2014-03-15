@@ -5,11 +5,9 @@ module.exports = Backbone.View.extend({
         // var title = this.model.get('metadata').title;
         this.$el.html(JST.gallery_item({
             url: this.model.get('url'),
-            title: 'hi'
+            title: this.model.get('title')
         }));
         var img = this.model.get('image');
-        console.log(img);
-        console.log(this.$('a'));
         this.$('a').append(img);
         return this;
     },

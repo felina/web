@@ -12,8 +12,7 @@ module.exports = Backbone.Model.extend({
         this.set('url', file.name);
         this.set('metadata', new Metadata(file.name));
         this.load();
-        console.log(this.get('image'));
-        // this.image.attr('alt', this.metadata.get('title'));
+        this.get('image').attr('alt', this.get('metadata').get('title'));
     },
     load: function () {
         var file = this.get('file');
