@@ -1,8 +1,6 @@
-window.fl = window.fl || {};
-
 var api = require('felina-js')();
 
-window.fl.getJSON = function(filename, success) {
+var getJSON = function(filename, success) {
     $.ajax({
         type: 'GET',
         url: '/data/' + filename + '.json',
@@ -15,8 +13,10 @@ window.fl.getJSON = function(filename, success) {
     });
 };
 
-fl.getJSON('pages', function (data) {
-    window.fl.pages = data;
+var pages;
+
+getJSON('pages', function (data) {
+    pages = data;
 });
 
 /**
@@ -24,7 +24,7 @@ fl.getJSON('pages', function (data) {
  * and inserts it into the page.
  * @param {Object} data - The data to be displayed in the header.
  */
-window.fl.makeHeader = function(data) {
+var makeHeader = function(data) {
     // Remove the previous contents
     $('header ul.right').remove();
     // Render the new contents from the template
@@ -55,8 +55,8 @@ window.fl.makeHeader = function(data) {
 var makeSwitcher = function(selector) {
     var content = $('<ul>');
 
-    for (var key in fl.pages) {
-        var page = fl.pages[key];
+    for (var key in pages) {
+        var page = pages[key];
         page.name = key;
         content.append(JST.switcher_item(page));
     }
@@ -70,7 +70,7 @@ var makeSwitcher = function(selector) {
     });
 };
 
-window.fl.onLogin = function(data) {
+var onLogin = function(data) {
     // If the login was successful
     if (data.res) {
         // Inform the user
@@ -80,7 +80,7 @@ window.fl.onLogin = function(data) {
 
         // Update the header to replace the login button with the
         // details of the newly logged in user
-        fl.makeHeader(data);
+        makeHeader(data);
     }
     // Login failed
     else {
@@ -90,13 +90,13 @@ window.fl.onLogin = function(data) {
     }
 };
 
-window.fl.setSwitcherIcon = function(page) {
-    var p = fl.pages[page];
+var setSwitcherIcon = function(page) {
+    var p = pages[page];
     var icon = $('<i>').addClass('glyphicon glyphicon-' + p.icon);
     $('#switcher button').append(icon).append('&nbsp;' + p.title);
 };
 
-$(function() {
+var onPageLoad = function() {
     var body = $('body');
     var form = $('#register');
     var doneButton = form.find('.modal-footer button');
@@ -161,10 +161,10 @@ $(function() {
 
         if (mode === modes.REGISTER) {
             data.name = fields.name.val();
-            api.register(data, fl.onLogin);
+            api.register(data, onLogin);
         }
         else {
-            api.login(data, fl.onLogin);
+            api.login(data, onLogin);
         }
 
         // Return false to override the default 'Done' behaviour of closing the
@@ -179,6 +179,15 @@ $(function() {
     // displayed in the header
     api.loginCheck(function(data) {
         console.log(data);
-        fl.makeHeader(data);
+        makeHeader(data);
     });
-});
+};
+
+module.exports = {
+    getJSON: getJSON,
+    makeHeader: makeHeader,
+    makeSwitcher: makeSwitcher,
+    onPageLoad: onPageLoad,
+    setSwitcherIcon: setSwitcherIcon,
+    onLogin: onLogin
+};

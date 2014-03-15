@@ -19,5 +19,14 @@ module.exports = Backbone.View.extend({
         this.$el.appendTo(selector);
 
         return this;
+    },
+    update: function(coords) {
+        // Clear old markers
+        this.map.removeMarkers();
+
+        // Update the map with the selected image's location if one has been set
+        if (coords && coords.lat && coords.lng) {
+            this.map.addMarker(coords);
+        }
     }
 });

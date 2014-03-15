@@ -6,7 +6,8 @@ module.exports = Backbone.View.extend({
         this.$el.appendTo(selector);
         return this;
     },
-    initalize: function() {
+    initalize: function(map) {
+        this.map = map;
         this.fields = {
             title: this.$('.title-field'),
             time: this.$('.time-field'),
@@ -32,8 +33,8 @@ module.exports = Backbone.View.extend({
     },
     readCoords: function() {
         var coords = null;
-        if (fl.map.markers.length > 0) {
-            var pos = fl.map.markers[0].position;
+        if (this.map.markers.length > 0) {
+            var pos = this.map.markers[0].position;
             // Great variable names here GMaps.js cheers for that
             coords = {
                 lat: pos.d,
@@ -57,5 +58,6 @@ module.exports = Backbone.View.extend({
         this.model.set('metadata', meta);
 
         // images[i].annotations = fl.annotator.getExport();
+        makeAnnotator(annos, image);
     }
 });

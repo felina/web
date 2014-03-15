@@ -2,6 +2,7 @@ var MetadataView = require('./shared/metadata_view');
 var Gallery = require('./shared/gallery');
 var FLMap = require('./shared/map');
 var api = require('felina-js')();
+var fl = require('./shared/common');
 
 /**
  * Creates or updates the annotator element with the given image and its
@@ -11,11 +12,11 @@ var api = require('felina-js')();
  * @param {jQuery object} image - A jQuery-wrapped HTML <img> tag with the
  * image to be displayed
  */
-var makeAnnotator = function(annos, image) {
+var makeAnnotator = function(features, annos, image) {
     var args = {
         width: 500,
         height: 500,
-        features: fl.features,
+        features: features,
         style: {
             classes: 'btn btn-default'
         }
@@ -29,44 +30,36 @@ var makeAnnotator = function(annos, image) {
         args.img = image;
     }
 
-    fl.annotator = $('#annotator').annotator(args);
+    return $('#annotator').annotator(args);
 };
 
 var addSpecies = function(){
     var list = $('#species-list');
 
     api.getSpecies(function(data) {
-        if (data.res) {
-            for (var i = 0; i < data.projects.length; i++) {
-                var specie = data.projects[i];
-                $('<option>')
-                    .attr('value', specie)
-                    .text(specie)
-                    .appendTo(list);
-            }
+        if (!data.res) {
+            alert('Failed to load project list');
+            return;
         }
+        _.each(data.projects, function(project){
+            $('<option>').attr('value', project).text(project).appendTo(list);
+        });
     });
 };
 
 var onFeatureLoad = function(data) {
     if (data.res) {
-        fl.features = data.anno;
-        makeAnnotator();
+        console.log('loaded features');
+        makeAnnotator(data.anno);
+    }
+    else {
+        console.log('failed to load features');
     }
 };
 
-// Loads the saved image data at the given index and puts it back in the DOM
-// var restore = function() {
-    // Update the annotator with the selected image's annotations
-    // makeAnnotator(annos, image);
-
-    // Clear old markers
-    // fl.map.removeMarkers();
-    // Update the map with the selected image's location if one has been set
-    // if (coords && coords.lat && coords.lng) {
-    //     fl.map.addMarker(coords);
-    // }
-// };
+var onFeatureError = function() {
+    console.log('failed to load features');
+};
 
 var makeDropzone = function(callback) {
     Dropzone.options.dropimg = {
@@ -78,6 +71,8 @@ var makeDropzone = function(callback) {
 };
 
 $(function() {
+    fl.onPageLoad();
+
     var gallery = new Gallery();
     gallery.render('#gallery');
 
@@ -87,7 +82,7 @@ $(function() {
 
     fl.setSwitcherIcon('upload/image');
 
-    api.getFeatures(onFeatureLoad);
+    api.getFeatures(onFeatureLoad, onFeatureError);
 
     var map = new FLMap();
     map.render('#map');

@@ -64,7 +64,6 @@ all_list = lib_list.concat(dir_list).concat(css_list)
 jst_ = 'jst.js'
 
 # Shared files
-common = 'js/shared/common.js'
 bar_chart = 'js/shared/bar_chart.js'
 
 # Page-specific files
@@ -97,7 +96,6 @@ shared = [
   libs.modernizr
   libs.webshims
   libs.bootstrap
-  common
 ]
 
 # Mapping of HTML files to the scripts they require
@@ -165,6 +163,7 @@ module.exports = (grunt) ->
         globals:
           jQuery: true
           $: true
+          _: true
           Backbone: true
           JST: true
           fl: true
@@ -262,7 +261,6 @@ module.exports = (grunt) ->
       compile:
         files:
           'site/js/image_upload.js': 'js/image_upload.js'
-          'site/js/shared/common.js': 'js/shared/common.js'
 
   require('load-grunt-tasks')(grunt)
 
