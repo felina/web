@@ -30,7 +30,7 @@ $(function(){
             }
             var photoGallery = $(JST['User_Profile/Photo_Gallery/user_photo']({
                 photo_total: '100',
-                photo_url: 'photo_url',
+                photo_url: 'user-profile-gallery.html',
                 photos: photos
             }));
             var photo_wrapper = profTabWrap.find('.photo_wrapper');

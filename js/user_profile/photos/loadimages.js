@@ -28,9 +28,9 @@ $(function() {
 
 
 
-    function addItem(photo) {
+    function addItem(photo, description) {
 
-    	updated = '<li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350"><div data-src="'+photo+'" data-min-width="1300"></div><div data-src="'+photo+'" data-min-width="1000"></div><div data-src="'+photo+'" data-min-width="700"></div><div data-src="'+photo+'" data-min-width="300"></div><div data-src="'+photo+'" data-min-width="200"></div><div data-src="'+photo+'" data-min-width="140"></div><div data-src="'+photo+'"></div><noscript><img src="'+photo+'" alt="img03"/></noscript></div></li>'
+    	updated = '<li><div data-alt="img03" data-description="<h3>'+description+'</h3>" data-max-width="1800" data-max-height="1350"><div data-src="'+photo+'" data-min-width="1300"></div><div data-src="'+photo+'" data-min-width="1000"></div><div data-src="'+photo+'" data-min-width="700"></div><div data-src="'+photo+'" data-min-width="300"></div><div data-src="'+photo+'" data-min-width="200"></div><div data-src="'+photo+'" data-min-width="140"></div><div data-src="'+photo+'"></div><noscript><img src="'+photo+'" alt="img03"/></noscript></div></li>'
         items[0] = items[0].concat(updated);
 
     }
@@ -67,7 +67,7 @@ $(function() {
         success: function(data) {
             if(data.res) {
                 for (var i = 0; i < data.images.length; i++) {
-                    addItem(fl.server + 'img/' + data.images[i].imageid);
+                    addItem(fl.server + 'img/' + data.images[i].imageid, "Hello");
                 }
             }
         }
