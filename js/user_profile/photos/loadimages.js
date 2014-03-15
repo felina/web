@@ -1,8 +1,7 @@
 var api = require('felina-js')();
-var fl = require('../../shared/common');
+// var fl = require('../../shared/common');
 
 $(function() {
-    fl.onPageLoad('user_profile_gallery');
 
     var GammaSettings = {
         // order is important!

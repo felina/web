@@ -34,5 +34,9 @@
     "user_profile": {
         "icon": "user",
         "title": "User profile"
+    },
+    "user_profile_gallery": {
+        "icon": "th",
+        "title": "User gallery"
     }
 }

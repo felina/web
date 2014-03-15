@@ -1,4 +1,8 @@
+var fl = require('./shared/common');
+
 $(function(){
+    fl.onPageLoad('index');
+    
     var images = ['elephant', 'giraffe', 'leopard'];
 
     var randomImage = function(){
@@ -10,8 +14,6 @@ $(function(){
     banner.css({
         'background-image': randomImage()
     });
-
-    fl.setSwitcherIcon('index');
 
     banner.find('button').on('click', function(){
         var data = {
