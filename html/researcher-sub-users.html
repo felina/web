@@ -9,12 +9,9 @@
 	<div class="container">
 	    <div class="row clearfix">
 			<div class="col-md-12 column">
-				<table class="table table-bordered table-hover" id="tab_logic">
+				<table class="table table-bordered table-hover">
 					<thead>
 						<tr >
-							<th class="text-center">
-								#
-							</th>
 							<th class="text-center">
 								Serial Key
 							</th>
@@ -27,28 +24,67 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr id='addr0'>
+						<tr id='addu0'>
 							<td>
-							1
+							<input id='skinput' type="text" name='name0'  placeholder='Serial Key' class="form-control"/>
 							</td>
 							<td>
-							<input type="text" name='name0'  placeholder='Serial Key' class="form-control"/>
+							<input id='nameinput' type="text" name='mail0' placeholder='Name' class="form-control"/>
 							</td>
-							<td>
-							<input type="text" name='mail0' placeholder='Name' class="form-control"/>
-							</td>
-							<td>
-								<a class="btn btn-default">Invalidate User</a>
-								<a class="btn btn-default">Refresh Token</a>
-								<a class="btn btn-default">View Gallery</a>
+							<td style="vertical-align:middle" align="center">
+								<a id="add_user" class="btn btn-default">Add Row</a>
 							</td>
 						</tr>
-	                    <tr id='addr1'></tr>
+	                    <tr id='addu1'></tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
-		<a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
+	</div>
+
+	<!-- Previously added users -->
+
+		<div class="container">
+	    <div class="row clearfix">
+			<div class="col-md-12 column">
+				<table class="table table-bordered table-hover" id="tab_logic">
+					<thead>
+						<tr >
+							<th class="text-center">
+								#
+							</th>
+							<th class="text-center">
+								Serial Key
+							</th>
+							<th class="text-center">
+								Name
+							</th>
+							<th class="text-center" style="vertical-align:middle" align="center">
+								Options
+							</th>
+						</tr>
+					</thead>
+					<tbody><tr id='addr0'>
+					<!-- 	<td>
+						1
+						</td>
+						<td>
+							<input id='skcontainer0' type='text' placeholder='Serial Key' class='form-control input-md' disabled/> 
+						</td>
+						<td>
+							<input id='namecontainer0' type='text' placeholder='Name'  class='form-control input-md' disabled>
+						</td> 
+						<td style='vertical-align:middle' align='center'>
+							<a class='btn btn-default'>Invalidate User</a>
+							<a class='btn btn-default'>Refresh Token</a>
+							<a class='btn btn-default'>View Gallery</a>
+						</td> -->
+					</tr>
+                    <tr id='addr1'></tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 		<!--(bake shared/footer.html)-->
 	</div>
 
