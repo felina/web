@@ -3,10 +3,6 @@
 build: favicon
 	grunt
 
-# vendor/gammagallery/js \
-# vendor/gammagallery/font \
-# vendor/gammagallery/css \
-
 # Deletes files that are the result of a build process
 clean:
 	rm -rf site

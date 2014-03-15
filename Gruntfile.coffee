@@ -28,13 +28,13 @@ libs =
   alert: 'alert/alert'
   atlas: 'jquery-atlas/src/main'
   tab: 'bootstrap/js/tab'
-  #gammagallery
-  gamma: 'gammagallery/js/gamma'
-  history: 'gammagallery/js/jquery.history'
-  masonry: 'gammagallery/js/jquery.masonry.min'
-  ppcustom: 'gammagallery/js/jquerypp.custom'
-  js_url: 'gammagallery/js/js-url.min'
-  modernizr_custom: 'gammagallery/js/modernizr.custom.70736'
+  # gammagallery
+  gamma: 'gamma/js/gamma'
+  history: 'gamma/js/jquery.history'
+  masonry: 'gamma/js/jquery.masonry.min'
+  ppcustom: 'gamma/js/jquerypp.custom'
+  js_url: 'gamma/js/js-url.min'
+  modernizr_custom: 'gamma/js/modernizr.custom.70736'
 
 # Array to hold values of library map
 lib_list = []
@@ -44,6 +44,7 @@ dir_list = [
   vendor + 'dropzone'
   vendor + 'webshim/js-webshim/minified'
   vendor + 'bootstrap/dist/fonts'
+  vendor + 'gamma'
   'img'
 ]
 
@@ -80,22 +81,22 @@ scripts =
   define_form: 'define_form'
   settings: 'settings'
   graphs: 'graphs'
+  # Required for user profile
+  user_profile: 'user_profile/user_profile'
+  user_gallery: 'user_gallery'
+  about_tab: 'user_profile/tabs/about_tab'
+  badges_tab: 'user_profile/tabs/badges_tab'
+  friends_tab: 'user_profile/tabs/friends_tab'
+  user_badges: 'user_profile/badges/user_badges'
+  user_photos: 'user_profile/photos/user_photos'
+  newsfeed: 'user_profile/newsfeed/newsfeed'
+  navbar: 'user_profile/navbar/navbar'
+  about: 'user_profile/About/user_about'
+  loadimages: 'user_profile/photos/loadimages'
+  sub_user: 'researcher-sub-users'
 
 for k, v of scripts
   scripts[k] = 'js/' + v + '.js'
-
-# Required for user profile
-user_profile = 'js/user_profile/user_profile.js'
-user_gallery = 'js/user_gallery.js'
-about_tab = 'js/user_profile/tabs/about_tab.js'
-badges_tab = 'js/user_profile/tabs/badges_tab.js'
-friends_tab = 'js/user_profile/tabs/friends_tab.js'
-user_badges = 'js/user_profile/badges/user_badges.js'
-user_photos = 'js/user_profile/photos/user_photos.js'
-newsfeed = 'js/user_profile/newsfeed/newsfeed.js'
-navbar = 'js/user_profile/navbar/navbar.js'
-about = 'js/user_profile/About/user_about.js'
-loadimages = 'js/user_profile/photos/loadimages.js'
 
 # Researcher sub users
 sub_user = 'js/researcher-sub-users.js'
@@ -119,9 +120,9 @@ dependencies =
   'site/view_jobs.html': [scripts.view_jobs]
   'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, libs.atlas, scripts.image_upload]
   'site/upload/executable.html': [libs.dropzone, scripts.executable_upload]
-  'site/user_profile.html': [user_profile, about_tab, badges_tab, friends_tab, user_badges, user_photos, newsfeed, navbar, about]
-  'site/user_profile_gallery.html': [libs.gamma, libs.history, libs.masonry, libs.ppcustom, libs.js_url, libs.modernizr_custom, loadimages]
-  'site/researcher_sub_users.html': [sub_user]
+  'site/user_profile.html': [scripts.user_profile, scripts.about_tab, scripts.badges_tab, scripts.friends_tab, scripts.user_badges, scripts.user_photos, scripts.newsfeed, scripts.navbar, scripts.about]
+  'site/user_profile_gallery.html': [libs.gamma, libs.history, libs.masonry, libs.ppcustom, libs.js_url, libs.modernizr_custom, scripts.loadimages]
+  'site/researcher_sub_users.html': [scripts.sub_user]
 
 # Add the shared dependencies to every page
 for k, v of dependencies
@@ -283,6 +284,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'default', [
     'newer:jshint'
     'jst'
+    'copy'
     'newer:stylus'
     'bake'
     'browserify'

@@ -1,22 +1,27 @@
+var api = require('felina-js')();
+var fl = require('../../shared/common');
+
 $(function() {
+    fl.onPageLoad('user_profile_gallery');
+
     var GammaSettings = {
-            // order is important!
-            viewport : [ {
-                width : 1200,
-                columns : 5
-            }, {
-                width : 1200,
-                columns : 4
-            }, {
-                width : 1200,
-                columns : 3
-            }, {
-                width : 1200,
-                columns : 2
-            }, {
-                width : 1200,
-                columns : 2
-            } ]
+        // order is important!
+        viewport : [ {
+            width : 1200,
+            columns : 5
+        }, {
+            width : 1200,
+            columns : 4
+        }, {
+            width : 1200,
+            columns : 3
+        }, {
+            width : 1200,
+            columns : 2
+        }, {
+            width : 1200,
+            columns : 2
+        } ]
     };
     // Example how to add more items (just a dummy):
     var page = 0;
@@ -40,19 +45,11 @@ $(function() {
         });
     }
 
-    $.ajax({
-        type: 'GET',
-        dataType: "json",
-        url: fl.server + 'images',
-        xhrFields: {
-            withCredentials: true
-        },
-        success: function(data) {
-            if(data.res) {
-                for (var i = 0; i < data.images.length; i++) {
-                    addItem(fl.server + 'img/' + data.images[i].imageid, "Hello");
-                }
-            }
+    api.getImages(function(data) {
+        if(data.res) {
+            _.each(data.images, function (image) {
+                addItem(api.url + 'img/' + image.imageid, "Hello");
+            });
         }
     });
 

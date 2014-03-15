@@ -1,9 +1,12 @@
+var fl = require('../shared/common');
+var api = require('felina-js')();
+
 $(function(){
     var profile;
 
-    fl.setSwitcherIcon('user_profile');
+    fl.onPageLoad('user_profile');
 
-    fl.loginCheck(function(data) {
+    api.loginCheck(function(data) {
         if(data.res) {
             // Only works currently if user logged in, will work later
             profile = $(JST['User_Profile/User_Cover/user_profile']({
