@@ -1,5 +1,7 @@
 var api = require('felina-js')();
-var LoginForm = require('./loginform');
+var lf = require('./loginform');
+var LoginForm = lf.LoginForm;
+var makeHeader = lf.makeHeader;
 
 var getJSON = function(filename, success) {
     $.ajax({
@@ -19,32 +21,6 @@ var pages;
 getJSON('pages', function (data) {
     pages = data;
 });
-
-/**
- * Creates the necessary DOM structure for the contents of the page header,
- * and inserts it into the page.
- * @param {Object} data - The data to be displayed in the header.
- */
-var makeHeader = function(data) {
-    // Remove the previous contents
-    $('header ul.right').remove();
-    // Render the new contents from the template
-    var h = $(JST.header_right(data));
-
-    h.find('#logout').on('click', function() {
-        api.logout(function(data) {
-            console.log(data);
-            location.reload(true);
-        });
-    });
-
-    // Hide the switcher if the user isn't logged in so that unauthorized
-    // users can't access other areas of the site.
-    $('#switcher').toggle(data.res);
-
-    // Add the new content to the header
-    $('header').append(h);
-};
 
 /**
  * Creates the necessary DOM structure for the page switcher, using data from

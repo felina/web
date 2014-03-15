@@ -1,12 +1,37 @@
-var fl = require('./common');
 var api = require('felina-js')();
+
+/**
+ * Creates the necessary DOM structure for the contents of the page header,
+ * and inserts it into the page.
+ * @param {Object} data - The data to be displayed in the header.
+ */
+var makeHeader = function(data) {
+    // Remove the previous contents
+    $('header ul.right').remove();
+    // Render the new contents from the template
+    var h = $(JST.header_right(data));
+
+    h.find('#logout').on('click', function() {
+        api.logout(function(data) {
+            console.log(data);
+            location.reload(true);
+        });
+    });
+
+    // Hide the switcher if the user isn't logged in so that unauthorized
+    // users can't access other areas of the site.
+    $('#switcher').toggle(data.res);
+
+    // Add the new content to the header
+    $('header').append(h);
+};
 
 var modes = {
     LOGIN: 1,
     REGISTER: 2
 };
 
-module.exports = Backbone.View.extend({
+var LoginForm = Backbone.View.extend({
     initialize: function() {
         this.$el = $('#register');
         this.fields = {
@@ -19,9 +44,7 @@ module.exports = Backbone.View.extend({
             password: this.$('#password')
         };
 
-        this.fields.loginmode.trigger('click');
-
-        this.mode = modes.LOGIN;
+        this.loginMode();
     },
     events: {
         'click #loginmode': 'loginMode',
@@ -74,11 +97,11 @@ module.exports = Backbone.View.extend({
             // Inform the user
             alert('Logged in successfully');
             // Hide the login modal
-            this.$el.modal('hide');
+            $('#register').modal('hide');
 
             // Update the header to replace the login button with the
             // details of the newly logged in user
-            fl.makeHeader(data);
+            makeHeader(data);
         }
         // Login failed
         else {
@@ -88,3 +111,8 @@ module.exports = Backbone.View.extend({
         }
     }
 });
+
+module.exports = {
+    LoginForm: LoginForm,
+    makeHeader: makeHeader
+};
