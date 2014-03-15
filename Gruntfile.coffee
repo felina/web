@@ -5,6 +5,7 @@ site = 'site/'
 # File extensions
 js = '.js'
 css = '.css'
+coffee = '.coffee'
 # Bash wildcard patterns to match all
 # JS files
 js_src = 'js/**/*.js'
@@ -42,7 +43,7 @@ tests = [
 
 test_map = {}
 for test in tests
-  test_map['test/build/' + test + js] = 'test/specs/' + test + js
+  test_map['test/build/' + test + js] = 'test/specs/' + test + coffee
 
 # Array to hold values of library map
 lib_list = []
@@ -296,6 +297,8 @@ module.exports = (grunt) ->
         files: browserify_map
       test:
         files: test_map
+        options:
+          transform: ['coffeeify']
 
   require('load-grunt-tasks')(grunt)
 
