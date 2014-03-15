@@ -9,6 +9,8 @@
     <div id="mocha"></div>
     <!-- Import vendor files -->
     <script src="../vendor/jquery/dist/jquery.js"></script>
+    <script src="../vendor/underscore/underscore.js"></script>
+    <script src="../vendor/backbone/backbone.js"></script>
 
     <!-- Import test harness files -->
     <script src="../node_modules/grunt-mocha/node_modules/mocha/mocha.js"></script>
@@ -20,7 +22,7 @@
         chai.should();
     </script>
     <!-- Import test cases -->
-    <script src="start.js"></script>
+    <script src="/specs/metadata.js"></script>
     <!-- Start the tests -->
     <script>
         mocha.checkLeaks();

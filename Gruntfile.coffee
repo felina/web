@@ -36,6 +36,14 @@ libs =
   js_url: 'gamma/js/js-url.min'
   modernizr_custom: 'gamma/js/modernizr.custom.70736'
 
+tests = [
+  'metadata'
+]
+
+test_map = {}
+for test in tests
+  test_map['test/build/' + test + js] = 'test/specs/' + test + js
+
 # Array to hold values of library map
 lib_list = []
 
@@ -275,10 +283,14 @@ module.exports = (grunt) ->
       src: ['test/index.html']
       options:
         reporter: 'Spec'
+        log: true
+        logErrors: true
 
     browserify:
       compile:
         files: browserify_map
+      test:
+        files: test_map
 
   require('load-grunt-tasks')(grunt)
 
@@ -289,8 +301,8 @@ module.exports = (grunt) ->
     'copy'
     'newer:stylus'
     'bake'
-    'browserify'
+    'browserify:compile'
     'sails-linker'
   ]
   grunt.registerTask 'release', ['jshint', 'uglify', 'concat']
-  grunt.registerTask 'test', ['mocha']
+  grunt.registerTask 'test', ['browserify:test', 'mocha']
