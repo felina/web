@@ -4,7 +4,10 @@ module.exports = Backbone.Model.extend({
         datetime: new Date(),
         location: {
             name: 'Unknown',
-            coords: null
+            coords: {
+                lat: 0,
+                lng: 0
+            }
         }
     },
     initalize: function(file) {
