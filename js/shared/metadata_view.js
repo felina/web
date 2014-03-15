@@ -56,8 +56,5 @@ module.exports = Backbone.View.extend({
         });
 
         this.model.set('metadata', meta);
-
-        // images[i].annotations = fl.annotator.getExport();
-        // makeAnnotator(annos, image);
     }
 });

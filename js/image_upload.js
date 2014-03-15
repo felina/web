@@ -1,37 +1,15 @@
-var MetadataView = require('./shared/metadata_view');
-var Gallery = require('./shared/gallery');
-var FLMap = require('./shared/map');
 var api = require('felina-js')();
 var fl = require('./shared/common');
 
-/**
- * Creates or updates the annotator element with the given image and its
- * annotations
- * @param {Object} annos - The annotation data to be loaded into the
- * annotator - used for restoring the progress on previously annotated images
- * @param {jQuery object} image - A jQuery-wrapped HTML <img> tag with the
- * image to be displayed
- */
-var makeAnnotator = function(features, annos, image) {
-    var args = {
-        width: 500,
-        height: 500,
-        features: features,
-        style: {
-            classes: 'btn btn-default'
-        }
-    };
+var MetadataView = require('./shared/metadata_view');
+var Gallery = require('./shared/gallery');
+var FLMap = require('./shared/map');
+var Annotator = require('./shared/annotator');
 
-    if (annos) {
-        args.annotations = annos;
-    }
-
-    if (image) {
-        args.img = image;
-    }
-
-    return $('#annotator').annotator(args);
-};
+var ann = new Annotator();
+var gallery = new Gallery();
+var map = new FLMap();
+var metadata = new MetadataView();
 
 var addSpecies = function(){
     var list = $('#species-list');
@@ -50,7 +28,8 @@ var addSpecies = function(){
 var onFeatureLoad = function(data) {
     if (data.res) {
         console.log('loaded features');
-        makeAnnotator(data.anno);
+        ann.setFeatures(data.anno);
+        ann.render().$el.appendTo('#annotator');
     }
     else {
         console.log('failed to load features');
@@ -73,19 +52,14 @@ var makeDropzone = function(callback) {
 $(function() {
     fl.onPageLoad('upload/image');
 
-    var gallery = new Gallery();
-    gallery.render('#gallery');
-
     makeDropzone(function(file){
-        gallery.add(file);
+        gallery.add(file, ann);
     });
 
     api.getFeatures(onFeatureLoad, onFeatureError);
 
-    var map = new FLMap();
+    gallery.render('#gallery');
     map.render('#map');
-
-    var metadata = new MetadataView();
     metadata.render('.meta');
 
     // Pull in the list of species from the server and add it to the dropdown

@@ -9,14 +9,15 @@ module.exports = Backbone.View.extend({
         this.collection = new ImageSet();
         this.i = 0;
     },
-    add: function(file) {
+    add: function(file, annotator) {
         if (this.i === 0){
             this.$el.empty();
         }
         var image = new FLImage(file);
         // this.collection.add(image);
         var thumb = new Thumbnail({
-            model: image
+            model: image,
+            annotator: annotator
         });
         thumb.render();
         this.$el.append(thumb.$el);
