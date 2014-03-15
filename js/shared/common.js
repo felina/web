@@ -1,4 +1,5 @@
 var api = require('felina-js')();
+var LoginForm = require('./loginform');
 
 var getJSON = function(filename, success) {
     $.ajax({
@@ -70,26 +71,6 @@ var makeSwitcher = function(selector) {
     });
 };
 
-var onLogin = function(data) {
-    // If the login was successful
-    if (data.res) {
-        // Inform the user
-        alert('Logged in successfully');
-        // Hide the login modal
-        $('#register').modal('hide');
-
-        // Update the header to replace the login button with the
-        // details of the newly logged in user
-        makeHeader(data);
-    }
-    // Login failed
-    else {
-        // Inform the user
-        alert('Invalid username or password');
-        console.log(data);
-    }
-};
-
 var setSwitcherIcon = function(page) {
     var p = pages[page];
     var icon = $('<i>').addClass('glyphicon glyphicon-' + p.icon);
@@ -97,85 +78,12 @@ var setSwitcherIcon = function(page) {
 };
 
 var onPageLoad = function(page) {
-    var body = $('body');
-    var form = $('#register');
-    var doneButton = form.find('.modal-footer button');
-    var namewrap = form.find('#namewrap');
-    var loginmode = form.find('#loginmode');
-    var registermode = form.find('#registermode');
+    new LoginForm();
 
-    var fields = {
-        name: form.find('#name'),
-        email: form.find('#email'),
-        password: form.find('#password')
-    };
-
+    makeSwitcher('#switcher');
     setSwitcherIcon(page);
 
     webshims.polyfill();
-
-    // Listen to the return keypress in any of the login fields and submit
-    // the form when this happens
-    var onEnter = function(e) {
-        if (e.charCode === 13) {
-            doneButton.trigger('click');
-        }
-    };
-
-    for (var field in fields) {
-        fields[field].on('keypress', onEnter);
-    }
-
-    var modes = {
-        LOGIN: 1,
-        REGISTER: 2
-    };
-
-    var mode = null;
-
-    makeSwitcher('#switcher');
-
-    loginmode.on('click', function() {
-        namewrap.hide();
-        doneButton.text('Log in');
-        loginmode.addClass('btn-primary');
-        registermode.removeClass('btn-primary');
-        mode = modes.LOGIN;
-    });
-
-    form.find('#registermode').on('click', function() {
-        namewrap.show();
-        doneButton.text('Register');
-        loginmode.removeClass('btn-primary');
-        registermode.addClass('btn-primary');
-        mode = modes.REGISTER;
-    });
-
-    loginmode.trigger('click');
-
-    // Bind an event to the submit button in the login form to send the username
-    // and password to the server
-    doneButton.on('click', function() {
-        var data = {
-            email: fields.email.val(),
-            pass: fields.password.val()
-        };
-
-        if (mode === modes.REGISTER) {
-            data.name = fields.name.val();
-            api.register(data, onLogin);
-        }
-        else {
-            api.login(data, onLogin);
-        }
-
-        // Return false to override the default 'Done' behaviour of closing the
-        // modal -- we want to only close it if the login succeeds.
-        return false;
-    });
-
-    // Add the login form to the page
-    body.append(form);
 
     // Check the user's status on page load so that their name and icon can be
     // displayed in the header
@@ -189,7 +97,5 @@ module.exports = {
     getJSON: getJSON,
     makeHeader: makeHeader,
     makeSwitcher: makeSwitcher,
-    onPageLoad: onPageLoad,
-    setSwitcherIcon: setSwitcherIcon,
-    onLogin: onLogin
+    onPageLoad: onPageLoad
 };
