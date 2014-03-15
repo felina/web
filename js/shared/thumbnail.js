@@ -1,12 +1,13 @@
-window.fl.Thumbnail = Backbone.View.extend({
+module.exports = Backbone.View.extend({
     tagName: 'div',
     className: 'gallery-item',
     render: function() {
+        // var title = this.model.get('metadata').title;
         this.$el.html(JST.gallery_item({
-            url: image.url,
-            title: image.metadata.title
+            url: this.model.get('url'),
+            title: 'hi'
         }));
-        this.$('a').append(img.attr('alt', image.metadata.title));
+        this.$('a').append(this.model.get('image'));
         return this;
     },
     events: {

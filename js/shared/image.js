@@ -12,6 +12,7 @@ module.exports = Backbone.Model.extend({
         this.url = file.name;
         this.metadata = new Metadata(file.name);
         this.load();
+        // this.image.attr('alt', this.metadata.get('title'));
     },
     load: function () {
         var img = $('<img>')[0];

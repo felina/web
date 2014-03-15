@@ -60,8 +60,6 @@ var onFeatureLoad = function(data) {
 // Stores all currently entered image metadata, including text fields, map
 // location and annotations
 var save = function() {
-    var i = fl.active_index;
-
     // If a location has been chosen on the map, store it
     var coords = null;
     if (fl.map.markers.length > 0) {
@@ -163,6 +161,4 @@ $(function() {
 
         api.uploadMetadata(data);
     });
-
-    fl.active_index = 0;
 });
