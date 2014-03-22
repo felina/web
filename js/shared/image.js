@@ -7,18 +7,40 @@ module.exports = Backbone.Model.extend({
         metadata: null,
         annotations: {}
     },
-    initialize: function(file) {
-        if (typeof file === 'undefined' || file === null) {
-            throw new Error('No file given');
+    initialize: function(opts) {
+        opts = opts || {};
+
+        if (!opts.file && !opts.src) {
+            throw new Error('Please specify either a file or a source URL for the image');
         }
 
-        this.set('file', file);
-        this.set('url', file.name);
-        this.set('metadata', new Metadata(file.name));
-        this.load();
+        if (opts.file) {
+            var file = opts.file;
+
+            this.set('file', file);
+            this.set('src', file.name);
+            this.set('metadata', new Metadata(file.name));
+            this.loadFromFile();
+        }
+        else {
+            var src = opts.src;
+
+            if (src.length === 0) {
+                throw new Error('Invalid URL: ' + src);
+            }
+
+            this.set('metadata', new Metadata(src));
+            this.loadFromSrc(src);
+        }
+
         this.get('image').attr('alt', this.get('metadata').get('title'));
     },
-    load: function () {
+    loadFromSrc: function (src) {
+        var img = $('<img>')[0];
+        img.src = src;
+        this.set('image', $(img));
+    },
+    loadFromFile: function () {
         var file = this.get('file');
         console.log(file);
 

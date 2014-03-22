@@ -5,20 +5,25 @@ var FLImage = require('./image');
 module.exports = Backbone.View.extend({
     tagName: 'div',
     className: 'gallery',
-    initialize: function() {
+    initialize: function(opts) {
+        opts = opts || {};
+
+        this.annotator = opts.annotator;
+        this.metadataView = opts.metadataView;
+
         this.collection = new ImageSet();
         this.i = 0;
     },
-    add: function(file, annotator, mv) {
+    add: function(opts) {
         if (this.i === 0){
             this.$el.empty();
         }
-        var image = new FLImage(file);
+        var image = new FLImage(opts);
         this.collection.add(image);
         var thumb = new Thumbnail({
             model: image,
-            annotator: annotator,
-            metadataView: mv
+            annotator: this.annotator,
+            metadataView: this.metadataView
         });
         thumb.render();
         this.$el.append(thumb.$el);

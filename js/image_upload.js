@@ -5,12 +5,19 @@ var MetadataView = require('./shared/metadata_view');
 var Gallery = require('./shared/gallery');
 var FLMap = require('./shared/map');
 var Annotator = require('./shared/annotator');
+var URLUploader = require('./shared/url_uploader');
 
 var ann = new Annotator();
-var gallery = new Gallery();
 var map = new FLMap();
 var metadata = new MetadataView({
     map: map
+});
+var gallery = new Gallery({
+    annotator: ann,
+    metadataView: metadata
+});
+var urlUploader = new URLUploader({
+    gallery: gallery
 });
 
 var addSpecies = function(){
@@ -55,7 +62,7 @@ $(function() {
     fl.onPageLoad('upload/image');
 
     makeDropzone(function(file){
-        gallery.add(file, ann, metadata);
+        gallery.add({file: file});
     });
 
     api.getFeatures(onFeatureLoad, onFeatureError);
@@ -63,6 +70,7 @@ $(function() {
     gallery.render('#gallery');
     map.render('#map');
     metadata.render('.meta');
+    urlUploader.render('#upload');
 
     // Pull in the list of species from the server and add it to the dropdown
     addSpecies();
