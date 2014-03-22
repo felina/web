@@ -1,4 +1,5 @@
-// $(document).ready
+// var fl = require('./shared/common');
+
 $(function(){
 
     var i=1;
