@@ -115,23 +115,30 @@ footer a
 #gallery
   padding: margin_mid
 
-.gallery-item
-  width: thumbnail_size
-  float: left
-  margin: 0 margin_mid margin_mid 0
-
-  img
+  .gallery-item
     width: thumbnail_size
-    height: thumbnail_size
-    border: 3px solid gallery_inactive
-    -webkit-filter: grayscale(1)
-    transition: all 0.2s
+    float: left
+    margin: 0 margin_mid margin_mid 0
 
-  input
-    margin: margin_small 5px
+    img
+      width: thumbnail_size
+      height: thumbnail_size
+      border: 3px solid gallery_inactive
+      -webkit-filter: grayscale(1)
+      transition: all 0.2s
 
-  div
-    background: gallery_inactive
+    input
+      margin: margin_small 5px
+
+    div
+      background: gallery_inactive
+
+  .active
+    div
+      background: gallery_active
+    img
+      border-color: gallery_active !important
+      -webkit-filter: grayscale(0) !important
 
 .button-wrap
   padding: margin_mid
