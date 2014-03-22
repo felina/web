@@ -1,7 +1,6 @@
 var api = require('felina-js')();
-var lf = require('./loginform');
-var LoginForm = lf.LoginForm;
-var makeHeader = lf.makeHeader;
+var LoginForm = require('./loginform');
+var makeHeader = require('./loginutils').makeHeader;
 
 var getJSON = function(filename, success) {
     $.ajax({

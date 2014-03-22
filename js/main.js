@@ -1,5 +1,6 @@
 var fl = require('./shared/common');
-var api = require('felina-js');
+var api = require('felina-js')();
+var onLogin = require('./shared/loginutils').onLogin;
 
 $(function(){
     fl.onPageLoad('index');
@@ -21,6 +22,9 @@ $(function(){
             email: banner.find('#email').val(),
             pass: banner.find('#password').val()
         };
-        api.login('login', data);
+
+        api.login(data, onLogin, function(err){
+            console.error(err);
+        });
     });
 });
