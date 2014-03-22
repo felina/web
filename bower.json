@@ -19,6 +19,7 @@
     "jquery-atlas": "*",
     "felina-js": "*",
     "backbone": "~1.1.2",
-    "gamma": "*"
+    "gamma": "*",
+    "bootstrap-multiselect": "~0.9.3"
   }
 }
