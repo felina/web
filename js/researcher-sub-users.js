@@ -11,11 +11,6 @@ $(function(){
       }
     });
 
-    // Capitalizes first letter of string
-    function capitalize(s)
-    {
-        return s[0].toUpperCase() + s.slice(1);
-    }
 
     // Deselects all elements picked in dropdown
     function multiselect_deselectAll($el) {
@@ -29,13 +24,13 @@ $(function(){
     // Adds the user to the below table
     $("#add_user").click(function(){
 
-      var contents = $("#skinput").val();
+      var contents = $("#skinput").val() + "@felina.io";
       var name = $("#nameinput").val();
       var projects = $('#projectselect').val();
 
       //Makes sure that there is values added in the three fields
       if (contents && name && projects) {
-        $('#addr'+i).html("<td>"+ i +"</td><td><input id='skcontainer"+i+"' name='serialkey"+i+"' type='text' placeholder='Serial Key' class='form-control input-md' disabled/> </td><td><input id='namecontainer"+i+"' name='name"+i+"' type='text' placeholder='Name'  class='form-control input-md' disabled></td><td style='verticle-align:middle' align='center'>"+projects+"</td> <td style='vertical-align:middle' align='center'><a class='btn btn-default'>Invalidate User</a><a class='btn btn-default'>Refresh Token</a><a class='btn btn-default'>View Gallery</a></td>");
+        $('#addr'+i).html("<td>"+ i +"</td><td><input id='skcontainer"+i+"' name='serialkey"+i+"' type='text' placeholder='Serial Key' class='form-control input-md' disabled/> </td><td><input id='namecontainer"+i+"' name='name"+i+"' type='text' placeholder='Name'  class='form-control input-md' disabled></td><td style='verticle-align:middle' align='center'><a class='btn btn-default'>"+projects+"</a></td> <td style='vertical-align:middle' align='center'><a class='btn btn-default'>Invalidate User</a><a class='btn btn-default'>Refresh Token</a><a class='btn btn-default'>View Gallery</a></td>");
 
         $("#skcontainer"+i).val(contents);
 
@@ -53,38 +48,53 @@ $(function(){
     });
 
     // Multiselect
-     $('#projectselect').multiselect({
+    //  $('#projectselect').multiselect({
+    //   buttonClass: 'btn',
+    //   buttonWidth: '250px', //MAY NEED TO CHANGE BACK TO AUTO
+    //   enableFiltering: true,
+    //   buttonText: function(options) {
+    //     if (options.length === 0) {
+    //       return 'None selected <b class="caret"></b>';
+    //     }
+    //     else if (options.length > 6) {
+    //       return options.length + ' selected <b class="caret"></b>';
+    //     }
+    //     else {
+    //       var selected = '';
+    //       options.each(function() {
+    //         selected += $(this).text() + ', ';
+    //       });
+    //       return selected.substr(0, selected.length -2) + ' <b class="caret"></b>';
+    //     }
+    //   },
+    //   onChange: function(element, checked) {
+    //     if(checked === true) {
+    //     // action taken here if true
+    //     }
+    //     else if (checked === false) {
+    //       if (confirm('Do you wish to deselect the element?')) {
+    //       // action taken here
+    //       }
+    //       else {
+    //         $("#projectselect").multiselect('select', element.val());
+    //         return false;
+    //       }
+    //     }
+    //   }
+    // });
+
+    $('#projectselect').multiselect({
       buttonClass: 'btn',
       buttonWidth: '250px', //MAY NEED TO CHANGE BACK TO AUTO
       enableFiltering: true,
-      buttonText: function(options) {
-        if (options.length === 0) {
-          return 'None selected <b class="caret"></b>';
-        }
-        else if (options.length > 6) {
-          return options.length + ' selected <b class="caret"></b>';
-        }
-        else {
-          var selected = '';
-          options.each(function() {
-            selected += $(this).text() + ', ';
-          });
-          return selected.substr(0, selected.length -2) + ' <b class="caret"></b>';
-        }
-      },
-      onChange: function(element, checked) {
-        if(checked === true) {
-        // action taken here if true
-        }
-        else if (checked === false) {
-          if (confirm('Do you wish to deselect the element?')) {
-          // action taken here
+      onChange: function(option, checked) {
+        var values = [];
+        $('#projectselect option').each(function() {
+          if ($(this).val() !== option.val()) {
+            values.push($(this).val());
           }
-          else {
-            $("#projectselect").multiselect('select', element.val());
-            return false;
-          }
-        }
+        });
+        $('#projectselect').multiselect('deselect', values);
       }
     });
 

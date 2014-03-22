@@ -128,6 +128,7 @@ dependencies =
   'site/user_profile.html': [scripts.user_profile, scripts.about_tab, scripts.badges_tab, scripts.friends_tab, scripts.user_badges, scripts.user_photos, scripts.newsfeed, scripts.navbar, scripts.about]
   'site/user_profile_gallery.html': [libs.gamma, libs.history, libs.masonry, libs.ppcustom, libs.js_url, libs.modernizr_custom, scripts.loadimages, scripts.user_gallery]
   'site/researcher_sub_users.html': [scripts.sub_user, libs.multiselect, libs.prettify ]
+  'site/project_preferences.html': []
 
 # Add the shared dependencies to every page
 for k, v of dependencies
