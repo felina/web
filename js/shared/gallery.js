@@ -14,7 +14,7 @@ module.exports = Backbone.View.extend({
             this.$el.empty();
         }
         var image = new FLImage(file);
-        // this.collection.add(image);
+        this.collection.add(image);
         var thumb = new Thumbnail({
             model: image,
             annotator: annotator,
@@ -32,7 +32,6 @@ module.exports = Backbone.View.extend({
     },
     getSelected: function() {
         return this.collection.filter(function(image) {
-            console.log(image.get('selected'));
             return image.get('selected');
         });
     }

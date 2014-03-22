@@ -44,7 +44,7 @@ var onFeatureError = function() {
 
 var makeDropzone = function(callback) {
     Dropzone.options.dropimg = {
-        url: fl.server + 'upload/img',
+        url: fl.server + 'img',
         acceptedFiles: 'image/*',
         maxFilesize: 4096,
         accept: callback
@@ -70,7 +70,9 @@ $(function() {
     // Send the image metadata to the server when the submit button is clicked
     $('#submit').click(function() {
         // Remove all unchecked images
-        var data = gallery.getSelected();
+        var data = gallery.getSelected().map(function(image) {
+            return image.get('metadata').toJSON();
+        });
 
         // Require at least one image to be selected
         if (data.length === 0) {
@@ -78,6 +80,8 @@ $(function() {
             return;
         }
 
-        api.uploadMetadata(data);
+        api.uploadMetadata(data, function(d) {
+            console.log(d);
+        });
     });
 });
