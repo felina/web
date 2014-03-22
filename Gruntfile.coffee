@@ -1,3 +1,5 @@
+fs = require('fs')
+
 # Install directory of all third party-assets
 vendor = 'vendor/'
 # Directory to build the site to
@@ -6,10 +8,10 @@ site = 'site/'
 js = '.js'
 css = '.css'
 coffee = '.coffee'
-# Bash wildcard patterns to match all
-# JS files
+# Bash wildcard patterns to match all...
+# ...JS files
 js_src = 'js/**/*.js'
-# HTML templates
+# ...HTML templates
 templates = 'templates/**/*.html'
 
 # Library paths
@@ -37,13 +39,11 @@ libs =
   js_url: 'gamma/js/js-url.min'
   modernizr_custom: 'gamma/js/modernizr.custom.70736'
 
-tests = [
-  'metadata'
-]
+tests = fs.readdirSync('test/specs')
 
 test_map = {}
 for test in tests
-  test_map['test/build/' + test + js] = 'test/specs/' + test + coffee
+  test_map['test/build/' + test.replace('coffee', 'js')] = 'test/specs/' + test
 
 # Array to hold values of library map
 lib_list = []
