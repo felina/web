@@ -4,6 +4,7 @@ module.exports = Backbone.View.extend({
     initialize: function (opts) {
         opts = opts || {};
         this.annotator = opts.annotator;
+        this.metadataView = opts.metadataView;
     },
     render: function() {
         this.$el.html(JST.gallery_item({
@@ -24,5 +25,8 @@ module.exports = Backbone.View.extend({
     },
     onPick: function () {
         this.annotator.setImage(this.model.get('image'));
+        this.metadataView.save();
+        this.metadataView.activeImage = this.model;
+        this.metadataView.update(this.model.get('metadata'));
     }
 });

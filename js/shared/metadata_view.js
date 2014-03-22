@@ -3,24 +3,25 @@ module.exports = Backbone.View.extend({
     className: 'form-horizontal',
     render: function (selector) {
         this.$el.html(JST.metadata({}));
-        this.$el.appendTo(selector);
-        return this;
-    },
-    initalize: function(map) {
-        this.map = map;
         this.fields = {
             title: this.$('.title-field'),
             time: this.$('.time-field'),
             date: this.$('.date-field'),
             location: this.$('.location-field')
         };
+        this.$el.appendTo(selector);
+        return this;
     },
-    update: function() {
+    initialize: function(opts) {
+        opts = opts || {};
+        this.map = opts.map;
+    },
+    update: function(model) {
         // Update the text fields with the selected image's metadata
-        this.fields.title.val(this.model.get('title'));
-        this.fields.time.val(this.model.time());
-        this.fields.date.val(this.model.date());
-        this.fields.location.val(this.model.get('location').name);
+        this.fields.title.val(model.get('title'));
+        this.fields.time.val(model.time());
+        this.fields.date.val(model.date());
+        this.fields.location.val(model.get('location').name);
     },
     readTime: function() {
         return this.fields.time.val() || '00:00:00';
@@ -33,20 +34,21 @@ module.exports = Backbone.View.extend({
     },
     readCoords: function() {
         var coords = null;
-        if (this.map.markers.length > 0) {
-            var pos = this.map.markers[0].position;
-            // Great variable names here GMaps.js cheers for that
+        if (this.map.map.markers.length > 0) {
+            var pos = this.map.map.markers[0].position;
             coords = {
-                lat: pos.d,
-                lng: pos.e
+                lat: pos.lat(),
+                lng: pos.lng()
             };
         }
         return coords;
     },
     save: function() {
-        var meta = this.model.get('metadata');
+        if(!this.activeImage) {
+            return;
+        }
 
-        meta.set({
+        this.activeImage.get('metadata').set({
             title: this.fields.title.val(),
             datetime: this.dateTime(),
             location: {
@@ -54,7 +56,5 @@ module.exports = Backbone.View.extend({
                 coords: this.readCoords()
             }
         });
-
-        this.model.set('metadata', meta);
     }
 });

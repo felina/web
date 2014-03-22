@@ -9,7 +9,9 @@ var Annotator = require('./shared/annotator');
 var ann = new Annotator();
 var gallery = new Gallery();
 var map = new FLMap();
-var metadata = new MetadataView();
+var metadata = new MetadataView({
+    map: map
+});
 
 var addSpecies = function(){
     var list = $('#species-list');
@@ -53,7 +55,7 @@ $(function() {
     fl.onPageLoad('upload/image');
 
     makeDropzone(function(file){
-        gallery.add(file, ann);
+        gallery.add(file, ann, metadata);
     });
 
     api.getFeatures(onFeatureLoad, onFeatureError);

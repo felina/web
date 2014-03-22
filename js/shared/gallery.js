@@ -9,7 +9,7 @@ module.exports = Backbone.View.extend({
         this.collection = new ImageSet();
         this.i = 0;
     },
-    add: function(file, annotator) {
+    add: function(file, annotator, mv) {
         if (this.i === 0){
             this.$el.empty();
         }
@@ -17,7 +17,8 @@ module.exports = Backbone.View.extend({
         // this.collection.add(image);
         var thumb = new Thumbnail({
             model: image,
-            annotator: annotator
+            annotator: annotator,
+            metadataView: mv
         });
         thumb.render();
         this.$el.append(thumb.$el);
