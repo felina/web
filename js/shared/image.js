@@ -8,6 +8,10 @@ module.exports = Backbone.Model.extend({
         annotations: {}
     },
     initialize: function(file) {
+        if (typeof file === 'undefined' || file === null) {
+            throw new Error('No file given');
+        }
+
         this.set('file', file);
         this.set('url', file.name);
         this.set('metadata', new Metadata(file.name));
