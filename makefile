@@ -5,7 +5,7 @@ build: favicon
 
 # Deletes files that are the result of a build process
 clean:
-	rm -rf site test/build
+	rm -rf site test/build doc
 	rm -f website.zip
 
 # Builds the favicon from the full size logo. Requires ImageMagick
