@@ -3,12 +3,9 @@ var api = require('felina-js')();
 
 var ListElement = Backbone.View.extend({
   render: function() {
-    
+      
   },
 });
-
-
-
 
 
 $(function(){
@@ -24,6 +21,8 @@ $(function(){
         registered_subusers = users.subusers;
         for (var a = 0; a < registered_subusers.length; a++) {
           
+
+          (function(j){
           var c = a + 1;
           var contents = registered_subusers[a].email; //THE SERIAL KEY
           var name = registered_subusers[a].name; //THE NAME
@@ -31,61 +30,71 @@ $(function(){
           var invalid = registered_subusers[a].invalidated; //1 if validated -1 if invalidated
           var b = c;
 
-          $('#addr'+c).html(JST.subusers_element(
-              {c: b,
+          
+          $('#addr'+j).html(JST.subusers_element(
+              {c: j,
                 projects: projects}
             ));
 
           if (invalid) {
-            $("#tablenu"+b).css("background-color","red");
+            $("#tablenu"+j).css("background-color","red");
           } else {
-            $("#tablenu"+b).css("background-color","green");
+            $("#tablenu"+j).css("background-color","green");
           }
 
 
           //Get the value from the serial key input
-          $("#skcontainer"+b).val(contents);
+          $("#skcontainer"+j).val(contents);
 
           //Get the value from the name input
-          $("#namecontainer"+b).val(name);
+          $("#namecontainer"+j).val(name);
 
           // Refresh the user
-          $("#refresh"+b).click(function(){
+          // (function(j){
+          $("#refresh"+j).click(function(){
             var newUser = {
               "email": contents,
               "refresh": 1 
             };
+          
 
             api.post('updatesub', newUser, function (data) {
               if (data.res) {
                 //Give info about successful refresh
+                $("#tablenu"+j).css("background-color","green");
               }
             });
           });
+          // })(b);
 
           //Invalidate the user
-          $("#invalidate"+b).click(function(){
-            var x = b;
-            var newUser1 = {
-              "email": contents,
-              "refresh": -1 
-            };
+          // (function(j){
+            $("#invalidate"+j).click(function(){
+              console.log(j);
+              var newUser1 = {
+                "email": contents,
+                "refresh": -1 
+              };
 
-            api.post('updatesub', newUser1, function (data) {
-              console.log(JSON.stringify(data));
-              if (data.res) {
-                //Give info about successful invalidate
-                $("#tablenu"+x).css("background-color","yellow");
-              }
+              api.post('updatesub', newUser1, function (data) {
+                console.log(j);
+                console.log(JSON.stringify(data));
+                if (data.res) {
+                  //Give info about successful invalidate
+                  $("#tablenu"+j).css("background-color","red");
+                }
+              });
             });
-          });
+          // })(b);
 
-
-          $("#edit"+b).click(function(){
-              $("#namecontainer"+b).removeAttr("readonly");
+          // (function(j){
+          $("#edit"+j).click(function(){
+              $("#namecontainer"+j).removeAttr("readonly");
           });
 
           $('#tab_logic').append('<tr id="addr'+(c+1)+'"></tr>');
+
+          })(a);
         }
       }
     });
