@@ -26,7 +26,9 @@ module.exports = Backbone.Model.extend({
 
             this.set('file', file);
             this.set('src', file.name);
-            this.set('metadata', new Metadata(file.name));
+            this.set('metadata', new Metadata({
+                title: file.name
+            }));
             this.loadFromFile();
         }
         else {
@@ -36,7 +38,9 @@ module.exports = Backbone.Model.extend({
                 throw new Error('Invalid URL: ' + src);
             }
 
-            this.set('metadata', new Metadata(src));
+            this.set('metadata', new Metadata({
+                title: src
+            }));
             this.loadFromSrc(src);
         }
 

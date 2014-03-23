@@ -1,3 +1,5 @@
+Dropzone.autoDiscover = false;
+
 var API = require('felina-js');
 var api = new API('http://nl.ks07.co.uk:5000/');
 var fl = require('./shared/common');

@@ -29,8 +29,9 @@ module.exports = Backbone.Model.extend({
             }
         }
     },
-    initalize: function(title) {
-        this.title = title;
+    initalize: function(opts) {
+        opts = opts || {};
+        this.title = opts.title;
     },
     // Get the ISO standard date representation in the format
     // "YYYY-MM-DDTHH:mm:SS.nnnZ"
