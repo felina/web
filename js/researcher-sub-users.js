@@ -1,4 +1,5 @@
-// var fl = require('./shared/common');
+var fl = require('./shared/common');
+var api = require('felina-js')();
 
 $(function(){
 
@@ -12,6 +13,50 @@ $(function(){
     });
 
 
+    var users;
+    var registered_subusers;
+    api.get('subuser', function (data) {
+      users = data;
+      console.log(JSON.stringify(users));
+      if (users.res) {
+        registered_subusers = users.subusers;
+      }
+
+
+      for (var a = 0; a < registered_subusers.length; a++) {
+        
+        var c = a + 1
+        var contents = registered_subusers[a].email; //THE SERIAL KEY
+        var name = registered_subusers[a].name; //THE NAME
+        var projects = registered_subusers[a].projectid; //THE PROJECTS
+
+
+        var b = c;
+
+        $('#addr'+c).html("<td>"+ c +"</td><td><input id='skcontainer"+c+"' name='serialkey"+c+"' type='text' placeholder='Serial Key' class='form-control input-md' disabled/> </td><td><input id='namecontainer"+c+"' name='name"+c+"' type='text' placeholder='Name'  class='form-control input-md' disabled></td><td style='verticle-align:middle' align='center'><a class='btn btn-default'>"+projects+"</a></td> <td style='vertical-align:middle' align='center'><a class='btn btn-default'>Invalidate User</a><a class='btn btn-default'>Refresh Token</a><a class='btn btn-default'>View Gallery</a><a id='edit"+c+"' class='btn btn-default' data-toggle='button'>Edit</a></td>");
+
+        $("#skcontainer"+c).val(contents);
+
+        $("#namecontainer"+c).val(name);
+
+        $("#edit"+b).click(function(){
+            $("#namecontainer"+b).removeAttr("disabled");
+            console.log(i);
+        });
+
+
+        $('#tab_logic').append('<tr id="addr'+(c+1)+'"></tr>');
+      }
+
+
+
+
+
+
+
+
+    });
+
     // Deselects all elements picked in dropdown
     function multiselect_deselectAll($el) {
       $('option', $el).each(function(element) {
@@ -24,64 +69,47 @@ $(function(){
     // Adds the user to the below table
     $("#add_user").click(function(){
 
-      var contents = $("#skinput").val() + "@felina.io";
-      var name = $("#nameinput").val();
-      var projects = $('#projectselect').val();
+
+
+      // var contents = $("#skinput").val() + "@felina.io"; //THE SERIAL KEY
+      // var name = $("#nameinput").val(); //THE NAME
+      // var projects = $('#projectselect').val(); //THE PROJECTS
 
       //Makes sure that there is values added in the three fields
-      if (contents && name && projects) {
-        $('#addr'+i).html("<td>"+ i +"</td><td><input id='skcontainer"+i+"' name='serialkey"+i+"' type='text' placeholder='Serial Key' class='form-control input-md' disabled/> </td><td><input id='namecontainer"+i+"' name='name"+i+"' type='text' placeholder='Name'  class='form-control input-md' disabled></td><td style='verticle-align:middle' align='center'><a class='btn btn-default'>"+projects+"</a></td> <td style='vertical-align:middle' align='center'><a class='btn btn-default'>Invalidate User</a><a class='btn btn-default'>Refresh Token</a><a class='btn btn-default'>View Gallery</a></td>");
+      // if (contents && name && projects) {
 
-        $("#skcontainer"+i).val(contents);
+      //   // Send info to server
+      //   var a = i;
 
-        $("#namecontainer"+i).val(name);
 
-        $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+      //   //ADD EDIT AND TOGGLE TO SUBMIT AND CANCEL BUTTONS
+      //   $('#addr'+i).html("<td>"+ i +"</td><td><input id='skcontainer"+i+"' name='serialkey"+i+"' type='text' placeholder='Serial Key' class='form-control input-md' disabled/> </td><td><input id='namecontainer"+i+"' name='name"+i+"' type='text' placeholder='Name'  class='form-control input-md' disabled></td><td style='verticle-align:middle' align='center'><a class='btn btn-default'>"+projects+"</a></td> <td style='vertical-align:middle' align='center'><a class='btn btn-default'>Invalidate User</a><a class='btn btn-default'>Refresh Token</a><a class='btn btn-default'>View Gallery</a><a id='edit"+i+"' class='btn btn-default' data-toggle='button'>Edit</a></td>");
 
-        $("#skinput").val('');
-        $("#nameinput").val('');
+      //   $("#skcontainer"+i).val(contents);
+
+      //   $("#namecontainer"+i).val(name);
+
+      //   $("#edit"+a).click(function(){
+      //       $("#namecontainer"+a).removeAttr("disabled");
+      //       console.log(i);
+      //   });
+
+
+      //   $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+
+      //   $("#skinput").val('');
+      //   $("#nameinput").val('');
         
-        multiselect_deselectAll($("#projectselect"));
+      //   multiselect_deselectAll($("#projectselect"));
 
-        i++;
-      }
+      //   i++;
+      // }
     });
 
-    // Multiselect
-    //  $('#projectselect').multiselect({
-    //   buttonClass: 'btn',
-    //   buttonWidth: '250px', //MAY NEED TO CHANGE BACK TO AUTO
-    //   enableFiltering: true,
-    //   buttonText: function(options) {
-    //     if (options.length === 0) {
-    //       return 'None selected <b class="caret"></b>';
-    //     }
-    //     else if (options.length > 6) {
-    //       return options.length + ' selected <b class="caret"></b>';
-    //     }
-    //     else {
-    //       var selected = '';
-    //       options.each(function() {
-    //         selected += $(this).text() + ', ';
-    //       });
-    //       return selected.substr(0, selected.length -2) + ' <b class="caret"></b>';
-    //     }
-    //   },
-    //   onChange: function(element, checked) {
-    //     if(checked === true) {
-    //     // action taken here if true
-    //     }
-    //     else if (checked === false) {
-    //       if (confirm('Do you wish to deselect the element?')) {
-    //       // action taken here
-    //       }
-    //       else {
-    //         $("#projectselect").multiselect('select', element.val());
-    //         return false;
-    //       }
-    //     }
-    //   }
-    // });
+
+
+
+
 
     $('#projectselect').multiselect({
       buttonClass: 'btn',
