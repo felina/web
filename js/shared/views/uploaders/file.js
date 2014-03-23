@@ -6,9 +6,10 @@ module.exports = Backbone.View.extend({
     className: 'dropzone',
     initialize: function(opts) {
         opts = opts || {};
-        this.callback = opts.callback;
+        this.gallery = opts.gallery;
     },
     render: function(selector) {
+        var that = this;
         this.$el.dropzone({
             init: function () {
                 this.on('sending', function(file, xhr, formData) {
@@ -18,7 +19,21 @@ module.exports = Backbone.View.extend({
                 });
 
                 this.on('success', function(file, response) {
-                    console.log(response);
+                    // TODO: server should return a HTTP error code rather than
+                    // a valid response with an error object.
+                    if (response.res){
+                        // TODO: update server to only accept and return single images
+                        var id = response.ids[0];
+
+                        var collection = that.gallery.collection;
+
+                        var lastImage = collection.at(collection.length - 1);
+                        lastImage.set('id', id);
+                        console.log(lastImage.get('id'));
+                    }
+                    else {
+                        alert(response.err.msg);
+                    }
                 });
 
                 this.on('error', function(file, error, xhr) {
@@ -28,7 +43,10 @@ module.exports = Backbone.View.extend({
             url: api.url + 'img',
             acceptedFiles: 'image/*',
             maxFilesize: 4096,
-            accept: this.callback
+            accept: function(file, done) {
+                that.gallery.add({file: file});
+                done();
+            }
         });
         this.$el.appendTo(selector);
         return this;

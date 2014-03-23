@@ -57,10 +57,7 @@ $(function() {
     fl.onPageLoad('upload/image');
 
     var fileUploader = new FileUploader({
-        callback: function(file, done){
-            gallery.add({file: file});
-            done();
-        }
+        gallery: gallery
     });
     fileUploader.render('#upload');
 
@@ -78,14 +75,14 @@ $(function() {
     $('#submit').click(function() {
         // Remove all unchecked images
         var data = gallery.getSelected().map(function(image) {
-            return image.get('metadata').toJSON();
+            return image.toJSON();
         });
 
         var dataMap = {};
 
         data.forEach(function(item) {
-            var key = item.id;
-            delete item.id;
+            var key = item.metadata.id;
+            delete item.metadata.id;
             dataMap[key] = item;
         });
 

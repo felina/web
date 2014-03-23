@@ -46,6 +46,12 @@ module.exports = Backbone.Model.extend({
 
         this.get('image').attr('alt', this.get('metadata').get('title'));
     },
+    toJSON: function() {
+        return {
+            metadata: this.get('metadata').toJSON(),
+            annotations: this.get('annotations')
+        };
+    },
     loadFromSrc: function (src) {
         var img = $('<img>')[0];
         img.src = src;
