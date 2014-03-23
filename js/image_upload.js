@@ -52,22 +52,33 @@ var onFeatureError = function() {
 
 var makeDropzone = function(callback) {
     Dropzone.options.dropimg = {
+        init: function () {
+            this.on('sending', function(file, xhr, formData) {
+                // Associate this image with a particular project
+                formData.append("_project", 1);
+            });
+
+            this.on('success', function(file) {
+                console.log(file);
+            });
+
+            this.on('error', function(file, error, xhr) {
+                console.log(file, error, xhr);
+            });
+        },
         url: api.url + 'img',
         acceptedFiles: 'image/*',
         maxFilesize: 4096,
-        accept: callback,
-        sending: function(file, xhr, formData) {
-            // Associate this image with a particular project
-            formData.append("_project", 1);
-        }
+        accept: callback
     };
 };
 
 $(function() {
     fl.onPageLoad('upload/image');
 
-    makeDropzone(function(file){
+    makeDropzone(function(file, done){
         gallery.add({file: file});
+        done();
     });
 
     api.getFeatures(onFeatureLoad, onFeatureError);
