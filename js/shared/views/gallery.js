@@ -1,6 +1,6 @@
-var ImageSet = require('./image_set');
+var ImageSet = require('../collections/image_set');
 var Thumbnail = require('./thumbnail');
-var FLImage = require('./image');
+var FLImage = require('../models/image');
 
 module.exports = Backbone.View.extend({
     tagName: 'div',

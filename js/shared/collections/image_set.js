@@ -1,4 +1,4 @@
-var FLImage = require('./image');
+var FLImage = require('../models/image');
 
 module.exports = Backbone.Collection.extend({
     model: FLImage,

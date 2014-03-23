@@ -2,10 +2,10 @@ var API = require('felina-js');
 var api = new API('http://nl.ks07.co.uk:5000/');
 var fl = require('./shared/common');
 
-var MetadataView = require('./shared/metadata_view');
-var Gallery = require('./shared/gallery');
-var FLMap = require('./shared/map');
-var Annotator = require('./shared/annotator');
+var MetadataView = require('./shared/views/metadata_view');
+var Gallery = require('./shared/views/gallery');
+var FLMap = require('./shared/views/map');
+var Annotator = require('./shared/views/annotator');
 var URLUploader = require('./shared/views/uploaders/url');
 var FileUploader = require('./shared/views/uploaders/file');
 
