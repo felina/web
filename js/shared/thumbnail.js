@@ -24,7 +24,7 @@ module.exports = Backbone.View.extend({
         this.$el.toggleClass('active');
     },
     onPick: function () {
-        this.annotator.setImage(this.model.get('image'));
+        this.annotator.setImage(this.model.get('image').clone());
         this.metadataView.save();
         this.metadataView.activeImage = this.model;
         this.metadataView.update(this.model.get('metadata'));
