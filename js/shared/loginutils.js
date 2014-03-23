@@ -1,4 +1,5 @@
-var api = require('felina-js')();
+var API = require('felina-js');
+var api = new API('http://nl.ks07.co.uk:5000/');
 
 /**
  * Creates the necessary DOM structure for the contents of the page header,

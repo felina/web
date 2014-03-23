@@ -17,12 +17,12 @@ module.exports = Backbone.Model.extend({
         if (opts.file) {
             var file = opts.file;
 
-            var reader  = new FileReader();
+            // var reader  = new FileReader();
 
-              reader.onloadend = function () {
-                console.log(reader.result);
-              };
-            reader.readAsDataURL(file);
+            //   reader.onloadend = function () {
+            //     console.log(reader.result);
+            //   };
+            // reader.readAsDataURL(file);
 
             this.set('file', file);
             this.set('src', file.name);

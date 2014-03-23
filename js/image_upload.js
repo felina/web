@@ -1,4 +1,5 @@
-var api = require('felina-js')();
+var API = require('felina-js');
+var api = new API('http://nl.ks07.co.uk:5000/');
 var fl = require('./shared/common');
 
 var MetadataView = require('./shared/metadata_view');
@@ -51,10 +52,14 @@ var onFeatureError = function() {
 
 var makeDropzone = function(callback) {
     Dropzone.options.dropimg = {
-        url: fl.server + 'img',
+        url: api.url + 'img',
         acceptedFiles: 'image/*',
         maxFilesize: 4096,
-        accept: callback
+        accept: callback,
+        sending: function(file, xhr, formData) {
+            // Associate this image with a particular project
+            formData.append("_project", 1);
+        }
     };
 };
 
@@ -82,14 +87,22 @@ $(function() {
             return image.get('metadata').toJSON();
         });
 
+        var dataMap = {};
+
+        data.forEach(function(item) {
+            var key = item.id;
+            delete item.id;
+            dataMap[key] = item;
+        });
+
         // Require at least one image to be selected
         if (data.length === 0) {
             alert('No images selected. Please select at least one image to upload.');
             return;
         }
 
-        api.uploadMetadata(data, function(d) {
-            console.log(d);
-        });
+        console.log(dataMap);
+
+        api.uploadMetadata(dataMap);
     });
 });
