@@ -55,11 +55,12 @@ var makeDropzone = function(callback) {
         init: function () {
             this.on('sending', function(file, xhr, formData) {
                 // Associate this image with a particular project
-                formData.append("_project", 1);
+                xhr.withCredentials = true;
+                formData.append('file_project', 1);
             });
 
-            this.on('success', function(file) {
-                console.log(file);
+            this.on('success', function(file, response) {
+                console.log(response);
             });
 
             this.on('error', function(file, error, xhr) {
