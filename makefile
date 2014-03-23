@@ -14,7 +14,7 @@ favicon: site
 
 # Create the site directory and CSS subdirectory
 site:
-	mkdir -p site/css
+	mkdir -p site\css
 
 # Build the site and deploy it to S3
 deploy: build
