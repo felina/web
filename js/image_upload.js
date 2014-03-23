@@ -6,7 +6,8 @@ var MetadataView = require('./shared/metadata_view');
 var Gallery = require('./shared/gallery');
 var FLMap = require('./shared/map');
 var Annotator = require('./shared/annotator');
-var URLUploader = require('./shared/url_uploader');
+var URLUploader = require('./shared/views/uploaders/url');
+var FileUploader = require('./shared/views/uploaders/file');
 
 var ann = new Annotator();
 var map = new FLMap();
@@ -50,37 +51,16 @@ var onFeatureError = function() {
     console.log('failed to load features');
 };
 
-var makeDropzone = function(callback) {
-    Dropzone.options.dropimg = {
-        init: function () {
-            this.on('sending', function(file, xhr, formData) {
-                // Associate this image with a particular project
-                xhr.withCredentials = true;
-                formData.append('file_project', 1);
-            });
-
-            this.on('success', function(file, response) {
-                console.log(response);
-            });
-
-            this.on('error', function(file, error, xhr) {
-                console.log(file, error, xhr);
-            });
-        },
-        url: api.url + 'img',
-        acceptedFiles: 'image/*',
-        maxFilesize: 4096,
-        accept: callback
-    };
-};
-
 $(function() {
     fl.onPageLoad('upload/image');
 
-    makeDropzone(function(file, done){
-        gallery.add({file: file});
-        done();
+    var fileUploader = new FileUploader({
+        callback: function(file, done){
+            gallery.add({file: file});
+            done();
+        }
     });
+    fileUploader.render('#upload');
 
     api.getFeatures(onFeatureLoad, onFeatureError);
 
