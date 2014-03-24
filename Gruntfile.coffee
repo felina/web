@@ -31,7 +31,7 @@ libs =
   alert: 'alert/alert'
   atlas: 'jquery-atlas/src/main'
   tab: 'bootstrap/js/tab'
-  
+
   # multiselect
   multiselect: 'bootstrap-multiselect/js/bootstrap-multiselect'
   prettify: 'bootstrap-multiselect/js/prettify'
@@ -67,6 +67,7 @@ css_list = [
   'bootstrap/dist/css/bootstrap'
   'blueimp-gallery/css/blueimp-gallery'
   'blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery'
+  'bootstrap-multiselect/css/bootstrap-multiselect'
 ]
 
 # Add the root directory and file extension to CSS files

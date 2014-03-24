@@ -1,4 +1,4 @@
-var fl = require('../shared/common');
+var fl = require('../../shared/common');
 
 $(function(){
     var profile;
