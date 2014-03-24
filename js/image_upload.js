@@ -8,8 +8,8 @@ var MetadataView = require('./shared/views/metadata_view');
 var Gallery = require('./shared/views/gallery');
 var FLMap = require('./shared/views/map');
 var Annotator = require('./shared/views/annotator');
-var URLUploader = require('./shared/views/uploaders/url');
-var FileUploader = require('./shared/views/uploaders/file');
+var URLUploader = require('./shared/views/uploaders/img/url');
+var FileUploader = require('./shared/views/uploaders/img/file');
 
 var ann = new Annotator();
 var map = new FLMap();
