@@ -1,4 +1,4 @@
-var fl = require('./shared/common');
+var fl = require('../shared/common');
 
 var add_field = function(){
     var field = $(JST.form_field_definer());

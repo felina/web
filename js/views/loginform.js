@@ -1,6 +1,6 @@
 var API = require('felina-js');
 var api = new API('http://nl.ks07.co.uk:5000/');
-var utils = require('../loginutils');
+var utils = require('../shared/loginutils');
 
 var modes = {
     LOGIN: 1,

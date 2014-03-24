@@ -1,6 +1,6 @@
-var fl = require('./shared/common');
+var fl = require('../shared/common');
 var api = require('felina-js')();
-var onLogin = require('./shared/loginutils').onLogin;
+var onLogin = require('../shared/loginutils').onLogin;
 
 $(function(){
     fl.onPageLoad('index');

@@ -105,7 +105,7 @@ scripts =
   sub_user: 'researcher-sub-users'
 
 for k, v of scripts
-  scripts[k] = 'js/' + v + '.js'
+  scripts[k] = 'js/pages/' + v + '.js'
 
 # Researcher sub users
 sub_user = 'js/researcher-sub-users.js'

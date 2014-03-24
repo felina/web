@@ -2,14 +2,14 @@ Dropzone.autoDiscover = false;
 
 var API = require('felina-js');
 var api = new API('http://nl.ks07.co.uk:5000/');
-var fl = require('./shared/common');
+var fl = require('../shared/common');
 
-var MetadataView = require('./shared/views/metadata_view');
-var Gallery = require('./shared/views/gallery');
-var FLMap = require('./shared/views/map');
-var Annotator = require('./shared/views/annotator');
-var URLUploader = require('./shared/views/uploaders/img/url');
-var FileUploader = require('./shared/views/uploaders/img/file');
+var MetadataView = require('../views/metadata_view');
+var Gallery = require('../views/gallery');
+var FLMap = require('../views/map');
+var Annotator = require('../views/annotator');
+var URLUploader = require('../views/uploaders/img/url');
+var FileUploader = require('../views/uploaders/img/file');
 
 var ann = new Annotator();
 var map = new FLMap();

@@ -1,5 +1,5 @@
-var fl = require('./shared/common');
-var barChart = require('./shared/bar_chart');
+var fl = require('../shared/common');
+var barChart = require('../shared/bar_chart');
 
 $(function(){
     fl.onPageLoad('graphs');
