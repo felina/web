@@ -3,14 +3,20 @@ module.exports = Backbone.View.extend({
     className: 'dropzone',
     initialize: function(opts) {
         opts = opts || {};
+        this.getName = opts.getName;
     },
     render: function(selector) {
+        var that = this;
         this.$el.dropzone({
             init: function () {
                 this.on('sending', function(file, xhr, formData) {
-                    // Associate this image with a particular project
                     xhr.withCredentials = true;
-                    formData.append('name', 'samIsAFatHo');
+
+                    var name = that.getName();
+
+                    console.log(name);
+
+                    formData.append('name', name);
                 });
 
                 this.on('success', function(file, response) {
