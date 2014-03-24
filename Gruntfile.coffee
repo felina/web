@@ -237,9 +237,8 @@ module.exports = (grunt) ->
 
     watch:
       # Lint all JS files and copy them to the site directory
-      scripts:
-        files: [js_src, 'data/*']
-        # tasks: ['jshint', 'copy']
+      data:
+        files: ['data/**/*']
         tasks: ['copy']
       # Compile Stylus files to CSS when they change
       styles:
@@ -252,7 +251,7 @@ module.exports = (grunt) ->
       # Run static imports/preprocessing on the main HTML pages when they change
       html:
         files: 'html/**/*.html'
-        tasks: ['bake', 'sails-linker']
+        tasks: ['html']
 
     connect:
       server:
@@ -269,7 +268,7 @@ module.exports = (grunt) ->
     copy:
       default:
         cwd: '.'
-        src: [js_src, 'data/**/*']
+        src: ['data/**/*']
         dest: site
 
     scripter:
@@ -313,11 +312,11 @@ module.exports = (grunt) ->
         options:
           transform: ['coffeeify']
 
+  # Load all tasks
   require('load-grunt-tasks')(grunt)
 
-  grunt.registerTask 'html', ['bake', 'scripter']
-
   # Define custom composite tasks in terms of other tasks
+  grunt.registerTask 'html', ['bake', 'scripter']
   grunt.registerTask 'default', [
     'newer:jshint'
     'jst'
@@ -326,6 +325,16 @@ module.exports = (grunt) ->
     'bake'
     'browserify:compile'
     'scripter'
+  ]
+  grunt.registerTask 'build', [
+    # 'jshint'
+    'jst'
+    'copy'
+    'stylus'
+    'bake'
+    'browserify:compile'
+    'scripter'
+    'rsync'
   ]
   grunt.registerTask 'release', ['jshint', 'uglify', 'concat']
   grunt.registerTask 'test', ['browserify:test', 'mocha']
