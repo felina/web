@@ -1,5 +1,3 @@
-var fl = require('felina-js')();
-
 $(function(){
     var profTabWrap = $('.profile_tab');
 
@@ -16,7 +14,7 @@ $(function(){
     ];
 
     //Gets images that are then displayed in the user photo gallery on the main page
-    fl.getImages(function(data) {
+    api.getImages(function(data) {
         if(data.res) {
             for (var i = 0; i < data.images.length; i++) {
                 photos[i] = fl.server + 'img/' + data.images[i].imageid;

@@ -1,4 +1,3 @@
-var api = require('felina-js')();
 var fl = require('../../shared/common');
 
 $(function() {

@@ -1,5 +1,3 @@
-var API = require('felina-js');
-var api = new API('http://nl.ks07.co.uk:5000/');
 var LoginForm = require('../views/loginform');
 var makeHeader = require('./loginutils').makeHeader;
 
