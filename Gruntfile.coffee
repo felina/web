@@ -119,6 +119,8 @@ shared = [
   libs.modernizr
   libs.webshims
   libs.bootstrap
+  'js/shared/api.js'
+  'jst.js'
 ]
 
 # Mapping of HTML files to the scripts they require
@@ -140,6 +142,8 @@ for k, v of dependencies
 browserify_map = {}
 for k, v of scripts
   browserify_map[site + v] = v
+
+browserify_map['site/js/shared/api.js'] = 'js/shared/api.js'
 
 # Mapping of source HTML pages to their output paths in the site directory
 bake_map = {}
@@ -191,7 +195,7 @@ module.exports = (grunt) ->
           _: true
           Backbone: true
           JST: true
-          fl: true
+          api: true
           d3: true
           Dropzone: true
           GMaps: true
@@ -301,6 +305,8 @@ module.exports = (grunt) ->
           transform: ['coffeeify']
 
   require('load-grunt-tasks')(grunt)
+
+  grunt.registerTask 'html', ['bake', 'sails-linker']
 
   # Define custom composite tasks in terms of other tasks
   grunt.registerTask 'default', [

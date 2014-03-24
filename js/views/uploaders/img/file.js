@@ -1,6 +1,3 @@
-var API = require('felina-js');
-var api = new API('http://nl.ks07.co.uk:5000/');
-
 module.exports = Backbone.View.extend({
     tagName: 'form',
     className: 'dropzone',
