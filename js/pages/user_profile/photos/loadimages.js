@@ -1,4 +1,4 @@
-$(function() {
+var f = function() {
 
     var GammaSettings = {
         // order is important!
@@ -44,10 +44,12 @@ $(function() {
     api.getImages(function(data) {
         if(data.res) {
             _.each(data.images, function (image) {
-                addItem(api.url + 'img/' + image.imageid, "Hello");
+                addItem(api.url + 'img?id=' + image.imageid, image.uploader);
             });
         }
     });
 
     Gamma.init( GammaSettings, fncallback );
-});
+};
+
+$(f);
