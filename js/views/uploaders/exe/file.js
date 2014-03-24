@@ -11,11 +11,7 @@ module.exports = Backbone.View.extend({
             init: function () {
                 this.on('sending', function(file, xhr, formData) {
                     xhr.withCredentials = true;
-
                     var name = that.getName();
-
-                    console.log(name);
-
                     formData.append('name', name);
                 });
 
@@ -31,8 +27,14 @@ module.exports = Backbone.View.extend({
             acceptedFiles: '.zip',
             maxFilesize: 4096,
             accept: function(file, done) {
-                console.log(file);
-                done();
+                if(that.getName().length === 0) {
+                    var msg = 'Please choose a name';
+                    done(msg);
+                    alert(msg);
+                }
+                else {
+                    done();
+                }
             }
         });
         this.$el.appendTo(selector);
