@@ -21,6 +21,7 @@ $(function(){
       if (users.res) {
         registered_subusers = users.subusers;
         for (var a = 0; a < registered_subusers.length; a++) {
+          
           (function(j){
             var c = a + 1;
             var contents = registered_subusers[a].email; //THE SERIAL KEY
