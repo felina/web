@@ -152,7 +152,7 @@ browserify_map = {}
 for k, v of scripts
   browserify_map[site + v] = v
 
-browserify_map['site/js/shared/api.js'] = 'js/shared/api.js'
+browserify_map[site + api] = api
 
 # Mapping of source HTML pages to their output paths in the site directory
 bake_map = {}
@@ -272,7 +272,7 @@ module.exports = (grunt) ->
         src: [js_src, 'data/**/*']
         dest: site
 
-    'sails-linker':
+    scripter:
       default:
         options:
           appRoot: site
@@ -315,7 +315,7 @@ module.exports = (grunt) ->
 
   require('load-grunt-tasks')(grunt)
 
-  grunt.registerTask 'html', ['bake', 'sails-linker']
+  grunt.registerTask 'html', ['bake', 'scripter']
 
   # Define custom composite tasks in terms of other tasks
   grunt.registerTask 'default', [
@@ -325,7 +325,7 @@ module.exports = (grunt) ->
     'newer:stylus'
     'bake'
     'browserify:compile'
-    'sails-linker'
+    'scripter'
   ]
   grunt.registerTask 'release', ['jshint', 'uglify', 'concat']
   grunt.registerTask 'test', ['browserify:test', 'mocha']
