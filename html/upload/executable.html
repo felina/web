@@ -5,39 +5,29 @@
 <!--(bake ../shared/header.html)-->
 
 <div class="container">
-    <h1>Executable Upload</h1>
+    <h1>Executable package Upload</h1>
 
     <hr>
 
-    <h2>1. Name your executable</h2>
+    <h2>1. Name your package</h2>
 
     <form>
-        <input type="text" placeholder="Name your executable" class="form-control" id="name">
+        <input type="text" placeholder="Name" class="form-control" id="name">
     </form>
 
     <hr>
 
-    <h2>2. Upload main executable</h2>
+    <h2>2. Upload your package</h2>
 
-    <p>Upload a Windows executable binary in .exe format</p>
+    <p>Upload an executable package &mdash; a ZIP archive containing a single executable in .exe format and optionally any number of additional libraries in .dll format.</p>
 
-    <div id="exe"></div>
+    <div id="upload"></div>
 
     <div class="clearfix"></div>
 
     <hr>
 
-    <h2>3. Upload additional libraries</h2>
-
-    <p>Upload Windows binary libraries in .dll format</p>
-
-    <form id="dll">
-        <div action="/upload/dll" class="dropzone" class="form-control"></div>
-    </form>
-
-    <hr>
-
-    <h2>4. Finish and submit</h2>
+    <h2>3. Finish and submit</h2>
 
     <div class="button-wrap">
         <button type="button" class="btn btn-success btn-lg" id="submit">Submit</button>

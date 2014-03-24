@@ -10,7 +10,7 @@ module.exports = Backbone.View.extend({
                 this.on('sending', function(file, xhr, formData) {
                     // Associate this image with a particular project
                     xhr.withCredentials = true;
-                    formData.append('file_project', 1);
+                    formData.append('name', 'samIsAFatHo');
                 });
 
                 this.on('success', function(file, response) {
@@ -22,7 +22,7 @@ module.exports = Backbone.View.extend({
                 });
             },
             url: api.url + 'exec',
-            acceptedFiles: 'application/x-msdownload,.exe,.dll',
+            acceptedFiles: '.zip',
             maxFilesize: 4096,
             accept: function(file, done) {
                 console.log(file);

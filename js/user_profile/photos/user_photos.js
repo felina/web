@@ -17,7 +17,7 @@ $(function(){
     api.getImages(function(data) {
         if(data.res) {
             for (var i = 0; i < data.images.length; i++) {
-                photos[i] = fl.server + 'img/' + data.images[i].imageid;
+                photos[i] = api.url + 'img/' + data.images[i].imageid;
             }
         }
         var photoGallery = $(JST['User_Profile/Photo_Gallery/user_photo']({

@@ -6,5 +6,5 @@ var fileUploader = new FileUploader();
 
 $(function(){
     fl.onPageLoad('upload/executable');
-    fileUploader.render('#exe');
+    fileUploader.render('#upload');
 });
