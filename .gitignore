@@ -7,3 +7,4 @@ site
 *.zip
 .DS_Store
 doc
+*.fuse*
