@@ -14,6 +14,11 @@ js_src = 'js/**/*.js'
 # ...HTML templates
 templates = 'templates/**/*.html'
 
+# Compiled templates file
+jst = 'jst.js'
+# Server API file
+api = 'js/shared/api.js'
+
 # Library paths
 libs =
   jquery: 'jquery/dist/jquery'
@@ -83,8 +88,6 @@ for k, v of libs
 all_list = lib_list.concat(dir_list).concat(css_list)
 
 # Module paths
-# Compiled templates file
-jst_ = 'jst.js'
 
 # Page-specific files
 scripts =
@@ -125,8 +128,8 @@ shared = [
   libs.modernizr
   libs.webshims
   libs.bootstrap
-  'js/shared/api.js'
-  'jst.js'
+  api
+  jst
 ]
 
 # Mapping of HTML files to the scripts they require
