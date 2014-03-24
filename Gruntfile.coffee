@@ -31,6 +31,11 @@ libs =
   alert: 'alert/alert'
   atlas: 'jquery-atlas/src/main'
   tab: 'bootstrap/js/tab'
+  
+  # multiselect
+  multiselect: 'bootstrap-multiselect/js/bootstrap-multiselect'
+  prettify: 'bootstrap-multiselect/js/prettify'
+
   # gammagallery
   gamma: 'gamma/js/gamma'
   history: 'gamma/js/jquery.history'
@@ -132,8 +137,9 @@ dependencies =
   'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, libs.atlas, scripts.image_upload]
   'site/upload/executable.html': [libs.dropzone, scripts.executable_upload]
   'site/user_profile.html': [scripts.user_profile, scripts.about_tab, scripts.badges_tab, scripts.friends_tab, scripts.user_badges, scripts.user_photos, scripts.newsfeed, scripts.navbar, scripts.about]
-  'site/user_profile_gallery.html': [libs.gamma, libs.history, libs.masonry, libs.ppcustom, libs.js_url, libs.modernizr_custom, scripts.loadimages]
-  'site/researcher_sub_users.html': [scripts.sub_user]
+  'site/user_profile_gallery.html': [libs.gamma, libs.history, libs.masonry, libs.ppcustom, libs.js_url, libs.modernizr_custom, scripts.loadimages, scripts.user_gallery]
+  'site/researcher_sub_users.html': [scripts.sub_user, libs.multiselect, libs.prettify ]
+  'site/project_preferences.html': []
 
 # Add the shared dependencies to every page
 for k, v of dependencies
