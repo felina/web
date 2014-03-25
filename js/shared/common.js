@@ -42,6 +42,5 @@ var onPageLoad = function(page) {
 
 module.exports = {
     getJSON: getJSON,
-    makeHeader: makeHeader,
     onPageLoad: onPageLoad
 };
