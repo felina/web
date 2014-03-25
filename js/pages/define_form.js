@@ -1,19 +1,17 @@
 var fl = require('../shared/common');
+var FormDefiner = require('../views/form_definer');
 
-var add_field = function(){
-    var field = $(JST.form_field_definer());
-    field.find('.closer').click(function(){
-        field.remove();
-    });
-    $('.fields').append(field);
+var addField = function () {
+    var field = new FormDefiner();
+    field.render('.fields');
 };
 
 $(function(){
     fl.onPageLoad('define_form');
 
-    add_field();
+    addField();
 
     $('#new_field').click(function(){
-        add_field();
+        addField();
     });
 });
