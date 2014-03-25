@@ -1,4 +1,5 @@
 var LoginForm = require('../views/loginform');
+var Switcher = require('../views/switcher');
 var makeHeader = require('./loginutils').makeHeader;
 
 var getJSON = function(filename, success) {
@@ -20,42 +21,14 @@ getJSON('pages', function (data) {
     pages = data;
 });
 
-/**
- * Creates the necessary DOM structure for the page switcher, using data from
- * the page config object, then inserts it into the page as a Bootstrap Popover
- * at the given selector
- * @param {string} selector - The CSS selector of the parent element of the
- * switcher.
- */
-var makeSwitcher = function(selector) {
-    var content = $('<ul>');
-
-    for (var key in pages) {
-        var page = pages[key];
-        page.name = key;
-        content.append(JST.switcher_item(page));
-    }
-
-    $(selector).popover({
-        html: true,
-        content: content.html(),
-        trigger: 'hover',
-        placement: 'bottom',
-        container: selector
-    });
-};
-
-var setSwitcherIcon = function(page) {
-    var p = pages[page];
-    var icon = $('<i>').addClass('glyphicon glyphicon-' + p.icon);
-    $('#switcher button').append(icon).append('&nbsp;' + p.title);
-};
-
 var onPageLoad = function(page) {
     new LoginForm();
 
-    makeSwitcher('#switcher');
-    setSwitcherIcon(page);
+    var switcher = new Switcher({
+        pages: pages
+    });
+    switcher.render('#hleft');
+    switcher.setIcon(page);
 
     webshims.polyfill();
 
@@ -70,6 +43,5 @@ var onPageLoad = function(page) {
 module.exports = {
     getJSON: getJSON,
     makeHeader: makeHeader,
-    makeSwitcher: makeSwitcher,
     onPageLoad: onPageLoad
 };
