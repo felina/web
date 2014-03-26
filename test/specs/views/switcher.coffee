@@ -16,7 +16,11 @@ describe 'Switcher', ->
     switcher.pages.should.be.an('object')
 
   it 'should have no icon by default', ->
-      switcher.$('i').should.have.length(0)
+    switcher.$('i').should.have.length(0)
+
+  describe 'makeIcon', ->
+    it 'should create an icon', ->
+      switcher.makeIcon('home').should.be.an.instanceof(jQuery)
 
   describe 'setIcon', ->
     page = 'index'
@@ -29,3 +33,5 @@ describe 'Switcher', ->
     it 'should set the correct icon for the given page', ->
       switcher.$('i').hasClass("glyphicon-#{cls}")
 
+    it 'should throw an error if a page not in the pages list is given', ->
+      (-> switcher.setIcon('i dont exist')).should.throw(Error)
