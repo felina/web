@@ -22,6 +22,7 @@ deploy: build
 	s3cmd sync site/ s3://felina.io --acl-public
 
 install:
+	bower cache clean
 	bower install
 	npm install
 
