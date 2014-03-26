@@ -135,6 +135,8 @@ shared = [
 # Mapping of HTML files to the scripts they require
 dependencies =
   'site/index.html': [scripts.main]
+  'site/graphs.html': [libs.d3, scripts.graphs]
+  'site/settings.html': [scripts.settings]
   'site/start_job.html': [libs.blueimp, libs.bbs, scripts.start_job]
   'site/define_form.html': [scripts.define_form]
   'site/view_jobs.html': [scripts.view_jobs]
