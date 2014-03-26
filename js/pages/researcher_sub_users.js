@@ -6,14 +6,14 @@ $(function(){
 
     // Gets the current subusers from the system.
     var registered_subusers;
-    api.get('subuser', function (users) {
+    api.getSubuser(function (users) {
         if (users.res) {
             registered_subusers = users.subusers;
-            for (var i = 0; i < registered_subusers.length; i++) {
-                var contents = registered_subusers[i].email; //THE SERIAL KEY
-                var name = registered_subusers[i].name; //THE NAME
-                var projects = registered_subusers[i].projectid; //THE PROJECTS
-                var invalid = registered_subusers[i].invalidated; //1 if validated -1 if invalidated
+            registered_subusers.forEach(function(user, i){
+                var contents = user.email; //THE SERIAL KEY
+                var name = user.name; //THE NAME
+                var projects = user.projectid; //THE PROJECTS
+                var invalid = user.invalidated; //1 if validated -1 if invalidated
 
                 var subuser_view = new SubuserView({
                     i: i,
@@ -24,7 +24,7 @@ $(function(){
                 });
 
                 subuser_view.render('#tab_logic tbody');
-            }
+            });
         }
     });
 
@@ -51,7 +51,7 @@ $(function(){
                 projectid: 1
             };
 
-             api.post('subuser', newUser, function (data) {
+             api.putSubuser(newUser, function (data) {
                 if (data.res) {
                     var subuser_view = new SubuserView({
                         i: i,

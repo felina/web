@@ -10,12 +10,12 @@ module.exports = Backbone.View.extend({
     },
     render: function (selector) {
         this.$el.html(JST.subusers_element({
-            i: this.i,
+            i: this.i + 1,
             projects: this.projects
         }));
 
-        var colour = this.invalid ? 'red' : 'green';
-        this.$('#tablenu').css('background-color', colour);
+        var colour = this.invalid === -1 ? 'red' : 'green';
+        this.$('.index').css('background-color', colour);
 
         this.$('#namecontainer').val(this.name);
         this.$('#skcontainer').val(this.contents);
@@ -28,32 +28,31 @@ module.exports = Backbone.View.extend({
         'click #invalidate': 'invalidate',
         'click #edit': 'edit'
     },
-    refresh: function () {
+    setValidation: function(valid) {
         var newUser = {
             email: this.contents,
-            refresh: 1
-        };
-
-        api.post('updatesub', newUser, function (data) {
-            if (data.res) {
-                // Give info about successful refresh
-            }
-        });
-    },
-    invalidate: function () {
-        var newUser = {
-            email: this.contents,
-            refresh: -1
+            refresh: valid
         };
 
         var that = this;
 
-        api.post('updatesub', newUser, function (data) {
+        api.updateSub(newUser, function (data) {
+            console.log(data);
             if (data.res) {
-                // Give info about successful invalidate
-                that.$('#tablenu').css('background-color', 'yellow');
+                that.invalid = valid;
+                that.setColour();
             }
         });
+    },
+    setColour: function() {
+        var colour = this.invalid === -1 ? 'red' : 'green';
+        this.$('.index').css('background-color', colour);
+    },
+    refresh: function () {
+        this.setValidation(1);
+    },
+    invalidate: function () {
+        this.setValidation(-1);
     },
     edit: function () {
         this.$('#namecontainer').removeAttr('readonly');
