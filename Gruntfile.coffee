@@ -310,7 +310,11 @@ module.exports = (grunt) ->
       compile:
         files: browserify_map
       test:
-        files: test_map
+        expand: true
+        cwd: 'test/specs'
+        src: '**/*.coffee'
+        dest: 'test/build/'
+        ext: '.js'
         options:
           transform: ['coffeeify']
 

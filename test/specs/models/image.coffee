@@ -1,5 +1,5 @@
-FLImage = require '../../js/models/image'
-Metadata = require '../../js/models/metadata'
+FLImage = require '../../../js/models/image'
+Metadata = require '../../../js/models/metadata'
 
 describe 'FLImage', ->
   describe 'constructor', ->
