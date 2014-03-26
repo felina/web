@@ -30,7 +30,7 @@ module.exports = Backbone.View.extend({
         return this;
     },
     setIcon: function(page) {
-        if (!page in this.pages) {
+        if (!(page in this.pages)) {
             throw new Error('Invalid page: ' + page);
         }
         var p = this.pages[page];
