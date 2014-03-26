@@ -2,24 +2,7 @@ var LoginForm = require('../views/loginform');
 var Switcher = require('../views/switcher');
 var makeHeader = require('./loginutils').makeHeader;
 
-var getJSON = function(filename, success) {
-    $.ajax({
-        type: 'GET',
-        url: '/data/' + filename + '.json',
-        async: false,
-        dataType: 'json',
-        success: success,
-        error: function (err, txt) {
-            console.log(txt);
-        }
-    });
-};
-
-var pages;
-
-getJSON('pages', function (data) {
-    pages = data;
-});
+var pages = require('../../data/pages');
 
 var onPageLoad = function(page) {
     new LoginForm();
@@ -41,6 +24,5 @@ var onPageLoad = function(page) {
 };
 
 module.exports = {
-    getJSON: getJSON,
     onPageLoad: onPageLoad
 };
