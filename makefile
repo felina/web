@@ -21,6 +21,10 @@ site:
 deploy: build
 	s3cmd sync site/ s3://felina.io --acl-public
 
+install:
+	bower install
+	npm install
+
 # Exports the files as a ZIP archive
 export:
 	zip -r website.zip \
