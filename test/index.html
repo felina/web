@@ -16,14 +16,21 @@
     <script src="../node_modules/grunt-mocha/node_modules/mocha/mocha.js"></script>
     <script src="../node_modules/grunt-mocha/phantomjs/bridge.js"></script>
     <script src="../node_modules/chai/chai.js"></script>
+
     <!-- Initialise the test suite -->
     <script>
         mocha.setup('bdd');
         chai.should();
     </script>
+
     <!-- Import test cases -->
+    <!-- Models -->
     <script src="build/models/metadata.js"></script>
     <script src="build/models/image.js"></script>
+    <!-- Views -->
+    <!-- Collections -->
+    <script src="build/collections/image_set.js"></script>
+
     <!-- Start the tests -->
     <script>
         mocha.checkLeaks();
