@@ -1,8 +1,8 @@
 module.exports = Backbone.View.extend({
     tagName: 'div',
     className: 'map',
-    initalize: function() {
-
+    initialize: function(opts) {
+        opts = opts || {};
     },
     render: function(selector) {
         this.map = this.$el.atlas({

@@ -14,6 +14,11 @@
     <script src="../vendor/underscore/underscore.js"></script>
     <script src="../vendor/backbone/backbone.js"></script>
     <script src="../vendor/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="../vendor/gmaps/gmaps.js"></script>
+    <script src="../vendor/jquery-atlas/src/main.js"></script>
+
     <script src="../site/jst.js"></script>
 
     <!-- Import test harness files -->
@@ -24,7 +29,7 @@
     <!-- Initialise the test suite -->
     <script>
         mocha.setup('bdd');
-        chai.should();
+        var should = chai.should();
     </script>
 
     <!-- Import test cases -->
@@ -34,6 +39,7 @@
     <!-- Views -->
     <script src="build/views/switcher.js"></script>
     <script src="build/views/thumbnail.js"></script>
+    <script src="build/views/map.js"></script>
     <!-- Collections -->
     <script src="build/collections/image_set.js"></script>
 
