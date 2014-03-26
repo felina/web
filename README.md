@@ -22,16 +22,32 @@ The website will then be accessible at `http://localhost:9000/`
 
 The project is structured as follows:
 
-- `data/`: Contains dummy JSON data
-- `html/`: Contains static HTML, both full pages and shared fragments, that are assembled at compile-time.
+- `data/`: Static JSON configuration data and dummy data for testing.
+- `html/`:  Static HTML, both full pages and shared fragments that are assembled at compile-time.
 - `img/`: All images, including sample wildlife photograhy and icons.
-- `js/`: First-party JavaScript modules
+- `js/`: First-party JavaScript modules.
 - `stylus/`: Stylus stylesheets that are compiled to CSS at compile-time.
 - `templates/`: HTML templates with variable placeholders that are dynamically populated with data from the server inserted into the DOM with JS at run-time.
+- `test/`: Unit test spec files.
 
 ## Development
 
+### Building
+
 Run `grunt watch` to automatically rebuild the site as you develop it. Note, to copy over images and vendor scripts to the build directory you must manually run `make build` for performance reasons, but everything else can be automated.
+
+### Testing
+
+Run `grunt test` to run the unit tests from the command line in a headless Webkit instance.
+Run `grunt connect:test` to start a local webserver, then visit `http://localhost:9001/test/` to run the tests in a browser.
+
+### Documentation
+
+Run `grunt jsdoc` to build the documentation. It can then be found in the `doc` directory.
+
+### Installing
+
+To install new packages, run `bower install --save <package>`. You'll then need to update the Gruntfile to copy the necessary files from this package over to the site, and link them to the particular HTML pages that require them. Once this is done, run `grunt rsync` to copy everything over.
 
 ## Collaborators
 

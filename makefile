@@ -2,6 +2,7 @@
 # vendor scripts to the site directory
 build: favicon
 	grunt
+	grunt rsync
 
 # Deletes files that are the result of a build process
 clean:
@@ -23,5 +24,5 @@ deploy: build
 # Exports the files as a ZIP archive
 export:
 	zip -r website.zip \
-		html stylus templates js img \
+		html test stylus templates js img \
 		README.md package.json Gruntfile.coffee bower.json makefile .bowerrc
