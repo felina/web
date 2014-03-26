@@ -1,9 +1,9 @@
-var fl = require('../../shared/common');
+var onPageLoad = require('../../shared/pageload');
 
 $(function(){
     var profile;
 
-    fl.onPageLoad('user_profile');
+    onPageLoad('user_profile');
 
     api.loginCheck(function(data) {
         if(data.res) {

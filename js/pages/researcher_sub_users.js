@@ -1,8 +1,8 @@
-var fl = require('../shared/common');
+var onPageLoad = require('../shared/pageload');
 var SubuserView = require('../views/subuser');
 
 $(function(){
-    fl.onPageLoad('researcher_sub_users');
+    onPageLoad('researcher_sub_users');
 
     // Gets the current subusers from the system.
     var registered_subusers;

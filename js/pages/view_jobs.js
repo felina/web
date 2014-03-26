@@ -1,7 +1,7 @@
-var fl = require('../shared/common');
+var onPageLoad = require('../shared/pageload');
 
 $(function(){
-    fl.onPageLoad('view_jobs');
+    onPageLoad('view_jobs');
 
     var jobs = $('.jobs');
 

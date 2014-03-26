@@ -1,10 +1,10 @@
 Dropzone.autoDiscover = false;
 
-var fl = require('../shared/common');
+var onPageLoad = require('../shared/pageload');
 var FileUploader = require('../views/uploaders/exe/file');
 
 $(function(){
-    fl.onPageLoad('upload/executable');
+    onPageLoad('upload/executable');
 
     var getName = (function(field) {
         return function() {

@@ -1,7 +1,6 @@
 Dropzone.autoDiscover = false;
 
-var fl = require('../shared/common');
-
+var onPageLoad = require('../shared/pageload');
 var MetadataView = require('../views/metadata_view');
 var Gallery = require('../views/gallery');
 var FLMap = require('../views/map');
@@ -52,7 +51,7 @@ var onFeatureError = function() {
 };
 
 $(function() {
-    fl.onPageLoad('upload/image');
+    onPageLoad('upload/image');
 
     var fileUploader = new FileUploader({
         gallery: gallery

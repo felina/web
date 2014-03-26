@@ -1,4 +1,4 @@
-var fl = require('../shared/common');
+var onPageLoad = require('../shared/pageload');
 var FormDefiner = require('../views/form_definer');
 
 var addField = function () {
@@ -7,7 +7,7 @@ var addField = function () {
 };
 
 $(function(){
-    fl.onPageLoad('define_form');
+    onPageLoad('define_form');
 
     addField();
 

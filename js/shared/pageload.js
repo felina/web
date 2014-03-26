@@ -1,7 +1,6 @@
 var LoginForm = require('../views/loginform');
 var Switcher = require('../views/switcher');
 var makeHeader = require('./loginutils').makeHeader;
-
 var pages = require('../../data/pages');
 
 var onPageLoad = function(page) {
@@ -23,6 +22,4 @@ var onPageLoad = function(page) {
     });
 };
 
-module.exports = {
-    onPageLoad: onPageLoad
-};
+module.exports = onPageLoad;

@@ -1,8 +1,8 @@
-var fl = require('../shared/common');
+var onPageLoad = require('../shared/pageload');
 var onLogin = require('../shared/loginutils').onLogin;
 
 $(function(){
-    fl.onPageLoad('index');
+    onPageLoad('index');
 
     var images = ['elephant', 'giraffe', 'leopard'];
 
