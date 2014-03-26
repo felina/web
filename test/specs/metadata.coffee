@@ -1,4 +1,4 @@
-Metadata = require '../../js/shared/metadata'
+Metadata = require '../../js/models/metadata'
 
 describe 'Metadata', ->
   md = new Metadata()
