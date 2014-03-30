@@ -27,6 +27,7 @@ libs =
   backbone: 'backbone/backbone'
   blueimp: 'blueimp-gallery/js/jquery.blueimp-gallery.min'
   bbs: 'blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min'
+  bbsm: 'blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery'
   d3: 'd3/d3.min'
   dropzone: 'dropzone/downloads/dropzone'
   penguinator: 'penguinator/dist/penguinator'
@@ -136,7 +137,7 @@ dependencies =
   'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, libs.atlas, scripts.image_upload]
   'site/upload/executable.html': [libs.dropzone, scripts.executable_upload]
   'site/user_profile.html': [scripts.user_profile, scripts.about_tab, scripts.badges_tab, scripts.friends_tab, scripts.user_badges, scripts.user_photos, scripts.newsfeed, scripts.navbar, scripts.about]
-  'site/user_profile_gallery.html': [libs.blueimp, libs.bbs, scripts.user_gallery]
+  'site/user_profile_gallery.html': [libs.blueimp, libs.bbsm, scripts.user_gallery]
   'site/researcher_sub_users.html': [libs.multiselect, libs.prettify, scripts.sub_user]
 
 # Add the shared dependencies to every page
