@@ -219,7 +219,9 @@ module.exports = (grunt) ->
     jst:
       options:
         processName: (name) ->
-          name.replace /templates\/|\.html/g, ''
+          name
+            .replace(/templates\/|\.html/g, '')
+            .replace('/', '_')
 
       compile:
         files:
