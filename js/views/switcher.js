@@ -20,7 +20,7 @@ module.exports = Backbone.View.extend({
         this.$el.popover({
             html: true,
             content: content.html(),
-            trigger: 'hover',
+            trigger: 'click',
             placement: 'bottom',
             container: this.$el
         });
