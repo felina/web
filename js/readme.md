@@ -7,4 +7,4 @@ This directory contains the first-party JavaScript modules that comprise the Fel
 - `collections`: Contains Backbone Collections, which are groups of Models.
 - `shared`: Miscellaneous code needed by multiple pages.
 - `pages`: The main scripts for each page of the site, one per page.
-- `user_profile`: Some stuff Andy did.
+- `user_profile`: The scripts used to run the user profile.

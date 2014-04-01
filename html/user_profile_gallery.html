@@ -1,49 +1,66 @@
 <!--(bake shared/head.html title="Photo Gallery")-->
     <body>
         <!--(bake shared/header.html)-->
-        <noscript><link rel="stylesheet" type="text/css" href="/vendor/gamma/css/noJS.css"/></noscript>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <link rel="stylesheet" href="vendor/gamma/css/style.css">
-        <!-- FIX SO HEADER IS THE SAME -->
-        <!--[if lte IE 7]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
+        <!-- <link rel="stylesheet" href="vendor/blueimp-gallery/css/blueimp-gallery.min.css"> -->
+        
 
         <div class="container">
 
-            <div class="main">
-
-                    <h1>Photos</h1>
-
-                    <div class="support-note">
-                        <span class="note-ie">Sorry, only modern browsers.</span>
+            <h2>User Photos</h2>
+                <div id="links">
+                        
+                    <div class="row">
+                        <a href="img/giraffe.jpg" title="Banana" data-gallery>
+                            <img class="col-md-3 col-sm-3 col-xs-6" src="img/giraffe.jpg" alt="Banana">
+                        </a>
+                        <a href="img/elephant.jpg" title="Apple" data-gallery>
+                            <img class="col-md-3 col-sm-3 col-xs-6" src="img/elephant.jpg" alt="Apple">
+                        </a>
+                        <a href="img/elephant.jpg" title="Orange" data-gallery>
+                            <img class="col-md-3 col-sm-3 col-xs-6" src="img/elephant.jpg" alt="Orange">
+                        </a>
+                        <a href="img/elephant.jpg" title="Orange" data-gallery>
+                            <img class="col-md-3 col-sm-3 col-xs-6" src="img/elephant.jpg" alt="Orange">
+                        </a>
                     </div>
-
-                <div class="gamma-container gamma-loading" id="gamma-container">
-
-                    <ul class="gamma-gallery">
-
-                        <li>
-                            <div data-alt="img03" data-description="<h3>Elephant</h3>" data-max-width="1800" data-max-height="1350">
-                                <div data-src="img/elephant.jpg" data-min-width="1300"></div>
-                                <div data-src="img/elephant.jpg" data-min-width="1000"></div>
-                                <div data-src="img/elephant.jpg" data-min-width="700"></div>
-                                <div data-src="img/elephant.jpg" data-min-width="300"></div>
-                                <div data-src="img/elephant.jpg" data-min-width="200"></div>
-                                <div data-src="img/elephant.jpg" data-min-width="140"></div>
-                                <div data-src="img/elephant.jpg"></div>
-                                <noscript>
-                                    <img src="img/images/xsmall/3.jpg" alt="img03"/>
-                                </noscript>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <div class="gamma-overlay"></div>
-
-                    <div id="loadmore" class="loadmore">Load more items</div>
-
                 </div>
 
-            </div><!--/main-->
+
+                <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+                <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+                    <!-- The container for the modal slides -->
+                    <div class="slides"></div>
+                    <!-- Controls for the borderless lightbox -->
+                    <h3 class="title"></h3>
+                    <a class="prev">‹</a>
+                    <a class="next">›</a>
+                    <a class="close">×</a>
+                    <a class="play-pause"></a>
+                    <ol class="indicator"></ol>
+                    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+                    <div class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title"></h4>
+                                </div>
+                                <div class="modal-body next"></div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left prev">
+                                        <i class="glyphicon glyphicon-chevron-left"></i>
+                                        Previous
+                                    </button>
+                                    <button type="button" class="btn btn-primary next">
+                                        Next
+                                        <i class="glyphicon glyphicon-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <!--(bake shared/footer.html)-->
         </div>
 
@@ -52,5 +69,16 @@
 
         <!--SCRIPTS-->
         <!--SCRIPTS END-->
+
+        <script>
+            document.getElementById('links').onclick = function (event) {
+            event = event || window.event;
+            var target = event.target || event.srcElement,
+                link = target.src ? target.parentNode : target,
+                options = {index: link, event: event},
+                links = this.getElementsByTagName('a');
+            blueimp.Gallery(links, options);
+        };
+        </script>
     </body>
 </html>

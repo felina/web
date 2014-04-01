@@ -14,7 +14,7 @@ module.exports = Backbone.View.extend({
             projects: this.projects
         }));
 
-        var colour = this.invalid === -1 ? 'red' : 'green';
+        var colour = this.invalid === 1 ? 'red' : 'green';
         this.$('.index').css('background-color', colour);
 
         this.$('#namecontainer').val(this.name);
