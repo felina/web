@@ -1,6 +1,7 @@
 var onPageLoad = require('../shared/pageload');
 var SubuserView = require('../views/subuser');
 var AddButton = require('../views/buttons/add');
+var RemoveButton = require('../views/buttons/remove');
 
 $(function(){
     onPageLoad('sub_users');
@@ -46,13 +47,19 @@ $(function(){
         });
     };
 
-    $('#invalidate').on('click', function(e) {
-        e.preventDefault();
+    var invalidate = function() {
         var s = getSelected();
         s.forEach(function(subuser){
             subuser.invalidate();
         });
+    };
+
+    var invalidateButton = new RemoveButton({
+        text: 'Invalidate',
+        onClick: invalidate
     });
+
+    invalidateButton.render('#controls');
 
     $('#refresh').on('click', function(e) {
         e.preventDefault();
