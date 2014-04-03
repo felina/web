@@ -8,7 +8,7 @@ module.exports = Backbone.View.extend({
     },
     render: function(selector) {
         var icon = $('<i>').addClass('glyphicon glyphicon-plus');
-        this.$el.append(icon).append(this.text).appendTo(selector);
+        this.$el.append(icon).append('&nbsp;' + this.text).appendTo(selector);
         return this;
     },
     events: {
