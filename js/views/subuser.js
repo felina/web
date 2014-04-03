@@ -7,6 +7,7 @@ module.exports = Backbone.View.extend({
         this.invalid = opts.invalid;
         this.contents = opts.contents;
         this.i = opts.i;
+        this.selected = false;
     },
     render: function (selector) {
         this.$el.html(JST.subusers_element({
@@ -24,9 +25,10 @@ module.exports = Backbone.View.extend({
         return this;
     },
     events: {
-        'click #refresh': 'refresh',
-        'click #invalidate': 'invalidate',
-        'click #edit': 'edit'
+        'click #select': 'select',
+    },
+    select: function() {
+        this.selected = !this.selected;
     },
     setValidation: function(valid) {
         var newUser = {
@@ -45,8 +47,14 @@ module.exports = Backbone.View.extend({
         });
     },
     setColour: function() {
-        var colour = this.invalid === -1 ? 'red' : 'green';
-        this.$('.index').css('background-color', colour);
+        if (this.invalid === -1) {
+            this.$el.addClass('danger');
+            this.$el.removeClass('success');
+        }
+        else {
+            this.$el.removeClass('danger');
+            this.$el.addClass('success');
+        }
     },
     refresh: function () {
         this.setValidation(1);

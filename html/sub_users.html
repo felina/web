@@ -28,20 +28,25 @@
                         <option value="seals">Seals</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-success" id="add_user">
-                        <i class="glyphicon glyphicon-plus"></i>&nbsp;Add user
-                    </button>
-                </div>
+                <div class="form-group" id="addwrap"></div>
             </form>
         </div>
 
         <div class="col-md-9">
             <form role="form" class="form-inline">
-                <button id='invalidate' class='btn btn-default'>Invalidate</button>
-                <button id='refresh' class='btn btn-default'>Refresh</button>
-                <button id='viewgallery' class='btn btn-default'>Photos</button>
-                <button id='edit' class='btn btn-default' data-toggle='button'>Edit</button>
+                <div class="form-group">
+                <button id='invalidate' class='btn btn-default'>
+                    <i class="glyphicon glyphicon-remove"></i> Invalidate
+                </button>
+                </div>
+                <button id='refresh' class='btn btn-default'>
+                    <i class="glyphicon glyphicon-refresh"></i> Refresh
+                </button>
+                <button id='viewgallery' class='btn btn-default'>
+                    <i class="glyphicon glyphicon-picture"></i> Photos
+                </button>
+                <button id='edit' class='btn btn-default' data-toggle='button'>     <i class="glyphicon glyphicon-pencil"></i> Edit
+                </button>
             </form>
 
             <table class="table table-bordered table-hover" id="tab_logic">

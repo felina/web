@@ -1,8 +1,11 @@
 var onPageLoad = require('../shared/pageload');
 var SubuserView = require('../views/subuser');
+var AddButton = require('../views/buttons/add');
 
 $(function(){
     onPageLoad('sub_users');
+
+    var subusers = [];
 
     // Gets the current subusers from the system.
     var registered_subusers;
@@ -24,6 +27,8 @@ $(function(){
                 });
 
                 subuser_view.render('#tab_logic tbody');
+
+                subusers.push(subuser_view);
             });
         }
     });
@@ -35,14 +40,42 @@ $(function(){
         });
     }
 
-    // Adds the user to the below table
-    $('#add_user').click(function(e) {
-        e.preventDefault();
+    var getSelected = function() {
+        return subusers.filter(function(subuser) {
+            return subuser.selected;
+        });
+    };
 
+    $('#invalidate').on('click', function(e) {
+        e.preventDefault();
+        var s = getSelected();
+        s.forEach(function(subuser){
+            subuser.invalidate();
+        });
+    });
+
+    $('#refresh').on('click', function(e) {
+        e.preventDefault();
+        var s = getSelected();
+        s.forEach(function(subuser){
+            subuser.refresh();
+        });
+    });
+
+    $('#edit').on('click', function(e) {
+        e.preventDefault();
+        var s = getSelected();
+        s.forEach(function(subuser){
+            subuser.edit();
+        });
+    });
+
+    // Adds the user to the below table
+    var addUser = function() {
         var i = $('#tab_logic > tbody > tr').length;
-        var contents = $('#skinput').val() + '@felina.com'; //THE SERIAL KEY
-        var name = $('#nameinput').val(); //THE NAME
-        var projects = $('#projectselect').val(); //THE PROJECTS
+        var contents = $('#skinput').val() + '@felina.com';
+        var name = $('#nameinput').val();
+        var projects = $('#projectselect').val();
 
         // Makes sure that there is values added in the three fields
         if (contents && name && projects) {
@@ -63,6 +96,8 @@ $(function(){
                         contents: contents
                     });
 
+                    subusers.push(subuser_view);
+
                     subuser_view.render('#tab_logic tbody');
 
                     $('#skinput').val('');
@@ -74,7 +109,14 @@ $(function(){
                 // Add clause if users is already defined etc........
             });
         }
+    };
+
+    var addUserButton = new AddButton({
+        onClick: addUser,
+        text: 'Add user'
     });
+
+    addUserButton.render('#addwrap');
 
     $('#projectselect').multiselect({
         buttonClass: 'btn',
