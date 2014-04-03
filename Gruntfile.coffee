@@ -105,13 +105,10 @@ scripts =
   navbar: 'user_profile/navbar/navbar'
   about: 'user_profile/About/user_about'
   loadimages: 'user_profile/photos/loadimages'
-  sub_user: 'researcher_sub_users'
+  sub_user: 'sub_users'
 
 for k, v of scripts
   scripts[k] = 'js/pages/' + v + '.js'
-
-# Researcher sub users
-sub_user = 'js/researcher-sub-users.js'
 
 # Files used by every page
 shared = [
@@ -138,7 +135,7 @@ dependencies =
   'site/upload/executable.html': [libs.dropzone, scripts.executable_upload]
   'site/user_profile.html': [scripts.user_profile, scripts.about_tab, scripts.badges_tab, scripts.friends_tab, scripts.user_badges, scripts.user_photos, scripts.newsfeed, scripts.navbar, scripts.about]
   'site/user_profile_gallery.html': [libs.blueimp, libs.bbsm, scripts.user_gallery]
-  'site/researcher_sub_users.html': [libs.multiselect, libs.prettify, scripts.sub_user]
+  'site/sub_users.html': [libs.multiselect, libs.prettify, scripts.sub_user]
 
 # Add the shared dependencies to every page
 for k, v of dependencies

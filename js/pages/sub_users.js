@@ -2,7 +2,7 @@ var onPageLoad = require('../shared/pageload');
 var SubuserView = require('../views/subuser');
 
 $(function(){
-    onPageLoad('researcher_sub_users');
+    onPageLoad('sub_users');
 
     // Gets the current subusers from the system.
     var registered_subusers;
@@ -36,7 +36,9 @@ $(function(){
     }
 
     // Adds the user to the below table
-    $('#add_user').click(function(){
+    $('#add_user').click(function(e) {
+        e.preventDefault();
+
         var i = $('#tab_logic > tbody > tr').length;
         var contents = $('#skinput').val() + '@felina.com'; //THE SERIAL KEY
         var name = $('#nameinput').val(); //THE NAME

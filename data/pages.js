@@ -39,7 +39,7 @@ module.exports = {
         icon: 'th',
         title: 'User gallery'
     },
-    researcher_sub_users: {
+    sub_users: {
         icon: 'list-alt',
         title: 'Sub users'
     }
