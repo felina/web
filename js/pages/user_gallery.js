@@ -6,7 +6,7 @@ $(function(){
     api.get('images', function(data) {
         if (data.res) {
             data.images.forEach(function(image) {
-                $('#links').append(JST.gallery_default({
+                $('#links').append(JST['gallery/default']({
                     url: api.url + 'img?id=' + image.imageid,
                     title: 'hi'
                 }));

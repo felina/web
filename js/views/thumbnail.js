@@ -7,7 +7,7 @@ module.exports = Backbone.View.extend({
         this.metadataView = opts.metadataView;
     },
     render: function() {
-        this.$el.html(JST.gallery_selectable({
+        this.$el.html(JST['gallery/selectable']({
             url: this.model.get('url'),
             title: this.model.get('metadata').get('title')
         }));

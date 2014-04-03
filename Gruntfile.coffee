@@ -221,7 +221,6 @@ module.exports = (grunt) ->
         processName: (name) ->
           name
             .replace(/templates\/|\.html/g, '')
-            .replace('/', '_')
 
       compile:
         files:
