@@ -37,24 +37,20 @@
         </div>
 
         <div class="col-md-9">
+            <form role="form" class="form-inline">
+                <button id='invalidate' class='btn btn-default'>Invalidate</button>
+                <button id='refresh' class='btn btn-default'>Refresh</button>
+                <button id='viewgallery' class='btn btn-default'>Photos</button>
+                <button id='edit' class='btn btn-default' data-toggle='button'>Edit</button>
+            </form>
+
             <table class="table table-bordered table-hover" id="tab_logic">
                 <thead>
                     <tr>
-                        <th class="text-center">
-                            #
-                        </th>
-                        <th class="text-center">
-                            Serial Key
-                        </th>
-                        <th class="text-center">
-                            Name
-                        </th>
-                        <th class="text-center" style="vertical-align:middle" align="center">
-                            Projects
-                        </th>
-                        <th class="text-center" style="vertical-align:middle" align="center">
-                            Options
-                        </th>
+                        <th><input type="checkbox"></th>
+                        <th>Serial Key</th>
+                        <th>Name</th>
+                        <th>Projects</th>
                     </tr>
                 </thead>
 
