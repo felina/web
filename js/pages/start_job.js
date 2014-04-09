@@ -38,4 +38,15 @@ $(function(){
             }
         }
     });
+
+    $('#start').on('click', function() {
+        console.log($('input[type=radio]:checked'));
+
+        var exe = 1;
+        var images = [1, 2, 3];
+
+        api.startJob(exe, images, function(data) {
+            console.log(data);
+        });
+    });
 });
