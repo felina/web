@@ -1,6 +1,33 @@
 var onPageLoad = require('../shared/pageload');
-var onLogin = require('../shared/loginutils').onLogin;
+var loginutils = require('../shared/loginutils');
 var LoginForm = require('../views/loginform');
+var makeHeader = loginutils.makeHeader;
+
+var hideForm = function () {
+    $('#banner').find('form').hide();
+};
+
+var onLogin = function(data) {
+    // If the login was successful
+    if (data.res) {
+        // Inform the user
+        alert('Logged in successfully');
+        // Hide the login modal
+        $('#register').modal('hide');
+
+        // Update the header to replace the login button with the
+        // details of the newly logged in user
+        makeHeader(data);
+
+        hideForm();
+    }
+    // Login failed
+    else {
+        // Inform the user
+        alert('Invalid username or password');
+        console.log(data);
+    }
+};
 
 $(function(){
     new LoginForm();
@@ -22,7 +49,7 @@ $(function(){
     api.loginCheck(function(data){
         // Remove the login form if the user's logged in
         if (data.res) {
-            banner.find('form').hide();
+            hideForm();
         }
         // Activate it if they aren't
         else {
@@ -34,6 +61,7 @@ $(function(){
 
                 api.login(data, onLogin, function(err){
                     console.error(err);
+                    hideForm();
                 });
             });
         }

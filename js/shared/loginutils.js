@@ -32,29 +32,8 @@ var makeHeader = function(data) {
     $('header').append(h);
 };
 
-var onLogin = function(data) {
-    // If the login was successful
-    if (data.res) {
-        // Inform the user
-        alert('Logged in successfully');
-        // Hide the login modal
-        $('#register').modal('hide');
-
-        // Update the header to replace the login button with the
-        // details of the newly logged in user
-        makeHeader(data);
-    }
-    // Login failed
-    else {
-        // Inform the user
-        alert('Invalid username or password');
-        console.log(data);
-    }
-};
-
 module.exports = {
     makeHeader: makeHeader,
-    onLogin: onLogin,
     isHomepage: isHomepage,
     goHome: goHome
 };
