@@ -25,7 +25,7 @@ module.exports = Backbone.View.extend({
         return this;
     },
     events: {
-        'click #select': 'select',
+        'click #select': 'select'
     },
     select: function() {
         this.selected = !this.selected;

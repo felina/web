@@ -1,3 +1,5 @@
+var RemoveButton = require('./buttons/remove');
+
 module.exports = Backbone.View.extend({
     tagName: 'form',
     className: 'form-field-definer',
@@ -5,6 +7,14 @@ module.exports = Backbone.View.extend({
         opts = opts || {};
     },
     render: function (selector) {
+        var that = this;
+        var removeButton = new RemoveButton({
+            text: 'Remove field',
+            onClick: that.remove
+        });
+        removeButton.render();
+        this.$el.prepend(removeButton);
+
         this.$el.addClass('form-horizontal');
         this.$el.attr('role', 'form');
 
@@ -12,11 +22,5 @@ module.exports = Backbone.View.extend({
 
         this.$el.appendTo(selector);
         return this;
-    },
-    events: {
-        'click .closer': 'close'
-    },
-    close: function() {
-        this.remove();
     }
 });

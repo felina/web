@@ -6,10 +6,10 @@ module.exports = Backbone.View.extend({
         this.text = opts.text || '';
         this.onClick = opts.onClick || function() {};
     },
-    render: function(selector) {
+    render: function() {
         var icon = $('<i>').addClass('glyphicon glyphicon-' + this.icon);
         this.setClasses();
-        this.$el.append(icon).append('&nbsp;' + this.text).appendTo(selector);
+        this.$el.append(icon).append('&nbsp;' + this.text);
         return this;
     },
     events: {

@@ -59,7 +59,7 @@ $(function(){
         onClick: invalidate
     });
 
-    invalidateButton.render('#controls');
+    invalidateButton.render().$el.appendTo('#controls');
 
     $('#refresh').on('click', function(e) {
         e.preventDefault();
@@ -123,7 +123,7 @@ $(function(){
         text: 'Add user'
     });
 
-    addUserButton.render('#addwrap');
+    addUserButton.render().$el.appendTo('#addwrap');
 
     $('#projectselect').multiselect({
         buttonClass: 'btn',
