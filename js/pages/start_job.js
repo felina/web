@@ -22,6 +22,8 @@ $(function(){
         }
     });
 
+    var exes = [];
+
     api.getExecutables(function(data) {
         if (data.res) {
             if (data.execs.length === 0) {
@@ -31,9 +33,11 @@ $(function(){
                 _.each(data.execs, function(exec) {
                     console.log(exec);
                     var exe = new Executable({
-                        name: exec.name
+                        name: exec.name,
+                        id: exec.exeid
                     });
                     exe.render().$el.appendTo('#exelist ul');
+                    exes.push(exe);
                 });
             }
         }
@@ -42,10 +46,14 @@ $(function(){
     $('#start').on('click', function() {
         console.log($('input[type=radio]:checked'));
 
-        var exe = '4dafc690d01355d335169c52609bf08e';
+        var exe = _.find(exes, function(e) { return e.selected; });
+        if (!exe) {
+            alert('Please choose an executable');
+            return;
+        }
         var images = ['b3639a00751454b1fa0f0cc39fb5992c', '11d70a64fee30a8dacb58f7bdfcf25f3'];
 
-        api.startJob(exe, images, function(data) {
+        api.startJob(exe.id, images, function(data) {
             console.log(data);
         });
     });
