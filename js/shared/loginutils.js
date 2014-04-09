@@ -1,3 +1,11 @@
+var goHome = function() {
+    window.location.replace(window.location.origin);
+};
+
+var isHomepage = function() {
+    return window.location.href === window.location.origin + '/';
+};
+
 /**
  * Creates the necessary DOM structure for the contents of the page header,
  * and inserts it into the page.
@@ -12,7 +20,7 @@ var makeHeader = function(data) {
     h.find('#logout').on('click', function() {
         api.logout(function(data) {
             console.log(data);
-            location.reload(true);
+            goHome();
         });
     });
 
@@ -46,5 +54,7 @@ var onLogin = function(data) {
 
 module.exports = {
     makeHeader: makeHeader,
-    onLogin: onLogin
+    onLogin: onLogin,
+    isHomepage: isHomepage,
+    goHome: goHome
 };

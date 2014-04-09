@@ -9,25 +9,30 @@
 
     <hr>
 
-    <h2>1. Name species</h2>
+    <h2>1. Project/species name</h2>
 
     <form>
-        <input type="text" class="form-control" placeholder="Species name eg. 'Lesser spotted pygmy shrew'">
+        <input type="text" id="name" class="form-control" placeholder="Species name eg. 'Lesser spotted pygmy shrew'">
     </form>
 
     <hr>
 
-    <h2>2. Add form fields</h2>
+    <h2>2. Description</h2>
 
-    <div class="fields">
+    <form>
+        <input type="textarea" id="#desc" class="form-control" placeholder="Description">
+    </form>
 
-    </div>
+    <hr>
 
+    <h2>3. Add form fields</h2>
+
+    <div class="fields"></div>
     <div id="addwrap"></div>
 
     <hr>
 
-    <h2>3. Save</h2>
+    <h2>4. Submit</h2>
 
     <div class="button-wrap">
         <button type="button" class="btn btn-success btn-lg" id="submit">Submit</button>
@@ -39,7 +44,6 @@
 </body>
 
 <!--(bake shared/modal.html id="credits" title="Credits" body="credits")-->
-<!--(bake shared/modal.html id="register" title="Register / Log in" body="login")-->
 
 <!--SCRIPTS-->
 <!--SCRIPTS END-->

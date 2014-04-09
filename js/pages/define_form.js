@@ -17,5 +17,16 @@ $(function(){
 
     addField();
 
-   addButton.render().$el.appendTo('#addwrap');
+    addButton.render().$el.appendTo('#addwrap');
+
+    $('#submit').on('click', function() {
+        var project = {
+            name: $('#name').val(),
+            desc: $('#desc').val(),
+            features: {}
+        };
+        api.addProject(project, function (data) {
+            console.log(data);
+        });
+    });
 });

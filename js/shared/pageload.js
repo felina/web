@@ -1,11 +1,11 @@
-var LoginForm = require('../views/loginform');
 var Switcher = require('../views/switcher');
-var makeHeader = require('./loginutils').makeHeader;
+var loginutils = require('./loginutils');
 var pages = require('../../data/pages');
+var makeHeader = loginutils.makeHeader;
+var isHomepage = loginutils.isHomepage;
+var goHome = loginutils.goHome;
 
 var onPageLoad = function(page) {
-    new LoginForm();
-
     var switcher = new Switcher({
         pages: pages
     });
@@ -18,7 +18,15 @@ var onPageLoad = function(page) {
     // displayed in the header
     api.loginCheck(function(data) {
         console.log(data);
-        makeHeader(data);
+        if (data.res || isHomepage()) {
+            makeHeader(data);
+        }
+        else {
+            // Redirect to homepage
+            if (!isHomepage()) {
+                goHome();
+            }
+        }
     });
 };
 
