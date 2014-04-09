@@ -7,8 +7,10 @@ $(function(){
 
     // Get data for the jobs and add it to the DOM
     api.getJobs(function(data) {
-        _.each(data, function(item){
-            jobs.append(JST.job(item));
-        });
+        if (data.res) {
+            _.each(data.jobs, function(job){
+                jobs.append(JST.job(job));
+            });
+        }
     });
 });
