@@ -42,8 +42,8 @@ $(function(){
     $('#start').on('click', function() {
         console.log($('input[type=radio]:checked'));
 
-        var exe = 1;
-        var images = [1, 2, 3];
+        var exe = '4dafc690d01355d335169c52609bf08e';
+        var images = ['b3639a00751454b1fa0f0cc39fb5992c', '11d70a64fee30a8dacb58f7bdfcf25f3'];
 
         api.startJob(exe, images, function(data) {
             console.log(data);
