@@ -1,19 +1,16 @@
 <div class="form-group">
-    <label for="name" class="col-sm-2 control-label">Field name</label>
+    <label for="name" class="col-sm-2 control-label">Name</label>
     <div class="col-sm-8">
         <input type="text" id="name" class="form-control" placeholder="eg. 'Wing', 'Age'">
     </div>
 </div>
 
 <div class="form-group">
-    <label for="type" class="col-sm-2 control-label">Field type</label>
+    <label for="type" class="col-sm-2 control-label">Type</label>
     <div class="col-sm-8">
-        <select class="form-control">
-            <option value="annotation">Annotation</option>
-            <option value="number">Number</option>
-            <option value="text">Text</option>
-            <option value="bool">Boolean (checkbox)</option>
-            <option value="select">Selection (dropdown list)</option>
+        <select class="form-control" id="type">
+            <option value="rect">Rectangle</option>
+            <option value="poly">Polygon</option>
         </select>
     </div>
 </div>
@@ -21,6 +18,6 @@
 <div class="form-group">
     <label for="type" class="col-sm-2 control-label">Required</label>
     <div class="col-sm-8">
-        <input type="checkbox">
+        <input type="checkbox" id="required">
     </div>
 </div>

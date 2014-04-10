@@ -5,6 +5,9 @@ module.exports = Backbone.View.extend({
     className: 'form-field-definer',
     initialize: function(opts) {
         opts = opts || {};
+        this.required = false;
+        this.type = 'Rectangle';
+        this.name = 'Untitled';
     },
     render: function (selector) {
         var that = this;
@@ -22,5 +25,19 @@ module.exports = Backbone.View.extend({
 
         this.$el.appendTo(selector);
         return this;
+    },
+    events: {
+        'change #name': 'setName',
+        'change #type': 'setType',
+        'change #required': 'setRequired'
+    },
+    setName: function() {
+        this.name = this.$('#name').val();
+    },
+    setType: function() {
+        this.type = this.$('#type').find(':selected').text();
+    },
+    setRequired: function() {
+        this.required = this.$('required').is(':checked');
     }
 });

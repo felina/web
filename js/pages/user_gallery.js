@@ -9,7 +9,7 @@ $(function(){
 
     api.get('images', function(data) {
         if (data.res) {
-            data.images.forEach(function(image) {
+            _.each(data.images, function(image) {
                 gallery.add({
                     url: api.url + 'img?id=' + image.imageid,
                     title: 'hi'
