@@ -8,17 +8,21 @@
     <h2>Settings</h2>
     <hr>
 
-    <form role="form" action="/settings" method="post">
+    <form role="form">
         <div class="form-group">
-            <input type="text" placeholder="Name" class="form-control">
+            <input type="text" placeholder="Name" class="form-control" id="name">
         </div>
 
         <div class="form-group">
-            <input type="email" placeholder="Email" class="form-control">
+            <input type="email" placeholder="Email" class="form-control" id="email">
         </div>
 
         <div class="form-group">
-            <input type="password" placeholder="Password" class="form-control">
+            <input type="password" placeholder="Password" class="form-control" id="password">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary" id="save">Save</button>
         </div>
     </form>
   <!--(bake shared/footer.html)-->

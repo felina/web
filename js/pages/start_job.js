@@ -1,18 +1,19 @@
 var onPageLoad = require('../shared/pageload');
 var Executable = require('../views/executable');
-var Gallery = require('../views/gallery');
+var Gallery = require('../views/gallery/default');
 
 $(function(){
     onPageLoad('start_job');
 
-    var gallery = new Gallery({});
+    var gallery = new Gallery();
     gallery.render('#gallery');
 
     api.getImages(function(data) {
         if (data.res) {
             _.each(data.images, function(img) {
                 gallery.add({
-                    src: api.url + 'img?id=' + img.imageid
+                    url: api.url + 'img?id=' + img.imageid,
+                    title: 'hi'
                 });
             });
         }

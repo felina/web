@@ -2,7 +2,7 @@ Dropzone.autoDiscover = false;
 
 var onPageLoad = require('../shared/pageload');
 var MetadataView = require('../views/metadata_view');
-var Gallery = require('../views/gallery');
+var Gallery = require('../views/gallery/selectable');
 var FLMap = require('../views/map');
 var Annotator = require('../views/annotator');
 var URLUploader = require('../views/uploaders/img/url');
