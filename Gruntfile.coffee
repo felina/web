@@ -57,7 +57,7 @@ dir_list = [
   vendor + 'dropzone'
   vendor + 'webshim/js-webshim/minified'
   vendor + 'bootstrap/dist/fonts'
-  vendor + 'gamma'
+  vendor + 'blueimp-gallery/img'
   'img'
 ]
 
