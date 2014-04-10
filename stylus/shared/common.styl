@@ -127,11 +127,15 @@ footer a
       -webkit-filter: grayscale(1)
       transition: all 0.2s
 
+    div.img
+      width: thumbnail_size
+      height: thumbnail_size
+      background-size: cover
+      background-position: center center
+      transition: all 0.2s
+
     input
       margin: margin_small 5px
-
-    div
-      background: gallery_inactive
 
   .active
     div
@@ -139,6 +143,17 @@ footer a
     img
       border-color: gallery_active !important
       -webkit-filter: grayscale(0) !important
+    div.img
+      border: 3px solid gallery_inactive
+
+  .inactive
+    div
+      background: gallery_inactive
+    img
+      border-color: gallery_inactive !important
+      -webkit-filter: grayscale(1) !important
+    div.img
+      border: 3px solid gallery_active
 
 .button-wrap
   padding: margin_mid
