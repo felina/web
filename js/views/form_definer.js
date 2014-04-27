@@ -56,8 +56,10 @@ module.exports = Backbone.View.extend({
     setType: function() {
         this.type = this.$('#type').find(':selected').text();
     },
-    /** Stores the boolean representing whether or not this is a mandatory
-    field on the view */
+    /**
+    Stores the boolean representing whether or not this is a mandatory
+    field on the view
+    */
     setRequired: function() {
         this.required = this.$('required').is(':checked');
     }
