@@ -1,3 +1,6 @@
+/**
+Backbone View that wraps the jQuery Atlas map location picker plugin.
+*/
 module.exports = Backbone.View.extend({
     tagName: 'div',
     className: 'map',
