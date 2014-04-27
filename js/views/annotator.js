@@ -1,15 +1,11 @@
 /**
- * Creates or updates the annotator element with the given image and its
- * annotations
- * @param {Object} annos - The annotation data to be loaded into the
- * annotator - used for restoring the progress on previously annotated images
- * @param {jQuery object} image - A jQuery-wrapped HTML <img> tag with the
- * image to be displayed
- */
+Backbone View that wraps the jQuery annotator plugin
+*/
 module.exports = Backbone.View.extend({
     tagName: 'div',
     initialize: function(opts) {
         opts = opts || {};
+        // Default arguments to pass to the annotator constructor
         this.args = {
             width: 500,
             height: 500,

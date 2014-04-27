@@ -61,6 +61,6 @@ module.exports = Backbone.View.extend({
     field on the view
     */
     setRequired: function() {
-        this.required = this.$('required').is(':checked');
+        this.required = this.$('#required').is(':checked');
     }
 });
