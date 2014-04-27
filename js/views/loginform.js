@@ -8,8 +8,10 @@ var modes = {
     REGISTER: 2
 };
 
-/** Backbone View for the modal dialog for registering a user account with the
-system and signing in to existing accounts */
+/**
+Backbone View for the modal dialog for registering a user account with the
+system and signing in to existing accounts
+*/
 var LoginForm = Backbone.View.extend({
     /** @constructor
     */
