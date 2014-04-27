@@ -6,7 +6,6 @@
  * @param {jQuery object} image - A jQuery-wrapped HTML <img> tag with the
  * image to be displayed
  */
-
 module.exports = Backbone.View.extend({
     tagName: 'div',
     initialize: function(opts) {

@@ -1,4 +1,4 @@
-Thumbnail = require '../../../js/views/thumbnail'
+Thumbnail = require '../../../js/views/thumbnails/selectable'
 Annotator = require '../../../js/views/annotator'
 MetadataView = require '../../../js/views/metadata_view'
 FLImage = require '../../../js/models/image'
