@@ -28,7 +28,7 @@ module.exports = {
         title: 'View jobs'
     },
     graphs: {
-        icon: 'signal',
+        icon: 'stats',
         title: 'Graphs'
     },
     user_profile: {

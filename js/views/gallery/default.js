@@ -21,7 +21,7 @@ module.exports = Backbone.View.extend({
         return this;
     },
     render: function(selector) {
-        this.$el.text('No images addeed yet.');
+        this.$el.text('No images added yet.');
         this.$el.appendTo(selector);
         return this;
     }

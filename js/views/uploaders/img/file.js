@@ -20,7 +20,7 @@ module.exports = Backbone.View.extend({
                     // a valid response with an error object.
                     if (response.res){
                         // TODO: update server to only accept and return single images
-                        var id = response.ids[0];
+                        var id = response.id;
 
                         var collection = that.gallery.collection;
 
