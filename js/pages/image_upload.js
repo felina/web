@@ -3,16 +3,14 @@ Dropzone.autoDiscover = false;
 var onPageLoad = require('../shared/pageload');
 var MetadataView = require('../views/metadata_view');
 var Gallery = require('../views/gallery/selectable');
-var FLMap = require('../views/map');
+var LocationPicker = require('../views/location_picker');
 var Annotator = require('../views/annotator');
 var URLUploader = require('../views/uploaders/img/url');
 var FileUploader = require('../views/uploaders/img/file');
 
 var ann = new Annotator();
-var map = new FLMap();
-var metadata = new MetadataView({
-    map: map
-});
+var lp = new LocationPicker();
+var metadata = new MetadataView({ picker: lp });
 var gallery = new Gallery({
     annotator: ann,
     metadataView: metadata
@@ -61,7 +59,7 @@ $(function() {
     api.getFeatures(onFeatureLoad, onFeatureError);
 
     gallery.render('#gallery');
-    map.render('#map');
+    lp.render('#map');
     metadata.render('.meta');
     urlUploader.render('#upload');
 

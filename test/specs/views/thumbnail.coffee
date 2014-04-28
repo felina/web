@@ -2,11 +2,13 @@ Thumbnail = require '../../../js/views/thumbnails/selectable'
 Annotator = require '../../../js/views/annotator'
 MetadataView = require '../../../js/views/metadata_view'
 FLImage = require '../../../js/models/image'
+LocationPicker = require '../../../js/views/location_picker'
 
 describe 'Thumbnail', ->
   annotator = new Annotator()
 
-  mv = new MetadataView()
+  lp = new LocationPicker()
+  mv = new MetadataView({picker: lp})
 
   thumbnail = new Thumbnail({
     annotator: annotator

@@ -23,10 +23,13 @@ module.exports = Backbone.View.extend({
     },
     initialize: function(opts) {
         opts = opts || {};
+        if (!opts.picker) {
+            throw new Error('Please provide a location picker to accompany this metadata view');
+        }
         // Store a reference to the map view that accompanies this metadata
         // view, to allow the map's coordinates to be updated in the textual
         // geocoded location name
-        this.map = opts.map;
+        this.picker = opts.picker;
     },
     /**
     Synchronises the view with the current model by updating the text fields
@@ -60,21 +63,6 @@ module.exports = Backbone.View.extend({
         return new Date(this.readDate() + 'T' + this.readTime());
     },
     /**
-    Reads the coordinates of the geographic location of the image, as selected
-    by the user, or null if no location has been chosen.
-    */
-    readCoords: function() {
-        var coords = null;
-        if (this.map.map.markers.length > 0) {
-            var pos = this.map.map.markers[0].position;
-            coords = {
-                lat: pos.lat(),
-                lng: pos.lng()
-            };
-        }
-        return coords;
-    },
-    /**
     Stores all currently entered metadata in this view's model to be later
     restored for further editing, or to be submitted to the server
     */
@@ -88,7 +76,7 @@ module.exports = Backbone.View.extend({
             datetime: this.dateTime(),
             location: {
                 name: this.fields.location.val(),
-                coords: this.readCoords()
+                coords: this.picker.readCoords()
             }
         });
     }

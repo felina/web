@@ -3,12 +3,12 @@ Backbone View that wraps the jQuery Atlas map location picker plugin.
 */
 module.exports = Backbone.View.extend({
     tagName: 'div',
-    className: 'map',
+    className: 'location-picker',
     initialize: function(opts) {
         opts = opts || {};
     },
     render: function(selector) {
-        this.map = this.$el.atlas({
+        this.atlas = this.$el.atlas({
             height: 300,
             width: 500,
             callback: function(text) {
@@ -25,11 +25,26 @@ module.exports = Backbone.View.extend({
     },
     update: function(coords) {
         // Clear old markers
-        this.map.removeMarkers();
+        this.atlas.removeMarkers();
 
         // Update the map with the selected image's location if one has been set
         if (coords && coords.lat && coords.lng) {
-            this.map.addMarker(coords);
+            this.atlas.addMarker(coords);
         }
+    },
+    /**
+    Reads the coordinates of the geographic location as selected by the user,
+    or null if no location has been chosen.
+    */
+    readCoords: function() {
+        var coords = null;
+        if (this.atlas && this.atlas.markers.length > 0) {
+            var pos = this.atlas.markers[0].position;
+            coords = {
+                lat: pos.lat(),
+                lng: pos.lng()
+            };
+        }
+        return coords;
     }
 });
