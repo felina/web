@@ -45,7 +45,7 @@ var onFeatureLoad = function(data) {
 };
 
 var onFeatureError = function() {
-    console.log('failed to load features');
+    console.log('Failed to load features');
 };
 
 $(function() {

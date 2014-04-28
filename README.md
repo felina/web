@@ -1,8 +1,8 @@
-# Project Felina - Website
+# [Darwin](http://darwinapp.co/)
 
 [![Build Status](https://travis-ci.org/felina/web.png?branch=master)](https://travis-ci.org/felina/web)
 
-This is the web interface for Project Felina, a system for crowdsourcing wildlife media for use in computer vision research.
+This is the web interface for Darwin, a system for crowdsourcing wildlife media for use in computer vision research.
 
 ## Installation
 

@@ -11,7 +11,7 @@ clean:
 
 # Builds the favicon from the full size logo. Requires ImageMagick
 favicon: site
-	convert -resize x16 img/shutter.png site/favicon.ico
+	convert -resize x16 img/favicon.png site/favicon.ico
 
 # Create the site directory and CSS subdirectory
 site:
@@ -19,7 +19,7 @@ site:
 
 # Build the site and deploy it to S3
 deploy: build
-	s3cmd sync site/ s3://felina.io --acl-public
+	s3cmd sync site/ s3://darwinapp.co --acl-public
 
 install:
 	bower cache clean

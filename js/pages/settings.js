@@ -16,7 +16,7 @@ $(function(){
         };
 
         // Make a call to the server to update the user's details
-        api.updateUser(user, function(data) {
+        api.updateUser(-1, user, function(data) {
             // Display a message informing the user if the update was sucessful
             if (data.res) {
                 alert('Settings updated successfully');

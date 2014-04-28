@@ -23,7 +23,7 @@ module.exports = Backbone.View.extend({
                     console.log(file, error, xhr);
                 });
             },
-            url: api.url + 'exec',
+            url: api.url + 'execs',
             acceptedFiles: '.zip',
             maxFilesize: 4096,
             accept: function(file, done) {

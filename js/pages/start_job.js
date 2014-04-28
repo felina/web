@@ -10,13 +10,13 @@ $(function(){
     var gallery = new Gallery();
     gallery.render('#gallery');
 
-    // Download the list of images uploaded by the current user
-    api.getImages(function(data) {
+    // Download the list of images
+    api.getProjectImages(1, function(data) {
         if (data.res) {
             // Add each one to the gallery
             _.each(data.images, function(img) {
                 gallery.add({
-                    url: api.url + 'img?id=' + img.imageid,
+                    url: api.url + 'images/' + img.imageid,
                     title: 'hi'
                 });
             });

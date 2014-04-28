@@ -12,7 +12,7 @@ module.exports = Backbone.View.extend({
                 this.on('sending', function(file, xhr, formData) {
                     // Associate this image with a particular project
                     xhr.withCredentials = true;
-                    formData.append('file_project', 1);
+                    formData.append('project', 1);
                 });
 
                 this.on('success', function(file, response) {
@@ -37,9 +37,10 @@ module.exports = Backbone.View.extend({
                     console.log(file, error, xhr);
                 });
             },
-            url: api.url + 'img',
+            url: api.url + 'images',
             acceptedFiles: 'image/*',
             maxFilesize: 4096,
+            paramName: 'image',
             accept: function(file, done) {
                 that.gallery.add({file: file});
                 done();

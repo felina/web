@@ -11,7 +11,7 @@ $(function(){
         if (data.res) {
             _.each(data.images, function(image) {
                 gallery.add({
-                    url: api.url + 'img?id=' + image.imageid,
+                    url: api.url + 'images/' + image.imageid,
                     title: 'hi'
                 });
             });
