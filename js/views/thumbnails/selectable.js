@@ -1,6 +1,6 @@
 module.exports = Backbone.View.extend({
     tagName: 'div',
-    className: 'gallery-item',
+    className: 'gallery-item inactive',
     initialize: function (opts) {
         opts = opts || {};
         this.annotator = opts.annotator;
@@ -22,6 +22,7 @@ module.exports = Backbone.View.extend({
     onSelect: function () {
         this.model.set('selected', !this.model.get('selected'));
         this.$el.toggleClass('active');
+        this.$el.toggleClass('inactive');
     },
     onPick: function () {
         this.annotator.setImage(this.model.get('image').clone());

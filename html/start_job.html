@@ -7,7 +7,23 @@
 
     <hr>
 
-    <h2>1. Choose an executable package to run</h2>
+    <h2>1. Name your job</h2>
+
+    <form>
+        <input type="text" placeholder="Name" class="form-control" id="name">
+    </form>
+
+    <hr>
+
+    <h2>2. Provide the command to execute</h2>
+
+    <form>
+        <input type="text" placeholder="Eg. myscript.exe -arg1 -arg2" class="form-control" id="cmd">
+    </form>
+
+    <hr>
+
+    <h2>3. Choose an executable package to run</h2>
 
     <div id="exelist">
         <ul></ul>
@@ -15,7 +31,7 @@
 
     <hr>
 
-    <h2>2. Choose images for processing</h2>
+    <h2>4. Choose images for processing</h2>
 
     <div id="gallery"></div>
 
@@ -23,7 +39,7 @@
 
     <hr>
 
-    <h2>3. Start the job</h2>
+    <h2>5. Start the job</h2>
 
     <div class="button-wrap">
         <button type="button" class="btn btn-success btn-lg" id="start">Start</button >

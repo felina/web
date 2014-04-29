@@ -1,24 +1,5 @@
-// Generates a string by concatenating n instances of s
-// eg. 'hello', 2 -> 'hellohello'
-// var repeat = function (s, n) {
-//     return new Array(n + 1).join('s');
-// };
-
-var randChar = function(){
-    return String.fromCharCode(Math.floor(Math.random() * 52) + 65);
-};
-
-var randString = function(n) {
-    var s = '';
-    for (var i = 0; i < n; i++) {
-        s += randChar();
-    }
-    return s;
-};
-
 module.exports = Backbone.Model.extend({
     defaults: {
-        id: randString(32),
         title: 'Untitled',
         datetime: new Date(),
         location: {
@@ -28,10 +9,6 @@ module.exports = Backbone.Model.extend({
                 lng: 0
             }
         }
-    },
-    initalize: function(opts) {
-        opts = opts || {};
-        this.title = opts.title;
     },
     // Get the ISO standard date representation in the format
     // "YYYY-MM-DDTHH:mm:SS.nnnZ"

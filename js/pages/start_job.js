@@ -1,6 +1,6 @@
 var onPageLoad = require('../shared/pageload');
 var Executable = require('../views/executable');
-var Gallery = require('../views/gallery/default');
+var Gallery = require('../views/gallery/selectable');
 
 $(function(){
     onPageLoad('start_job');
@@ -16,8 +16,9 @@ $(function(){
             // Add each one to the gallery
             _.each(data.images, function(img) {
                 gallery.add({
-                    url: api.url + 'images/' + img.imageid,
-                    title: 'hi'
+                    src: api.url + 'images/' + img.imageid,
+                    title: 'hi',
+                    id: img.imageid
                 });
             });
         }
@@ -51,6 +52,20 @@ $(function(){
 
     // When the user clicks on the start button
     $('#start').on('click', function() {
+        var name = $('#name').val();
+
+        if (name.length < 1) {
+            alert('Please name the job', 'bad');
+            return;
+        }
+
+        var cmd = $('#cmd').val();
+
+        if (cmd.length < 1) {
+            alert('Please provide a command to execute', 'bad');
+            return;
+        }
+
         // Get the selected executable to run
         var exe = _.find(exes, function(e) { return e.selected; });
 
@@ -62,17 +77,26 @@ $(function(){
 
         // Get the list of images to run it on
         var images = gallery.getSelected().map(function(img) {
-            return img.get('metadata').get('id');
+            return img.get('id');
         });
 
         // Ensure that the user has selected some images to process
-        if (images.length === 0) {
-            alert('Please choose at least one image', 'bad');
+        if (images.length > 2) {
+            alert('Please choose at least two images', 'bad');
             return;
         }
 
+        var data = {
+            name: name,
+            command: cmd,
+            executable: exe.id,
+            images: images
+        };
+
+        console.log(data);
+
         // Make the call to start the job on the server
-        api.startJob(exe.id, images, function(data) {
+        api.startJob(data, function(data) {
             console.log(data);
         });
     });

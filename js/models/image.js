@@ -27,7 +27,8 @@ module.exports = Backbone.Model.extend({
             this.set('file', file);
             this.set('src', file.name);
             this.set('metadata', new Metadata({
-                title: file.name
+                title: file.name,
+                id: this.id
             }));
             this.loadFromFile();
         }
