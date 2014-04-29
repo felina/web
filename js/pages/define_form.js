@@ -48,6 +48,10 @@ $(function(){
             alert('Please give this project a description');
         }
 
+        if(_.size(project.features) < 1) {
+            alert('Please specify at least one feature to be annotated');
+        }
+
         api.addProject(project, function (data) {
             console.log(data);
         });

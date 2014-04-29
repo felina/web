@@ -8,6 +8,7 @@ module.exports = Backbone.View.extend({
         opts = opts || {};
         this.text = opts.text || '';
         this.onClick = opts.onClick || function() {};
+        this.css = opts.css || {};
     },
     render: function() {
         // Create a new icon using the Bootstrap Glyphicons set, to display
@@ -17,6 +18,8 @@ module.exports = Backbone.View.extend({
         this.setClasses();
         // Add the icon and the text label to the button
         this.$el.append(icon).append('&nbsp;' + this.text);
+
+        this.$el.css(this.css);
         // Return a reference to this view for method chaining
         return this;
     },

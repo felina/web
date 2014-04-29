@@ -18,14 +18,11 @@ module.exports = Backbone.View.extend({
         this.name = 'Untitled';
     },
     render: function (selector) {
-        var that = this;
-        // Add the button for removing this field from the form
-        var removeButton = new RemoveButton({
-            text: 'Remove field',
-            onClick: that.remove
-        });
-        removeButton.render();
-        this.$el.prepend(removeButton);
+        var remove = (function(el) {
+            return function() {
+                el.remove();
+            };
+        })(this);
 
         // Add the Bootstrap horizontal form class for styling
         this.$el.addClass('form-horizontal');
@@ -33,6 +30,16 @@ module.exports = Backbone.View.extend({
 
         // Render the view's content from its JST
         this.$el.html(JST.form_field_definer());
+
+        // Add the button for removing this field from the form
+        var removeButton = new RemoveButton({
+            text: 'Remove field',
+            onClick: remove,
+            css: {
+                float: 'right'
+            }
+        });
+        removeButton.render().$el.prependTo(this.$el);
 
         // Insert it into the DOM by appending it to the element with the given
         // selector
