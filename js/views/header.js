@@ -18,7 +18,13 @@ module.exports = Backbone.View.extend({
             that.$('#logout').on('click', function() {
                 api.logout(function(data) {
                     console.log(data);
-                    goHome();
+                    if (data.res) {
+                        window.location.reload();
+                        goHome();
+                    }
+                    else {
+                        alert('Failed to log out', 'bad');
+                    }
                 });
             });
             if (data.res) {

@@ -1,17 +1,13 @@
-<% var percent = Math.floor(current / total * 100) + ''; %>
+<% var percent = progress * 100 + ''; %>
 <li class="job">
     <div class="jobbody left">
         <h3 class="name"><%= name %></h3>
-        <div class="eta"><strong>ETA:</strong>&nbsp;<%= eta %></div>
         <div class="progress progress-striped active">
             <div class="progress-bar" role="progressbar" aria-valuenow="<%= percent %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= percent %>%;">
                 <span class="sr-only"><%= percent %>% Complete</span>
             </div>
         </div>
-        <div><%= current %> / <%= total %> images processed (<%= percent %>%)</div>
     </div>
-
-    <div class="job-img right" style="background-image: url('<%= image %>');"></div>
 </li>
 
 <div class="clearfix"></div>
