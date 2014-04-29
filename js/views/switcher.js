@@ -1,9 +1,10 @@
+var pages = require('../../data/pages');
+
 module.exports = Backbone.View.extend({
     tagName: 'li',
     id: 'switcher',
     initialize: function (opts) {
         opts = opts || {};
-        this.pages = opts.pages;
         this.level = opts.level;
     },
     render: function (selector) {
@@ -12,8 +13,8 @@ module.exports = Backbone.View.extend({
 
         var content = $('<ul>');
 
-        for (var key in this.pages) {
-            var page = this.pages[key];
+        for (var key in pages) {
+            var page = pages[key];
             page.name = key;
             if (this.level >= page.level) {
                 content.append(JST.switcher_item(page));
@@ -33,10 +34,10 @@ module.exports = Backbone.View.extend({
         return this;
     },
     setIcon: function(page) {
-        if (!(page in this.pages)) {
+        if (!(page in pages)) {
             throw new Error('Invalid page: ' + page);
         }
-        var p = this.pages[page];
+        var p = pages[page];
         var icon = this.makeIcon(p.icon);
         this.$('button').append(icon).append('&nbsp;' + p.title);
     },

@@ -1,7 +1,5 @@
-var Switcher = require('../views/switcher');
 var loginutils = require('./loginutils');
-var pages = require('../../data/pages');
-var makeHeader = loginutils.makeHeader;
+var Header = require('../views/header');
 var isHomepage = loginutils.isHomepage;
 var goHome = loginutils.goHome;
 
@@ -13,22 +11,16 @@ var onPageLoad = function(page) {
     api.loginCheck(function(data) {
         console.log(data);
         if (data.res || isHomepage()) {
-            makeHeader(data);
+            var header = new Header({
+                page: page
+            });
+            header.render().$el.prependTo('body');
         }
         else {
             // Redirect to homepage
             if (!isHomepage()) {
                 goHome();
             }
-        }
-
-        if (data.res) {
-            var switcher = new Switcher({
-                pages: pages,
-                level: data.user.privilege
-            });
-            switcher.render('#hleft');
-            switcher.setIcon(page);
         }
     });
 };

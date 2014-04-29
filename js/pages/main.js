@@ -1,10 +1,7 @@
 var onPageLoad = require('../shared/pageload');
-var loginutils = require('../shared/loginutils');
 var LoginForm = require('../views/loginform');
 var Banner = require('../views/banner');
-var makeHeader = loginutils.makeHeader;
-var Switcher = require('../views/switcher');
-var pages = require('../../data/pages');
+var Header = require('../views/header');
 
 var onLogin = function(data) {
     // If the login was successful
@@ -14,16 +11,10 @@ var onLogin = function(data) {
         // Hide the login modal
         $('#register').modal('hide');
 
-        // Update the header to replace the login button with the
-        // details of the newly logged in user
-        makeHeader(data);
-
-        var switcher = new Switcher({
-            pages: pages,
-            level: data.user.privilege
+        var header = new Header({
+            page: 'index'
         });
-        switcher.render('#hleft');
-        switcher.setIcon('index');
+        header.render().$el.prependTo('body');
 
         $('#banner form').hide();
     }
