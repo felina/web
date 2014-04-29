@@ -34,7 +34,7 @@ $(function(){
 
     onPageLoad('index');
 
-    var images = ['elephant', 'giraffe', 'leopard'];
+    var images = ['elephant', 'gull', 'moose', 'panda', 'polar', 'tiger'];
 
     var randomImage = function(){
         return "url('/img/" + images[Math.floor(Math.random() * images.length)] + ".jpg')";

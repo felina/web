@@ -19,20 +19,6 @@ var urlUploader = new URLUploader({
     gallery: gallery
 });
 
-var addSpecies = function(){
-    var list = $('#species-list');
-
-    api.getSpecies(function(data) {
-        if (!data.res) {
-            alert('Failed to load project list');
-            return;
-        }
-        _.each(data.projects, function(project){
-            $('<option>').attr('value', project).text(project).appendTo(list);
-        });
-    });
-};
-
 var onFeatureLoad = function(data) {
     if (data.res) {
         console.log('loaded features');
@@ -48,6 +34,22 @@ var onFeatureError = function() {
     console.log('Failed to load features');
 };
 
+var addSpecies = function(){
+    var list = $('#species-list');
+
+    api.getSpecies(function(data) {
+        if (!data.res) {
+            alert('Failed to load project list');
+            return;
+        }
+        _.each(data.projects, function(project){
+            $('<option>').attr('value', project).text(project).appendTo(list);
+        });
+
+        api.getFeatures(data.projects[0].id, onFeatureLoad, onFeatureError);
+    });
+};
+
 $(function() {
     onPageLoad('upload/image');
 
@@ -55,8 +57,6 @@ $(function() {
         gallery: gallery
     });
     fileUploader.render('#upload');
-
-    api.getFeatures(onFeatureLoad, onFeatureError);
 
     gallery.render('#gallery');
     lp.render('#map');

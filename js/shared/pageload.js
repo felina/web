@@ -6,12 +6,6 @@ var isHomepage = loginutils.isHomepage;
 var goHome = loginutils.goHome;
 
 var onPageLoad = function(page) {
-    var switcher = new Switcher({
-        pages: pages
-    });
-    switcher.render('#hleft');
-    switcher.setIcon(page);
-
     webshims.polyfill();
 
     // Check the user's status on page load so that their name and icon can be
@@ -26,6 +20,14 @@ var onPageLoad = function(page) {
             if (!isHomepage()) {
                 goHome();
             }
+        }
+        if (data.res) {
+            var switcher = new Switcher({
+                pages: pages,
+                level: data.user.privilege
+            });
+            switcher.render('#hleft');
+            switcher.setIcon(page);
         }
     });
 };

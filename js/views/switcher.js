@@ -4,6 +4,7 @@ module.exports = Backbone.View.extend({
     initialize: function (opts) {
         opts = opts || {};
         this.pages = opts.pages;
+        this.level = opts.level;
     },
     render: function (selector) {
         var button = $('<button>').addClass('btn btn-default');
@@ -14,7 +15,9 @@ module.exports = Backbone.View.extend({
         for (var key in this.pages) {
             var page = this.pages[key];
             page.name = key;
-            content.append(JST.switcher_item(page));
+            if (this.level >= page.level) {
+                content.append(JST.switcher_item(page));
+            }
         }
 
         this.$el.popover({
