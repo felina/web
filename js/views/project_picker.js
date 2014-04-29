@@ -43,6 +43,6 @@ module.exports = Backbone.View.extend({
         'change': 'select'
     },
     select: function() {
-        // this.selectedID = this.$el.val();
+        this.selectedID = this.$el.val();
     }
 });
