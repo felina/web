@@ -72,7 +72,7 @@ $(function() {
 
         // Require at least one image to be selected
         if (data.length === 0) {
-            alert('No images selected. Please select at least one image to upload.');
+            alert('No images selected. Please select at least one image to upload.', 'bad');
             return;
         }
 

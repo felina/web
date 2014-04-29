@@ -3,12 +3,14 @@ var loginutils = require('../shared/loginutils');
 var LoginForm = require('../views/loginform');
 var Banner = require('../views/banner');
 var makeHeader = loginutils.makeHeader;
+var Switcher = require('../views/switcher');
+var pages = require('../../data/pages');
 
 var onLogin = function(data) {
     // If the login was successful
     if (data.res) {
         // Inform the user
-        alert('Logged in successfully');
+        alert('Logged in successfully', 'good');
         // Hide the login modal
         $('#register').modal('hide');
 
@@ -16,12 +18,19 @@ var onLogin = function(data) {
         // details of the newly logged in user
         makeHeader(data);
 
+        var switcher = new Switcher({
+            pages: pages,
+            level: data.user.privilege
+        });
+        switcher.render('#hleft');
+        switcher.setIcon('index');
+
         $('#banner form').hide();
     }
     // Login failed
     else {
         // Inform the user
-        alert('Invalid username or password');
+        alert('Invalid username or password', 'bad');
         console.log(data);
     }
 };

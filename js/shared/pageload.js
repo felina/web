@@ -21,6 +21,7 @@ var onPageLoad = function(page) {
                 goHome();
             }
         }
+
         if (data.res) {
             var switcher = new Switcher({
                 pages: pages,

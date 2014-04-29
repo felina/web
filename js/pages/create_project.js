@@ -25,44 +25,47 @@ $(function(){
     addButton.render().$el.appendTo('#addwrap');
 
     $('#submit').on('click', function() {
-        var features = {};
-
-        _.each(fields, function(field) {
-            features[field.name] = {
-                required: field.required,
-                type: field.type
-            };
-        });
-
         var project = {
             name: $('#name').val(),
             desc: $('#desc').val(),
-            features: features
         };
 
         console.log(project);
 
         if(!project.name) {
-            alert('Please name this project');
+            alert('Please name this project', 'bad');
         }
 
         if(!project.desc) {
-            alert('Please give this project a description');
+            alert('Please give this project a description', 'bad');
         }
 
-        console.log(_.size(project.features));
-
-        if(_.size(project.features) < 1) {
-            alert('Please specify at least one feature to be annotated');
+        if(fields.length < 1) {
+            alert('Please specify at least one feature to be annotated', 'bad');
         }
 
         api.addProject(project, function (data) {
             console.log(data);
             if (data.res) {
-                alert('Project created');
+                var out = {
+                    anno: fields.map(function(field) {
+                        return field.toJSON();
+                    })
+                };
+
+                var id = data.project.id;
+
+                api.putFeatures(id, out, function(data) {
+                    if (data.res) {
+                        alert('Project created', 'good');
+                    }
+                    else {
+                        alert(data.err.msg, 'bad');
+                    }
+                });
             }
             else {
-                alert(data.err.msg);
+                alert(data.err.msg, 'bad');
             }
         });
     });

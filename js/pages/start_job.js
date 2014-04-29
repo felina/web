@@ -56,7 +56,7 @@ $(function(){
 
         // Ensure that the user has selected an executable to run
         if (!exe) {
-            alert('Please choose an executable');
+            alert('Please choose an executable', 'bad');
             return;
         }
 
@@ -67,7 +67,7 @@ $(function(){
 
         // Ensure that the user has selected some images to process
         if (images.length === 0) {
-            alert('Please choose at least one image');
+            alert('Please choose at least one image', 'bad');
             return;
         }
 

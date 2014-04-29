@@ -19,10 +19,10 @@ $(function(){
         api.updateUser(-1, user, function(data) {
             // Display a message informing the user if the update was sucessful
             if (data.res) {
-                alert('Settings updated successfully');
+                alert('Settings updated successfully', 'good');
             }
             else {
-                alert('Could not save settings');
+                alert('Could not save settings', 'bad');
                 console.error(data);
             }
         });

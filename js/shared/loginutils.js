@@ -29,10 +29,6 @@ var makeHeader = function(data) {
         });
     });
 
-    // Hide the switcher if the user isn't logged in so that unauthorized
-    // users can't access other areas of the site.
-    $('#switcher').toggle(data.res);
-
     // Add the new content to the header
     $('header').append(h);
 };
