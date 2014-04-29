@@ -14,7 +14,7 @@ module.exports = Backbone.View.extend({
         // Default to optional
         this.required = false;
         // Default to a rectangle annotation
-        this.type = 'Rectangle';
+        this.type = 'arect';
         // Default to untitled
         this.name = 'Untitled';
     },
@@ -63,7 +63,8 @@ module.exports = Backbone.View.extend({
     },
     /** Stores the field type in the selector on the view */
     setType: function() {
-        this.type = this.$('#type').find(':selected').text();
+        this.type = this.$('#type').val();
+        console.log(this.type);
     },
     /**
     Stores the boolean representing whether or not this is a mandatory
