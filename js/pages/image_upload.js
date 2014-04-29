@@ -43,10 +43,10 @@ var addSpecies = function(){
             return;
         }
         _.each(data.projects, function(project){
-            $('<option>').attr('value', project).text(project).appendTo(list);
+            $('<option>').attr('value', project).text(project.name).appendTo(list);
         });
 
-        api.getFeatures(data.projects[0].id, onFeatureLoad, onFeatureError);
+        api.getFeatures(data.projects[0].projectid, onFeatureLoad, onFeatureError);
     });
 };
 
