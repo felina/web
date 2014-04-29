@@ -21,12 +21,12 @@ module.exports = {
     },
     start_job: {
         icon: 'plus',
-        title: 'Start a new job',
+        title: 'Start job',
         level: 2
     },
-    define_form: {
+    create_project: {
         icon: 'pencil',
-        title: 'Define a custom form',
+        title: 'Create project',
         level: 2
     },
     view_jobs: {
@@ -36,7 +36,7 @@ module.exports = {
     },
     graphs: {
         icon: 'stats',
-        title: 'Graphs',
+        title: 'View statistics',
         level: 2
     },
     user_profile: {
@@ -46,12 +46,12 @@ module.exports = {
     },
     user_profile_gallery: {
         icon: 'th',
-        title: 'User gallery',
+        title: 'Image gallery',
         level: 1
     },
     sub_users: {
         icon: 'list-alt',
-        title: 'Sub users',
+        title: 'Manage subusers',
         level: 2
     }
 };

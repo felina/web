@@ -18,7 +18,7 @@ var addButton = new AddButton({
 });
 
 $(function(){
-    onPageLoad('define_form');
+    onPageLoad('create_project');
 
     addField();
 

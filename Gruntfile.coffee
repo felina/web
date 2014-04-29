@@ -90,7 +90,7 @@ scripts =
   view_jobs: 'view_jobs'
   image_upload: 'image_upload'
   executable_upload: 'executable_upload'
-  define_form: 'define_form'
+  create_project: 'create_project'
   settings: 'settings'
   graphs: 'graphs'
   # Required for user profile
@@ -129,7 +129,7 @@ dependencies =
   'site/graphs.html': [libs.d3, scripts.graphs]
   'site/settings.html': [scripts.settings]
   'site/start_job.html': [libs.blueimp, libs.bbs, scripts.start_job]
-  'site/define_form.html': [scripts.define_form]
+  'site/create_project.html': [scripts.create_project]
   'site/view_jobs.html': [scripts.view_jobs]
   'site/upload/image.html': [libs.dropzone, libs.penguinator, libs.blueimp, libs.bbs, libs.gmaps, libs.atlas, scripts.image_upload]
   'site/upload/executable.html': [libs.dropzone, scripts.executable_upload]
