@@ -1,5 +1,3 @@
-var utils = require('../shared/loginutils');
-
 /**
 Enum representing the form's mode -- login or registration
 */
@@ -15,7 +13,11 @@ system and signing in to existing accounts
 var LoginForm = Backbone.View.extend({
     /** @constructor
     */
-    initialize: function() {
+    initialize: function(opts) {
+        opts = opts || {};
+
+        this.onLogin = opts.onLogin;
+
         // Set the view's element to be the register form, which is already
         // statically included in the homepage
         this.$el = $('#register');
@@ -89,12 +91,12 @@ var LoginForm = Backbone.View.extend({
             // Add their chosen username to the object to be submitted
             data.name = this.fields.name.val();
             // Make the registration call
-            api.register(data, utils.onLogin);
+            api.register(data, this.onLogin);
         }
         // If the user is logging in
         else {
             // Make the login call
-            api.login(data, utils.onLogin);
+            api.login(data, this.onLogin);
         }
 
         // Return false to override the default 'Done' behaviour of closing the

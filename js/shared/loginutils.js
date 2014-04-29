@@ -1,9 +1,14 @@
-var goHome = function() {
-    window.location.replace(window.location.origin);
-};
-
 var isHomepage = function() {
     return window.location.href === window.location.origin + '/';
+};
+
+var goHome = function() {
+    if (isHomepage()) {
+        window.location.reload(true);
+    }
+    else {
+        window.location.replace(window.location.origin);
+    }
 };
 
 /**

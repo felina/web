@@ -1,11 +1,8 @@
 var onPageLoad = require('../shared/pageload');
 var loginutils = require('../shared/loginutils');
 var LoginForm = require('../views/loginform');
+var Banner = require('../views/banner');
 var makeHeader = loginutils.makeHeader;
-
-var hideForm = function () {
-    $('#banner').find('form').hide();
-};
 
 var onLogin = function(data) {
     // If the login was successful
@@ -19,7 +16,7 @@ var onLogin = function(data) {
         // details of the newly logged in user
         makeHeader(data);
 
-        hideForm();
+        $('#banner form').hide();
     }
     // Login failed
     else {
@@ -30,40 +27,14 @@ var onLogin = function(data) {
 };
 
 $(function(){
-    new LoginForm();
+    new LoginForm({
+        onLogin: onLogin
+    });
 
     onPageLoad('index');
 
-    var images = ['elephant', 'gull', 'moose', 'panda', 'polar', 'tiger'];
-
-    var randomImage = function(){
-        return "url('/img/" + images[Math.floor(Math.random() * images.length)] + ".jpg')";
-    };
-
-    var banner = $('#banner');
-
-    banner.css({
-        'background-image': randomImage()
+    var banner = new Banner({
+        onLogin: onLogin
     });
-
-    api.loginCheck(function(data){
-        // Remove the login form if the user's logged in
-        if (data.res) {
-            hideForm();
-        }
-        // Activate it if they aren't
-        else {
-            banner.find('button').on('click', function(){
-                var data = {
-                    email: banner.find('#email').val(),
-                    pass: banner.find('#password').val()
-                };
-
-                api.login(data, onLogin, function(err){
-                    console.error(err);
-                    hideForm();
-                });
-            });
-        }
-    });
+    banner.render().$el.prependTo('#main');
 });
