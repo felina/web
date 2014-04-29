@@ -7,6 +7,7 @@ var LocationPicker = require('../views/location_picker');
 var Annotator = require('../views/annotator');
 var URLUploader = require('../views/uploaders/img/url');
 var FileUploader = require('../views/uploaders/img/file');
+var ProjectPicker = require('../views/project_picker');
 
 var ann = new Annotator();
 var lp = new LocationPicker();
@@ -27,6 +28,7 @@ var onFeatureLoad = function(data) {
     }
     else {
         console.log('failed to load features');
+        console.log(data);
     }
 };
 
@@ -34,21 +36,10 @@ var onFeatureError = function() {
     console.log('Failed to load features');
 };
 
-var addSpecies = function(){
-    var list = $('#species-list');
-
-    api.getSpecies(function(data) {
-        if (!data.res) {
-            alert('Failed to load project list');
-            return;
-        }
-        _.each(data.projects, function(project){
-            $('<option>').attr('value', project).text(project.name).appendTo(list);
-        });
-
-        api.getFeatures(data.projects[0].projectid, onFeatureLoad, onFeatureError);
-    });
-};
+var pp = new ProjectPicker({
+    onFeatureLoad: onFeatureLoad,
+    onFeatureError: onFeatureError
+});
 
 $(function() {
     onPageLoad('upload/image');
@@ -62,9 +53,7 @@ $(function() {
     lp.render('#map');
     metadata.render('.meta');
     urlUploader.render('#upload');
-
-    // Pull in the list of species from the server and add it to the dropdown
-    addSpecies();
+    pp.render().$el.appendTo('#picker-wrap');
 
     // Send the image metadata to the server when the submit button is clicked
     $('#submit').click(function() {

@@ -58,6 +58,12 @@ $(function(){
 
         api.addProject(project, function (data) {
             console.log(data);
+            if (data.res) {
+                alert('Project created');
+            }
+            else {
+                alert(data.err.msg);
+            }
         });
     });
 });
