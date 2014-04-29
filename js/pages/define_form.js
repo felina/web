@@ -5,7 +5,9 @@ var AddButton = require('../views/buttons/add');
 var fields = [];
 
 var addField = function () {
-    var field = new FormDefiner();
+    var field = new FormDefiner({
+        parent: fields
+    });
     field.render('.fields');
     fields.push(field);
 };
@@ -47,6 +49,8 @@ $(function(){
         if(!project.desc) {
             alert('Please give this project a description');
         }
+
+        console.log(_.size(project.features));
 
         if(_.size(project.features) < 1) {
             alert('Please specify at least one feature to be annotated');

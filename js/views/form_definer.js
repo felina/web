@@ -9,6 +9,7 @@ module.exports = Backbone.View.extend({
     className: 'form-field-definer',
     initialize: function(opts) {
         opts = opts || {};
+        this.parent = opts.parent;
         // Set default values for the field
         // Default to optional
         this.required = false;
@@ -21,6 +22,7 @@ module.exports = Backbone.View.extend({
         var remove = (function(el) {
             return function() {
                 el.remove();
+                el.parent.splice(el.parent.indexOf(el), 1);
             };
         })(this);
 
