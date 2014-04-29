@@ -1,6 +1,10 @@
 # [Darwin](http://darwinapp.co/)
 
+![Logo](https://raw.githubusercontent.com/felina/web/master/img/shutter.png "Darwin logo")
+
 [![Build Status](https://travis-ci.org/felina/web.png?branch=master)](https://travis-ci.org/felina/web)
+
+
 
 This is the web interface for Darwin, a system for crowdsourcing wildlife media for use in computer vision research.
 
