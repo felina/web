@@ -33,12 +33,21 @@ module.exports = Backbone.View.extend({
     },
     setFeatures: function(features) {
         this.args.features = features;
+        return this;
     },
     setAnnotations: function(annotations){
         this.args.annotations = annotations;
+        return this;
     },
     setImage: function(image){
         this.args.img = image;
-        this.render();
+        return this;
+    },
+    save: function() {
+        if (!this.activeImage) {
+            return;
+        }
+
+        this.activeImage.set('annotations', this.annotator.getExport());
     }
 });

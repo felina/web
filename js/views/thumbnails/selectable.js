@@ -25,9 +25,15 @@ module.exports = Backbone.View.extend({
         this.$el.toggleClass('inactive');
     },
     onPick: function () {
-        this.annotator.setImage(this.model.get('image').clone());
         this.metadataView.save();
         this.metadataView.activeImage = this.model;
         this.metadataView.update(this.model.get('metadata'));
+
+        this.annotator.save();
+        this.annotator.activeImage = this.model;
+        this.annotator
+            .setImage(this.model.get('image').clone())
+            .setAnnotations(this.model.get('annotations'))
+            .render();
     }
 });
