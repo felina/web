@@ -7,7 +7,9 @@ $(function(){
 
     // Create a new gallery to display all the images available for processing
     // and allow the researcher to select which ones to process
-    var gallery = new Gallery();
+    var gallery = new Gallery({
+        pickable: false
+    });
     gallery.render('#gallery');
 
     // Download the list of images

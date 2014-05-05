@@ -14,7 +14,8 @@ var lp = new LocationPicker();
 var metadata = new MetadataView({ picker: lp });
 var gallery = new Gallery({
     annotator: ann,
-    metadataView: metadata
+    metadataView: metadata,
+    pickable: true
 });
 var urlUploader = new URLUploader({
     gallery: gallery

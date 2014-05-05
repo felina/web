@@ -5,6 +5,7 @@ module.exports = Backbone.View.extend({
         opts = opts || {};
         this.annotator = opts.annotator;
         this.metadataView = opts.metadataView;
+        this.pickable = opts.pickable;
     },
     render: function() {
         this.$el.html(JST['gallery/selectable']({
@@ -13,6 +14,11 @@ module.exports = Backbone.View.extend({
         }));
         var img = this.model.get('image');
         this.$('a').append(img);
+
+        if(!this.pickable) {
+            this.$('button').hide();
+        }
+
         return this;
     },
     events: {
