@@ -35,13 +35,33 @@ module.exports = Backbone.View.extend({
         // Read the given URL from the text field
         var url = this.field.val();
 
-        // Ensure the URL is valid
-        // TODO: more validation
+        // Ensure the URL is there
         if (url.length === 0) {
             alert('No URL specified');
         }
 
-        // Add a new image to the gallery associated with this uploader
-        this.gallery.add({src: url});
+        var that = this;
+
+        // Check the URL is valid
+        $.ajax({
+            url: url,
+            type: 'HEAD',
+            error: function() {
+                // Show an error message if the url isn't valid
+                alert('Not a valid image URL', 'bad');
+            },
+            success: function() {
+                // Add a new image to the gallery associated with this uploader
+                that.gallery.add({src: url});
+
+                // Upload the image to the server
+                var data = {
+                    url: url,
+                    project: $('#species-list').val()
+                };
+
+                api.uploadImage(data);
+            }
+        });
     }
 });
