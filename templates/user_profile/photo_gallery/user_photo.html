@@ -1,0 +1,28 @@
+<div class="gallery_wrap table_background">
+    
+    <span>
+        <h4 style="float:left">
+            <a href="<%= photo_url %>">
+                Photos
+            </a>
+        </h4></span>
+    <span>
+        <h5 style="float:right">
+            <%= photo_total %>
+        </h5>
+    </span>
+
+    <table class="table table-bordered">
+        <tbody>
+            <% for (var j = 0; j < 3; j++) { %>
+                 <tr>
+                     <% for (var i = 0; i < 3; i++) { %>
+                         <td id="photo<%=3*j + i%>">
+                             <a href="<%= photos[3*j + i] %>"><img class="photo_ind" src=<%= photos[3*j + i] %>></a>
+                         </td>
+                    <% } %>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

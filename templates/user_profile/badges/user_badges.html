@@ -1,0 +1,19 @@
+<div class="badge_wrap table_background">
+    
+    <span><h4 style="float:left">Badges</h4></span>
+    <span><h5 style="float:right"><%= user_badges %> / <%= available_badges %></h5></span>
+
+    <table class="table table-bordered">
+           <tbody>
+               <% for (var j = 0; j < 5; j++) { %>
+                    <tr>
+                        <% for (var i = 0; i < 5; i++) { %>
+                            <td id="badge<%=5*j + i%>">
+                                <img class="badge_ind" src=<%= badges[5*j + i] %>>
+                            </td>
+                       <% } %>
+                   </tr>
+               <% } %>
+           </tbody>
+       </table>
+</div>
