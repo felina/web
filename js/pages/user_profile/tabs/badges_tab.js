@@ -1,6 +1,6 @@
 $(function(){
     //Badges Tab
-    var btab = $(JST['User_Profile/User_Tabs/badges_tab']({
+    var btab = $(JST['user_profile/user_tabs/badges_tab']({
     }));
     var badgesTab = $('.badges_tab');
     badgesTab.append(btab);
