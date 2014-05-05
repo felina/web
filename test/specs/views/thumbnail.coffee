@@ -20,7 +20,7 @@ describe 'Thumbnail', ->
     thumbnail.tagName.should.eql('div')
 
   it 'should have a class', ->
-    thumbnail.className.should.eql('gallery-item')
+    thumbnail.className.should.eql('gallery-item inactive')
 
   it 'should have an annotator to send its image to when clicked', ->
     thumbnail.annotator.should.be.an.instanceof(Annotator)

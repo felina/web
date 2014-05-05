@@ -12,9 +12,6 @@ describe 'Switcher', ->
   it 'should have an ID', ->
     switcher.id.should.eql('switcher')
 
-  it 'should have a set of pages to display', ->
-    switcher.pages.should.be.an('object')
-
   it 'should have no icon by default', ->
     switcher.$('i').should.have.length(0)
 
