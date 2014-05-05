@@ -38,5 +38,4 @@ describe 'FLImage', ->
       actual.metadata.location.should.deep.equal(location)
       actual.metadata.title.should.eql(src)
       new Date(actual.metadata.datetime).should.be.an.instanceof(Date)
-      actual.metadata.id.should.be.a('string').and.have.length(32)
       actual.annotations.should.eql({})

@@ -13,7 +13,7 @@ describe 'Form definer', ->
     definer.required.should.be.false
 
   it 'should be a rectangle by default', ->
-    definer.type.should.eql('Rectangle')
+    definer.type.should.eql('arect')
 
   it 'should be untitled by default', ->
     definer.name.should.eql('Untitled')
