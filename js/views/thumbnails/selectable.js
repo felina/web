@@ -8,7 +8,7 @@ module.exports = Backbone.View.extend({
     },
     render: function() {
         this.$el.html(JST['gallery/selectable']({
-            url: this.model.get('url'),
+            url: this.model.get('src'),
             title: this.model.get('metadata').get('title')
         }));
         var img = this.model.get('image');
