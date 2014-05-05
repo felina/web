@@ -20,7 +20,7 @@ $(function(){
                 photos[i] = api.url + 'img/' + data.images[i].imageid;
             }
         }
-        var photoGallery = $(JST['User_Profile/Photo_Gallery/user_photo']({
+        var photoGallery = $(JST['user_profile/photo_gallery/user_photo']({
             photo_total: '100',
             photo_url: 'photo_url',
             photos: photos

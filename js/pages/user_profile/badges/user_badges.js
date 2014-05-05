@@ -30,7 +30,7 @@ $(function(){
         'http://e.thumbs.redditmedia.com/vAckDnDUX9tUmLzv.png'
     ];
 
-    var badgeGallery = $(JST['User_Profile/Badges/user_badges']({
+    var badgeGallery = $(JST['user_profile/badges/user_badges']({
         badges: badges,
         user_badges: '17',
         available_badges: '100'
