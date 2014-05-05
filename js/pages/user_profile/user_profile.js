@@ -11,8 +11,8 @@ $(function(){
             profile = $(JST['User_Profile/User_Cover/user_profile']({
                 username: data.user.name,
                 userinfo: 'I like penguins', //Get stuff from server
-                profile_picture: '/img/shutter.png',
-                cover_photo: '/img/leopard.jpg'
+                profile_picture: 'http://appnovaweb.files.wordpress.com/2013/07/myspacetom.jpg',
+                cover_photo: '/img/elephant.jpg'
             }));
             var profileWrap = $('.profile_wrapper');
             profileWrap.append(profile);
