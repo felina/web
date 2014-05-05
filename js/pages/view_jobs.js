@@ -1,4 +1,15 @@
 var onPageLoad = require('../shared/pageload');
+var Job = require('../models/job');
+var JobView = require('../views/jobview');
+
+var addJob = function(el, opts) {
+    var job = new Job(opts);
+    var jobview = new JobView({
+        model: job
+    });
+
+    jobview.render().$el.appendTo(el);
+};
 
 $(function(){
     onPageLoad('view_jobs');
@@ -46,7 +57,7 @@ $(function(){
                     api.getCSV(job.jobid, function(data) {
                         if (data.res) {
                             job.csvurl = data.url;
-                            el.append(JST.job(job));
+                            addJob(el ,job);
                         }
                         else {
                             alert('Failed to load job results for job ' + job.name, 'bad');
@@ -54,7 +65,9 @@ $(function(){
                     });
                 }
                 // For other types of job, just add it straight to the DOM
-                el.append(JST.job(job));
+                else {
+                    addJob(el, job);
+                }
             });
         });
     });
