@@ -100,6 +100,13 @@ $(function(){
         // Make the call to start the job on the server
         api.startJob(data, function(data) {
             console.log(data);
+
+            if (data.res) {
+                window.location.reload(true);
+            }
+            else {
+                alert('Failed to start job', 'bad');
+            }
         });
     });
 });

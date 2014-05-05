@@ -8,8 +8,7 @@ module.exports = Backbone.View.extend({
     },
     render: function() {
         this.$el.html(JST['gallery/default']({
-            url: this.url,
-            title: this.title
+            url: this.url
         }));
         return this;
     }
