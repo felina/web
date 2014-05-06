@@ -83,7 +83,7 @@ $(function(){
         });
 
         // Ensure that the user has selected some images to process
-        if (images.length > 2) {
+        if (images.length < 2) {
             alert('Please choose at least two images', 'bad');
             return;
         }
