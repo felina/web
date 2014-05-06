@@ -4,17 +4,17 @@ module.exports = Backbone.View.extend({
 
         if (this.model.get('completed')) {
             this.$('.progress').hide();
-            this.$('button').hide();
+            this.$('.play').hide();
             this.$('#results').show();
         }
 
         return this;
     },
     events: {
-        'click button': 'togglePause'
+        'click .play': 'togglePause'
     },
     togglePause: function() {
-        this.$('button i')
+        this.$('.play i')
             .toggleClass('glyphicon-play')
             .toggleClass('glyphicon-pause');
         this.$('.progress').toggleClass('active');

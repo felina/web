@@ -4,6 +4,7 @@ module.exports = Backbone.View.extend({
     initialize: function(opts) {
         opts = opts || {};
         this.gallery = opts.gallery;
+        this.picker = opts.picker;
     },
     render: function(selector) {
         var that = this;
@@ -12,7 +13,7 @@ module.exports = Backbone.View.extend({
                 this.on('sending', function(file, xhr, formData) {
                     // Associate this image with a particular project
                     xhr.withCredentials = true;
-                    formData.append('project', 1);
+                    formData.append('project', that.picker.selectedID);
                 });
 
                 this.on('success', function(file, response) {
@@ -42,7 +43,10 @@ module.exports = Backbone.View.extend({
             maxFilesize: 4096,
             paramName: 'image',
             accept: function(file, done) {
-                that.gallery.add({file: file});
+                that.gallery.add({
+                    file: file,
+                    pickable: true
+                });
                 done();
             }
         });
