@@ -14,15 +14,15 @@ $(function(){
         if (users.res) {
             registered_subusers = users.subusers;
             registered_subusers.forEach(function(user, i){
-                var contents = user.email; //THE SERIAL KEY
-                var name = user.name; //THE NAME
-                var projects = user.projectid; //THE PROJECTS
-                var invalid = user.invalidated; //1 if validated -1 if invalidated
+                var contents = user.email;
+                var name = user.name;
+                var projects = user.projectid;
+                var valid = user.valid;
 
                 var subuser_view = new SubuserView({
                     i: i,
                     projects: projects,
-                    invalid: invalid,
+                    valid: valid,
                     name: name,
                     contents: contents
                 });
@@ -98,7 +98,7 @@ $(function(){
                     var subuser_view = new SubuserView({
                         i: i,
                         projects: projects,
-                        invalid: 1,
+                        valid: false,
                         name: name,
                         contents: contents
                     });

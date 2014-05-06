@@ -4,7 +4,7 @@ module.exports = Backbone.View.extend({
         opts = opts || {};
         this.projects = opts.projects;
         this.name = opts.name;
-        this.invalid = opts.invalid;
+        this.valid = opts.valid;
         this.contents = opts.contents;
         this.i = opts.i;
         this.selected = false;
@@ -15,7 +15,7 @@ module.exports = Backbone.View.extend({
             projects: this.projects
         }));
 
-        var colour = this.invalid === 1 ? 'red' : 'green';
+        var colour = this.valid ? 'green': 'red';
         this.$('.index').css('background-color', colour);
 
         this.$('#namecontainer').val(this.name);
@@ -41,26 +41,26 @@ module.exports = Backbone.View.extend({
         api.updateSub(newUser, function (data) {
             console.log(data);
             if (data.res) {
-                that.invalid = valid;
+                that.valid = valid;
                 that.setColour();
             }
         });
     },
     setColour: function() {
-        if (this.invalid === -1) {
-            this.$el.addClass('danger');
-            this.$el.removeClass('success');
-        }
-        else {
+        if (this.valid) {
             this.$el.removeClass('danger');
             this.$el.addClass('success');
         }
+        else {
+            this.$el.addClass('danger');
+            this.$el.removeClass('success');
+        }
     },
     refresh: function () {
-        this.setValidation(1);
+        this.setValidation(true);
     },
     invalidate: function () {
-        this.setValidation(-1);
+        this.setValidation(false);
     },
     edit: function () {
         this.$('#namecontainer').removeAttr('readonly');
