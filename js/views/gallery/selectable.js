@@ -44,7 +44,8 @@ module.exports = Backbone.View.extend({
         var thumb = new Thumbnail({
             model: image,
             annotator: this.annotator,
-            metadataView: this.metadataView
+            metadataView: this.metadataView,
+            pickable: opts.pickable
         });
         // Render the thumbnail and append it to the gallery
         thumb.render();

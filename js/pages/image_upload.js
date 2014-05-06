@@ -46,7 +46,8 @@ $(function() {
     onPageLoad('upload/image');
 
     var fileUploader = new FileUploader({
-        gallery: gallery
+        gallery: gallery,
+        picker: pp
     });
     fileUploader.render('#upload');
 

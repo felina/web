@@ -1,12 +1,18 @@
-<% var percent = progress * 100 + ''; %>
 <li class="job">
     <div class="jobbody left">
         <h3 class="name"><%= name %></h3>
+
+        <button class="btn btn-primary play">
+            <i class="glyphicon glyphicon-pause"></i>
+        </button>
+
         <div class="progress progress-striped active">
             <div class="progress-bar" role="progressbar" aria-valuenow="<%= percent %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= percent %>%;">
                 <span class="sr-only"><%= percent %>% Complete</span>
             </div>
         </div>
+
+        <a href="<%= csvurl %>" style="display:none;" id="results">Download job results</a>
     </div>
 </li>
 

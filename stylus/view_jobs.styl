@@ -1,59 +1,5 @@
-sidebar_width = 250px
-
-.sidebar
-  background: dark_grey
-  color: white
-  width: sidebar_width
-  float: left
-  height: 100%
-  box-shadow: -5px 0 10px shadow_black inset
-
-  ul
-    list-style-type: none
-    padding: 0
-
-    li
-      margin: margin_small 0
-      padding: 10px
-      border-bottom: 1px solid mid_grey
-
-      h2
-        font-size: 20px
-        margin: 0
-        color: highlight
-
-      a
-        margin-left: 3px
-        cursor: pointer
-
-.sidebar a
-  color: white
-  text-decoration: none
-
-.sidebar a:hover
-  color: white
-  text-decoration: none
-
-.dashboard
-  padding: 10px 30px
-  height: 500px
-  left: sidebar_width
-  background: white
-  position: absolute
-  transition: 0.2s left, 0.2s width
-  overflow: scroll
-
-  ul
-    list-style-type: none
-
-#toggleSidebar
-  border: none
-  background: none
-  color: white
-  transition: 0.2s all
-
-#toggleSidebar:focus
-  outline: none
+.job
+  list-style-type: none
 
 .job-img
   width: thumbnail_size
@@ -68,7 +14,16 @@ sidebar_width = 250px
   margin-bottom: margin_mid
 
 .progress
-  width: 300px
+  width: 190px
+  height: 34px
+  float: left
+
+button.play
+  float: left
+  margin-right: 10px
+
+h3.name
+  margin: 0 0 10px 0
 
 .eta
   margin-bottom: margin_mid
