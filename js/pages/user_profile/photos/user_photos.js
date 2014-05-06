@@ -16,9 +16,9 @@ $(function(){
     //Gets images that are then displayed in the user photo gallery on the main page
     api.getImages(function(data) {
         if(data.res) {
-            for (var i = 0; i < data.images.length; i++) {
-                photos[i] = api.url + 'img/' + data.images[i].imageid;
-            }
+           for (var i = 0; i < data.images.length; i++) {
+               photos[i] = api.url + 'images/' + data.images[i].imageid;
+           }
         }
         var photoGallery = $(JST['user_profile/photo_gallery/user_photo']({
             photo_total: '100',
